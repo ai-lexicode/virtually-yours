@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 export default function RegistrerenPage() {
   const [form, setForm] = useState({
     firstName: "",
@@ -101,8 +102,8 @@ export default function RegistrerenPage() {
   return (
     <>
       <div className="lg:hidden mb-8 text-center">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Virtually Yours
+        <Link href="/">
+          <Image src="/images/logo.png" alt="Virtually Yours" width={160} height={42} className="h-10 w-auto mx-auto" />
         </Link>
       </div>
 

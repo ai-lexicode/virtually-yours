@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { createBrowserClient } from "@supabase/ssr";
 
 export default function InloggenPage() {
@@ -147,8 +148,8 @@ function InloggenContent() {
   return (
     <>
       <div className="lg:hidden mb-8 text-center">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Virtually Yours
+        <Link href="/">
+          <Image src="/images/logo.png" alt="Virtually Yours" width={160} height={42} className="h-10 w-auto mx-auto" />
         </Link>
       </div>
 
