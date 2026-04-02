@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -74,8 +75,8 @@ export function PortalSidebar() {
       <aside className={`fixed top-0 left-0 h-full w-60 bg-sidebar border-r border-card-border flex-col z-50 ${mobileOpen ? "flex" : "hidden"} md:flex`}>
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-card-border">
-          <Link href="/" className="text-xl font-bold text-primary">
-            Virtually Yours
+          <Link href="/" className="flex items-center">
+            <Image src="/images/logo.png" alt="Virtually Yours" width={120} height={32} className="h-8 w-auto" />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}

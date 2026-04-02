@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
@@ -64,9 +65,9 @@ export function AdminSidebar() {
       {/* Sidebar */}
       <aside className={`fixed top-0 left-0 h-full w-60 bg-sidebar border-r border-card-border flex-col z-50 ${mobileOpen ? "flex" : "hidden"} md:flex`}>
         <div className="h-16 flex items-center justify-between px-6 border-b border-card-border">
-          <Link href="/admin" className="text-xl font-bold text-primary">
-            Virtually Yours
-            <span className="text-xs font-normal text-muted ml-2">Admin</span>
+          <Link href="/admin" className="flex items-center gap-2">
+            <Image src="/images/logo.png" alt="Virtually Yours" width={120} height={32} className="h-8 w-auto" />
+            <span className="text-xs font-normal text-muted">Admin</span>
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
