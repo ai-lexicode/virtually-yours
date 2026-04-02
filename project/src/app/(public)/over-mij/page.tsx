@@ -13,7 +13,7 @@ export default function OverMijPage() {
     <>
       {/* Hero */}
       <section className="relative py-16 sm:py-20" style={{ backgroundImage: "url('/images/about-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
-        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 bg-[#1a1a1a]/92" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Photo */}
@@ -39,7 +39,7 @@ export default function OverMijPage() {
                 Freelance jurist, Legal Engineer &amp; Juridisch VA
               </p>
 
-              <div className="mt-6 space-y-4 text-muted leading-relaxed">
+              <div className="mt-6 space-y-4 text-white/80 leading-relaxed">
                 <p>
                   Al enige jaren ben ik werkzaam als virtueel assistent en online
                   business manager. Nadat ik Rechtsgeleerdheid was gaan studeren
