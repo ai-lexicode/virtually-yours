@@ -1,0 +1,286 @@
+#-----------------------------------------------------------------------------
+# METADATA Einde
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_einde_AFF: '20v10_AFF'
+# last revision date: 2025-07-24
+---
+objects:
+  - recipient: Individual
+  - lexicode: Individual
+---
+#---------------------------------
+# SECTIE Antwoorden versturen
+#---------------------------------
+# _________________________________
+# 00 | antwoorden_versturen_opdr
+# _________________________________
+id: id_inzenden
+mandatory: True
+question: |
+  Antwoorden versturen
+subquestion: |
+  % if uurbasispakket_ovk and nacalurenwerkzaamheden_ovk and geldigstrippenkaart_ovk and voorafachterafproject_ovk and flatfeenacal_ovk:
+  Dit waren alle vragen. Dank je wel voor al je antwoorden!
+  <br><br>
+  Klik op "Versturen" om je antwoorden in te zenden.
+
+  Mocht je achteraf een wijziging hebben aangebracht in jouw antwoorden, dan dan volgen er hierna mogelijk nog wat aanvullende vragen. Daarna worden je antwoorden verzonden.
+  % endif
+continue button label: Versturen
+continue button field: antwoorden_verstuurd_opdr
+#---
+progress: 95
+section: sec_verstuurd
+---
+mandatory: True
+code: |
+  if antwoorden_verstuurd_opdr == True:
+    trigger_resubmit = False
+---
+# _________________________________
+# Background task
+# _________________________________
+mandatory: True
+code: |
+  the_task = background_action('bg_taskdocs')
+  log("bg_taskdocs gestart.")
+---
+#---------------------------------
+# SECTIE Documenten creeren
+#---------------------------------
+id: id_docs
+attachments:
+# _________________________________
+# Gegeven antwoorden
+# _________________________________
+  - name: 4_Gegeven antwoorden_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_var_p03v07.docx
+    variable name: opdr_varp03v07
+    valid formats:
+      - docx
+# _________________________________
+# 00 | avw_vxx
+# _________________________________
+  - name: 2a_Algemene Voorwaarden_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_avw_v33.docx
+    variable name: avw_v33
+    valid formats:
+      - docx
+# _________________________________
+# 00 | avw_vxxopg
+# _________________________________
+  - name: 2b_Algemene Voorwaarden_${ bedrijfsnaam_client }_opgemaakt_output
+    docx template file: Docassemble_opdr_avw_v33_opgemaakt.docx
+    variable name: avw_v33opg
+    valid formats:
+      - docx
+# _________________________________
+# 00 | opm_vxx
+# _________________________________
+  - name: 3_Vragen en opmerkingen_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_opm_v08.docx
+    variable name: opm_v08
+    valid formats:
+      - docx
+# _________________________________
+# 00 | ovo_vxx
+# _________________________________
+  - name: 1_Overeenkomst van Opdracht_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_ovo_v34.docx
+    variable name: ovo_v34
+    valid formats:
+      - docx
+---
+#---------------------------------
+# CODE E-mails versturen
+#---------------------------------
+# _________________________________
+# 00 | email_sent_ok
+# _________________________________
+mandatory: True
+event: bg_taskdocs
+code: |
+  email_sent_ok = send_email(to=['risha@virtually-yours.nl'],
+       template=resultaten_email,
+       attachments=[
+         opdr_varp03v07,
+         avw_v33,
+         avw_v33opg,
+         opm_v08,
+         ovo_v34
+          ]
+  )
+  background_response()
+  log("bg_taskdocs afgerond.")
+---
+#---------------------------------
+# SECTIE Klaar
+#---------------------------------
+id: id_klaar
+mandatory: true
+question: |
+  Antwoorden verzonden
+subquestion: |
+  % if antwoorden_verstuurd_opdr:
+  Bedankt! Je antwoorden zijn verzonden.
+  <br><br>
+  We gaan nu voor je aan de slag om je documenten op maat te maken. Meestal ontvang je deze binnen twee weken, tenzij er een andere termijn is afgesproken.
+  <br><br>
+  Mocht je nog vragen hebben, neem dan contact op met jouw coach, opleider of contactpersoon. Je kunt nu afsluiten of je gegeven antwoorden laten e-mailen.
+  <br><br>
+  Hartelijke groet,
+  <br><br>
+  Risha
+  <br><br>
+  **Antwoorden e-mailen (optioneel):**
+  <br><br>
+  Als je je gegeven antwoorden per e-mail in pdf-formaat wilt ontvangen, klik dan op *Antwoorden e-mailen*.
+  % else:
+  Het is helaas niet gelukt om je antwoorden te versturen. Neem contact op met webmaster@lexicode.nl
+  % endif
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist en Juridisch VA*
+buttons:
+  - Afsluiten: leave
+  - Antwoorden e-mailen: continue
+#---
+progress: 99
+section: sec_klaar
+---
+id: id_pdfmailen
+mandatory: true
+question: |
+  Jouw antwoorden ontvangen
+subquestion: |
+  Let op, de e-mail kan in je spamfolder terechtkomen. Het kan een paar minuten duren voordat je de e-mail ontvangt.
+  <br><br>
+  Deze feature bevindt zich in de testfase.
+  Als je de e-mail niet ontvangt, of als je een foutje tegenkomt, dan kun je dit laten weten via webmaster@lexicode.nl.
+fields:
+  - Op welk e-mailadres wil je de pdf met gegeven antwoorden ontvangen?: recipient.email
+    datatype: email
+    default: ${ user_info().email }
+---
+mandatory: True
+code: |
+  the_pdftask = background_action('bg_taskpdf')
+  log("bg_taskpdf gestart.")
+---
+id: id_afsluiten
+mandatory: true
+question: |
+  Bedankt! Je kunt nu afsluiten
+buttons:
+  - Afsluiten: leave
+---
+id: id_pdf
+attachments:
+  - name: Antwoorden_${ bedrijfsnaam_client }_opdrachtdocumenten
+    docx template file: Docassemble_opdr_var_p03v07.docx
+    variable name: opdr_varp03v07pdf
+    valid formats:
+      - pdf
+---
+mandatory: True
+event: bg_taskpdf
+code: |
+  pdf_sent_ok = send_email(to=recipient, bcc=lexicode, template=pdf_email, attachments=opdr_varp03v07pdf)
+  background_response()
+  log("bg_taskpdf afgerond.")
+---
+code: |
+  lexicode.email = "info@lexicode.nl"
+---
+# _________________________________
+#  | pdf_email
+# _________________________________
+template: pdf_email
+subject: |
+  Jouw antwoorden uit de vragenlijst voor opdrachtdocumenten
+content: |
+  Hi ${ voornaam_client },
+
+  In de bijlage tref je een pdf van de door jou gegeven antwoorden.
+
+  Deze feature bevindt zich nog in de testfase. Mocht je onverhoopt een foutje aantreffen in de pdf, dan hoor ik het graag!
+
+  Hartelijke groet,
+
+  Risha
+---
+# _________________________________
+#  | resultaten_email
+# _________________________________
+template: resultaten_email
+subject: |
+  Inzending opdrachtdocumenten door ${ bedrijfsnaam_client }
+content: |
+  Antwoorden voor de online vragenlijst voor opdrachtdocumenten ontvangen:
+
+  **Bedrijfsnaam:** ${ bedrijfsnaam_client }
+
+  **Versie yaml:** ${ version_opdr }
+
+  **Ingezonden door user:** ${ user_info().email }
+
+  ----------
+
+  OPMERKINGEN CLIENT
+
+  **Bedrijfsgegevens:**<br>
+  ${ vragen_bedrijfsgegevens }
+
+  **Persoonsgegevens:**<br>
+  ${ vragen_persoonsgegevens }
+
+  **Werkzaamheden:**<br>
+  ${ vragen_werkzaamheden }
+
+  **Samenwerking:**<br>
+  ${ vragen_samenwerking }
+
+  **Intellectueel eigendom:**<br>
+  ${ vragen_intellectueeleigendom }
+
+  **Overeenkomst:**<br>
+  ${ vragen_overeenkomst }
+
+  **Tarieven:**<br>
+  ${ vragen_tarieven }
+
+  **Facturatie:**<br>
+  ${ vragen_facturatie }
+
+  **Facturatiewijzen:**<br>
+  ${ vragen_facturatiewijzen }
+
+  **Abonnement:**<br>
+  ${ vragen_abonnement }
+  
+  **Nacalculatie:**<br>
+  ${ vragen_nacalculatie }
+  
+  **Strippenkaart:**<br>
+  ${ vragen_strippenkaart }
+  
+  **Projectbasis:**<br>
+  ${ vragen_projectbasis }
+  
+  **Flat fee en Commissies:**<br>
+  ${ vragen_flatfee }
+  
+  **Reiskosten:**<br>
+  ${ vragen_reiskosten }
+
+  **Vragen en opmerkingen:**<br>
+  ${ vragen_opdralgemeen }
+
+  **Urgentie:**<br>
+  ${ urgentdoc_ovk }
+
+  **Interne opmerkingen:**<br>
+  ${ opmerkingenintern_opdr }
+---

@@ -1,0 +1,174 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > PROJECTBASIS
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_projectbasis: '14v07'
+# last revision date: 2025-07-24
+---
+#---------------------------------
+# PROJECTBASIS
+#---------------------------------
+id: id_projectbasis
+# mandatory: True
+question: |
+  Projectbasis
+fields:
+# _________________________________
+# 77 | voorafachterafproject_ovk
+# _________________________________
+  - note: >
+      77. **Vooraf of achteraf:**<br>
+      Factureer je vooraf, achteraf of werk je met een aanbetaling?
+  - field: voorafachterafproject_ovk
+    label: >
+      77.
+    input type: radio
+    choices:
+      - Het volledige bedrag vooraf: het volledige bedrag vooraf
+      - Het volledige bedrag achteraf: het volledige bedrag achteraf
+      - Vooraf een aanbetaling en achteraf het resterende bedrag: vooraf een aanbetaling en achteraf het resterende bedrag
+      - Er wordt betaald in meerdere termijnen: er in [AANTAL] termijnen
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['projectprijs']
+# _________________________________
+# 78 | projectafgerond_ovk
+# _________________________________
+  - note: >
+      78. **Goedkeuringstermijn:**<br>
+      Indien je op projectbasis werkt, en je bent voor de afronding en/of facturatie van het 
+      project afhankelijk van de feedback of goedkeuring van de opdrachtgever, binnen 
+      hoeveel tijd moet de opdrachtgever maximaal reageren, alvorens je het project als 
+      afgerond beschouwd?
+    help: >
+      Als je op projectbasis werkt, en je factureert het project (deels) achteraf, dan kun je pas factureren zodra het project is afgerond. 
+      Vaak ben je voor de afronding van het project afhankelijk van de feedback of goedkeuring van de opdrachtgever. 
+      Stel nou dat de opdrachtgever helemaal niks meer van zich laat horen, dan is het niet mogelijk om het project af te ronden, 
+      en kun je dus niet factureren.
+      <br><br>
+      Om dat te voorkomen kun je in je algemene voorwaarden opnemen dat je een project als afgerond beschouwt, als je je diensten hebt geleverd, 
+      maar langer dan een bepaalde periode geen reactie, feedback of goedkeuring van de opdrachtgever ontvangt.
+      <br><br>
+      *Tip:<br>
+      Ook als je een project vooraf factureert is het handig om hier een termijn voor te geven. Anders kan het zijn dat je ineens na máánden van 
+      radiostilte weer aan de slag moet voor het project, terwijl je daar dan misschien helemaal niet meer op zit te wachten.*
+  - field: projectafgerond_ovk
+    label: >
+      78.
+    input type: radio
+    choices:
+      - Ik wil dit niet nader specificeren in de algemene voorwaarden *(vaak gekozen)*: nee
+      - Na 1 maand zonder reactie: 1 maand
+      - Na 2 maanden zonder reactie *(vaak gekozen)*: 2 maanden
+      - Na 3 maanden zonder reactie: 3 maanden
+      - Na 6 maanden zonder reactie: 6 maanden
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['projectprijs']
+# _________________________________
+# 79 | minafnameproject_ovk
+# _________________________________
+  - note: >
+      79. **Minimumafname:**<br>
+      Hanteer je een minimumafname voor een project?
+    help: >
+      Voorbeeld 1: je schrijft blogartikelen voor opdrachtgevers en rekent een vaste prijs per blogartikel. 
+      Je neemt een opdracht voor het schrijven van blogartikelen alleen maar aan als de opdrachtgever ten minste vier blogartikelen afneemt. 
+      <br><br>
+      Voorbeeld 2: je stelt, afhankelijk van de behoefte van de opdrachtgever, een marketingpakket samen, 
+      bestaande uit diverse werkzaamheden zoals nieuwsbrieven opstellen, social media posts ontwerpen, etc. 
+      Je rekent vaste prijzen voor je pakketten, en je stelt alleen pakketten samen van ten minste 500 euro.
+  - field: minafnameproject_ovk
+    label: >
+      79.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: "."
+      - Ja, namelijk een minimum te factureren bedrag per project: ", waarbij ten minste [MINIMUMBEDRAG] afgenomen dient te worden."
+      - Ja, namelijk een minimumaantal te leveren diensten per project: ", waarbij ten minste [MINIMUMAANTAL DIENSTEN] afgenomen dient te worden."
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: ", waarbij ten minste [MINIMUMAFNAME] afgenomen dient te worden."
+    show if:
+      code: |
+        facturatiewijze_ovk['projectprijs']
+# _________________________________
+# 80 | meerwerkproject_ovk
+# _________________________________
+  - note: >
+      80. **Meerwerk:**<br>
+      Kan er sprake zijn van meerwerk? En zo ja, hoe breng je dit in rekening?
+  - field: meerwerkproject_ovk
+    label: >
+      80.
+    input type: radio
+    choices:
+      - Nee: nee
+      - Ja, op basis van nacalculatie *(meest gekozen)*: nacalculatie
+      - Ja, ik geef een prijsrange met de minimaal en maximaal te verwachten kosten: prijsrange
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['projectprijs']
+# _________________________________
+# 81 | vragen_projectbasis
+# _________________________________
+  - note: >
+      81. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_projectbasis
+    label:
+    input type: area
+    show if:
+      code: |
+        facturatiewijze_ovk['projectprijs']
+    required: False    
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 70
+section: sec_projectbasis  
+---
+#---------------------------------
+# CODE PROJECTBASIS N/A
+#---------------------------------
+code: |
+  if not facturatiewijze_ovk['projectprijs']:
+    voorafachterafproject_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['projectprijs']:
+    projectafgerond_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['projectprijs']:
+    minafnameproject_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['projectprijs']:
+    vragen_projectbasis = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['projectprijs']:
+    meerwerkproject_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---

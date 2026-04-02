@@ -1,0 +1,183 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > TARIEVEN
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_tarieven: '08v06'
+# last revision date: 2025-03-31
+---
+#---------------------------------
+# TARIEVEN
+#---------------------------------
+id: id_tarieven
+mandatory: True
+question: |
+  Tarieven
+fields:
+# _________________________________
+# 46 | exclbtw_ovk
+# _________________________________
+  - note: >
+      46. **Btw:**<br>
+      Communiceer je je tarieven inclusief btw, exclusief btw, of ben je vrijgesteld voor de btw?
+    help: >
+      In principe communiceer je je tarieven exclusief btw als je communiceert met ondernemers. 
+      Ook ben je verplicht om je werkzaamheden exclusief btw te factureren en de btw dan apart te vermelden op de factuur. 
+      Wanneer je communiceert met particulieren, dan dien je je tarieven te communiceren inclusief btw. 
+      <br><br>
+      Soms is een ondernemer vrijgesteld van btw. Dit kan bijvoorbeeld zo zijn als de onderneming uitsluitend vrijgestelde activiteiten uitoefent 
+      (bijvoorbeeld diensten in de gezondheidszorg of sportclubs). Dit zal voor een VA in principe niet van toepassing zijn.
+      <br><br>
+      Je kunt ook vrijgesteld zijn van btw als je gebruik maakt van de kleineondernemersregeling (KOR). Je mag dan geen btw meer berekenen aan je klanten, 
+      je doet geen btw-aangifte meer, en je kunt geen btw terugvragen over je kosten en investeringen.
+      <br><br>
+      *Tip:<br>
+      Overweeg je om deel te nemen aan de KOR? Laat je dan goed adviseren hierover door een financieel adviseur. 
+      Deelnemen aan de KOR is vrijwillig, maar in veel gevallen is het niet gunstig om eraan deel te nemen, 
+      bijvoorbeeld als je uitsluitend factureert aan ondernemers.*
+      <br><br>
+      *Tip:<br>
+      Neem je deel aan de KOR, maar wil je ermee stoppen? Per 1 januari 2025 vervalt de verplichte deelnameperiode van 3 jaar. 
+      Je kunt je dan dus op elk moment afmelden voor de KOR.*
+  - field: exclbtw_ovk
+    label: >
+      46.
+    input type: radio
+    choices:
+      - Exclusief btw *(meest gekozen)*: exclusief btw
+      - Inclusief btw: inclusief btw
+      - Vrijgesteld van btw: vrijgesteld van btw
+# _________________________________
+# 47a | uurbasisvasteprijs_ovk
+# _________________________________
+  - note: >
+      47. **Uurbasis of vaste prijzen:**<br>
+      Werk je op uurbasis of met vaste prijzen?
+  - field: uurbasisvasteprijs_ovk
+    label: >
+      47a.
+    input type: radio
+    choices:
+      - Uitsluitend op uurbasis *(meest gekozen)*: uurbasis
+      - Uitsluitend met vaste prijzen (bijvoorbeeld projectprijs, pakketten of commissies): vaste prijzen
+      - Zowel op uurbasis als met vaste prijzen: beide
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+# _________________________________
+# 47b | vasteprijswijze_ovk
+# _________________________________
+  - field: vasteprijswijze_ovk
+    label: >
+      47b. Indien je (ook) met vaste prijzen werkt, op wat voor basis doe je dit? *(optioneel)*<br>
+      *Meerdere opties mogelijk.*
+    help: >
+      Deze vraag is optioneel en dient alleen om een beter beeld van je werkwijze te vormen. 
+      Het antwoord heeft niet direct invloed op de inhoud van de documenten.
+    datatype: checkboxes
+    choices:
+      - Vaste pakketten: pakketten
+      - Vaste trajecten: trajecten
+      - Vaste commissies: commissies
+      - Anders / Ik weet het (nog) niet: anders
+    none of the above: False
+    js show if: |
+      val("uurbasisvasteprijs_ovk") === "vaste prijzen" || val("uurbasisvasteprijs_ovk") === "beide" || val("uurbasisvasteprijs_ovk") === "anders"
+    required: False
+# _________________________________
+# 48 | instaptarief_ovk
+# _________________________________
+  - note: >
+      48. **Instaptarief**<br>
+      Hanteer je een instaptarief?
+    help: >
+      Je kunt ervoor kiezen om gedurende een vooraf bepaald aantal uren of maanden tegen een gereduceerd tarief werkt. 
+      Dit kan drempelverlagend werken voor potentiële opdrachtgevers, omdat het de inwerkperiode kosteneffectiever maakt.
+  - field: instaptarief_ovk
+    label: >
+      48.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 49 | spoedtarief_ovk
+# _________________________________
+  - note: >
+      49. **Spoedtarief**<br>
+      Hanteer je een apart spoedtarief voor spoedwerkzaamheden?
+    help: >
+       Je kunt ervoor kiezen om voor spoedklussen (bijvoorbeeld klussen die binnen 24 uur afgerond moeten zijn) een verhoogd tarief te rekenen. 
+  - field: spoedtarief_ovk
+    label: >
+      49.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 50 | staffelkorting_ovk
+# _________________________________
+  - note: >
+      50. **Staffelkorting**<br>
+      Hanteer je staffelkorting?
+    help: >
+      Je kunt ervoor kiezen om een lager tarief te hanteren naarmate een opdrachtgever meer uren afneemt. 
+      Dit kan een opdrachtgever ertoe zetten je meer in te huren. 
+  - field: staffelkorting_ovk
+    label: >
+      50.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 51 | tariefverhoging_ovk
+# _________________________________
+  - note: >
+      51. **Tariefverhoging**<br>
+      Wil je op een vast moment (bijvoorbeeld elk jaar op 1 januari) een tariefverhoging doorvoeren?
+    help: >
+      Er wordt standaard opgenomen dat je je tarieven tussentijds mag wijzigen en dat je je opdrachtgever daar ten minste 1 maand van tevoren over inlicht.
+  - field: tariefverhoging_ovk
+    label: >
+      51.
+    input type: radio
+    choices:
+      - Ik wil mijn tarieven niet op een vast moment verhogen *(meest gekozen)*: niet op een vast moment
+      - Jaarlijks op 1 januari: jaarlijks op 1 januari
+      - Elke 6 maanden: elke 6 maanden
+      - Na afloop van een contractperiode: na afloop van een contractperiode
+      - Na afloop van een project: na afloop van een project
+      - Anders / Ik weet het (nog) niet: anders
+# _________________________________
+# 52 | vragen_tarieven
+# _________________________________
+  - note: >
+      52. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_tarieven
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 45
+section: sec_tarieven
+---
+#---------------------------------
+# CODE TARIEVEN N/A
+#---------------------------------
+code: |
+  if uurbasisvasteprijs_ovk == "uurbasis":
+    vasteprijswijze_ovk = 'N/A'
+depends on:
+  - uurbasisvasteprijs_ovk
+---

@@ -1,0 +1,211 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > FACTURATIE
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_facturatie: '09v07'
+# last revision date: 2025-03-31
+---
+#---------------------------------
+# FACTURATIE
+#---------------------------------
+id: id_facturatie
+mandatory: True
+question: |
+  Facturatie
+fields:
+# _________________________________
+# 53 | betaaltermijn_ovk
+# _________________________________
+  - note: >
+      53. **Betaaltermijn:**<br>
+      Welke betaaltermijn hanteer je?
+  - field: betaaltermijn_ovk
+    label: >
+      53.
+    input type: radio
+    choices:
+      - 7 dagen: 7 dagen
+      - 8 dagen: 8 dagen
+      - 14 dagen *(meest gekozen)*: 14 dagen
+      - 30 dagen: 30 dagen
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders 
+# _________________________________
+# 54 | betaalwijze_ovk
+# _________________________________
+  - note: >
+      54. **Betaalwijze:**<br>
+      Op welke betaalwijze(n) kan je opdrachtgever de facturen voldoen? *(meerdere opties mogelijk)*
+    help: >
+      *Tip:<br>
+      Veel boekhoudprogramma’s bieden de optie om je facturen te voorzien van een iDEAL-betaallink. 
+      Je kunt dan bij een payment service provider (bijv. Mollie) een account aanmaken. Deze provider int dan de iDEAL-betalingen voor je en stort 
+      deze periodiek naar je bankrekeningnummer. Het voordeel van deze werkwijze is dat het drempelverlagend werkt voor je opdrachtgever om te betalen.*
+  - field: betaalwijze_ovk
+    label: >
+      54.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Overschrijving op mijn bankrekeningnummer: overschrijving per bank
+      - Een iDEAL-link: een iDEAL-link
+      - Een QR-code: een QR-code
+      - Een betaalverzoek: een betaalverzoek
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    none of the above: False
+# _________________________________
+# 55a | urenregistratie_ovk
+# _________________________________
+  - note: >
+      55. **Registratie werkzaamheden:**<br>
+      Wil je in de OvO nader specificeren hoe je gewerkte uren en/of uitgevoerde werkzaamheden registreert en bijhoudt?
+    help: >
+      *Tip:<br>
+      Gebruik een (gratis) urenregistratietool, zoals bijvoorbeeld Toggl, om je gewerkte uren bij te houden. 
+      Sommige boekhoudprogramma’s bevatten ook een optie om je uren te registreren.*
+  - field: urenregistratie_ovk
+    label: >
+      55a.
+    input type: radio
+    choices:
+      - Nee, ik wil dit niet nader specificeren in de OvO *(meest gekozen)*: nee
+      - Ja, ik wil dit nader specificeren in de OvO: ja
+# _________________________________
+# 55b | urenregwijze_ovk
+# _________________________________
+  - field: urenregwijze_ovk
+    label: >
+      55b.<br>
+      Hoe registreer je gewerkte uren en/of uitgevoerde werkzaamheden?
+    input type: radio
+    choices:
+      - Urenregistratietool: urenregistratietool
+      - Eigen lokaal document: eigen lokaal document
+      - Online gedeeld document: online gedeeld document
+      - Online samenwerkingstool (bijv. Trello): online platform
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: urenregistratie_ovk
+      is: ja
+    required: False
+# _________________________________
+# 56a | inzageuren_ovk
+# _________________________________
+  - note: >
+      56. **Inzage werkzaamheden:**<br>
+      Wil je in de OvO specificeren óf en wanneer je opdrachtgever inzage heeft in je (nog niet gefactureerde) 
+      gewerkte aantal uren en/of uitgevoerde werkzaamheden?
+    help: >
+      Wellicht wil je opdrachtgever tussentijds inzicht hebben in de door jou gewerkte uren en/of uitgevoerde werkzaamheden. 
+      Bedenk of je hier te allen tijde inzage in wilt geven, en zo ja op welke wijze je dit inzichtelijk maakt. 
+      Let op, het gaat bij deze vraag dus om uren/werkzaamheden die je hebt uitgevoerd en die nog niet zijn gefactureerd. 
+      Het gaat niet om het specificeren van werkzaamheden/uren bij de facturatie (zie volgende vraag)
+      <br><br>
+      *Tip:<br>
+      In sommige urenregistratietools kun je je opdrachtgever inzage geven in je gewerkte uren. 
+      Je kunt ook een document op bijvoorbeeld Google Drive zetten waar je je gewerkte uren en/of uitgevoerde werkzaamheden bijhoudt, 
+      of door gebruik te maken van een tool als Trello (hier kun je een ‘kaart’ aanmaken waar je je uren in bijhoudt).*
+  - field: inzageuren_ovk
+    label: >
+      56a.
+    input type: radio
+    choices:
+      - Nee, ik wil dit niet in de OvO specificeren *(meest gekozen)*: nee
+      - Ja, opdrachtgever heeft te allen tijde inzage: Opdrachtgever heeft te allen tijde inzage in het aantal gewerkte uren en/of uitgevoerde werkzaamheden
+      - Ja, opdrachtgever heeft op verzoek inzage: Opdrachtgever kan op verzoek inzage krijgen in het aantal gewerkte uren en/of uitgevoerde werkzaamheden
+# _________________________________
+# 56b | inzageurenwijze_ovk
+# _________________________________
+  - field: inzageurenwijze_ovk
+    label: >
+      56b.<br>
+      Zo ja, wil je in OvO specificeren op welke wijze je opdrachtgever inzage heeft in de gewerkte uren en/of uitgevoerde werkzaamheden?
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Via mijn urenregistratietool: Inzage geschiedt via mijn urenregistratietool.
+      - Via een online gedeeld document: Inzage geschiedt via een online gedeeld document.
+      - Via online samenwerkingstool (bijv. Trello): Inzage geschiedt via een online samenwerkingstool.
+      - Op een door opdrachtgever te bepalen wijze: Inzage geschiedt op een door opdrachtgever te bepalen wijze.
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    js show if: |
+      val("inzageuren_ovk") == "Opdrachtgever heeft te allen tijde inzage in het aantal gewerkte uren en/of uitgevoerde werkzaamheden" || val("inzageuren_ovk") == "Opdrachtgever kan op verzoek inzage krijgen in het aantal gewerkte uren en/of uitgevoerde werkzaamheden"
+    required: False
+# _________________________________
+# 57 | urendeclaratie_ovk
+# _________________________________
+  - note: >
+      57. **Urenspecificatie:**<br>
+      Hoe specificeer je de gewerkte uren en/of uitgevoerde werkzaamheden bij facturatie?
+    help: >
+      *Tip:<br>
+      Bespreek hoe nauwkeurig je de werkzaamheden moet specificeren. Is het voldoende om bijvoorbeeld te vermelden “marketingwerkzaamheden”, 
+      of wil de opdrachtgever liever dat je expliciet aangeeft “ontwerpen van 3 posts voor Instagram”, bijvoorbeeld. 
+      Of misschien vindt de opdrachtgever het voldoende als je gewoon aangeeft hoeveel uren je hebt gewerkt, zonder nadere specificatie.*
+      <br><br>
+      *Tip: er bestaat een wettelijke plicht om uiterlijk de 15e dag van de maand die volgt op de maand waarin je de werkzaamheden hebt uitgevoerd 
+      de factuur te versturen.*
+  - field: urendeclaratie_ovk
+    label: >
+      57.
+    input type: radio
+    choices:
+      - Ik wil dit niet vermelden in de OvO *(vaak gekozen)*: nee
+      - Een specificatie wordt bij de factuur gevoegd *(vaak gekozen)*: Een specificatie van de gefactureerde uren wordt bij de factuur gevoegd
+      - De uren/werkzaamheden worden in de factuurregels zelf gespecificeerd: De uren en/of werkzaamheden worden in de factuurregels zelf gespecificeerd
+      - Opdrachtgever kan zelf een specificatie opzoeken in een online overzicht: Een specificatie van de gefactureerde uren is door Opdrachtgever online in te zien
+      - Een specificatie wordt op verzoek verstrekt: Een specificatie van de gefactureerde uren wordt op verzoek verstrekt
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+# _________________________________
+# 58 | elektronischefac_ovk
+# _________________________________
+  - note: >
+      58. **Elektronische facturatie:**<br>
+      Stuur je je facturen via elektronische weg?
+  - field: elektronischefac_ovk
+    label: >
+      58.
+    input type: radio
+    choices:
+      - Ja, uitsluitend digitaal, bijvoorbeeld via e-mail *(meest gekozen)*: ja
+      - Nee, per post of op een soortgelijke wijze: nee
+      - Anders / Ik weet het (nog) niet: anders 
+# _________________________________
+# 59 | vragen_facturatie
+# _________________________________
+  - note: >
+      59. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_facturatie
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 50
+section: sec_facturatiesub
+---
+#---------------------------------
+# CODE FACTURATIE N/A
+#---------------------------------
+code: |
+  if not urenregistratie_ovk == "ja":
+    urenregwijze_ovk = 'N/A'
+depends on:
+  - urenregistratie_ovk
+---
+code: |
+  if inzageuren_ovk == "nee":
+    inzageurenwijze_ovk = 'N/A'
+depends on:
+  - inzageuren_ovk
+---

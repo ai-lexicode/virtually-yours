@@ -1,0 +1,102 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > FACTURATIE
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_facturatiewijzen: '10v02'
+# last revision date: 2025-03-31
+---
+#---------------------------------
+# FACTURATIE
+#---------------------------------
+id: id_facturatiewijzen
+mandatory: True
+question: |
+  Facturatiewijzen
+fields:
+# _________________________________
+# 60a | facturatiewijze_ovk
+# _________________________________
+  - note: >
+      60. **Facturatiewijze:**<br>
+      Welke facturatiewijze(n) hanteer je? *(meerdere opties mogelijk)*
+      <br><br>
+      Werk je bijvoorbeeld op basis van een maandelijks abonnement (met een vast aantal uren of met een vast pakket aan werkzaamheden), 
+      nacalculatie (dus factureren achteraf op basis van “uurtje-factuurtje” of achteraf per geleverde dienst), een strippenkaart (vooraf ingekochte uren), 
+      of een vaste project- of pakketprijs?
+      <br><br>
+      In bepaalde situaties is het handig om een vast maandelijks basisbedrag in rekening te brengen (flat fee), 
+      en daarbovenop dan op basis van nacalculatie specifiek geleverde diensten te factureren. Bijvoorbeeld als je een telefoonservice aanbiedt. 
+      Dan kun je een vaste ‘bereikbaarheidsfee’ in rekening brengen, en daarbovenop kun je een bepaald bedrag rekenen per afgehandeld telefoontje. 
+      Of als je werkt op commissiebasis, je factureert een vast abonnementsbedrag voor je sales-diensten, en daar bovenop factureer je een bedrag 
+      voor iedere verkoop.
+  - field: facturatiewijze_ovk
+    label: >
+      60a.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Maandelijks abonnement *(vaak gekozen)*: abonnement
+      - Nacalculatie *(vaak gekozen)*: nacalculatie
+      - Strippenkaarten: strippenkaart
+      - Vaste projectprijs of pakketprijs: projectprijs
+      - Maandelijks basisbedrag (flat fee) + nacalculatie of commissies: flatfee
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    none of the above: False    
+# _________________________________
+# 60b | vragen_facturatie
+# _________________________________
+  - note: >
+      60b. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_facturatiewijzen
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 50
+section: sec_facturatiewijzen
+---
+mandatory: True
+code: |
+  if defined ('facturatiewijze_ovk'):
+    log("Facturatiewijzen geselecteerd.")
+---
+#---------------------------------
+# CODE FACTURATIEWIJZEN
+#---------------------------------
+mandatory: True
+code: |
+  if facturatiewijze_ovk['abonnement']:
+    vragen_abonnement
+---
+mandatory: True
+code: |
+  if facturatiewijze_ovk['nacalculatie']:
+    vragen_nacalculatie
+---
+mandatory: True
+code: |
+  if facturatiewijze_ovk['strippenkaart']:
+    vragen_strippenkaart
+---
+mandatory: True
+code: |
+  if facturatiewijze_ovk['projectprijs']:
+    vragen_projectbasis
+---
+mandatory: True
+code: |
+  if facturatiewijze_ovk['flatfee']:
+    vragen_flatfee
+---

@@ -1,0 +1,259 @@
+#-----------------------------------------------------------------------------
+# METADATA Einde
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_einde_AFF: '20v07'
+# last revision date: 2025-02-13
+---
+#---------------------------------
+# SECTIE Antwoorden versturen
+#---------------------------------
+# _________________________________
+# 00 | antwoorden_versturen_opdr
+# _________________________________
+id: id_inzenden
+mandatory: True
+question: |
+  Antwoorden versturen
+subquestion: |
+  % if uurbasispakket_ovk and nacalurenwerkzaamheden_ovk and geldigstrippenkaart_ovk and voorafachterafproject_ovk and flatfeenacal_ovk:
+  Dit waren alle vragen. Dank je wel voor al je antwoorden!
+  <br><br>
+  Klik op "Versturen" om je antwoorden in te zenden.
+
+  Mocht je achteraf een wijziging hebben aangebracht in jouw antwoorden, dan dan volgen er hierna mogelijk nog wat aanvullende vragen. Daarna worden je antwoorden verzonden.
+  % endif
+continue button label: Versturen
+field: antwoorden_verstuurd_opdr
+#---
+progress: 95
+section: sec_inzenden
+---
+# _________________________________
+# Background task
+# _________________________________
+mandatory: True
+code: |
+  the_task = background_action('bg_taskdocs')
+---
+#---------------------------------
+# user_choice_AFF
+#---------------------------------
+id: id_klaar
+mandatory: true
+prevent going back: True
+question: |
+  Antwoorden verzonden
+subquestion: |
+  % if antwoorden_verstuurd_opdr:
+  Bedankt! Je antwoorden zijn verzonden.
+  <br><br>
+  We gaan nu voor je aan de slag om je documenten op maat te maken. Meestal ontvang je deze binnen twee weken, tenzij er een andere termijn is afgesproken.
+  <br><br>
+  Mocht je nog vragen hebben, neem dan contact op met jouw coach, opleider of contactpersoon.
+  <br><br>
+  Hartelijke groet,
+  <br><br>
+  Risha
+  % else:
+  Het is helaas niet gelukt om je antwoorden te versturen. Neem contact op met webmaster@lexicode.nl
+  % endif
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist en Juridisch VA*
+field: user_choice
+buttons:
+  - Afsluiten:
+      code: |
+        user_choice = 'leave'
+    color: success
+  - Antwoorden opnieuw verzenden:
+      code: |
+        user_choice = 'resubmit'
+    color: warning
+#---
+progress: 100
+section: sec_klaar
+---
+mandatory: True
+code: |
+  if user_choice == 'resubmit':
+    undefine('resubmitted_opdr')
+    resubmit_opdr
+  if user_choice == 'leave':
+    resubmitted_opdr = 'false'
+    final_screen
+---
+# _________________________________
+# 00 | resubmit_opdr_AFF
+# _________________________________
+id: id_resubmit
+question: |
+  Antwoorden opnieuw verzenden
+subquestion: |
+  Hier kun je eventueel je antwoorden opnieuw verzenden. Wil je je antwoorden opnieuw verzenden omdat je wijzigingen hebt aangebracht in je antwoorden?
+  Doe dit dan alleen in overleg met ons. Mogelijk zijn we al bezig geweest met je documenten.
+  <br><br>
+  Klik op "Opnieuw verzenden" om je antwoorden opnieuw in te zenden.
+event: resubmit_opdr
+buttons:
+  - Opnieuw verzenden: 
+      code: |
+        resubmitted_opdr = 'true'
+    color: warning
+---
+mandatory: True
+code: |
+  if resubmitted_opdr == 'true':
+    undefine('user_choice', 'email_sent_ok', 'avw_v30', 'avw_v30opg', 'opm_v07', 'ovo_v31', 'opdr_varp03v05')
+    background_action('bg_taskdocs')
+---
+id: id_finalscreen
+event: final_screen
+mandatory: True
+question: |
+  Bedankt
+subquestion: |
+  Je kunt nu afsluiten.
+  % if user_choice == 'leave':
+  Bedankt!
+  % endif
+---
+#---------------------------------
+# SECTIE Documenten creeren
+#---------------------------------
+id: id_documents
+attachments:
+# _________________________________
+# 00 | avw_vxx
+# _________________________________
+  - name: Algemene Voorwaarden_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_avw_v30.docx
+    variable name: avw_v30
+    valid formats:
+      - docx
+# _________________________________
+# 00 | avw_vxxopg
+# _________________________________
+  - name: Algemene Voorwaarden_${ bedrijfsnaam_client }_opgemaakt_output
+    docx template file: Docassemble_opdr_avw_v30_opgemaakt.docx
+    variable name: avw_v30opg
+    valid formats:
+      - docx
+# _________________________________
+# 00 | opm_vxx
+# _________________________________
+  - name: Vragen en opmerkingen_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_opm_v07.docx
+    variable name: opm_v07
+    valid formats:
+      - docx
+# _________________________________
+# 00 | ovo_vxx
+# _________________________________
+  - name: Overeenkomst van Opdracht_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_ovo_v31.docx
+    variable name: ovo_v31
+    valid formats:
+      - docx
+# _________________________________
+# Gegeven antwoorden
+# _________________________________
+  - name: Gegeven antwoorden_${ bedrijfsnaam_client }_output
+    docx template file: Docassemble_opdr_var_p03v05.docx
+    variable name: opdr_varp03v05
+    valid formats:
+      - docx
+---
+#---------------------------------
+# CODE E-mails versturen
+#---------------------------------
+# _________________________________
+# 00 | email_sent_ok
+# _________________________________
+mandatory: True
+event: bg_taskdocs
+code: |
+  email_sent_ok = send_email(to=['info@lexicode.nl'],
+       template=resultaten_email,
+       attachments=[
+         avw_v30,
+         avw_v30opg,
+         opm_v07,
+         ovo_v31,
+         opdr_varp03v05
+          ]
+  )
+  background_response()
+---
+# _________________________________
+#  | resultaten_email
+# _________________________________
+template: resultaten_email
+subject: |
+  Inzending opdrachtdocumenten door ${ bedrijfsnaam_client }
+content: |
+  Antwoorden voor de online vragenlijst voor opdrachtdocumenten ontvangen:
+
+  **Bedrijfsnaam:** ${ bedrijfsnaam_client }
+
+  **Versie yaml:** ${ version_opdr }
+
+  **Ingezonden door user:** ${ user_info().email }
+
+  ----------
+
+  OPMERKINGEN CLIENT
+
+  **Bedrijfsgegevens:**<br>
+  ${ vragen_bedrijfsgegevens }
+
+  **Persoonsgegevens:**<br>
+  ${ vragen_persoonsgegevens }
+
+  **Werkzaamheden:**<br>
+  ${ vragen_werkzaamheden }
+
+  **Samenwerking:**<br>
+  ${ vragen_samenwerking }
+
+  **Intellectueel eigendom:**<br>
+  ${ vragen_intellectueeleigendom }
+
+  **Overeenkomst:**<br>
+  ${ vragen_overeenkomst }
+
+  **Tarieven:**<br>
+  ${ vragen_tarieven }
+
+  **Facturatie:**<br>
+  ${ vragen_facturatie }
+
+  **Abonnement:**<br>
+  ${ vragen_abonnement }
+  
+  **Nacalculatie:**<br>
+  ${ vragen_nacalculatie }
+  
+  **Strippenkaart:**<br>
+  ${ vragen_strippenkaart }
+  
+  **Projectbasis:**<br>
+  ${ vragen_projectbasis }
+  
+  **Flat fee en Commissies:**<br>
+  ${ vragen_flatfee }
+  
+  **Reiskosten:**<br>
+  ${ vragen_reiskosten }
+
+  **Vragen en opmerkingen:**<br>
+  ${ vragen_opdralgemeen }
+
+  **Urgentie:**<br>
+  ${ urgentdoc_ovk }
+
+  **Interne opmerkingen:**<br>
+  ${ opmerkingenintern_opdr }
+---

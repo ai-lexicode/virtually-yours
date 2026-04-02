@@ -83,6 +83,22 @@ export const vyDocuments: DocumentConfig[] = [
       "klachtenprocedure",
     ],
   },
+  {
+    id: "vy-doc-004",
+    slug: "overeenkomst-van-opdracht",
+    title: "Overeenkomst van Opdracht",
+    description:
+      "Een overeenkomst van opdracht op maat voor freelancers en VA's. Inclusief facturatieafspraken, werkzaamheden, IE-rechten en algemene voorwaarden. Geschikt voor eenmanszaken en zzp'ers.",
+    price_cents: 10900,
+    interview_name: "docassemble.opdrachtdocsp03:data/questions/Yaml_opdr_p03y30.yml",
+    required_fields: [
+      "bedrijfsnaam",
+      "kvk_nummer",
+      "voornaam",
+      "achternaam",
+      "werkzaamheden",
+    ],
+  },
 ];
 
 /**

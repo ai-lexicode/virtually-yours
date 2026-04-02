@@ -1,0 +1,957 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_reviewevents: '00v08'
+# last revision date: 2025-02-13
+---
+#-----------------------------------------------------------------------------
+# REVIEW EVENTS
+#-----------------------------------------------------------------------------
+#   review tips
+#-----------------------------------------------------------------------------
+id: id_revopdrtips
+event: sec_tips
+section: sec_tips
+question: |
+  Tips
+review:
+  - Wijzigen: aan_de_slag
+    button: |
+      Klik op "Wijzigen" om de pagina met tips nogmaals te bekijken.<br><br>
+      Heb je de pagina bekeken? Klik dan op "Hervatten" om de vragenlijst te hervatten.
+---
+#-----------------------------------------------------------------------------
+#   review documentenselectie
+#-----------------------------------------------------------------------------
+id: id_revopdrstart
+event: sec_docselect
+section: sec_docselect
+question: |
+  Selectie documenten
+review:
+  - note: >
+      **Documentenselectie**
+  - Wijzigen: welkedocs_opdr
+    button: |
+      *Welke documenten moeten opgesteld worden?<br><br>*
+      ${ welkedocs_opdr }
+---
+#-----------------------------------------------------------------------------
+#   review bedrijfsgegevens
+#-----------------------------------------------------------------------------
+id: id_revbedrijfsgegevens
+event: sec_bedrijfsgegevens
+section: sec_bedrijfsgegevens
+question: |
+  Overzicht van Bedrijfsgegevens
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Bedrijfsgegevens</u> te gaan. 
+      Je kunt daar je antwoorden aanpassen. 
+  - note: >
+      **Bedrijfsnaam:**
+  - Wijzigen: bedrijfsnaam_client
+    button: |
+      1. Wat is je bedrijfsnaam?<br><br>
+      `${ bedrijfsnaam_client }`
+  - note: >
+      **Vestigingsadres:**
+  - Wijzigen: straatnaam_client
+    button: |
+      2. Wat is je straatnaam?<br>
+      2. Wat is je huisnummer?<br>
+      2. Wat is je postcode?<br>
+      2. Wat is je plaats?<br><br>
+      `${ straatnaam_client } ${ huisnummer_client }`<br>
+      `${ postcode_client } ${ plaatsnaam_client }*`
+  - note: >
+      **Contactsadres:**
+  - Wijzigen: andercontactadres_client
+    button: |
+      3. Heb je een kantoor-, bezoek- of postadres dat afwijkt van je vestigingsadres?<br><br>
+      `${ andercontactadres_client }`
+  - Wijzigen: contactstraatnaam_client
+    button: |
+      3. Wat is je straatnaam?<br>
+      3. Wat is je huisnummer?<br>
+      3. Wat is je postcode?<br>
+      3. Wat is je plaats?<br><br>
+      `${ contactstraatnaam_client } ${ contacthuisnummer_client }`<br>
+      `${ contactpostcode_client } ${ contactplaatsnaam_client }*`
+  - Wijzigen: contactadresvermelden_client
+    button: |
+      4. Zo ja, wil je je post-, bezoek- of kantooradres ook in je documenten vermelden?<br><br>
+      `${ contactadresvermelden_client }`
+  - note: >
+      **Rechtsvorm:**
+  - Wijzigen: rechtsvorm_client
+    button: |
+      5. Welke rechtsvorm heeft je onderneming?<br><br>
+      `${ rechtsvorm_client }`
+  - note: >
+      **KvK-nummer:**
+  - Wijzigen: kvkinschrijving_client
+    button: |
+      6. Sta je (al) ingeschreven bij de Kamer van Koophandel?<br><br>
+      `${ kvkinschrijving_client }`
+  - Wijzigen: kvknummer_client
+    button: |
+      6. Zo ja, wat is je KvK-nummer?<br><br>
+      `${ kvknummer_client }`
+  - note: >
+      **Website**
+  - Wijzigen: website_client
+    button: |
+      7. Wat is de URL van je website? *(optioneel)*<br><br>
+      `${ website_client }`
+  - note: >
+      **Verzekering**
+  - Wijzigen: verzekering_client
+    button: |
+      8. Heb je een bedrijfs- en/of beroeps-aansprakelijkheids-verzekering?<br><br>
+      `${ verzekering_client }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_bedrijfsgegevens
+    button: |
+      10. Heb je opmerkingen of vragen over bovenstaande vragen? *(optioneel)*<br><br>
+      `${ vragen_bedrijfsgegevens }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review persoonsgegevens
+#-----------------------------------------------------------------------------
+id: id_revperoonsgegevens
+event: sec_persoonsgegevens
+section: sec_persoonsgegevens
+question: |
+  Persoonsgegevens
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de sectie <u>Persoonsgegevens</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Naam:**
+  - Wijzigen: voornaam_client
+    button: |
+      11. Wat is je voornaam?<br>
+      12. Wat is je achternaam?<br><br>
+      `${ voornaam_client } ${ achternaam_client }`
+  - note: >
+      **Gender:**
+  - Wijzigen: geslacht_client
+    button: |
+      13. Hoe wil je aangesproken worden in de documenten?<br><br>
+      `${ geslacht_client }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_persoonsgegevens
+    button: |
+      14. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_persoonsgegevens }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review werkzaamheden
+#-----------------------------------------------------------------------------
+id: id_revwerkzaamheden
+event: sec_werkzaamheden
+section: sec_werkzaamheden
+question: |
+  Werkzaamheden
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Werkzaamheden</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: > 
+      **Beroep:**
+  - Wijzigen: beroep_client
+    button: |
+      15. Hoe omschrijf je jezelf/ je beroep/ de werkzaamheden die je uitvoert? *(optioneel)*<br><br>
+      `${ beroep_client.true_values() }`
+  - Wijzigen: beroepanders_client
+    button: |
+      15. Hoe omschrijf je jezelf/ je beroep/ de werkzaamheden die je uitvoert? *(optioneel)*<br><br>
+      `${ beroepanders_client }`
+  - Wijzigen: specialisatie_client
+    button: |
+      16. Heb je een specifieke specialisatie? *(optioneel)*<br><br>
+      `${ specialisatie_client.true_values() }`
+  - Wijzigen: specialisatieanders_client
+    button: |
+      16. Welke specialisatie heb je? *(optioneel)*<br><br>
+      `${ specialisatieanders_client }`
+  - note: > 
+      **Werkzaamheden:**
+  - Wijzigen: werkcat_client
+    button: |
+      17. Hoe vallen jouw werkzaamheden te categoriseren?<br><br>
+      `${ werkcat_client }`
+  - Wijzigen: uitvoerend_client
+    button: |
+      18. Werk je uitvoerend of adviserend? *(optioneel)*<br><br>
+      `${ uitvoerend_client }`
+  - Wijzigen: werkzaamhedenA_client
+    button: |
+      19. Wat voor werkzaamheden ga je aanbieden? Maak een kort lijstje van 2 tot 5 soorten werkzaamheden, 
+      of vul een korte omschrijving in bij A):<br><br>
+      `A) ${ werkzaamhedenA_client }`<br>
+      `B) ${ werkzaamhedenB_client }`<br>
+      `C) ${ werkzaamhedenC_client }`<br>
+      `D) ${ werkzaamhedenD_client }`<br>
+      `E) ${ werkzaamhedenE_client }`
+  - note: > 
+      **B2C:**
+  - Wijzigen: b2c_client
+    button: |
+      20. Werk je (soms) ook voor particulieren (B2C)?<br><br>
+      `${ b2c_client }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_werkzaamheden
+    button: |
+      21. Heb je opmerkingen of vragen over bovenstaande vragen? *(optioneel)*<br><br>
+      `${ vragen_werkzaamheden }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review samenwerking
+#-----------------------------------------------------------------------------
+id: id_revsamenwerking
+event: sec_samenwerking
+section: sec_samenwerking
+question: |
+  Samenwerking
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Samenwerking</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Beschikbaarheid:**
+  - Wijzigen: beschikbaarovo_client
+    button: |
+      22. Wil je in de OvO opnemen dat je alleen je beschikbaarheid kunt garanderen 
+      als daar afspraken over zijn gemaakt?<br><br>
+      `${ beschikbaarovo_client }`
+  - note: >
+      **Bereikbaarheid:**
+  - Wijzigen: bereikbaarovo_client
+    button: |
+      23. Wil je in de OvO afspraken vastleggen over wanneer en hoe je te bereiken bent?<br><br>
+      `${ bereikbaarovo_client }`<br><br>
+  - Wijzigen: bereikbaarheidtijd_client
+    button: |
+      23. Wat wil je afspreken over je bereikbaarheid?<br><br>
+      *Ik kan mijn bereikbaarheid uitsluitend garanderen...*:
+      `${ bereikbaarheidtijd_client }`   
+  - note: >
+      **Op locatie:**
+  - Wijzigen: locatiewerken_client
+    button: |
+      24. Werk je deels of soms op locatie?<br><br>
+      `${ locatiewerken_client }`
+  - note: >
+      **Derden:**
+  - Wijzigen: derden_ovk
+    button: |
+      26. Wil je de opdracht (deels) aan derden kunnen uitbesteden, 
+      zonder dat je hier melding van hoeft te maken bij de opdrachtgever?<br><br>
+      `${ derden_ovk }` 
+  - note: >
+      ** Beheerdersrechten:**
+  - Wijzigen: toegangsrechten_ovk
+    button: |
+      27. Wil je iets in je algemene voorwaarden opnemen over het intrekken van 
+      toegangs-, beheerders- of editorsrechten na verloop van een bepaalde tijd?<br><br>
+      `${ toegangsrechten_ovk }`<br><br>
+  - Wijzigen: toegangsrechtentijd_ovk
+    button: |
+      27. Zo ja, na welke periode van inactiviteit wil je dat de rechten worden ingetrokken?<br><br>
+      `${ toegangsrechtentijd_ovk }` 
+  - note: >
+      **Feedback:**
+  - Wijzigen: feedback_ovk
+    button: |
+      28. Wil je iets in je algemene voorwaarden opnemen over een maximale feedbacktermijn en/of een maximaal aantal feedbackrondes voor de opdrachtgever?<br><br>
+      `${ feedback_ovk }`
+  - Wijzigen: feedbacktermijn_ovk
+    button: |
+      29. Binnen hoeveel tijd moet de opdrachtgever maximaal reageren, alvorens je goedkeuring van de opdrachtgever mag aannemen, 
+      en/of je werkzaamheden voort mag zetten zonder nadere feedback?<br><br>
+      `${ feedbacktermijn_ovk }` 
+  - Wijzigen: feedbackrondes_ovk
+    button: |
+      30. Hoeveel feedback- of revisierondes bied je maximaal?<br><br>
+      `${ feedbackrondes_ovk }` 
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_samenwerking
+    button: |
+      31. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_samenwerking }` 
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review intellectueel eigendom
+#-----------------------------------------------------------------------------
+id: id_revintellectueeleigendom
+event: sec_intellectueeleigendom
+section: sec_intellectueeleigendom
+question: |
+  Intellectueel eigendom
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Intellectueel Eigendom</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Eigendomsrechten:**
+  - Wijzigen: intelrecht_ovk
+    button: |
+      32. Wil je de intellectuele eigendomsrechten behouden voor het werk dat je creëert en levert voor de opdrachtgever?<br><br>
+      `${ intelrecht_ovk }`
+  - Wijzigen: intelrechtuitgebreid_ovk
+    button: |
+      32. Wil je dit uitgebreid of beknopt opnemen in de algemene voorwaarden?<br><br>
+      `${ intelrechtuitgebreid_ovk }`
+  - note: >
+      **Aanpassingsrecht:**
+  - Wijzigen: aanpassingsrecht_ovk
+    button: |
+      33. Creëer je producten voor opdrachtgevers, waarvan je niet wilt dat ze zelf aanpassingen eraan maken, 
+      en wil je dit opnemen in de OvO?<br><br>
+      `${ aanpassingsrecht_ovk }` 
+  - note: >
+      **Naamsvermelding:**
+  - Wijzigen: naamsvermelding_ovk
+    button: |
+      34. Wil je dat jouw (bedrijfs)naam wordt vermeld bij werk van jou dat gepubliceerd wordt door de opdrachtgever of door derden?<br><br>
+      `${ naamsvermelding_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_intellectueeleigendom
+    button: |
+      35. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_intellectueeleigendom }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review overeenkomst
+#-----------------------------------------------------------------------------
+id: id_revovereenkomst
+event: sec_overeenkomst
+section: sec_overeenkomst
+question: |
+  Overeenkomst
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Overeenkomst</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Looptijd:**
+  - Wijzigen: looptijd_ovk
+    button: |
+      36. Wil je een overeenkomst voor bepaalde tijd of onbepaalde tijd?<br><br>
+      `${ looptijd_ovk }` 
+  - Wijzigen: looptijdgetal_ovk
+    button: |
+      36. Wat is de looptijd van de overeenkomst?<br><br>
+      `${ looptijdgetal_ovk }`
+  - Wijzigen: verlenging_ovk
+    button: |
+      37. Wil je de overeenkomst aan het einde van de standaardperiode automatisch laten eindigen, 
+      of wil je een stilzwijgende verlenging?<br><br>
+      `${ verlenging_ovk }`
+  - Wijzigen: verlengingsperiode_ovk
+    button: |
+      37. Met welke looptijd wil je de overeenkomst steeds verlengen?<br><br>
+      `${ verlengingsperiode_ovk }`
+  - note: >
+      **Proeftijd:**
+  - Wijzigen: proeftijd_ovk
+    button: |
+      38. Hanteer je een proeftijd?<be><br>
+      `${ proeftijd_ovk }`
+  - note: >
+      **Opzeggen:**
+  - Wijzigen: tussentijdsopzeggen_ovk
+    button: |
+      39. Kan de overeenkomst tussentijds worden opgezegd?<br><br>
+      `${ tussentijdsopzeggen_ovk }`
+  - Wijzigen: opzegtermijn_ovk
+    button: |
+      40. Wat is de opzegtermijn van de overeenkomst?<br><br>
+      `${ opzegtermijn_ovk }`
+  - note: >
+      **Relatiebeding:**
+  - Wijzigen: relatiebeding_ovk
+    button: |
+      41. Ben je bereid om een concurrentiebeding of een relatiebeding te ondertekenen?<br><br>
+      `${ relatiebeding_ovk }`
+  - note: >
+      **Algemene Voorwaarden**
+  - Wijzigen: avwgebruik_ovk
+    button: |
+      42. Gebruik je algemene voorwaarden bij je overeenkomst van opdracht (OvO)?<br><br>
+      `${ avwgebruik_ovk }`
+  - Wijzigen: avwtoepassing_ovk
+    button: |
+      43. Als je algemene voorwaarden gebruikt, wil je dan dat uitsluitend jouw voorwaarden van toepassing zijn op de overeenkomst?<br><br>
+      `${ avwtoepassing_ovk }`
+  - Wijzigen: avwbuitentoepassing_ovk
+    button: |
+      43. Als je GEEN eigen algemene voorwaarden gebruikt, wil je dan eventuele algemene voorwaarden van de opdrachtgever buiten toepassing verklaren?<br><br>
+      `${ avwbuitentoepassing_ovk }`
+  - note: >
+      **Akkoord:**
+  - Wijzigen: akkoord_ovk
+    button: |
+      44. Hoe wil je dat overeenkomsten tot stand komen?<br><br>
+      `${ akkoord_ovk.true_values() }`
+  - Wijzigen: handtekening_ovo
+    button: |
+      44. Wil je dat de overeenkomst van opdracht onderaan voorzien is van een ruimte waar 
+      beide partijen hun handtekening kunnen plaatsen?<br><br>
+      `${ handtekening_ovo }`
+  - Wijzigen: paraaf_ovo
+    button: |
+      44. Wil je dat de overeenkomst van opdracht op elke pagina in de footer voorzien is van 
+      een ruimte waar beide partijen hun paraaf dienen te plaatsen?<br><br>
+      `${ paraaf_ovo }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_overeenkomst
+    button: |
+      45. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_overeenkomst }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review tarieven
+#-----------------------------------------------------------------------------
+id: id_revtarieven
+event: sec_tarieven
+section: sec_tarieven
+question: |
+  Tarieven
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Tarieven</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Btw:**
+  - Wijzigen: exclbtw_ovk
+    button: |
+      46. Communiceer je je tarieven inclusief btw, exclusief btw, of ben je vrijgesteld voor de btw?<br><br>
+      `${ exclbtw_ovk }`
+  - note: >
+      **Uurbasis of vaste prijzen:**
+  - Wijzigen: uurbasisvasteprijs_ovk
+    button: |
+      47. Werk je op uurbasis of met vaste prijzen?<br><br>
+      `${ uurbasisvasteprijs_ovk }`
+  - Wijzigen: vasteprijswijze_ovk
+    button: |
+      47. Indien je (ook) met vaste prijzen werkt, op wat voor basis doe je dit? *(optioneel)*<br>*Meerdere opties mogelijk*<br><br>
+      `${ vasteprijswijze_ovk.true_values() }`
+  - note: >
+      **Speciale tarieven:**
+  - Wijzigen: instaptarief_ovk
+    button: |
+      48. Hanteer je een instaptarief?<br><br>
+      `${ instaptarief_ovk }`
+  - Wijzigen: spoedtarief_ovk
+    button: |
+      49. Hanteer je een apart spoedtarief voor spoedwerkzaamheden?<br><br>
+      `${ spoedtarief_ovk }`
+  - Wijzigen: staffelkorting_ovk
+    button: |
+      50. Hanteer je staffelkorting<br><br>
+      `${ staffelkorting_ovk }`
+  - note: >
+      **Tariefverhoging:**
+  - Wijzigen: tariefverhoging_ovk
+    button: |
+      51. Wil je op een vast moment (bijvoorbeeld elk jaar op 1 januari) een tariefverhoging doorvoeren?<br><br>
+      `${ tariefverhoging_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_tarieven
+    button: |
+      52. Heb je opmerkingen of vragen over bovenstaande vragen? *(optioneel)*<br><br>
+      `${ vragen_tarieven }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review facturatie
+#-----------------------------------------------------------------------------
+id: id_revfacturatiesub
+event: sec_facturatiesub
+section: sec_facturatiesub
+question: |
+  Facturatie
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Facturatie</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Betaaltermijn:**
+  - Wijzigen: betaaltermijn_ovk
+    button: |
+      53. Welke betaaltermijn hanteer je?<br><br>
+      `${ betaaltermijn_ovk }`
+  - note: >
+      **Betaalwijze:**
+  - Wijzigen: betaalwijze_ovk
+    button: |
+      54. Op welke betaalwijze(n) kan je opdrachtgever de facturen voldoen?
+      `${ betaalwijze_ovk.true_values() }`
+  - note: >
+      **Registratie uren of werkzaamheden:**
+  - Wijzigen: urenregistratie_ovk
+    button: |
+      55. Wil je in de OvO nader specificeren hoe je gewerkte uren en/of uitgevoerde werkzaamheden registreert en bijhoudt?<br><br>
+      `${ urenregistratie_ovk }`
+  - Wijzigen: urenregwijze_ovk
+    button: |
+      55. Hoe registreer je gewerkte uren en/of uitgevoerde werkzaamheden?<br><br>
+      `${ urenregwijze_ovk }` 
+  - Wijzigen: inzageuren_ovk
+    button: |
+      56. Wil je in de OvO specificeren óf en wanneer je opdrachtgever inzage heeft in je (nog niet gefactureerde) 
+      gewerkte aantal uren en/of uitgevoerde werkzaamheden?<br><br>
+      `${ inzageuren_ovk }`
+  - Wijzigen: inzageurenwijze_ovk
+    button: |
+      56. Zo ja, wil je in OvO specificeren op welke wijze je opdrachtgever inzage heeft in de gewerkte uren en/of uitgevoerde werkzaamheden?<br><br>
+      `${ inzageurenwijze_ovk }`
+  - note: >
+      **Facturatie:**
+  - Wijzigen: urendeclaratie_ovk
+    button: |
+      57. Hoe specificeer je de gewerkte uren en/of uitgevoerde werkzaamheden bij facturatie?<br><br>
+      `${ urendeclaratie_ovk }`
+  - Wijzigen: elektronischefac_ovk
+    button: |
+      58. Stuur je je facturen via elektronische weg?<br><br>
+      `${ elektronischefac_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_facturatie
+    button: |
+      60. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_facturatie }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review facturatiewijzen
+#-----------------------------------------------------------------------------
+id: id_revfacturatiewijzen
+event: sec_facturatiewijzen
+section: sec_facturatiewijzen
+question: |
+  Facturatiewijzen
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Facturatiewijzen</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.  
+  - note: >
+      **Facturatiewijzen:**
+  - Wijzigen: facturatiewijze_ovk
+    button: |
+      59. Welke facturatiewijze(n) hanteer je?<br><br>
+      `${ facturatiewijze_ovk.true_values() }`
+---
+#-----------------------------------------------------------------------------
+#   review abonnement
+#-----------------------------------------------------------------------------
+id: id_revabonnement
+event: sec_abonnement
+section: sec_abonnement
+question: |
+  Abonnement
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Als je al vragen hebt beantwoord over deze sectie, klik dan op de knop *Wijzigen* om naar de sectie <u>Abonnement</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.<br><br>
+      Heb je nog geen vragen over dit facturatietype beantwoord, ga dan eerst naar de sectie <u>Facturatiewijzen</u>
+      En vink de betreffende optie aan. . 
+  - note: >
+      **Uurbasis of projectbasis:**
+  - Wijzigen: uurbasispakket_ovk
+    button: |
+      61. Werk je met een abonnement op uurbasis (dus een vast aantal uren per maand) 
+      of op projectbasis (dus een vast pakket aan werkzaamheden)?<br><br>
+      `${ uurbasispakket_ovk }`     
+  - note: >
+      **Facturatiewijze:**
+  - Wijzigen: abofacturatieperiode_ovk
+    button: |
+      62. Factureer je maandelijks of factureer je een hele contractsperiode in één keer? <br><br>
+      `${ abofacturatieperiode_ovk }`
+  - Wijzigen: voorafachterafabo_ovk
+    button: |
+      63. Factureer je vooraf of achteraf?<br><br>
+      `${ voorafachterafabo_ovk }`
+  - note: >
+      **Ongebruikte uren**
+  - Wijzigen: ongebruikteuren_ovk
+    button: |
+      64. Kunnen niet gebruikte uren of werkzaamheden worden meegenomen naar de volgende maand?<br><br>
+      `${ ongebruikteuren_ovk }`
+  - Wijzigen: urencreditatie_ovk
+    button: |
+      65. Kunnen niet gebruikte uren of werkzaamheden gecrediteerd (terugbetaald) worden?<br><br>
+      `${ urencreditatie_ovk }`
+  - note: >
+      **Meeruren:**
+  - Wijzigen: meeruren_ovk
+    button: |
+      66. Hoe worden meeruren in rekening gebracht?<br><br>
+      `${ meeruren_ovk }`
+  - note: >
+      **Tussentijdse wijziging:**
+  - Wijzigen: wijzigingabo_ovk
+    button: |
+      67. Kan het aantal uren en/of de omvang van het pakket aan werkzaamheden tussentijds gewijzigd worden? 
+      Zo ja, hoe en welke wijzigingstermijn hanteer je?<br><br>
+      `${ wijzigingabo_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_abonnement
+    button: |
+      68. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_abonnement }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review nacalculatie
+#-----------------------------------------------------------------------------
+id: id_revnacalculatie
+event: sec_nacalculatie
+section: sec_nacalculatie
+question: |
+  Nacalculatie
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Als je al vragen hebt beantwoord over deze sectie, klik dan op de knop *Wijzigen* om naar de sectie <u>Nacalculatie</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.<br><br>
+      Heb je nog geen vragen over dit facturatietype beantwoord, ga dan eerst naar de sectie <u>Facturatiewijzen</u>
+      En vink de betreffende optie aan.  
+  - note: >
+      **Afronding:**
+  - Wijzigen: afrondingnacalculatie_ovk
+    button: |
+      69. Hoe rond je de te factureren uren af?<br><br>
+      `${ afrondingnacalculatie_ovk }`
+  - Wijzigen: afrondingbovenbeneden_ovk
+    button: |
+      70. Rond je af naar boven of naar beneden?<br><br>
+      `${ afrondingbovenbeneden_ovk }`
+  - note: >
+      **Maximumafname:**
+  - Wijzigen: maxafnameuren_ovk
+    button: |
+      71. Wordt er een maximumaantal werkuren overeengekomen? <br><br>
+      `${ maxafnameuren_ovk }`
+  - Wijzigen: maximumaantal_ovk
+    button: |
+      71. Welk maximumaantal werkuren wordt overeengekomen?<br><br>
+      `${ maximumaantal_ovk }`
+  - note: >
+      **Minimumafname:**
+  - Wijzigen: minafnameuren_ovk
+    button: |
+      72. Hanteer je een maandelijkse minimumafname?<br><br>
+      `${ minafnameuren_ovk }`
+  - Wijzigen: minaantaluren_ovk
+    button: |
+      72. Welke minimum maandelijkse afname hanteer je?<br><br>
+      `${ minaantaluren_ovk }`
+  - note: >
+      **Vragen:*
+  - Wijzigen: vragen_nacalculatie
+    button: |
+      73. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_nacalculatie }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review strippenkaart
+#-----------------------------------------------------------------------------
+id: id_revstrippenkaart
+event: sec_strippenkaart
+section: sec_strippenkaart
+question: |
+  Strippenkaart
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Als je al vragen hebt beantwoord over deze sectie, klik dan op de knop *Wijzigen* om naar de sectie <u>Strippenkaart</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.<br><br>
+      Heb je nog geen vragen over dit facturatietype beantwoord, ga dan eerst naar de sectie <u>Facturatiewijzen</u>
+      En vink de betreffende optie aan. 
+  - note: >
+      **Geldigheidsduur:**
+  - Wijzigen: geldigstrippenkaart_ovk
+    button: |
+      74. Wat is de geldigheidsduur van de strippenkaart?<br><br>
+      `${ geldigstrippenkaart_ovk }`
+  - note: >
+      **Minimumafname:**
+  - Wijzigen: mingebruikuren_ovk
+    button: |
+      75. Hanteer je een minimum maandelijks gebruik?<br><br>
+      `${ mingebruikuren_ovk }`
+  - Wijzigen: mingebruikaantaluren_ovk
+    button: |
+      75. Zo ja, Hoeveel uren wordt er minimaal verbruikt per maand?<br><br>
+      `${ mingebruikaantaluren_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_strippenkaart
+    button: |
+      76. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_strippenkaart }` 
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review projectbasis
+#-----------------------------------------------------------------------------
+id: id_revprojectbasis
+event: sec_projectbasis
+section: sec_projectbasis
+question: |
+  Projectbasis en pakketten
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Als je al vragen hebt beantwoord over deze sectie, klik dan op de knop *Wijzigen* om naar de sectie <u>Projectbasis</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.<br><br>
+      Heb je nog geen vragen over dit facturatietype beantwoord, ga dan eerst naar de sectie <u>Facturatiewijzen</u>
+      En vink de betreffende optie aan. 
+  - note: >
+      **Facturatiemoment:**
+  - Wijzigen: voorafachterafproject_ovk
+    button: |
+      77. Factureer je vooraf, achteraf of werk je met een aanbetaling?<br><br>
+      `${ voorafachterafproject_ovk }`
+  - note: >
+      **Afronding:**
+  - Wijzigen: projectafgerond_ovk
+    button: |
+      78. Indien je op projectbasis werkt, en je bent voor de afronding en/of facturatie van het 
+      project afhankelijk van de feedback of goedkeuring van de opdrachtgever, binnen 
+      hoeveel tijd moet de opdrachtgever maximaal reageren, alvorens je het project als 
+      afgerond beschouwd?<br><br>
+      `${ projectafgerond_ovk }`
+  - note: >
+      **Minimumafname:**
+  - Wijzigen: minafnameproject_ovk
+    button: |
+      79. Hanteer je een minimumafname voor een project?<br><br>
+      `${ minafnameproject_ovk }`
+  - note: >
+      **Meerwerk:**
+  - Wijzigen: meerwerkproject_ovk
+    button: |
+      80. Kan er sprake zijn van meerwerk? En zo ja, hoe breng je dit in rekening?<br><br>
+      `${ meerwerkproject_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_projectbasis
+    button: |
+      81. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_projectbasis }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review flat fee en commissies
+#-----------------------------------------------------------------------------
+id: id_revflatfeecommissies
+event: sec_flatfeecommissies
+section: sec_flatfeecommissies
+question: |
+  Flat fee en commissies
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Als je al vragen hebt beantwoord over deze sectie, klik dan op de knop *Wijzigen* om naar de sectie <u>FlatFee & Commissies</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.<br><br>
+      Heb je nog geen vragen over dit facturatietype beantwoord, ga dan eerst naar de sectie <u>Facturatiewijzen</u>
+      En vink de betreffende optie aan. 
+  - note: >
+      **Nacalculatie:**
+  - Wijzigen: flatfeenacal_ovk
+    button: |
+      82. Factureer je naast een maandelijks basisbedrag (flat fee) ook nog op basis van nacalculatie?<br><br>
+      `${ flatfeenacal_ovk }`
+  - Wijzigen: flatfeenacalwijze_ovk
+    button: |
+      82. Op welke nacalculatiewijze factureer je?<br><br>
+      `${ flatfeenacalwijze_ovk }`
+  - note: >
+      **Commissiebasis:**
+  - Wijzigen: commissiebasis_ovk
+    button: |
+      83. Specificeer hier nader hoe de commissies worden toegekend, berekend etc.<br><br>
+      `${ commissiebasis_ovk }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_flatfee
+    button: |
+      84. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_flatfee }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review reiskosten
+#-----------------------------------------------------------------------------
+id: id_revreiskosten
+event: sec_reiskosten
+section: sec_reiskosten
+question: |
+  Reiskosten
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Reiskosten</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Reiskosten:**
+  - Wijzigen: reiskostenovo_ovk
+    button: |
+      85. Wil je in de OvO opnemen hoe je reiskosten, parkeerkosten en/of reistijd doorberekent?<br><br>
+      `${ reiskostenovo_ovk }`
+  - Wijzigen: reiskosten_client
+    button: |
+      85. Hoe wens je eventuele **reiskosten** in rekening te brengen?<br><br>
+      `${ reiskosten_client }`
+  - Wijzigen: reistijdkosten_client
+    button: |
+      85. Hoe wens je eventuele **reistijd** in rekening te brengen?<br><br>
+      `${ reistijdkosten_client }`
+  - Wijzigen: parkeerkosten_client
+    button: |
+      85. Hoe wens je eventuele **parkeerkosten** in rekening te brengen?<br><br>
+      `${ parkeerkosten_client }`
+  - note: >
+      **Vragen:**
+  - Wijzigen: vragen_reiskosten
+    button: |
+      86. Heb je opmerkingen of vragen over bovenstaande vragen?<br><br>
+      `${ vragen_reiskosten }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review logo
+#-----------------------------------------------------------------------------
+id: id_revlogo
+event: sec_logo
+section: sec_logo
+question: |
+  Logo uploaden
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Logo uploaden</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      87. Heb je een bedrijfslogo dat je graag in je documenten zou willen verwerken?
+      <br><br>
+      Je kunt je logo hier desgewenst uploaden.
+  - Nieuw logo uploaden: logo_client
+    button: |
+      ${ logo_client }
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review huisstijl
+#-----------------------------------------------------------------------------
+id: id_revhuisstijl
+event: sec_huisstijl
+section: sec_huisstijl
+question: |
+  Huisstijlkleuren
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Huisstijl</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      88. De documenten worden niet standaard in je eigen huisstijl opgemaakt, maar aangeleverd als Word-files met een witte achtergrond en zwarte letters.
+      Je kunt voor de zekerheid de kleuren van je huisstijl hier doorgeven.
+  - Wijzigen: achtergrondkleur_client
+    button: |
+      88. Wat gebruik je meestal als achtergrondkleur?<br><br>
+      `${ achtergrondkleur_client }`
+  - Wijzigen: tekstkleur_client
+    button: |
+      88. Wat gebruik je meestal als tekstkleur?<br><br>
+      `${ tekstleur_client }`
+  - Wijzigen: accentkleur_client
+    button: |
+      88. Wat gebruik je meestal als accentkleur?<br><br>
+      `${ accentkleur_client }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review vragen
+#-----------------------------------------------------------------------------
+id: id_revvragen
+event: sec_vragen
+section: sec_vragen
+question: |
+  Vragen en opmerkingen
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br><br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Vragen en opmerkingen</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen.  
+  - note: >
+      **Algemeen:**
+  - Wijzigen: vragen_opdralgemeen
+    button: |
+      89. Heb je nog specifieke vragen en/of opmerkingen in het algemeen?<br><br>
+      `${ vragen_opdralgemeen }`
+  - note: >
+      **Urgentie:**
+  - Wijzigen: urgentdoc_ovk
+    button: |
+      90. Heb je een document urgent nodig?<br><br>
+      `${ urgentdoc_ovk }`
+  - note: >
+      **Intern:**
+  - Wijzigen: opmerkingenintern_opdr
+    button: |
+      91. Interne opmerkingen<br><br>
+      `${ opmerkingenintern_opdr }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---

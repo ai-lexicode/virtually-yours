@@ -1,0 +1,306 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > NACALCULATIE
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_nacalculatie: '12v07'
+# last revision date: 2025-03-26
+---
+#---------------------------------
+# NACALCULATIE
+#---------------------------------
+id: id_nacalculatie
+# mandatory: True
+question: |
+  Nacalculatie
+fields:
+# _________________________________
+# 69 | nacalurenwerkzaamheden_ovk
+# _________________________________
+  - note: >
+      69. **Nacalculatie uren of werkzaamheden:**<br>
+      Werk je met nacalculatie van uren of nacalculatie van (vaste) werkzaamheden?
+  - field: nacalurenwerkzaamheden_ovk
+    label: >
+      69.
+    input type: radio
+    choices:
+      - Uren *(meest gekozen)*: gewerkte uren
+      - Werkzaamheden: uitgevoerde werkzaamheden
+      - Beide (zowel uren als werkzaamheden): gewerkte uren of uitgevoerde werkzaamheden
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[GEWERKTE UREN / UITGEVOERDE WERKZAAMHEDEN]"
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+# _________________________________
+# 70a | afrondingnacalculatie_ovk
+# _________________________________
+  - note: >
+      70a. **Afronding:**<br>
+      Hoe rond je de te factureren uren af? Het gaat hier om de afronding op de totaalfactuur. 
+      Dus niet om eventuele afronding iedere keer dat je gewerkt hebt. 
+    help: >
+      *Tip:<br>
+      Gebruik een urenregistratietool, zoals bijvoorbeeld Toggl, om je gewerkte uren bij te houden. Dan weet je tot op de minuut nauwkeurig 
+      hoeveel tijd je hebt gewerkt, en kun je bij de facturatie afronden conform de afspraken met opdrachtgever.*
+      <br><br>
+      *Tip:<br> 
+      Boekhoudtechnisch kan het handig zijn om af te ronden per 6 minuten, omdat je dan in decimalen het aantal gewerkte uren kunt invoeren 
+      in je boekhoudprogramma:<br>
+      1,1 uur = 1 uur en 6 minuten<br>
+      1,2 uur = 1 uur en 12 minuten<br>
+      1,3 uur = 1 uur en 18 minuten<br>
+      1,4 uur = 1 uur en 24 minuten<br>
+      1,5 uur = 1 uur en 30 minuten<br>
+      Etc.*
+  - field: afrondingnacalculatie_ovk
+    label: >
+      70.
+    input type: radio
+    choices:
+      - Op hele minuten: op hele minuten
+      - Op 6 minuten *(vaak gekozen)*: op 6 minuten
+      - Op hele kwartieren *(vaak gekozen)*: op hele kwartieren
+      - Op halve uren: op halve uren
+      - Op hele uren: op hele uren
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[WIJZE VAN AFRONDEN]"
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+# _________________________________
+# 70 | afrondingbovenbeneden_ovk
+# _________________________________
+  - note: >
+      70b. **Naar boven of naar beneden:**<br>
+      Rond je af naar boven of naar beneden? 
+  - field: afrondingbovenbeneden_ovk
+    help: >
+      Het gaat hier om de afronding op de totaalfactuur. Dus niet om eventuele afronding iedere keer dat je
+      gewerkt hebt. Als je maandelijks factureert, dan tel je alle gewerkte uren van die maand bij elkaar 
+      op en dát totaal rond je dan af.
+      <br><br>
+      Als je niet nader wilt specificeren of je naar boven of naar beneden afrondt, dan kun je ook bijvoorbeeld een standaard afrondingsregel gebruiken, zoals de “round half up”-methode. Je rondt dan naar het dichtstbijzijnde getal af. 
+    label: >
+      70b.
+    input type: radio
+    choices:
+      - Naar boven: naar boven
+      - Naar beneden: naar beneden
+      - Ik wil dit niet nader specificeren: nee
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[NAAR BOVEN/BENEDEN]"
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+# _________________________________
+# 71a | maxafnameuren_ovk
+# _________________________________
+  - note: >
+      71. **Maximumaantal:**<br>
+      Wil je een maximumaantal werkuren of werkzaamheden in de overeenkomst van opdracht opnemen?
+    help: >
+      Indien je op basis van nacalculatie werkt (uurtje-factuurtje), is het belangrijk om duidelijke afspraken te maken met de opdrachtgever over 
+      een eventueel maximumaantal werkuren.
+      <br><br>
+      *Tip:<br>
+      Je kunt bijvoorbeeld een maximumaantal maandelijkse uren afspreken, afspreken dat je de opdrachtgever een seintje geeft zodra een bepaald 
+      aantal gewerkte uren wordt bereikt, of zorgen dat de opdrachtgever altijd inzage heeft in een up-to-date overzicht van jouw gewerkte uren, 
+      zodat hij/zij zelf kan beslissen wanneer een maximumaantal uren is bereikt voor een betreffende maand.*
+  - field: maxafnameuren_ovk
+    label: >
+      71a.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+# _________________________________
+# 71b | maximumaantal_ovk
+# _________________________________
+  - field: maximumaantal_ovk
+    label: >
+      71b.<br>
+      Welk maximumaantal werkuren wordt overeengekomen?
+    input type: radio
+    choices:
+      - Ik spreek een maximumaantal uren/werkzaamheden per maand af en overschrijd dit aantal niet, tenzij anders wordt overeengekomen: Indien een maximumaantal uren of werkzaamheden wordt afgesproken zal dit aantal uren uitsluitend in overleg overschreden worden.
+      - Ik geef een seintje zodra ik een nader overeen te komen maximumaantal uren/werkzaamheden heb gewerkt in een maand: "Indien een maximumaantal uren of werkzaamheden wordt overeengekomen zal ${ bedrijfsnaam_client } Opdrachtgever ervan op de hoogte brengen als het maximumaantal is bereikt."
+      - Mijn opdrachtgever heeft altijd inzage in een actueel overzicht van mijn gewerkte uren/ uitgevoerde werkzaamheden en kan zelf aangeven als hij/zij vindt dat er voldoende uren zijn gewerkt in een maand: Opdrachtgever dient zelf in de gaten te houden óf en wanneer er voldoende is gewerkt en een maximumaantal is bereikt.
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[SPECIFICEER OF ER EEN MAXIMUMAANTAL UREN OF WERKZAAMHEDEN WORDT OVEREENGEKOMEN]"  
+    show if:
+      variable: maxafnameuren_ovk
+      is: ja
+# _________________________________
+# 72a | minafnameuren_ovk
+# _________________________________
+  - note: >
+      72. **Minimumafname uren:**<br>
+      Hanteer je een minimum maandelijkse afname van uren?
+    help: >
+      Bijvoorbeeld, je factureert ten minste 1 uur per maand, ook indien de opdrachtgever je voor minder dan 1 uur heeft ingezet in die maand.
+      <br><br>
+      *Tip:<br>
+      Om een situatie van doodbloeden van een opdracht te voorkomen kan het verstandig zijn om een minimumafname van bijvoorbeeld 1 uur per maand te hanteren. 
+      Op die manier blijft een samenwerking ‘actief’, kun jij anticiperen op mogelijke werkzaamheden voor deze opdrachtgever (en dus hiermee rekening houden 
+      als er eventuele nieuwe aanvragen komen), en kan de opdrachtgever ervan op aan dat jij rekening houdt met eventuele werkzaamheden voor deze opdrachtgever. 
+      Beide partijen weten dan waar ze aan toe zijn en het stimuleert de opdrachtgever om iedere maand concreet na te denken over of hij/zij jou nog nodig 
+      verwacht te hebben of niet.*
+  - field: minafnameuren_ovk
+    label: >
+      72a.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+# _________________________________
+# 72b | minaantaluren_ovk
+# _________________________________
+  - field: minaantaluren_ovk
+    label: >
+      72b.<br>
+      Welke minimum maandelijkse afname hanteer je?
+    input type: radio
+    choices:
+      - Minimaal 1 uur per maand *(meest gekozen)*: 1 uur
+      - Minimaal 2 uren per maand: 2 uren
+      - Minimaal 5 uren per maand: 5 uren
+      - Minimaal 10 uren per maand: 10 uren
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[SPECIFICEER MINIMUM MAANDELIJKSE AFNAME]"  
+    show if:
+      variable: minafnameuren_ovk
+      is: ja
+# _________________________________
+# 72c | minafnamewerkzaamheden_ovk
+# _________________________________
+  - note: >
+      72. **Minimumafname werkzaamheden:**<br>
+      Hanteer je een minimum maandelijkse afname van werkzaamheden?
+    help: >
+      Bijvoorbeeld, je factureert ten minste 1 social media post per maand, ook indien je die maand minder dan 1 social media post hebt hoeven maken van opdrachtgever.
+      <br><br>
+      *Tip:<br>
+      Om een situatie van doodbloeden van een opdracht te voorkomen kan het verstandig zijn om een minimumafname per maand te hanteren.
+      Op die manier blijft een samenwerking ‘actief’, kun jij anticiperen op mogelijke werkzaamheden voor deze opdrachtgever 
+      (en dus hiermee rekening houden als er eventuele nieuwe aanvragen komen), en kan de opdrachtgever ervan op aan dat jij 
+      rekening houdt met eventuele werkzaamheden voor deze opdrachtgever. Beide partijen weten dan waar ze aan toe zijn 
+      en het stimuleert de opdrachtgever om iedere maand concreet na te denken over of hij/zij jou nog nodig verwacht te hebben of niet. 
+      <br><br>
+      Als je hier “Ja” selecteert, dan wordt er in de OvO een stukje tekst gemarkeerd waar je zelf kunt specificeren wat de minimumafname van werkzaamheden is.*
+    js show if: |
+      val("nacalurenwerkzaamheden_ovk") == "uitgevoerde werkzaamheden" || val("nacalurenwerkzaamheden_ovk") == "gewerkte uren of uitgevoerde werkzaamheden" || val("nacalurenwerkzaamheden_ovk") == "[GEWERKTE UREN / UITGEVOERDE WERKZAAMHEDEN]"
+  - field: minafnamewerkzaamheden_ovk
+    label: >
+      72a.
+    input type: radio
+    choices:
+    - Ja: ja
+    - Nee: nee
+    js show if: |
+      val("nacalurenwerkzaamheden_ovk") == "uitgevoerde werkzaamheden" || val("nacalurenwerkzaamheden_ovk") == "gewerkte uren of uitgevoerde werkzaamheden" || val("nacalurenwerkzaamheden_ovk") == "[GEWERKTE UREN / UITGEVOERDE WERKZAAMHEDEN]"
+    required: False
+# _________________________________
+# 73 | vragen_nacalculatie
+# _________________________________
+  - note: >
+      73. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_nacalculatie
+    label:
+    input type: area
+    show if:
+      code: |
+        facturatiewijze_ovk['nacalculatie']
+    required: False    
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 60
+section: sec_nacalculatie
+---
+#---------------------------------
+# CODE NACALCULATIE N/A
+#---------------------------------
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    nacalurenwerkzaamheden_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    afrondingnacalculatie_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    afrondingbovenbeneden_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    maxafnameuren_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    maximumaantal_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not maxafnameuren_ovk == "ja":
+    maximumaantal_ovk = 'N/A'
+depends on:
+  - maxafnameuren_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    minafnameuren_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    minaantaluren_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not minafnameuren_ovk == "ja":
+    minaantaluren_ovk = 'N/A'
+depends on:
+  - minafnameuren_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    minafnamewerkzaamheden_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if nacalurenwerkzaamheden_ovk == "gewerkte uren":
+    minafnamewerkzaamheden_ovk = 'N/A'
+depends on:
+  - nacalurenwerkzaamheden_ovk
+---
+code: |
+  if not facturatiewijze_ovk['nacalculatie']:
+    vragen_nacalculatie = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---

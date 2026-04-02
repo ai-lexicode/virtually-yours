@@ -1,0 +1,130 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > STRIPPENKAART
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_strippenkaart: '13v06'
+# last revision date: 2025-03-31
+---
+#---------------------------------
+# STRIPPENKAART
+#---------------------------------
+id: id_strippenkaart
+# mandatory: True
+question: |
+  Strippenaart
+fields:
+# _________________________________
+# 74 | geldigstrippenkaart_ovk
+# _________________________________
+  - note: >
+      74. **Geldigheidsduur:**<br>
+      Wat is de geldigheidsduur van de strippenkaart?
+  - field: geldigstrippenkaart_ovk
+    label: >
+      74.
+    input type: radio
+    choices:
+      - 3 maanden: 3 maanden
+      - 6 maanden *(vaak gekozen)*: 6 maanden
+      - 9 maanden: 9 maanden
+      - 1 jaar *(vaak gekozen)*: 1 jaar
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['strippenkaart']
+# _________________________________
+# 75a | mingebruikuren_ovk
+# _________________________________
+  - note: >
+      75. **Minimumafname:**<br>
+      Hanteer je een minimum maandelijks gebruik?
+    help: >
+      Bijvoorbeeld, er wordt elke maand ten minste 1 uur aan strippen opgemaakt, 
+      ook als er in een maand minder dan 1 uur een beroep op je is gedaan.
+  - field: mingebruikuren_ovk
+    label: >
+      75a.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+    show if:
+      code: |
+        facturatiewijze_ovk['strippenkaart']
+# _________________________________
+# 75b | mingebruikaantaluren_ovk
+# _________________________________
+  - field: mingebruikaantaluren_ovk
+    label: >
+      75b.<br>
+      Zo ja, hoeveel uren worden er maandelijks minimaal verbruikt?
+    input type: radio
+    choices:
+      - Minimaal 1 uur per maand: 1 uur
+      - Minimaal 2 uren per maand: 2 uren
+      - Minimaal 3 uren per maand: 3 uren
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: mingebruikuren_ovk
+      is: ja
+# _________________________________
+# 76 | vragen_strippenkaart
+# _________________________________
+  - note: >
+      76. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_strippenkaart
+    label:
+    input type: area
+    show if:
+      code: |
+        facturatiewijze_ovk['strippenkaart']
+    required: False    
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 65
+section: sec_strippenkaart
+---
+#---------------------------------
+# CODE STRIPPENKAART N/A
+#---------------------------------
+code: |
+  if not facturatiewijze_ovk['strippenkaart']:
+    geldigstrippenkaart_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['strippenkaart']:
+    mingebruikuren_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['strippenkaart']:
+    mingebruikaantaluren_ovk = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not mingebruikuren_ovk == "ja":
+    mingebruikaantaluren_ovk = 'N/A'
+depends on:
+  - mingebruikuren_ovk
+---
+code: |
+  if not facturatiewijze_ovk['strippenkaart']:
+    vragen_strippenkaart = 'N/A'
+depends on:
+  - facturatiewijze_ovk
+---

@@ -1,0 +1,221 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE OPDRACHTEN > WERKZAAMHEDEN
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_werkzaamheden: '04v05'
+# last revision date: 2025-02-13
+---
+#-----------------------------------------------------------------------------
+# SECTIE WERKZAAMHEDEN
+#-----------------------------------------------------------------------------
+id: id_werkzaamheden
+mandatory: True
+question: |
+  Werkzaamheden
+fields:
+# _________________________________
+# 15a | beroep_client
+# _________________________________
+  - note: >
+      15. **Omschrijving beroep:**<br>
+      Hoe omschrijf je jezelf/ je beroep/ de werkzaamheden die je uitvoert? *(optioneel)*<br>
+      *Meerdere opties mogelijk.*
+    help: >
+      Deze vraag is optioneel en dient alleen om een beter beeld van je te vormen. 
+      De term die je gebruikt om jezelf of je beroep te omschrijven wordt niet gebruikt in de opdrachtdocumenten.  
+  - field: beroep_client
+    label: >
+      15a.
+    datatype: checkboxes
+    choices:
+      - Virtual Assistant: virtual assistant
+      - Online Business Manager: online business manager
+      - Social Media Manager: social media manager
+      - Appointment Setter: appointment setter
+      - Anders (specificeer): anders
+      - Ik weet het (nog) niet: ik weet het niet
+    none of the above: False
+    required: False
+# _________________________________
+# 15b | beroepanders_client
+# _________________________________     
+  - field: beroepanders_client
+    label: >
+      15b. Indien 'anders', hoe omschrijf je jezelf/ je beroep/ de werkzaamheden die je uitvoert? *(optioneel)*
+    input type: area
+    js show if: |
+      val("beroep_client['anders']")
+    required: False
+# _________________________________
+# 16a | specialisatie_client
+# _________________________________
+  - note: >
+      16. **Specialisatie:**<br>
+      Heb je een specifieke specialisatie? *(optioneel)*<br>
+      *Meerdere opties mogelijk.*
+    help: >
+      Bijvoorbeeld: Technisch VA, Allround VA.
+      <br><br> 
+      Deze vraag is optioneel en dient alleen om een beter beeld van je te vormen. 
+      Je specialisatie wordt niet als zodanig vermeld in de opdrachtdocumenten.
+  - field: specialisatie_client
+    label: >
+      16a.
+    datatype: checkboxes
+    choices:
+      - Nee: nee
+      - Technisch: technisch
+      - Creatief: creatief
+      - Allround: allround
+      - Financieel: financieel
+      - Juridisch: juridisch
+      - Anders (specificeer): anders
+      - Ik weet het (nog) niet: ik weet het niet
+    none of the above: False
+    required: False
+# _________________________________
+# 16b | specialisatieanders_client
+# _________________________________   
+  - field: specialisatieanders_client
+    label: >
+      16b. Indien 'anders', welke specialisatie heb je? *(optioneel)*
+    input type: area
+    js show if: |
+      val("specialisatie_client['anders']")
+    required: False
+# _________________________________
+# 17 | werkcat_client
+# _________________________________
+  - note: >
+      17. **Categorie werkzaamheden:**<br>
+      Hoe vallen jouw werkzaamheden te categoriseren?
+    help: >
+      Geef een antwoord dat je kunt invullen in de volgende zin:<br>
+      *“Mijn opdrachtgever huurt mij in voor ….”*<br><br>
+      Het gaat hierbij om het type werkzaamheden dat je verricht in jouw eigen terminologie, dus hoe jij dit zelf wilt noemen.
+      Vandaar dat sommige voorbeelden in het lijstje min of meer hetzelfde betekenen. De werkzaamheden zelf kun je in een andere vraag verwerken.
+  - field: werkcat_client
+    label: >
+      17.
+    input type: radio
+    choices:
+      - Online bedrijfsondersteuning: online bedrijfsondersteuning
+      - Virtuele bedrijfsondersteuning: virtuele bedrijfsondersteuning
+      - Algemene bedrijfsondersteuning: algemene bedrijfsondersteuning
+      - Bedrijfsondersteuning op afstand: bedrijfsondersteuning op afstand
+      - Anders / Ik weet het (nog) niet<br>*(pas dit later zelf aan in het document)*: "[CATEGORIE WERKZAAMHEDEN]"
+# _________________________________
+# 18 | uitvoerend_client
+# _________________________________
+  - note: >
+      18. **Uitvoerend of adviserend:**<br>
+      Werk je uitvoerend of adviserend? *(optioneel)*
+    help: >
+      Deze vraag is optioneel en dient alleen om een beter beeld van je te vormen. 
+  - field: uitvoerend_client
+    label: >
+      18.
+    input type: radio
+    choices:
+      - Hoofdzakelijk uitvoerend: uitvoerend
+      - Hoofdzakelijk adviserend: adviserend
+      - Zowel uitvoerend als adviserend: allebei
+      - Anders / Ik weet het (nog) niet: weetniet
+    required: False
+# _________________________________
+# 19 | werkzaamheden_client
+# _________________________________
+  - note: >
+      19. **Werkzaamheden:**<br>
+      Wat voor werkzaamheden ga je aanbieden? Maak een kort lijstje van 2 tot 5 soorten werkzaamheden, 
+      of vul een korte omschrijving in bij A):
+    help: >
+      Dit lijstje of de gegeven omschrijving komt in het geheel in de OvO te staan. 
+      Omdat het per opdrachtgever kan verschillen welke werkzaamheden je gaat doen, 
+      kun je dit voor iedere opdracht later ook nog zelf aanpassen in de overeenkomst van opdracht.<br><br> 
+      Als je werkt met pakketten, dan kun je hier bijvoorbeeld ook de pakketten noemen die je aanbiedt.
+    # 19a | ovo
+  - field: werkzaamhedenA_client
+    label: >
+      A)
+    input type: area
+    # 19b | ovo
+  - field: werkzaamhedenB_client
+    label: >
+      B)
+    required: False
+    # 19c | ovo
+  - field: werkzaamhedenC_client  
+    label: >
+      C)
+    required: False
+    # 19d | ovo
+  - field: werkzaamhedenD_client  
+    label: >
+      D)
+    required: False
+    # 19e | ovo
+  - field: werkzaamhedenE_client  
+    label: >
+      E)
+    required: False
+# _________________________________
+# 20 | b2c_client
+# _________________________________
+  - note: >
+      20. **Particulieren (B2C):**<br>
+      Werk je (soms) ook voor particulieren (B2C)?
+    help: >
+      Als je ook B2C werkt zal hier zeer summier iets over worden opgenomen in de algemene voorwaarden.
+      <br><br>
+      *Tip:<br>
+      de wet- en regelgeving voor dienstverlening aan consumenten/particulieren wijkt op veel vlakken af van de wet- en regelgeving voor dienstverlening 
+      aan ondernemers. Mocht je ook regelmatig werken voor particulieren, dan kun je daar mogelijk beter een aparte overeenkomst van opdracht en aparte 
+      algemene voorwaarden voor laten opstellen. Als je één document voor beide doelgroepen wilt gebruiken, en hierin alle relevante bepalingen volledig 
+      uitgewerkt wilt hebben, kan het document lang, onoverzichtelijk en/of onduidelijk worden.*
+  - field: b2c_client
+    label: >
+      20.
+    input type: radio
+    choices:
+      - Nee, alleen B2B *(meest gekozen)*: nee
+      - Ja, ook B2C: ja
+# _________________________________
+# 21 | vragen_werkzaamheden
+# _________________________________
+  - note: >
+      21. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_werkzaamheden
+    label:       
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 25
+section: sec_werkzaamheden
+---
+#---------------------------------
+# CODE WERKZAAMHEDEN N/A
+#---------------------------------
+code: |
+  if not beroep_client['anders']:
+    beroepanders_client = 'N/A'
+depends on:
+  - beroep_client
+---
+code: |
+  if not specialisatie_client['anders']:
+    specialisatieanders_client = 'N/A'
+depends on:
+  - specialisatie_client
+---

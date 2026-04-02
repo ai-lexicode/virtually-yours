@@ -1,0 +1,58 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_huisstijl: '18v02'
+# last revision date: 2025-04-09
+---
+#---------------------------------
+# SECTIE huisstijl
+#---------------------------------
+id: id_huisstijl
+mandatory: True
+question: |
+  Huisstijl
+fields:
+# _________________________________
+# 88 | huisstijl
+# _________________________________
+  - note: >
+      **Huisstijl:**<br>
+      De documenten worden *niet* standaard in je eigen huisstijl opgemaakt, maar aangeleverd als Word-files met een witte achtergrond en zwarte letters.
+      Je kunt voor de zekerheid de kleuren van je huisstijl hier doorgeven. *(optioneel)*
+    help: >
+      Geef hier desgewenst de kleurcodes van je huisstijl. 
+      Geef bij voorkeur de kleurcodes als hex-code. Hex-codes bestaan uit 6 cijfers of letters en worden voorafgegaan door een '#'. 
+      Bijvoorbeeld #000000 staat voor zwart en #ffffff voor wit.
+  - field: achtergrondkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor de achtergrond van documenten of op de pagina's van je website.
+    label: >
+      88a. Wat gebruik je als achtergrondkleur?
+    input type: area
+    required: False
+  - field: tekstkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor teksten in documenten of teksten op je website.  
+    label: >
+      88b. Wat gebruik je als tekstkleur?
+    input type: area
+    required: False
+  - field: accentkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor titels, kopjes of knoppen op je website of in documenten.    
+    label: >
+      88c. Wat gebruik je als accentkleur?
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 83
+section: sec_huisstijl
+---

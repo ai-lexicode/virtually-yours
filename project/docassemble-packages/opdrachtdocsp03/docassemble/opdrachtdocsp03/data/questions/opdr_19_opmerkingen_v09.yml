@@ -1,0 +1,61 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_vragen: '19v09'
+# last revision date: 2025-02-13
+---
+#---------------------------------
+# SECTIE vragen
+#---------------------------------
+id: id_vragen
+mandatory: True
+question: |
+  Vragen of opmerkingen
+fields:
+# _________________________________
+# 89 | vragen_opdralgemeen
+# _________________________________
+  - note: >
+      89. **Vragen:**<br>
+      Heb je nog specifieke vragen en/of opmerkingen in het algemeen?
+    help: >
+      Zijn er bijvoorbeeld bijzondere omstandigheden waar rekening mee gehouden moet worden? 
+      Of heb je vragen over deze vragenlijst?
+      <br><br>
+      *(Let op, verzoeken voor het toevoegen van specifieke clausules of artikelen kunnen extra kosten 
+      met zich meebrengen. Uiteraard bespreek ik de kosten eerst met je voordat ik het verzoek ga verwerken)* 
+  - field: vragen_opdralgemeen
+    label:
+    input type: area
+    required: False
+# _________________________________
+# 90 | urgentdoc_ovk
+# _________________________________
+  - note: >
+      90. **Spoedaanvraag:**<br>
+      Heb je een document urgent nodig?
+    help: >
+      Laat het me weten als je een deadline hebt voor een document, bijvoorbeeld omdat je verwacht op korte 
+      termijn een opdracht aan te nemen. Dan doe ik mijn best om daar rekening mee te houden.
+      <br><br>
+      Heb je het document binnen 48 uur nodig? Neem dan contact met mij op via Whatsapp (06-18722103) om de mogelijkheden en de meerprijs voor een spoedopdracht te bespreken.
+  - field: urgentdoc_ovk
+    label:
+    label above field: True
+    input type: area
+    required: False
+# _________________________________
+# 91 | opmerkingenintern_opdr
+# _________________________________
+  - note: >
+      91. **Interne opmerkingen:**<br>
+      *Laat dit veld leeg.*
+  - field: opmerkingenintern_opdr
+    label:
+    input type: area
+    required: False
+#---
+progress: 90
+section: sec_vragen
+---

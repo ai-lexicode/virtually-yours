@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Overeenkomst van Opdracht document product (€109, docassemble.opdrachtdocsp03 v3.30.27) (feat-004)
+- DA package source stored in project/docassemble-packages/opdrachtdocsp03/
+- SQL seed script for Supabase documents table
 - AP-compliant cookie consent system with banner, personalization panel, and GTM integration (feat-003)
 - Cookie preferences button in footer for revoking/changing consent
 - Consent audit trail in localStorage (vy-consent-log)

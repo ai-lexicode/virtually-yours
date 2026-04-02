@@ -1,0 +1,325 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE OPDRACHTEN > SAMENWERKING
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_samenwerking: '05v06-2'
+# last revision date: 2025-22-04
+---
+#-----------------------------------------------------------------------------
+# SECTIE SAMENWERKING
+#-----------------------------------------------------------------------------
+id: id_samenwerking
+mandatory: True
+question: |
+  Samenwerking
+fields:
+# _________________________________
+# 22 | beschikbaarovo_client
+# _________________________________
+  - note: >
+      22. **Beschikbaarheid:**<br>
+      Wil je in de OvO opnemen dat je alleen je beschikbaarheid kunt garanderen 
+      als daar afspraken over zijn gemaakt?
+    help: >
+      In de algemene voorwaarden die ik opstel staat hierover standaard ook een algemene bepaling opgenomen.
+      <br><br>
+      *Tip:<br>
+      Je kunt ervoor kiezen om je beschikbaarheid alleen te garanderen als er een abonnement wordt afgesloten 
+      (voor een vast aantal uren per maand). Deze uren reserveer je dan voor de opdrachtgever. 
+      Voor de uren die je dan daarnaast op basis van nacalculatie of strippenkaart werkt, kun je aangeven dat je je beschikbaarheid niet kunt garanderen. 
+      Dit schept duidelijkheid voor beide partijen, voorkomt teleurstelling als je onverhoopt te druk bent, 
+      of de opdrachtgever meer van je vraagt dan je aankunt. Ook kan het de opdrachtgever stimuleren om een abonnement af te sluiten, 
+      waardoor je een garantie hebt voor een minimale maandelijkse omzet.*
+  - field: beschikbaarovo_client
+    label: >
+      22.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+# _________________________________
+# 23a | bereikbaarovo_client
+# _________________________________
+  - note: >
+      23. **Bereikbaarheid:**<br>
+      Wil je in de OvO afspraken vastleggen over wanneer en hoe je te bereiken bent?
+    help: >
+      In de algemene voorwaarden die ik opstel staat hierover standaard ook een algemene bepaling opgenomen. 
+      <br><br>
+      Je kunt ervoor kiezen om dit niet expliciet op te nemen in de overeenkomst en dit op z’n beloop te laten, 
+      als je verwacht dat bereikbaarheid geen probleem zal zijn. Mocht je vanuit het buitenland in een andere tijdzone werken, 
+      dan kan het wel zinvol zijn om hier afspraken over te maken.
+  - field: bereikbaarovo_client
+    label: >
+      23a.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja    
+# _________________________________
+# 23b | bereikbaarheidtijd_client
+# _________________________________
+  - field: bereikbaarheidtijd_client
+    label: >
+      23b.<br>
+      Wat wil je afspreken over je bereikbaarheid?<br><br>
+      *Ik kan mijn bereikbaarheid uitsluitend garanderen...*:
+    input type: radio
+    choices:
+      - ...als er nadrukkelijk afspraken zijn gemaakt over de werkdagen, werktijden, communicatiewijzen en -middelen. *(meest gekozen)*: als er nadrukkelijk afspraken zijn gemaakt over de werkdagen en werktijden, alsmede over de communicatiewijzen en -middelen waarop ${ bedrijfsnaam_client } bereikbaar dient te zijn.
+      - ...doordeweeks tijdens kantooruren.: doordeweeks tijdens kantooruren.
+      - ...tijdens kantooruren.: tijdens kantooruren.
+      - ...tijdens vooraf bepaalde vaste werkdagen.: tijdens vooraf bepaalde vaste werkdagen.
+      - ...op nader overeen te komen momenten.: op nader overeen te komen momenten.
+      - Anders / ik weet het (nog) niet.<br>*(pas dit later zelf aan in het document)*: anders
+    show if:
+      variable: bereikbaarovo_client
+      is: ja
+    required: False
+# _________________________________
+# 24 | locatiewerken_client
+# _________________________________
+  - note: >
+      24. **Op locatie werken:**<br>
+      Werk je deels of soms op locatie?
+  - field: locatiewerken_client
+    label: >
+      24.
+    input type: radio
+    choices:
+      - Alleen in uitzonderlijke gevallen op verzoek van opdrachtgever *(meest gekozen)*: alleen in uitzonderlijke gevallen op verzoek van Opdrachtgever
+      - Ja, in overleg: in overleg
+      - Soms op verzoek van opdrachtgever: soms op verzoek van Opdrachtgever
+      - In principe niet: in principe niet
+# _________________________________
+# 25 | Face-to-face kennismaking
+# _________________________________
+  - note: >
+      25. **Face-to-face kennismaking:**<br>
+      Iets om over na te denken (geen antwoord nodig hier): Ben je bereid voor een face-to-face kennismaking naar een locatie toe te reizen? 
+      Zo ja, hoe wens je de reiskosten en de reistijd in rekening te brengen bij opdrachtgever?
+    help: >
+      Meestal wordt het eerste kennismakingsgesprek telefonisch of online gedaan. Het kan zijn dat een (potentiële) opdrachtgever 
+      je graag daarna een keer face-to-face wil ontmoeten. Je kunt ervoor kiezen om de reiskosten en reistijd als acquisitiekosten 
+      te zien en deze niet in rekening te brengen bij de potentiële opdrachtgever. Je kunt er ook voor kiezen om een gereduceerd uurtarief 
+      te rekenen voor de reistijd (het is niet heel gebruikelijk om je volledige uurtarief te rekenen voor de reistijd, 
+      maar dit kan uiteraard wel als je dat wilt).
+      <br><br>
+      Het maakt hierbij ook nog uit of het een kennismakingsgesprek is dat wordt ingepland nadat jullie al een samenwerking zijn overeengekomen, 
+      of dat het een kennismakingsgesprek is om te kijken of jullie al dan niet willen gaan samenwerken. 
+      In dat laatste geval loop je dus het risico dat je reiskosten en -tijd investeert in een kennismaking die uiteindelijk niet resulteert 
+      in een opdracht.
+      <br><br>
+      *Tip:<br>
+      Zorg dat je meteen jouw werkwijze op dit gebied communiceert met de (potentiële) opdrachtgever zodra deze aangeeft dat hij/zij een 
+      face-to-face kennismaking fijn zou vinden. Het kan anders erg vervelend zijn om achteraf nog aan te geven dat je hier kosten voor in rekening brengt.* 
+# _________________________________
+# 26 | derden_ovk
+# _________________________________
+  - note: >
+      26. **Uitbesteden aan derden:**<br>
+      Wil je de opdracht (deels) aan derden kunnen uitbesteden, zonder dat je hier melding van hoeft te maken bij de opdrachtgever?
+    help: >
+      *Tip:<br>
+      Het kan in bepaalde situaties zinvol zijn om gebruik te maken van de diensten of producten van derde partijen. 
+      Misschien kan deze derde partij bepaalde werkzaamheden beter, sneller en goedkoper uitvoeren dan jijzelf. 
+      Denk hierbij bijvoorbeeld aan het inschakelen van buitenlandse freelancers via Fiverr of Upwork.*
+      <br><br>
+      Let op: om de kans op schijnzelfstandigheid te minimaliseren, is het sowieso belangrijk dat je je vrij mag laten vervangen, 
+      dus dat je iemand anders mag regelen die in jouw plaats de werkzaamheden uitvoert. Als je je laat vervangen, 
+      dan meld je dat altijd van tevoren aan de opdrachtgever en geef je aan wie jouw vervanger is. 
+      Dit staat ook als zodanig in de OvO. Deze vraag heeft niet betrekking op vrije vervanging, maar op het (deels) uitbesteden aan derden. 
+      Je blijft dan dus zelf de ‘tussenpersoon’ en je opdrachtgever hoeft in principe niet te weten wie werkzaamheden voor jou uitvoert. 
+  - field: derden_ovk
+    label: >
+      26.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+# _________________________________
+# 27a | toegangsrechten_ovk
+# _________________________________
+  - note: >
+      27. **Beheerdersrechten:**<br>
+      Wil je iets in je algemene voorwaarden opnemen over het intrekken van 
+      toegangs-, beheerders- of editorsrechten na verloop van een bepaalde tijd?
+    help: >
+      In het bijzonder voor Social Media Managers, is het gebruikelijk dat je bepaalde rechten krijgt voor het bewerken van of posten op bepaalde 
+      social mediakanalen. Maar dit geldt bijvoorbeeld ook voor toegang tot CRM-systemen, e-mailaccounts of de backend van websites.
+      <br><br>
+      Soms blijf je deze rechten nog behouden terwijl de overeenkomst al is afgelopen, of als er al geruime tijd geen werkzaamheden meer zijn 
+      uitgevoerd voor de opdrachtgever. De opdrachtgever vergeet dan deze rechten weer in te trekken. Dit kan vervelend zijn als je bijvoorbeeld 
+      constant meldingen ontvangt van het platform. In uitzonderlijke gevallen vormt het mogelijk ook een beveiligingsrisico als je bijvoorbeeld 
+      een account hebt voor een platform, maar niet regelmatig het wachtwoord wijzigt of andere beveiligingsmaatregelen neemt. 
+      In sommige gevallen kun je deze rechten zelf intrekken en jezelf verwijderen als beheerder, editor of user, maar soms moet de opdrachtgever dit doen.
+      Je kunt hier een standaardperiode voor hanteren. Dat je bijvoorbeeld je rechten zelf intrekt als het gedurende zes maanden of langer niet nodig is 
+      geweest het platform te gebruiken ten behoeve van de opdrachtgever, en dat je na zes maanden de opdrachtgever een verzoek zult sturen tot het 
+      intrekken van de rechten als je deze zelf niet kunt intrekken.
+  - field: toegangsrechten_ovk
+    label: >
+      27a.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 27b | toegangsrechtentijd_ovk
+# _________________________________
+  - field: toegangsrechtentijd_ovk
+    label: >
+      27b.<br>
+      Zo ja, na welke periode van inactiviteit wil je dat de rechten worden ingetrokken?
+    input type: radio
+    choices:
+     - 3 maanden: 3 maanden
+     - 6 maanden: 6 maanden
+     - 9 maanden: 9 maanden
+     - 12 maanden: 12 maanden
+     - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: toegangsrechten_ovk
+      is: ja
+# _________________________________
+# 28a | feedback_ovk
+# _________________________________
+  - note: >
+      28. **Feedbacktermijn:**<br>
+      Wil je iets in je algemene voorwaarden opnemen over 
+      over een maximale feedbacktermijn voor de opdrachtgever?
+    help: >
+      Vaak ben je voor de uitvoering, voortzetting of afronding van je werkzaamheden afhankelijk van de 
+      feedback of goedkeuring van de opdrachtgever. Stel nou dat de opdrachtgever helemaal niks meer van zich laat horen, 
+      dan is het niet mogelijk om je werkzaamheden uit te voeren, voort te zetten of af te ronden.
+  - field: feedback_ovk
+    label: >
+      28a.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee  
+# _________________________________
+# 28b| feedbacktermijn_ovk
+# _________________________________
+  - field: feedbacktermijn_ovk
+    help: >
+      Om te voorkomen dat je geen reactie meer krijgt van je opdrachtgever als iets ter goedkeuring ligt, 
+      kun je bijvoorbeeld in je algemene voorwaarden opnemen dat je je werkzaamheden als afgerond/goedgekeurd mag beschouwen, 
+      als je je diensten hebt geleverd, maar langer dan een bepaalde periode geen reactie, 
+      feedback of goedkeuring van de opdrachtgever hebt ontvangen.
+      <br><br>
+      Als je hier iets aanvinkt, dan komt dat in de algemene voorwaarden te staan, 
+      maar je kunt hier altijd nog afwijkende afspraken over maken met de opdrachtgever. 
+      Ook hoef je je natuurlijk niet te beroepen op de maximale feedbacktermijn die staat opgenomen in de algemene voorwaarden. 
+      Dat hoeft alleen maar als er bijvoorbeeld een conflict zou ontstaan.
+      <br><br>
+      Je kunt er ook voor kiezen om dit helemaal weg te laten uit de algemene voorwaarden.
+    label: >
+      28b. Binnen hoeveel tijd moet de opdrachtgever maximaal reageren, alvorens je goedkeuring van de opdrachtgever mag aannemen, 
+      en/of je werkzaamheden voort mag zetten zonder nadere feedback?
+    input type: radio
+    choices:
+      - Binnen een redelijke termijn (ik wil dit algemeen houden): een redelijke termijn
+      - Na 1 maand zonder reactie: 1 maand
+      - Na 2 maanden zonder reactie: 2 maanden
+      - Na 3 maanden zonder reactie: 3 maanden
+      - Na 6 maanden zonder reactie: 6 maanden
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: feedback_ovk
+      is: ja  
+# _________________________________
+# 29a | revisierondes_ovk
+# _________________________________
+  - note: >
+      29. **Revisierondes:**<br>
+      Wil je iets in je algemene voorwaarden opnemen over een maximaal aantal revisierondes voor de opdrachtgever?
+    help: >
+      Vaak ben je voor de uitvoering, voortzetting of afronding van je werkzaamheden afhankelijk van de 
+      feedback of goedkeuring van de opdrachtgever. Stel nou dat de opdrachtgever eindeloos met steeds weer nieuwe aanpassingen 
+      en feedback komt, dan is het niet mogelijk om je werkzaamheden voort te zetten of af te ronden.
+  - field: revisierondes_ovk
+    label: >
+      29a.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja  
+# _________________________________
+# 29b | revisierondesaantal_ovk
+# _________________________________
+  - field: revisierondesaantal_ovk
+    label: >
+      29b. Hoeveel feedback- of revisierondes bied je maximaal?
+    help: >
+      Hoeveel rondes je wilt bieden hangt natuurlijk ook af van het type werkzaamheden. 
+      Als je bijvoorbeeld een hele website bouwt voor een opdrachtgever, dan is het niet vreemd dat je daar meer 
+      feedback- of revisierondes voor biedt dan wanneer je een blog schrijft.
+      <br><br>
+      Als je hier iets aanvinkt, dan komt dat in de algemene voorwaarden te staan, 
+      maar je kunt hier altijd nog afwijkende afspraken over maken met de opdrachtgever. 
+      Ook hoef je je natuurlijk niet te beroepen op het maximale aantal rondes dat staat opgenomen in de algemene voorwaarden. 
+      Dat hoeft alleen maar als er bijvoorbeeld een conflict zou ontstaan.
+      <br><br>
+      Je kunt er ook voor kiezen om dit helemaal weg te laten uit de algemene voorwaarden.
+    input type: radio
+    choices:
+      - 1 ronde: 1
+      - 2 rondes: 2
+      - 3 rondes: 3
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: revisierondes_ovk
+      is: ja 
+# _________________________________
+# 30 | vragen_samenwerking
+# _________________________________
+  - note: >
+      30. **Vragen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_samenwerking
+    label:       
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 30
+section: sec_samenwerking
+---
+#---------------------------------
+# CODE SAMENWERKING N/A
+#---------------------------------
+code: |
+  if not bereikbaarovo_client == "ja":
+    bereikbaarheidtijd_client = 'N/A'
+depends on:
+  - bereikbaarovo_client
+---
+code: |
+  if not toegangsrechten_ovk == "ja":
+    toegangsrechtentijd_ovk = 'N/A'
+depends on:
+  - toegangsrechten_ovk
+---
+code: |
+  if not feedback_ovk == "ja":
+    feedbacktermijn_ovk = 'N/A'
+depends on:
+  - feedback_ovk
+---
+code: |
+  if not revisierondes_ovk == "ja":
+    revisierondesaantal_ovk = 'N/A'
+depends on:
+  - revisierondes_ovk
+---

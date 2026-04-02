@@ -1,0 +1,427 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE OPDRACHTEN > OVEREENKOMST
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_overeenkomst: '07v07'
+# last revision date: 2025-03-31
+---
+#-------------------------------------------------------------------------------
+# SECTIE OVEREENKOMST
+#-------------------------------------------------------------------------------
+id: id_overeenkomst
+mandatory: True
+question: |
+  Overeenkomst
+fields:
+# _________________________________
+# 35a | looptijd_ovk
+# _________________________________
+  - note: >
+      35. **Looptijd overeenkomst:**<br>
+      Wil je een overeenkomst voor bepaalde tijd of onbepaalde tijd?
+    help: >
+      Als je echt ondersteunende werkzaamheden uitvoert, op structurele basis, waarbij jouw ervaring en expertise van ondergeschikt belang zijn, 
+      dan moet je extra alert zijn op schijnzelfstandigheid. Zeker als je dat doet op een wijze die enigszins lijkt op een loondienstverband 
+      (bijvoorbeeld een abonnement).
+      <br><br>
+      In oktober 2024 is er een keuzehulp gepubliceerd door de overheid. Daar staat aangegeven dat er mogelijk sprake kan zijn van loondienst 
+      als het werk meer dan 3 maanden en 20 uur per maand bij dezelfde opdrachtgever wordt gedaan. Dit is geen harde eis, slechts één van meerdere 
+      kenmerken die de overheid benoemt. Hoewel het dus niet betekent dat je meteen schijnzelfstandige bent als je een overeenkomst voor onbepaalde 
+      tijd aangaat, adviseer ik om de overeenkomst NIET voor “onbepaalde tijd” aan te gaan.
+      <br><br>
+      *Tip:<br>
+      Tevens met het oog op een eventuele minimale maandelijkse afname van uren kan het verstandig zijn om een overeenkomst voor bepaalde tijd 
+      aan te gaan, zodat je weet wanneer je kunt stoppen met het in rekening brengen van deze minimale afname als er geen werkzaamheden meer worden 
+      verricht (bijvoorbeeld als een samenwerking ‘doodbloedt’).*
+  - field: looptijd_ovk
+    label: >
+      36a.
+    input type: radio
+    choices:
+      - Bepaalde tijd *(meest gekozen)*: bepaalde tijd
+      - Onbepaalde tijd: onbepaalde tijd
+# _________________________________
+# 35b | looptijdgetal_ovk
+# _________________________________
+  - field: looptijdgetal_ovk
+    label: >
+      35b.<br>
+      Wat is de looptijd van de overeenkomst? 
+    input type: radio
+    choices:
+      - 1 maand: 1 maand
+      - 2 maanden: 2 maanden
+      - 3 maanden *(vaak gekozen)*: 3 maanden
+      - 6 maanden *(vaak gekozen)*: 6 maanden
+      - 12 maanden: 12 maanden
+      - Zolang als nodig om de opdracht te volbrengen: zolang nodig
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: looptijd_ovk
+      is: bepaalde tijd
+    required: False
+    help: >
+      *Tip:<br>
+      Bij de keuze voor de looptijd kun je ook kijken naar de wijze waarop je factureert. 
+      Als je uitsluitend werkt met strippenkaarten die 1 jaar geldig zijn kun je er bijvoorbeeld voor kiezen om een looptijd van 1 jaar te hanteren, 
+      of zelfs voor onbepaalde tijd, omdat je dan waarschijnlijk niet met een maandelijkse minimale afname werkt, 
+      en de verplichting sowieso na 1 jaar vervalt als de strippenkaart verloopt. Bij abonnementen is het logischer om wel een looptijd vast te stellen. 
+      Ook kun je kijken naar het aantal uren per maand. Werk je meer dan 20 uur per maand bij dezelfde opdrachtgever, 
+      dan kun je overwegen om een looptijd van maximaal 3 maanden te hanteren.*
+# _________________________________
+# 36a | verlenging_ovk
+# _________________________________
+  - note: >
+      36. **Verlenging overeenkomst:**<br>
+      Wil je de overeenkomst aan het einde van de standaardperiode automatisch laten eindigen, 
+      of wil je een stilzwijgende verlenging?
+    js show if: |
+      val("looptijd_ovk") == "bepaalde tijd"
+    help: >
+      Op dit moment is er nog veel onduidelijk over de criteria voor schijnzelfstandigheid, omdat de overheid er zelf ook nog niet over uit is hoe om 
+      te gaan met dit vraagstuk. Mogelijk dat een stilzwijgende verlenging de kans op schijnzelfstandigheid vergroot (nu of in de toekomst), 
+      maar dat is nu niet duidelijk. Mocht je kiezen voor een stilzwijgende verlenging, hou dan sowieso de berichtgeving hierover in de gaten en pas 
+      desgewenst je overeenkomsten in de toekomst aan.
+      <br><br>
+      *Tip:<br>
+      Bij een overeenkomst van bepaalde tijd met stilzwijgende verlenging (of onbepaalde tijd) zou een samenwerking eventueel kunnen doodbloeden, 
+      zonder dat deze officieel wordt opgezegd. Dit geeft op zich niet, zolang je geen afspraken hebt gemaakt over gegarandeerde inzetbaarheid. 
+      Als een opdrachtgever dan na bijvoorbeeld een jaar ineens vraagt of je iets kunt doen, kun je altijd nog zeggen dat je geen tijd hebt, 
+      en desgewenst de overeenkomst dan alsnog officieel beëindigen.*
+  - field: verlenging_ovk
+    label: >
+      36a.
+    input type: radio
+    choices:
+      - Stilzwijgende verlenging *(meest gekozen)*: ja
+      - Automatisch eindigen op een vaste datum: nee
+      - Automatisch eindigen en er wordt in overleg gekeken of verlenging nodig is: in overleg
+      - Automatisch eindigen wanneer de opdracht is volbracht: volbracht
+    js show if: |
+      val("looptijd_ovk") == "bepaalde tijd"
+# _________________________________
+# 36b | verlengingsperiode_ovk
+# _________________________________
+  - field: verlengingsperiode_ovk
+    label: >
+      36b.<br>
+      Met welke looptijd wil je de overeenkomst steeds verlengen?
+    input type: radio
+    choices:
+      - 1 maand: 1 maand
+      - 2 maanden: 2 maanden
+      - 3 maanden: 3 maanden
+      - 6 maanden: 6 maanden
+      - 12 maanden: 12 maanden
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    js show if: |
+      val("looptijd_ovk") == "bepaalde tijd" && val("verlenging_ovk") == "ja"
+    help: >
+      *Tip:<br>
+      Een overeenkomst van bepaalde tijd met stilzwijgende verlenging biedt in theorie bovendien een symbolisch evaluatiemoment 
+      (iedere keer als de termijn wordt verlengd) voor de partijen om te heroverwegen of de overeenkomst nog door moet lopen, hoewel in de praktijk 
+      de partijen zich vaak niet bewust zijn van het verlengingsmoment.*
+# _________________________________
+# 37 | proeftijd_ovk
+# _________________________________
+  - note: >
+      37. **Proeftijd:**<br>
+      Hanteer je een proeftijd?
+    help: >
+      Indien je een overeenkomst aangaat met een opzegtermijn van bijvoorbeeld 1 maand, is een proeftijd doorgaans niet zo zinvol. 
+      <br><br>
+      Als je werkt met abonnementen met een duur van een bepaald aantal maanden, dan kan het wel zinvol zijn. 
+      Je kunt bijvoorbeeld een abonnement aanbieden van minimaal zes maanden, waarvan de eerste twee maanden dienen als proeftijd. 
+      In deze proeftijd kunnen beide partijen eenzijdig het abonnement opzeggen per direct of per het einde van die maand, 
+      zonder dat daar een opzegtermijn voor geldt. Zo zit je niet meteen nog een maand aan je opdrachtgever vast als je meteen al in het begin merkt 
+      dat de opdracht toch niet bij je past. Na de proefperiode gelden dan de ‘normale’ regels voor het opzeggen.
+      <br><br>
+      *Tip:<br>
+      Het kan sowieso zinvol zijn om expliciet een evaluatiemoment in te plannen. Je kunt bijvoorbeeld na een maand met de opdrachtgever een 
+      evaluatiegesprek inplannen om te kijken of beide partijen tevreden zijn over de samenwerking en of er misschien nog verbeterpunten zijn.*
+  - field: proeftijd_ovk
+    label: >
+      37.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 38 | tussentijdsopzeggen_ovk
+# _________________________________
+  - note: >
+      38. **Tussentijdse opzegging:**<br>
+      Kan de overeenkomst tussentijds worden opgezegd?
+    help: >
+      Indien je werkt met een abonnement kun je er ook voor kiezen om alleen aan het einde van een abonnementsperiode opzegging mogelijk te maken. 
+      Stel dat je werkt met een abonnement van 3 maanden dat steeds stilzwijgend wordt verlengd met 3 maanden, dan kun je aangeven dat gedurende de 
+      abonnementsperiode er niet tussentijds opgezegd kan worden. De overeenkomst kan dan alleen aan het eind van een abonnementsperiode beëindigd worden 
+      (eens in de 3 maanden), waarbij een opzegtermijn van 1 maand geldt (dus er moet uiterlijk aan het eind van de 2e maand in de abonnementsperiode 
+      opgezegd worden).
+  - field: tussentijdsopzeggen_ovk
+    label: >
+      38.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee, opzeggen kan uitsluitend tegen het einde van een abonnements- of contractperiode: nee
+# _________________________________
+# 39 | opzegtermijn_ovk
+# _________________________________
+  - note: >
+      39. **Opzegtermijn:**<br>
+      Wat is de opzegtermijn van de overeenkomst?
+  - field: opzegtermijn_ovk
+    label: >
+      39.
+    input type: radio
+    choices:
+      - Geen opzegtermijn (per direct): geen opzegtermijn
+      - 1 maand *(meest gekozen)*: een opzegtermijn van 1 maand
+      - 2 maanden: een opzegtermijn van 2 maanden
+      - 3 maanden: een opzegtermijn van 3 maanden
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+# _________________________________
+# 40 | relatiebeding_ovk
+# _________________________________
+  - note: >
+      40. **Relatiebeding:**<br>
+      Ben je bereid om een concurrentiebeding of een relatiebeding te ondertekenen?
+    help: >
+      Door middel van een concurrentiebeding of een relatiebeding kan jouw opdrachtgever voorkomen dat je gaat werken voor concurrenten of 
+      relaties van de opdrachtgever. Vaak gaat dit dan om een verbod zolang de samenwerking loopt en een vooraf bepaalde periode na het 
+      eindigen van de samenwerking.
+      <br><br>
+      *Tip:<br>
+      Probeer een dergelijk beding te voorkomen. Niet alleen beperkt dit je in je mogelijkheden om opdrachten aan te nemen, 
+      het kan ook nadelig werken in het kader van schijnzelfstandigheid.*
+  - field: relatiebeding_ovk
+    label: >
+      40.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 41 | avwgebruik_ovk
+# _________________________________
+  - note: >
+      41. **Algemene voorwaarden:**<br>
+      Gebruik je algemene voorwaarden bij je overeenkomst van opdracht (OvO)?
+    help: >
+      *Tip:<br>
+      het is verstandig om je OvO en algemene voorwaarden door dezelfde jurist op te laten stellen, 
+      zodat deze goed op elkaar aansluiten.
+      <br><br>
+      Als je gebruik maakt van algemene voorwaarden en een OvO die niet beide door dezelfde jurist zijn opgesteld, 
+      kan het zijn dat er overlap zit tussen beide documenten. Waarschijnlijk resulteert dit zelfs in tegenstrijdigheden. 
+      In dat geval kun je ervoor kiezen om expliciet te vermelden dat de afspraken in de OvO prevaleren 
+      boven de algemene voorwaarden. Met andere woorden, bij een tegenstrijdigheid tussen de OvO en de 
+      algemene voorwaarden is hetgeen er in de OvO staat van toepassing.
+      <br><br>
+      Tip: zorg dat je altijd expliciet verwijst naar je algemene voorwaarden, 
+      bij voorkeur al bij het versturen van een offerte en niet pas bij de OvO. 
+      Een opdrachtgever zou namelijk van de opdracht af kunnen zien als deze zich niet kan vinden in jouw algemene voorwaarden.
+      <br><br>
+      Een proces kan er bijvoorbeeld zo uit zien:<br>
+      - Aanvraag offerte door potentiële opdrachtgever<br>
+      - Offerte opstellen. In die offerte geef je aan dat er algemene voorwaarden van toepassing 
+      zijn en dat je deze als bijlage hebt toegevoegd<br>
+      - Stuur offerte met als bijlage de algemene voorwaarden<br>
+      - Verwijs nogmaals naar de algemene voorwaarden in begeleidend schrijven<br>
+      - In de OvO wordt nogmaals verwezen naar de algemene voorwaarden en worden deze expliciet van toepassing verklaard.*
+  - field: avwgebruik_ovk
+    label: >
+      41.
+    input type: radio
+    choices:
+      - Ja, ik heb al algemene voorwaarden, of laat deze nu tegelijk met de OvO opstellen *(meest gekozen)*: ja
+      - Nee: nee
+# _________________________________
+# 43a | avwtoepassing_ovk
+# _________________________________
+#  - note: >
+#      43. a. **Uitsluitende toepassing:**<br>
+#      Als je algemene voorwaarden gebruikt, wil je dan dat uitsluitend jouw voorwaarden van toepassing zijn op de overeenkomst?
+#    show if:
+#      variable: avwgebruik_ovk
+#      is: ja
+#    help: >
+#      *Tip:<br>
+#      Zorg dat je altijd expliciet verwijst naar je algemene voorwaarden, bij voorkeur al bij het versturen van een offerte en niet pas bij de OvO. 
+#      Een opdrachtgever zou namelijk van de opdracht af kunnen zien als deze zich niet kan vinden in jouw algemene voorwaarden.*
+#      <br><br>
+#      Een proces kan er bijvoorbeeld zo uit zien:<br>
+#      * Aanvraag offerte door potentiële opdrachtgever<br>
+#      * Offerte opstellen. In die offerte geef je aan dat er algemene voorwaarden van toepassing zijn en dat je deze als bijlage hebt toegevoegd<br>
+#      * Stuur offerte met als bijlage de algemene voorwaarden<br>
+#      * Verwijs nogmaals naar de algemene voorwaarden in begeleidend schrijven<br>
+#      * In de OvO wordt nogmaals verwezen naar de algemene voorwaarden en worden deze expliciet van toepassing verklaard.<br>
+#  - field: avwtoepassing_ovk
+#    label: >
+#      43a.
+#    input type: radio
+#    choices:
+#      - Ja *(meest gekozen)*: ja
+#      - Nee: nee
+#    show if:
+#      variable: avwgebruik_ovk
+#      is: ja
+# _________________________________
+# 42 | avwbuitentoepassing_ovk
+# _________________________________
+  - note: >
+      42. **Buiten toepassing:**<br>
+      Als je GEEN eigen algemene voorwaarden gebruikt, wil je dan eventuele algemene voorwaarden van de opdrachtgever buiten toepassing verklaren?
+    show if:
+      variable: avwgebruik_ovk
+      is: nee
+    help: >
+      Het kan zijn dat de opdrachtgever wel algemene voorwaarden heeft en deze van toepassing wil laten verklaren op de overeenkomst.
+      <br><br>
+      *Tip:<br>
+      In algemene voorwaarden zijn meestal bepalingen opgenomen over o.a. aansprakelijkheid, Intellectueel eigendom, ontbinding van de overeenkomst, 
+      etc. Deze bepaling zijn niet, of slechts gedeeltelijk, opgenomen in de OvO. Mocht je opdrachtgever er akkoord mee gaan dat zijn/haar 
+      algemene voorwaarden buiten toepassing worden verklaard of als de opdrachtgever zelf ook geen algemene voorwaarden heeft, 
+      dan kun je ervoor kiezen om enkele relevante bepalingen op te nemen in de OvO, zolang je geen algemene voorwaarden hebt. 
+      Uiteraard dek je hiermee slechts een beperkt deel van de onderwerpen en risico’s af. Bovendien wordt de overeenkomst hierdoor langer en 
+      onoverzichtelijker.*
+      <br><br>
+      *Tip:<br>
+      Idealiter neem je in de OvO alleen zaken op die specifiek voor de opdracht zijn, in combinatie met bepalingen die van belang zijn om 
+      schijnzelfstandigheid te voorkomen. Alle andere ‘kleine lettertjes’ die gelden voor jouw werkzaamheden in het algemeen, 
+      plaats je dan in de algemene voorwaarden. Zo blijft je OvO kort, bondig en overzichtelijk.*
+  - field: avwbuitentoepassing_ovk
+    label: >
+      42.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+    show if:
+        variable: avwgebruik_ovk
+        is: nee
+# _________________________________
+# 43 | akkoord_ovk
+# _________________________________
+  - note: >
+      43. **Akkoord:**<br>
+      Hoe wil je dat overeenkomsten tot stand komen *(meerdere opties mogelijk)*?
+    help: >
+      Voor de rechtsgeldigheid van de overeenkomst is het voldoende als je opdrachtgever een e-mail stuurt waarin deze expliciet aangeeft akkoord te gaan 
+      met de overeenkomst. Zorg wel dat duidelijk is om welke overeenkomst het gaat. Dit kan bijvoorbeeld door de opdrachtgever bij de e-mail met het 
+      akkoord de overeenkomst als bijlage te laten toevoegen (*“ik ga akkoord met bijgevoegde overeenkomst”*). 
+      Maar als je een offerte e-mailt naar een opdrachtgever, en deze stuurt als reply een akkoord, is het ook goed. 
+      Het gaat er met andere woorden om dat beide partijen expliciet akkoord gaan met de overeenkomst en dat er geen twijfel kan bestaan over welke 
+      overeenkomst het dan zou gaan.
+      <br><br>
+      Je kunt ook gebruik maken van digitale handtekeningen met behulp van een programma zoals DocuSign, of Signrequest.
+      <br><br>
+      Als je de overeenkomst aan wilt gaan met handtekeningen, dan moet er een ruimte opgenomen worden in het document waar de handtekeningen geplaatst kunnen worden. 
+      Dit komt dan helemaal aan het einde van het document te staan. Het document kan dan per post worden verstuurd, of gescand en gemaild worden.
+      <br><br>
+      Als je de optie “Anders / Ik weet het (nog) niet” selecteert, dan worden alle drie de opties opgenomen in de overeenkomst van opdracht, en blauw gemarkeerd. 
+      Bij het opstellen van een OvO kun je dan weghalen wat voor de betreffende opdracht niet van toepassing is.
+  - field: akkoord_ovk
+    label: >
+      43.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Akkoord via e-mail. Er worden geen handtekeningen geplaatst. *(meest gekozen)*: e-mail
+      - Via een digitale handtekening: digitaal
+      - Schriftelijk (op papier) middels een handtekening: schriftelijk
+      - Anders / ik weet het (nog) niet: anders
+    none of the above: False
+# _________________________________
+# 44a | handtekening_ovo
+# _________________________________
+  - note: >
+      44. a. **Handtekening:**<br>
+      Wil je dat de overeenkomst van opdracht onderaan voorzien is van een ruimte waar 
+      beide partijen hun handtekening kunnen plaatsen?
+    help: >
+      Als je hier de optie “Ja” selecteert, komt op de laatste pagina van de OvO onderaan een ruimte waar jij en je opdrachtgever een handtekening kunnen plaatsen. 
+  - field: handtekening_ovo
+    label: >
+      44a.
+    input type: radio
+    choices:
+      - Nee, er wordt per e-mail akkoord gegeven op de OvO en er worden geen handtekeningen geplaatst. *(meest gekozen)*: e-mail
+      - Ja: ja
+      - Nee: nee
+# _________________________________
+# 44b | paraaf_ovo
+# _________________________________
+  - note: >
+      44. b. **Paraaf:**<br>
+      Wil je dat de overeenkomst van opdracht op elke pagina in de footer voorzien is van 
+      een ruimte waar beide partijen hun paraaf dienen te plaatsen?
+    help: >
+      Als je hier de optie “Ja” selecteert, komt er onderaan elke pagina van de OvO een ruimte waar jij en je opdrachtgever een paraaf kunnen zetten.
+  - field: paraaf_ovo
+    label: >
+      44b.
+    input type: radio
+    choices:
+      - Nee, er wordt per e-mail akkoord gegeven op de OvO en er worden geen parafen geplaatst. *(meest gekozen)*: e-mail
+      - Ja: ja
+      - Nee: nee
+# _________________________________
+# 45 | vragen_overeenkomst
+# _________________________________
+  - note: >
+      45. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_overeenkomst
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 40
+section: sec_overeenkomst
+---
+#---------------------------------
+# CODE OVEREENKOMST N/A
+#---------------------------------
+code: |
+  if not looptijd_ovk == "bepaalde tijd":
+    looptijdgetal_ovk = 'N/A'
+depends on: 
+  - looptijd_ovk
+---
+code: |
+  if not looptijd_ovk == "bepaalde tijd":
+    verlenging_ovk = 'N/A'
+depends on: 
+  - looptijd_ovk
+---
+code: |
+  if not verlenging_ovk == "ja":
+    verlengingsperiode_ovk = 'N/A'
+depends on: 
+  - verlenging_ovk
+---
+#code: |
+#  if not avwgebruik_ovk == "ja":
+#    avwtoepassing_ovk = 'N/A'
+#depends on: 
+#  - avwgebruik_ovk
+#---
+code: |
+  if not avwgebruik_ovk == "nee":
+    avwbuitentoepassing_ovk = 'N/A'
+depends on: 
+  - avwgebruik_ovk
+---

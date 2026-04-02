@@ -1,0 +1,42 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_reviewresubmit: '21v01'
+# last revision date: 2025-03-31
+---
+#-----------------------------------------------------------------------------
+#   review antwoorden versturen
+#-----------------------------------------------------------------------------
+id: id_revantwoordenversturen
+event: sec_verstuurd
+section: sec_verstuurd
+question: |
+  Antwoorden opnieuw versturen?
+review:
+  - note: |
+      **Antwoorden opnieuw versturen**
+      <br><br>
+      Wijzig je antwoorden alleen in overleg. Mogelijk zijn we al aan de slag gegaan met je eerdere inzending.
+  - Opnieuw versturen: trigger_resubmit
+    button: Op dit moment is het niet mogelijk om je antwoorden opnieuw in te zenden.
+---
+id: resubmit_trigger
+question: |
+  Antwoorden opnieuw versturen. 
+subquestion: |
+  % if uurbasispakket_ovk and nacalurenwerkzaamheden_ovk and geldigstrippenkaart_ovk and voorafachterafproject_ovk and flatfeenacal_ovk and antwoorden_verstuurd_opdr:
+  Sorry, op dit moment is het niet mogelijk om je antwoorden opnieuwe te versturen. Neem contact met ons op als je iets wilt wijzigen in je antwoorden.
+  % endif
+continue button field: trigger_resubmit
+buttons:
+  - Terug naar het vorige scherm: True
+back button: False
+---
+mandatory: True
+code: |
+  if trigger_resubmit == True:
+    background_action('bg_task_resubmitted')
+    antwoorden_verstuurd_opdr = True
+    trigger_resubmit = False
+---

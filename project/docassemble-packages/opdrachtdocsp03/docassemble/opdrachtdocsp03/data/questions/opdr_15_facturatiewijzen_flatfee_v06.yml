@@ -1,0 +1,136 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > FLATFEE
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_flatfee: '15v06'
+# last revision date: 2025-07-24
+---
+#---------------------------------
+# FLAT FEE EN COMMISSIES
+#---------------------------------
+id: id_flatfee
+# mandatory: True
+question: |
+  Flat Fee en Commissies
+fields:
+# _________________________________
+# 82a | flatfeenacal_ovk
+# _________________________________
+  - note: >
+      82. **Nacalculatie:**<br>
+      Factureer je naast een maandelijks basisbedrag (flat fee) ook nog op basis van nacalculatie?
+    help: >
+      In bepaalde situaties is handig om een vast maandelijks basisbedrag in rekening te brengen (flat fee), 
+      en daarbovenop dan op basis van nacalculatie specifiek geleverde diensten te factureren. Bijvoorbeeld als je een telefoonservice aanbiedt. 
+      Dan kun je een vaste ‘bereikbaarheidsfee’ in rekening brengen, en daarbovenop kun je een bepaald bedrag rekenen per afgehandeld telefoontje. 
+      Of als je werkt op commissiebasis, je factureert een vaste maandelijkse fee voor je sales-diensten, en daar bovenop factureer je een bedrag 
+      voor iedere verkoop.
+  - field: flatfeenacal_ovk
+    label: >
+      82a.
+    input type: radio
+    choices:
+      - Ja: ja
+      - Nee: nee
+    show if:
+      code: |
+        facturatiewijze_ovk['flatfee']
+# _________________________________
+# 82b | flatfeenacalwijze_ovk
+# _________________________________
+  - field: flatfeenacalwijze_ovk
+    label: >
+      82b.<br>
+      Op welke nacalculatiewijze factureer je?
+    datatype: checkboxes
+    choices:
+      - Geleverde diensten op basis van nacalculatie per geleverde dienst: per geleverde dienst
+      - Gewerkte uren op basis van nacalculatie per uur: per uur
+      - Verkopen op basis van commissie: per verkoop
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    none of the above: False
+    show if:
+      variable: flatfeenacal_ovk
+      is: ja
+# _________________________________
+# 83 | commissiebasis_ovk
+# _________________________________
+  - note: >
+      83. **Commissiebasis:**<br>
+      Factureer je naast een maandelijks basisbedrag (flat fee) ook nog op commissiebasis?
+      Specificeer hier nader hoe de commissies worden toegekend, berekend etc.
+    help: >
+      Krijg je bijvoorbeeld een vast bedrag per conversie, of een percentage van het omzetbedrag? 
+      Hoe wordt vastgesteld dat een bepaalde conversie/verkoop/lead aan jou is toe te kennen? Etc.
+      <br><br>
+      Als je uitsluitend op commissiebasis werkt, en niet ook met een flat fee (vast maandeljiks basisbedrag), 
+      dan adviseer ik om een aparte affiliate overeenkomst op te stellen.  
+  - field: commissiebasis_ovk
+    label: >
+      83.
+    show if:
+      code: |
+        facturatiewijze_ovk['flatfee']
+    required: False
+# _________________________________
+# 84 | vragen_flatfee
+# _________________________________
+  - note: >
+      84. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_flatfee
+    label:
+    input type: area
+    show if:
+      code: |
+        facturatiewijze_ovk['flatfee']
+    required: False    
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 75
+section: sec_flatfee
+---
+#---------------------------------
+# CODE FLAT FEE EN COMMISSIES N/A
+#---------------------------------
+code: |
+  if not facturatiewijze_ovk['flatfee']:
+    flatfeenacal_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['flatfee']:
+    commissiebasis_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['flatfee']:
+    flatfeenacalwijze_ovk = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---
+code: |
+  if not flatfeenacal_ovk == "ja":
+    flatfeenacalwijze_ovk['n.v.t.'] = True
+depends on:
+  - flatfeenacal_ovk
+---
+code: |
+  if not facturatiewijze_ovk['flatfee']:
+    vragen_flatfee = 'n.v.t.'
+depends on:
+  - facturatiewijze_ovk
+---

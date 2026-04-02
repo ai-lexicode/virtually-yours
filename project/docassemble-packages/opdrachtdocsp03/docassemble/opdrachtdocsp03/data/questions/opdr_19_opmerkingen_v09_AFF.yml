@@ -1,0 +1,59 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_vragen_AFF: '19v09b'
+# last revision date: 2025-06-02
+---
+#---------------------------------
+# SECTIE vragen
+#---------------------------------
+id: id_vragen
+mandatory: True
+question: |
+  Vragen of opmerkingen
+fields:
+# _________________________________
+# 89 | vragen_opdralgemeen
+# _________________________________
+  - note: >
+      89. **Opmerkingen:**<br>
+      Heb je nog opmerkingen?
+    help: >
+      Zijn er bijvoorbeeld bijzondere omstandigheden waar rekening mee gehouden moet worden? 
+      <br><br>
+      *(Let op, verzoeken voor het toevoegen van specifieke clausules of artikelen die niet gebruikelijk zijn voor online dienstverleners kunnen extra kosten 
+      met zich meebrengen. Bespreek de mogelijkheden met je coach, opleider of contactpersoon.)* 
+  - field: vragen_opdralgemeen
+    label:
+    input type: area
+    required: False
+# _________________________________
+# 90 | urgentdoc_ovk
+# _________________________________
+  - note: >
+      90. **Spoedaanvraag:**<br>
+      Heb je een document urgent nodig?
+    help: >
+      Laat het ons weten als je een deadline hebt voor een document, bijvoorbeeld omdat je verwacht op korte 
+      termijn een opdracht aan te nemen. We kunnen niets beloven, maar zullen ons best doen om daar rekening mee te houden.
+  - field: urgentdoc_ovk
+    label:
+    label above field: True
+    input type: area
+    required: False
+# _________________________________
+# 91 | affiliate
+# _________________________________
+  - note: >
+      91. **Hoe ben je bij deze vragenlijst gekomen?:**<br>
+      Kun je aangeven hoe of via wie je bij deze vragenlijst bent gekomen?
+      Bijvoorbeeld via je coach, je opleider, een jurist of een webshop.
+      En kun je de naam van deze persoon of de webshop hier vermelden?
+  - field: opmerkingenintern_opdr
+    label:
+    input type: area
+#---
+progress: 90
+section: sec_vragen
+---

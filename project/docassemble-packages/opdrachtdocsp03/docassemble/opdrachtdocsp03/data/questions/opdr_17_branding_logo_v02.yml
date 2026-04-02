@@ -1,0 +1,33 @@
+#-----------------------------------------------------------------------------
+# METADATA logo
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_logo: '17v02'
+# last revision date: 2025-02-13
+---
+#---------------------------------
+# SECTIE Logo uploaden
+#---------------------------------
+# _________________________________
+# 87 | logo_client
+# _________________________________
+id: id_logo
+mandatory: True
+question: |
+  Bedrijfslogo
+subquestion: |
+  Heb je een bedrijfslogo dat je graag in je documenten zou willen verwerken?
+  <br><br>
+  Je kunt je logo hier desgewenst uploaden. *(optioneel)*
+under: |
+  *Lukt het uploaden niet? Stuur dan desgewenst je logo per e-mail naar info@lexicode.nl.*
+fields:
+  - Logo: logo_client
+    datatype: file
+    maximum image size: 250
+    image upload type: png
+    required: False
+#---
+progress: 81
+section: sec_logo
+---

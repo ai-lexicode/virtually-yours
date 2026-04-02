@@ -1,0 +1,154 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > REISKOSTEN
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_reiskosten: '16v06'
+# last revision date: 2025-07-24
+---
+#---------------------------------
+# REISKOSTEN
+#---------------------------------
+id: id_reiskosten
+mandatory: True
+question: |
+  Reiskosten
+fields:
+# _________________________________
+# 85a | reiskostenovo_ovk
+# _________________________________
+  - note: >
+      De documenten die worden opgesteld zijn gericht op online dienstverleners die niet of niet vaak op locatie werken. 
+      Uiteraard kan het wel eens voorkomen dat je toch op locatie komt, bijvoorbeeld voor een kennismakingsgesprek of voor een bepaald event.
+      Je kunt hier dan aangeven hoe je de reiskosten in rekening wilt brengen. 
+      <br><br>
+      Werk je wel structureel of zeer regelmatig (deels) op locatie, dan zijn deze documenten mogelijk niet geschikt voor jou. Neem dan contact met mij op om dit te bespreken.
+      <br><br><br>
+      85. **Reiskosten doorberekenen:**<br>
+      Wil je in de OvO opnemen hoe je reiskosten, parkeerkosten en/of reistijd doorberekent?
+    help: >
+      Of je dit wilt specificeren in de OvO is uiteraard ook afhankelijk van of je wel of niet op locatie zult moeten gaan werken en of je wel of niet een kennismakingsgesprek op locatie zult voeren.
+  - field: reiskostenovo_ovk
+    label: >
+      85a.
+    input type: radio
+    choices:
+      - Nee, ik wil dit niet specifiek opnemen in de OvO.<br>*(meest gekozen)*: nee
+      - Ja, ik wil dit graag opnemen in de OvO.: ja
+# _________________________________
+# 85b | reiskosten_client
+# _________________________________
+  - field: reiskosten_client
+    label: >
+      85b.<br>
+      Hoe wens je eventuele **reiskosten** in rekening te brengen?<br><br>
+      Vul aan: *"Reiskosten worden ..."*
+    input type: radio
+    choices:
+      - doorberekend door middel van een vaste kilometervergoeding, indien de reisafstand meer dan ___ km bedraagt<br>*(meest gekozen)*: doorberekend door middel van een vaste kilometervergoeding, indien de reisafstand meer dan [AANTAL KILOMETER] bedraagt
+      - doorberekend door middel van een vaste kilometervergoeding: "doorberekend door middel van een vaste kilometervergoeding van €[TARIEF] exclusief btw per gereden kilometer"
+      - volledig doorberekend: volledig doorberekend
+      - voor 50% doorberekend: voor 50% doorberekend
+      - niet (apart) doorberekend: niet (apart) doorberekend
+      - doorberekend (en ik wil dit niet nader specificeren): doorberekend
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "als volgt doorberekend: [WIJZE VAN DOORBEREKENEN]"
+    show if:
+      variable: reiskostenovo_ovk
+      is: ja
+    help: >
+      *Tip:<br>
+      Over de reiskosten die je in rekening brengt bij de opdrachtgever reken je hetzelfde btw-tarief als over je geleverde diensten. In de meeste gevallen zal dit 21% btw zijn (2024).*
+      <br><br>
+      *Tip:<br>
+      Je mag jaarlijks bij je aangifte inkomstenbelasting een bedrag aftrekken voor de zakelijk gereden kilometers.*
+      <br><br>
+      Belastingdienst:<br>
+      *“Gebruikt u in uw onderneming een vervoermiddel dat uw eigendom is of dat u privé huurt, bijvoorbeeld een auto, motor of een fiets? Dan mag u voor de zakelijke ritten € 0,23 per kilometer aftrekken van uw winst. In 2023 was het aftrekbare bedrag € 0,21.
+      <br><br>
+      U mag geen kosten (zoals brandstof, verzekering, tol, parkeren) afzonderlijk aftrekken van uw winst. Deze bedragen zijn verwerkt in de € 0,23 per kilometer.”*
+# _________________________________
+# 85c | reistijdkosten_client
+# _________________________________
+  - field: reistijdkosten_client
+    label: >
+      85c.<br>
+      Hoe wens je eventuele **reistijd** in rekening te brengen?<br><br>
+      Vul aan: *"Reistijd wordt ..."* 
+    input type: radio
+    choices:
+      - volledig doorberekend tegen half uurtarief, indien de reistijd meer dan ___ minuten bedraagt.<br>*(meest gekozen)*: volledig doorberekend tegen half uurtarief, indien de reistijd meer dan [AANTAL MINUTEN] bedraagt
+      - volledig doorberekend tegen half uurtarief.: volledig doorberekend tegen half uurtarief
+      - volledig doorberekend tegen het gebruikelijke (volledige) uurtarief, indien de reistijd meer dan ___ minuten bedraagt.: volledig doorberekend tegen het gebruikelijke uurtarief, indien de reistijd meer dan [AANTAL MINUTEN] bedraagt
+      - volledig doorberekend tegen het gebruikelijke (volledige) uurtarief.: volledig doorberekend tegen het gebruikelijke uurtarief
+      - ingecalculeerd in de vaste kilometervergoeding.: ingecalculeerd in de vaste kilometervergoeding
+      - niet (apart) doorberekend.: niet (apart) doorberekend
+      - doorberekend (en ik wil dit niet nader specificeren).: doorberekend
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "als volgt doorberekend: [WIJZE VAN DOORBEREKENEN]"
+    show if:
+      variable: reiskostenovo_ovk
+      is: ja
+# _________________________________
+# 85d | parkeerkosten_client
+# _________________________________
+  - field: parkeerkosten_client
+    label: >
+      85d. Hoe wens je eventuele **parkeerkosten** in rekening te brengen?<br><br>
+      Vul aan: *"Eventuele parkeerkosten worden ..."* 
+    input type: radio
+    choices:
+      - volledig doorberekend.<br>*(meest gekozen)*: volledig doorberekend
+      - ingecalculeerd in de vaste kilometervergoeding.: ingecalculeerd in de vaste kilometervergoeding
+      - voor 50% doorberekend.: voor 50% doorberekend
+      - volledig doorberekend, indien deze meer dan ___ euro bedragen.: volledig doorberekend, indien deze meer dan [DREMPELBEDRAG] bedragen
+      - niet (apart) doorberekend.: niet (apart) doorberekend
+      - doorberekend (en ik wil dit niet nader specificeren).: doorberekend
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "als volgt doorberekend: [WIJZE VAN DOORBEREKENEN]"
+    show if:
+      variable: reiskostenovo_ovk
+      is: ja
+# _________________________________
+# 86 | vragen_reiskosten
+# _________________________________
+  - note: >
+      86. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_reiskosten
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 80
+section: sec_reiskosten
+---
+#---------------------------------
+# CODE REISKOSTEN
+#---------------------------------
+code: |
+  if not reiskostenovo_ovk == "ja":
+    reiskosten_client = 'n.v.t.'
+depends on:
+  - reiskostenovo_ovk
+---
+code: |
+  if not reiskostenovo_ovk == "ja":
+    reistijdkosten_client = 'n.v.t.'
+depends on:
+  - reiskostenovo_ovk
+---
+code: |
+  if not reiskostenovo_ovk == "ja":
+    parkeerkosten_client = 'n.v.t.'
+depends on:
+  - reiskostenovo_ovk
+---

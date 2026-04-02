@@ -1,0 +1,238 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+metadata:
+  title: |
+    Opdrachtdocumenten
+  short title: |
+    opdrachtendocs
+  description: |
+    Vragenlijst voor het opstellen van opdrachtdocumenten (overeenkomst van opdracht + algemene voorwaarden)
+  tags:
+    - opdr
+  error help: |
+    Ay, dat gaat even niet helemaal goed.
+    Sorry!
+    Neem alsjeblieft contact op met 
+    [de webmaster](mailto:webmaster@lexicode.nl).
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-07-24
+---
+code: |
+  version_opdr = 'opdr_p03y30_AFF'
+---
+#-----------------------------------------------------------------------------
+# INITIAL CODE
+#-----------------------------------------------------------------------------
+objects:
+  - respondenten_opdr: DADict.using(gathered=True)
+  - client: Individual
+  - admin: Individual
+#  - bedrijf: Person
+# e.g. bedrijf.client.voornaam
+# e.g. bedrijf.bedrijfsnaam
+---
+code: |
+  if user_logged_in() and user_has_privilege('admin'):
+    user = admin
+    role = 'admin'
+  else:
+    user = client
+    role = 'client'
+  set_info(user=user, role=role)
+---
+initial: True
+code: |
+  if not user_logged_in():
+    kick_out_user
+---
+event: kick_out_user
+question: |
+  Aanmelden of inloggen
+subquestion: |
+  <span style="color: LightCoral;">**Nieuwe vragenlijst starten**</span>
+  <br>
+  Als je voor het eerst een vragenlijst gaat starten, registreer je dan eerst via het menu rechtsboven. Door je te registreren ga je ermee akkoord dat je gegevens worden verwerkt conform de [privacyverklaring](https://virtually-yours.nl/wp-content/uploads/2024/05/Privacyverklaring_Virtually-Yours_pvv24v03.pdf) van dit platform (Documentenportal). 
+  Je gegevens worden uitsluitend gebruikt voor het opstellen van jouw juridische documenten.
+  <br><br>
+  <span style="color: LightCoral;">**Verder gaan met eerder gestarte vragenlijst**</span>
+  <br>
+  Als je verder wilt gaan met een vragenlijst die je eerder bent gestart, log dan in via het menu rechtsboven. 
+  Selecteer na het inloggen bij "Mijn interviews" de vragenlijst die je eerder bent gestart (let op de startdatum).
+---
+initial: True
+code: |
+  multi_user = True
+  if user_logged_in():
+    if user_info().email not in respondenten_opdr:
+      respondenten_opdr.initializeObject(user_info().email)
+    user = respondenten_opdr[user_info().email]
+    lets_start
+  else:
+    kick_out_user
+---
+include:
+  - interview-design_24v06.yml
+---
+#-----------------------------------------------------------------------------
+# SECTIONS
+#-----------------------------------------------------------------------------
+id: id_sections
+sections:
+  - sec_start: Start
+    subsections:
+      - sec_tipstechnisch: Technische tips
+      - sec_tipsinhoud: Inhoudelijke tips
+      - sec_docselect: Documentenselectie
+  - sec_gegevens: Gegevens
+    subsections:
+      - sec_bedrijfsgegevens: Bedrijfsgegevens
+      - sec_persoonsgegevens: Persoonsgegevens
+  - sec_opdrachten: Opdrachten
+    subsections:
+      - sec_werkzaamheden: Werkzaamheden
+      - sec_samenwerking: Samenwerking
+      - sec_intellectueeleigendom: Intellectueel eigendom
+      - sec_overeenkomst: Overeenkomst
+  - sec_facturatie: Facturatie
+    subsections:
+      - sec_tarieven: Tarieven
+      - sec_facturatiesub: Facturatie
+  - sec_facturatieopties: Facturatiewijzen
+    subsections:
+      - sec_facturatiewijzen: Facturatiewijzen
+      - sec_abonnement: A) Abonnement
+      - sec_nacalculatie: B) Nacalculatie
+      - sec_strippenkaart: C) Strippenkaart
+      - sec_projectbasis: D) Projectbasis
+      - sec_flatfee: E) FlatFee
+  - sec_reisenverblijf: Reiskosten
+    subsections:
+      - sec_reiskosten: Reiskosten
+  - sec_branding: Branding
+    subsections:
+      - sec_logo: Logo uploaden
+      - sec_huisstijl: Huisstijl
+  - sec_opmerkingen: Opmerkingen
+    subsections:
+      - sec_vragen: Vragen en opmerkingen
+  - sec_einde: Afronding
+    subsections:
+      - sec_verstuurd: Antwoorden versturen
+      - sec_klaar: Einde
+      - sec_download: Antwoorden downloaden
+---
+#---------------------------------
+# QUESTIONS
+#---------------------------------
+include:
+  - opdr_00_reviewevents_v10.yml
+  - opdr_01_start_v07.yml
+  - opdr_02_gegevens_bedrijfsgegevens_v08.yml
+  - opdr_03_gegevens_persoonsgegevens_v06.yml
+  - opdr_04_opdrachten_werkzaamheden_v07.yml
+  - opdr_05_opdrachten_samenwerking_v07.yml
+  - opdr_06_opdrachten_intellectueeleigendom_v07.yml
+  - opdr_07_opdrachten_overeenkomst_v08.yml
+  - opdr_08_facturatie_tarieven_v07.yml
+  - opdr_09_facturatie_facturatie_v08.yml
+  - opdr_10_facturatiewijzen_facturatiewijzen_v03.yml
+  - opdr_11_facturatiewijzen_abonnement_v08.yml
+  - opdr_12_facturatiewijzen_nacalculatie_v08.yml
+  - opdr_13_facturatiewijzen_strippenkaart_v07.yml
+  - opdr_14_facturatiewijzen_projectbasis_v07.yml
+  - opdr_15_facturatiewijzen_flatfee_v06.yml
+  - opdr_16_reiskosten_reiskosten_v06.yml
+  - opdr_17_branding_logo_v03.yml
+  - opdr_18_branding_huisstijl_v02.yml
+  - opdr_19_opmerkingen_v09_AFF.yml
+  - opdr_20_einde_v10_AFF.yml
+  - opdr_21_reviewresubmit_v01.yml
+---
+#-----------------------------------------------------------------------------
+# HELP
+#-----------------------------------------------------------------------------
+interview help:
+  heading: Problemen oplossen
+  content: |
+    Hi!
+
+    Ben je hier gekomen omdat je tijdens het doorlopen van de interviewvragen ergens tegenaan bent gelopen? Dan gaan we kijken of we je verder kunnen helpen.
+
+    **Ik kom steeds weer terug bij dezelfde vragen, terwijl ik die al heb ingevuld**
+    <br>
+    Ay, dat is vervelend. Dit betekent dat er een klein foutje in de vragenlijst is geslopen, waardoor je niet helemaal door kunt klikken naar het Einde. Als je ingelogd bent, worden jouw antwoorden wel gewoon opgeslagen.<br> 
+    <ul>
+    <li> Controleer of je ingelogd bent door rechtsboven te kijken of je jouw e-mailadres ziet staan.</li>
+    <li> Als je niet ingelogd bent, log dan alsnog in (of maak een account aan als je die nog niet hebt).</li>
+    <li> Controleer of je met het beantwoorden van de vragen tot de laatste sectie "Opmerkingen" bent gekomen (dan heb je alle vragen gehad).</li>
+    <li> Je kunt de webpagina gewoon afsluiten, je antwoorden zijn wel opgeslagen.</li>
+    <li> Stuur een e-mail naar webmaster@lexicode.nl met je bedrijfsnaam en geef in de e-mail aan dat je tijdens het beantwoorden van je vragenlijkst niet helemaal hebt kunnen doorklikken naar Einde.</li>
+    <li> Wij zorgen dat het foutje in het systeem wordt opgelost. Je hoeft verder geen actie meer te ondernemen.</li>
+    </ul>
+
+    **Ik krijg een error in beeld te zien**
+    <br>
+    Oeps. Dit betekent dat er een foutje in de vragenlijst is geslopen. Als je ingelogd bent, worden jouw antwoorden wel gewoon opgeslagen.<br>
+    <ul>
+    <li> Kopieer de tekst van de error of maak een screenshot (indien mogelijk)</li>
+    <li> Controleer of je ingelogd bent door rechtsboven op "menu" te klikken (mogelijk moet je eerst een keer op "terug" klikken in je webbrowser).</li>
+    <li> Als je niet ingelogd bent, log dan alsnog in (of maak een account aan als je die nog niet hebt).</li>
+    <li> Stuur een e-mail naar webmaster@lexicode.nl met je bedrijfsnaam en vermeld in je e-mail de error of voeg de screenshot bij.</li>
+    <li> Wij zorgen dat het foutje in het systeem wordt opgelost en laten het je weten zodra dit gelukt is en wat de vervolgstappen zijn.</li>
+    <li> Je kunt daarna als het goed is weer verder gaan met de vragenlijst.</li>
+    </ul>
+    
+    **Ik wilde verder gaan met de vragenlijst, maar al mijn antwoorden zijn verdwenen**
+    <br>
+    Geen paniek! Je antwoorden zijn waarschijnlijk wel gewoon opgeslagen, alleen toont je browser deze even niet helemaal correct. 
+    Dit probleem kan optreden als je de Edge-brwoser gebruikt, maar mogelijk gebeurt dit ook wel eens bij andere browsers.<br>
+    <ul>
+    <li> Probeer eerst een keer de pagina te verversen.</li>
+    <li> Helpt dat niet, klik dan rechtsboven op je e-mailadres om het account-menu te openen.</li>
+    <li> Klik op "Mijn Interviews" en vervolgens op de vragenlijst die je aan het beantwoorden bent, zodat je deze opnieuw opent.</li>
+    </ul>
+    Je antwoorden zouden nu weer zichtbaar moeten zijn. Is dat niet het geval, probeer dan een van de volgende opties:
+    <br>
+    <ul>
+    <li> Verwijder de cookies in je browser.</li>
+    <li> Gebruik een andere browser, bij voorkeur Chrome.</li>
+    <li> Neem contact met mij op via webmaster@lexicode.nl</li>
+    </ul>
+
+    **Mijn antwoorden zijn verdwenen nadat ik ben teruggegaan naar de vorige pagina**
+    <br>
+    Probeer de knop "terug" niet te gebruiken. Als je deze knop gebruikt om terug te gaan naar een eerdere pagina, dan raak je je ingevulde antwoorden van die pagina kwijt. 
+    Je kunt het beste via het menu het betreffende onderwerp aanklikken en dan klikken op Wijzigen. Wijzig vervolgens je antwoord en klik op "Hervatten" om weer terug te keren naar de pagina waar je was gebleven.
+    Zo raak je geen antwoorden kwijt.
+
+    **Ik zit in de verkeerde vragenlijst**
+    <br>
+    Als je meerdere vragenlijsten bent gestart, en je wil verder gaan met een andere vragenlijst dan de vragenlijst waar je nu in zit, kun je een andere vragenlijst openen:<br>
+    <ul>
+    <li> Klik rechtsboven op je e-mailadres om het accountmenu te openen.
+    <li> Klik daar op "Mijn Interviews" voor een overzicht van de door jou gestarte vragenlijsten.
+    <li> Klik op de vragenlijst die je wilt openen.
+    </ul>
+    Als het probleem is dat de vragenlijst die je nu hebt geopend niet de juiste is voor jou 
+    (bijvoorbeeld omdat de vragenlijst niet bedoeld is voor de documenten die je wilt laten opstellen), neem dan contact op via info@lexicode.nl    
+  
+    **Kan ik de vragenlijsten ook op papier krijgen?**
+    <br>
+    Vaak is dit mogelijk. Je ontvangt dan een Word-document met de vragen. Je antwoorden kun je dan in het Word-document invullen en per e-mail naar mij toesturen.
+    Hou er wel rekening mee dat het dan wat langer kan duren voordat de documenten klaar zijn.
+    Ook betekent dit dat je alle vragen te zien krijgt, ook als deze niet relevant voor je zijn.
+    Zorg dus dat je goed kijkt welke vragen je wel en welke vragen je niet hoeft in te vullen, naar aanleiding van je eigen gegeven antwoorden.
+    Neem contact op met info@lexicode.nl om te informeren naar de beschikbaarheid van een Word-versie van de vragenlijst.
+
+    **Ik heb juridisch inhoudelijke ondersteuning nodig**
+    <br>
+    Of er (gratis) juridisch inhoudelijke ondersteuning beschikbaar is, hangt af van hoe je hier bent gekomen en van de vragenlijst die je invult.<br>
+    <ul>
+    <li> Als je een bestelling hebt geplaatst via de webshop, kijk dan bij de productomschrijving of juridische ondersteuning is inbegrepen.</li>
+    <li> Laat je je documenten opstellen via je coach of opleider, dan is inhoudelijke juridische ondersteuning vermoedelijk niet inbegrepen. Dit kun je het beste even aan je coach of opleider vragen.</li>
+    <li> Als juridisch inhoudelijke ondersteuning niet inbegrepen is, dan is het vaak mogelijk om tegen betaling juridisch advies over de documenten te ontvangen. Neem voor de mogelijkheden contact op met info@lexicode.nl.</li>
+    </ul>
+---

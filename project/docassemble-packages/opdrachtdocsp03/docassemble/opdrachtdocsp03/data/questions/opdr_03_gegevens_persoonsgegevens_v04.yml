@@ -1,0 +1,139 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE GEGEVENS > PERSOONSGEGEVENS
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_persoonsgegevens: '03v05'
+# last revision date: 2025-03-26
+---
+#-----------------------------------------------------------------------------
+# SECTIE PERSOONSGEGEVENS
+#-----------------------------------------------------------------------------
+id: id_persoonsgegevensclientopdr
+mandatory: True
+question: |
+  Persoonsgegevens
+fields:
+# _________________________________
+# 11 | voornaam_client
+# _________________________________
+  - note: >
+      11. **Voornaam:**<br>
+      Wat is je voornaam?
+    help: >
+      Je volledige naam wordt genoemd in de overeenkomst van opdracht.
+  - field: voornaam_client
+    label: >
+      11.
+# _________________________________
+# 12 | achternaam_client
+# _________________________________
+  - note: >
+      12. **Achternaam:**<br>
+      Wat is je achternaam?
+    help: >
+      Je volledige naam wordt genoemd in de overeenkomst van opdracht.
+  - field: achternaam_client
+    label: >
+      12.
+# _________________________________
+# 13 | geslacht_client
+# _________________________________
+  - note: >
+      13. **Gender:**<br>
+      Hoe wil je aangesproken worden in de documenten?
+  - field: geslacht_client
+    label: >
+      13.
+    input type: radio
+    choices:
+      - Vrouwelijk (zij; haar): Vrouwelijk
+      - Mannelijk (hij; hem; zijn): Mannelijk
+      - Neutraal (hij/zij; hem/haar; zijn/haar): Neutraal
+# _________________________________
+# 14 | vragen_persoonsgegevens
+# _________________________________
+  - note: >
+      14. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_persoonsgegevens
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 20
+section: sec_persoonsgegevens
+---
+#-----------------------------------------------------------------------------
+# CODE
+#-----------------------------------------------------------------------------
+id: id_voornaamwoorden
+mandatory: True
+code: |
+      if geslacht_client == "Vrouwelijk":
+        bezitvnw_client = 'haar'
+        bezitvnwcap_client = 'Haar'
+        persvnwonderwerp_client = 'zij'
+        persvnwonderwerpcap_client = 'Zij'
+        persvnwvoorwerp_client = 'haar'
+        persvnwvoorwerpcap_client = 'Haar'
+      if geslacht_client == "Mannelijk":
+        bezitvnw_client = 'zijn'
+        bezitvnwcap_client = 'Zijn'
+        persvnwonderwerp_client = 'hij'
+        persvnwonderwerpcap_client = 'Hij'
+        persvnwvoorwerp_client = 'hem'
+        persvnwvoorwerpcap_client = 'Hem'
+      if geslacht_client == "Neutraal":
+        bezitvnw_client = 'zijn/haar'  
+        bezitvnwcap_client = 'Zijn/haar'
+        persvnwonderwerp_client = 'hij/zij'
+        persvnwonderwerpcap_client = 'Hij/zij'
+        persvnwvoorwerp_client = 'hem/haar'
+        persvnwvoorwerpcap_client = 'Hem/haar'
+---
+# _________________________________
+# Background task
+# _________________________________
+mandatory: True
+code: |
+  task_startmail = background_action('bg_taskstart')
+---
+#-----------------------------------------------------------------------------
+# CODE
+#-----------------------------------------------------------------------------
+mandatory: True
+event: bg_taskstart
+code: |
+  if welkedocs_opdr:
+    send_email(to=['info@lexicode.nl'],
+      template=inform_admin
+    )
+  background_response()
+---
+template: inform_admin
+subject: |
+  Vragenlijst ${ version_opdr } gestart door ${ bedrijfsnaam_client }
+content: |
+  De online vragenlijst voor opdrachtdocumenten:
+  
+  versie ${ version_opdr }
+  
+  is gestart door:
+
+  ${ bedrijfsnaam_client }
+  ${ voornaam_client }
+
+  Klik op de link om het interview te bekijken:
+  
+  [${ interview_url() }](${ interview_url() })
+---

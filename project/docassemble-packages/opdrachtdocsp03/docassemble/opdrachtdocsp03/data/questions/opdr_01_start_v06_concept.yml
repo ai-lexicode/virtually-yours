@@ -1,0 +1,123 @@
+
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+code: |
+  version_opdr_start: '01v06'
+# last revision date: 2025-02-13
+---
+#-----------------------------------------------------------------------------
+# SECTIE START
+#-----------------------------------------------------------------------------
+id: id_start
+mandatory: True
+continue button field: lets_start
+continue button label: |
+    Start
+question: |
+  Welkom!
+subquestion: |
+  Hi!
+  
+  Wat goed dat je waarde hecht aan een goede juridische basis voor jouw onderneming.
+  
+  Je gaat nu starten met een vragenlijst. Aan de hand van de antwoorden op deze vragen kunnen we goede juridische documenten voor je opstellen. 
+section: sec_start
+---
+id: id_tips
+mandatory: True
+continue button field: aan_de_slag
+continue button label: |
+    Aan de slag!
+question: |
+  Tips
+subquestion: |
+  Enkele tips vooraf:<br>
+
+  * **Desktop**<br>
+  Deze vragenlijst is geoptimaliseerd voor desktops en niet voor mobiele apparaten.
+  Hoewel je de vragenlijst ook kunt invullen op je mobiel, heb je de beste gebruikerservaring bij het gebruik op een desktop.<br><br>
+  Deze vragenlijst bevindt zich nog in de testfase en is op dit moment alleen getest in de Chrome-browser.
+
+  * **Toelichting**<br>
+  Veel vragen zijn voorzien van nadere uitleg en toelichting. Druk op het symbool met vraagteken achter de vraag om de toelichting te lezen.
+
+  * **Interactief**<br>
+  Aan de hand van de door jou gegeven antwoorden past de vragenlijst automatisch aan welke vragen aan jou voorgeschoteld worden. 
+  Zo hoef je vragen die niet relevant zijn voor jou dus niet voor niks door te lezen.
+
+  * **Anders / Ik weet het niet**<br>
+  Bij sommige vragen is er een optie “Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document” opgenomen. Je kunt jouw antwoord dan zelf achteraf in het document verwerken. 
+  De plek waar je dan iets in moet vullen is in het document gemarkeerd, in de meeste gevallen met vierkante haakjes en hoofdletters in de kleur blauw (bijvoorbeeld [BEDRIJFSNAAM OPDRACHTGEVER]).
+
+  * **Achteraf wijzigen**<br>
+  Mocht je bij sommige vragen twijfelen over het antwoord, hou dan in je achterhoofd dat je je juridische document (ook) als Word-bestand (.docx) ontvangt. 
+  Het is dus mogelijk om achteraf (zelf) wijziging door te voeren. Geef je document in dat geval wel een versienummer mee. 
+  Zo weet je altijd wat de meest recente versie is en/of weet je altijd welke versie van het document je hebt gebruikt in een bepaalde situatie of bij een bepaalde klant.
+
+  * **Probeer het gebruik van de knop "terug" te voorkomen**<br>
+  Als je deze knop gebruikt en teruggaat naar een eerdere pagina, dan raak je je ingevulde antwoorden van die pagina kwijt.
+  Je kunt het beste via het menu het betreffende onderwerp aanklikken en dan klikken op *Wijzigen*. Zo raak je geen antwoorden kwijt.
+
+  * **Later weer verder gaan**<br>
+  De vragenlijst is alleen maar te gebruiken als je ingelogd bent. Omdat je ingelogd bent, kunnen je antwoorden worden opgeslagen. 
+  Je kunt dan tussentijds stoppen en later weer terugkomen en verder gaan waar je gebleven was.
+  Als je meerdere vragenlijsten bent gestart, dan kun je een overzicht van je vragenlijsten vinden in je account bij "Mijn Interviews".
+  Daar kun je ze aanklikken om verder te gaan.
+  
+  * **Hulp**<br>
+  Loop je tijdens het doorlopen van de vragenlijst tegen een technisch probleem aan? Kijk dan even bij de Hulp-sectie, bovenaan de pagina.
+  
+  Veel succes!
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist en Juridisch VA*
+under: |
+  *Klik op de knop `Aan de slag!` om met de vragenlijst te beginnen.*
+#---
+progress: 5
+section: sec_tips
+---
+id: id_docselectie
+mandatory: True
+question: |
+  Selecteer documenten
+subquestion: |
+  Deze vragenlijst is bedoeld voor het op maat maken van de volgende opdrachtdocumenten: 
+  <br>
+  <br>
+  {Overeenkomst van opdracht}
+  <br>
+  {Algemene voorwaarden}
+  <br>
+  <br>
+  Klik op bovenstaande documenten voor een korte toelichting over het betreffende documenten. 
+  Is dit niet de juiste vragenlijst voor jou? Neem dan contact op via info@lexicode.nl.<br><br>
+terms:
+  Overeenkomst van opdracht: |
+    Voorkom misverstanden door alle opdrachtspecifieke afspraken tussen jou en je opdrachtgever vast te leggen en verklein het risico op schijnzelfstandigheid.
+  Algemene voorwaarden: |
+    Beperk het bedrijfsrisico van je onderneming en verklein de kans op een (juridisch) geschil met je opdrachtgever door alle rechten en plichten vast te leggen.
+fields:
+#  - raw html: |
+#      <div class="p-4 mb-3 rounded bg-danger">
+  - field: welkedocs_opdr
+    label: >
+      **We gaan nu de volgende documenten opstellen:**
+    label above field: True
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - overeenkomst van opdracht
+      - algemene voorwaarden
+    default:
+      - overeenkomst van opdracht
+      - algemene voorwaarden
+    none of the above: False
+#  - raw html: |
+#      </div>
+#---
+progress: 10
+section: sec_docselect
+---

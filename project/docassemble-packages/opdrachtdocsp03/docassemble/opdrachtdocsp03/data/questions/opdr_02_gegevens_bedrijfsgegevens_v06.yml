@@ -1,0 +1,318 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE GEGEVENS > BEDRIJFSSGEGEVENS
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_bedrijfsgegevens: '02v06'
+# last revision date: 2025-03-31
+---
+#-----------------------------------------------------------------------------
+# SECTIE BEDRIJFSGEGEVENS
+#-----------------------------------------------------------------------------
+id: id_bedrijfsgegevensclientopdr
+mandatory: True
+question: |
+  Bedrijfsgegevens
+fields:
+# _________________________________
+# 1 | bedrijfsnaam_client
+# _________________________________
+  - note: >
+      1. **Bedrijfsnaam:**<br>
+      Wat is je bedrijfsnaam?
+  - field: bedrijfsnaam_client
+    label: >
+      Bedrijfsnaam
+    floating label: True
+# _________________________________
+# 2
+# _________________________________
+  - note: >
+      2. **Vestigingsadres:**<br>
+      Wat is het vestigingsadres van je onderneming, zoals ingeschreven bij de KvK?
+    help: >
+      Het gaat hier om het vestigingsadres, dus om het adres waarmee je staat ingeschreven, of waarmee je je gaat inschrijven, bij de KvK.
+      <br><br>
+      Je kunt je vestigingsadres in het handelsregister van de KvK afschermen.
+      Het is dan niet meer door iedereen in te zien in het openbare gedeelte van het handelsregister.
+      In dat geval zal je een afwijkend kantoor-, bezoek- of postadres moeten opgeven bij de KvK.
+      Dit afwijkende adres wordt dan getoond in het openbare gedeelte van het handelsregister, 
+      maar is niet je *vestigings*adres.
+# _________________________________
+# 2a | straatnaam_client
+# _________________________________
+  - field: straatnaam_client
+    label: >
+      Straatnaam
+    grid: 8
+    floating label: True
+# _________________________________
+# 2b | huisnummer_client
+# _________________________________
+  - field: huisnummer_client
+    grid: 4
+    label: >
+      Huisnummer
+    floating label: True
+# _________________________________
+# 2c | postcode_client
+# _________________________________
+  - field: postcode_client
+    label: >
+      Postcode
+    grid: 4
+    floating label: True
+# _________________________________
+# 2d | plaatsnaam_client
+# _________________________________
+  - field: plaatsnaam_client
+    grid: 8
+    floating label: True
+    label: >
+      Plaatsnaam
+# _________________________________
+# 3a | andercontactadres_client
+# _________________________________
+  - note: >
+      3. **Contactadres:**<br>
+      Heb je een kantoor-, bezoek- of postadres dat afwijkt van je vestigingsadres?
+  - field: andercontactadres_client
+    label: >
+      3a.
+    input type: radio
+    choices: 
+      - Nee *(meest gekozen)*: nee
+      - "Ja, namelijk:": ja
+# _________________________________
+# 3b | contactstraatnaam_client
+# _________________________________
+  - field: contactstraatnaam_client
+    label: >
+      Straatnaam
+    grid: 8
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# 3c | contacthuisnummer_client
+# _________________________________
+  - field: contacthuisnummer_client
+    grid: 4
+    label: >
+      Huisnummer
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# 3d | contactpostcode_client
+# _________________________________
+  - field: contactpostcode_client
+    label: >
+      Postcode
+    grid: 4
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# 3e | contactplaatsnaam_client
+# _________________________________
+  - field: contactplaatsnaam_client
+    grid: 8
+    floating label: True
+    label: >
+      Plaatsnaam
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# 4 | contactadresvermelden_client
+# _________________________________
+  - field: contactadresvermelden_client
+    label: >
+      4. Zo ja, wil je je post-, bezoek- of kantooradres ook in je documenten vermelden?
+    help: >
+      Bijvoorbeeld: “Gevestigd te Adres X, kantoorhoudende te Adres Y” 
+    input type: radio
+    choices: 
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# 5 | rechtsvorm_client
+# _________________________________
+  - note: >
+      5. **Rechtsvorm:**<br>
+      Welke rechtsvorm heeft je onderneming?
+    help: >
+      In de meeste gevallen zal een Virtual Assistant of Online Business Manager een eenmanszaak hebben (zzp’er), maar bijvoorbeeld een VOF of een BV komen ook voor.
+      <br><br>
+      Heb je een andere rechtsvorm dan “eenmanszaak” en is dit niet van tevoren besproken? 
+      Neem dan eerst contact op om te kijken of de op te stellen documenten passend voor je zijn.
+  - field: rechtsvorm_client
+    label: >
+      5.
+    input type: radio
+    choices:
+      - Eenmanszaak: eenmanszaak
+      - VOF: vof
+      - Anders (bijv. BV of stichting): anders
+    default: eenmanszaak
+# _________________________________
+# 6a | kvkinschrijving_client
+# _________________________________
+  - note: >
+      6. **KvK-nummer:**<br>
+      Sta je (al) ingeschreven bij de Kamer van Koophandel?
+  - field: kvkinschrijving_client
+    label: >
+      6a.
+    input type: radio
+    choices: 
+      - Ja: ja
+      - Nee: nee
+# _________________________________
+# 6b | kvknummer_client
+# _________________________________
+  - field: kvknummer_client
+    label: >
+      6b.<br>
+      Zo ja, wat is je KvK-nummer?
+    show if:
+      variable: kvkinschrijving_client
+      is: ja
+# _________________________________
+# 7a | website_client
+# _________________________________
+  - note: >
+      7. **Website:**<br>
+      Heb je een zakelijke website? *(optioneel)*
+    help: >
+      Deze vraag is optioneel en is alleen maar bedoeld om een beter beeld van je te kunnen vormen. 
+      Je website wordt niet vermeld in de opdrachtdocumenten. 
+  - field: website_client
+    label: >
+      7a.
+    input type: radio
+    choices: 
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee      
+    required: False
+# _________________________________
+# 7b | url_client
+# _________________________________
+  - field: url_client
+    label: >
+      7b. Wat is de URL van je website? *(optioneel)*
+    show if:
+      variable: website_client
+      is: ja
+    required: False
+# _________________________________
+# 8 | verzekering_client
+# _________________________________
+  - note: >
+      8. **Verzekering:**<br>
+      Heb je een bedrijfs- en/of beroeps-aansprakelijkheids-verzekering?
+  - field: verzekering_client
+    label: >
+      8.
+    input type: radio
+    choices:
+      - Ja: ja
+      - Nog niet, maar ga ik wel afsluiten: nog niet
+      - Nee: nee
+      - Anders / Ik weet het (nog) niet: anders
+# _________________________________
+# 9 | Opdrachtgever
+# _________________________________
+  - note: >
+      9. **Opdrachtgever:**<br>
+      Iets om rekening mee te houden (geen antwoord nodig hier): Zorg dat je de bedrijfs- en persoonsgegevens van de opdrachtgever ontvangt om te verwerken in de overeenkomst.
+    help: >
+      *Tip:<br>
+      Zoek bij de KvK het bedrijf van je opdrachtgever op en controleer of de door de opdrachtgever aangeleverde gegevens overeenkomen met hetgeen er in het handelsregister staat. 
+      Ook kun je hier bekijken welke rechtsvorm jouw opdrachtgever heeft (bijvoorbeeld eenmanszaak, VOF of BV).
+      De rechtsvorm van de partijen is van invloed op de wijze waarop de partijen in de overeenkomst worden vermeld.*
+# _________________________________
+# 10 | vragen_bedrijfsgegevens
+# _________________________________
+  - note: >
+      10. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_bedrijfsgegevens
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 15
+section: sec_bedrijfsgegevens
+---
+#-----------------------------------------------------------------------------
+# CODE - bedrijfsgegevens
+#-----------------------------------------------------------------------------
+id: id_settitleopdr
+mandatory: True
+code: |
+  set_parts(
+    title=bedrijfsnaam_client + " " + version_opdr)
+  log("set_parts bedrijfsnaam.")
+---
+#-----------------------------------------------------------------------------
+# CODE N/A
+#-----------------------------------------------------------------------------
+code: |
+  if not kvkinschrijving_client == "ja":
+    kvknummer_client = 'N/A'
+depends on:
+  - kvkinschrijving_client
+---
+code: |
+  if not andercontactadres_client == "ja":
+    contactstraatnaam_client = 'N/A'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if not andercontactadres_client == "ja":
+    contacthuisnummer_client = 'N/A'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if not andercontactadres_client == "ja":
+    contactpostcode_client = 'N/A'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if not andercontactadres_client == "ja":
+    contactplaatsnaam_client = 'N/A'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if not andercontactadres_client == "ja":
+    contactadresvermelden_client = 'N/A'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if not website_client == "ja":
+    url_client = 'N/A'
+depends on:
+  - website_client
+---

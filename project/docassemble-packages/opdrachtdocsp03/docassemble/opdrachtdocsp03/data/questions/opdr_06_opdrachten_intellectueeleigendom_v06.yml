@@ -1,0 +1,151 @@
+#-----------------------------------------------------------------------------
+# METADATA SECTIE OPDRACHTEN > INTELLECTUEEL EIGENDOM
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_intellectueeleigendom: '06v06'
+# last revision date: 2025-03-31
+---
+#-----------------------------------------------------------------------------
+# SECTIE INTELLECTUEEL EIGENDOM
+#-----------------------------------------------------------------------------
+id: id_intellectueeleigendom
+mandatory: True
+question: |
+  Intellectueel Eigendom
+fields:
+# _________________________________
+# 31a | intelrecht_ovk
+# _________________________________
+  - note: >
+      De intellectuele eigendomsrechten zijn de rechten die rusten op jouw creaties, op dingen die jij hebt bedacht met jouw eigen geest. 
+      Als jij bijvoorbeeld een logo ontwerpt, of een tekst schrijft, dan is dat jouw ‘intellectuele creatie’. In beginsel mag alleen jij jouw creaties gebruiken.
+      <br><br>
+      Overigens is het zo dat je opdrachtgever vaak de intellectuele eigendomsrechten bezit van de aangeleverde materialen (zoals een logo, of teksten). 
+      Jij hebt dus toestemming van je opdrachtgever nodig om de aangeleverde materialen te gebruiken om iets te creëren 
+      (en je zult deze materialen dan zeer waarschijnlijk niet voor andere doeleinden mogen gebruiken), 
+      en je opdrachtgever heeft vervolgens toestemming van jou nodig om het met de aangeleverde materialen gecreëerde werk te gebruiken. 
+      Zo hebben jullie over en weer rechten.
+  - note: >
+      31. **Eigendomsrechten behouden:**<br>
+      Wil je de intellectuele eigendomsrechten behouden voor het werk dat je creëert en levert voor de opdrachtgever?<br><br>
+      Je mag zelf bepalen aan wie je eventuele licenties voor het gebruik van je werk verleent. Verleen je een exclusief recht, 
+      dan is er uitsluitend één partij die het specifieke werk ook mag gebruiken. Verleen je een niet-exclusief recht, 
+      dan mag je meerdere partijen toestemming geven om het betreffende werk te gebruiken. Andere partijen mogen hun recht aan niemand anders overdragen, 
+      tenzij je iets anders overeenkomt.
+    help: >
+      Het wordt natuurlijk iets ingewikkelder als jij iets creëert in opdracht van jouw opdrachtgever. 
+      Jouw creatie mag in dat geval nog steeds alleen maar door jouw opdrachtgever gebruikt worden als jij daar expliciet toestemming voor geeft 
+      (bijvoorbeeld door deze toestemming op te nemen in je algemene voorwaarden), zelfs als je het hebt gecreëerd in zijn/haar opdracht. 
+      Je geeft dan aan jouw opdrachtgever het recht om jouw werk te gebruiken voor overeengekomen doelen.
+      <br><br>
+      In plaats van het verlenen van een (beperkt) gebruiksrecht, kun je er ook voor kiezen om de intellectuele eigendomsrechten volledig over te dragen aan je opdrachtgever. 
+      Je opdrachtgever mag dan in principe met je werk doen wat hij/zij wil.
+      <br><br>
+      Hoe belangrijk het behouden van de intellectuele eigendomsrechten is, hangt mede af van het type werkzaamheden dat je verricht. 
+      Ben je veel bezig met het schrijven van teksten of het ontwerpen van afbeeldingen of materialen? 
+      Wil je het werk ook voor andere doeleinden kunnen gebruiken of ook in willen kunnen zetten voor andere opdrachtgevers? 
+      Zou het erg zijn als je opdrachtgever het werk met anderen zou delen of het zou doorverkopen, bijvoorbeeld?
+      <br><br>
+      En het hangt ook af van jouw kwaliteiten. Zijn jouw creaties bijzonder, is het een specifiek talent van jou? Word je bijvoorbeeld specifiek 
+      ingehuurd vanwege jouw creatieve talenten of capaciteiten? Heb je een specifieke, herkenbare stijl?
+  - field: intelrecht_ovk
+    label: >
+      31a.
+    input type: radio
+    choices:
+      - Ja, ik wil de volledige rechten behouden, en geef aan de opdrachtgever een beperkt, <u>niet-exclusief en niet-overdraagbaar</u> recht tot gebruik van mijn werk voor de overeengekomen doelen.: nietexclusief
+      - Ja, ik wil de volledige rechten behouden, maar ik geef aan de opdrachtgever een beperkt, <u>exclusief en overdraagbaar</u> recht tot het gebruik van mijn werk voor de overeengekomen doelen. *(meest gekozen)*: exclusief
+      - Nee, ik wil in de algemene voorwaarden opnemen dat de volledige intellectuele eigendomsrechten <u>automatisch worden overdragen</u> aan de opdrachtgever, tenzij anders is overeengekomen.: overdragen
+# _________________________________
+# 31b | intelrechtuitgebreid_ovk
+# _________________________________
+  - field: intelrechtuitgebreid_ovk
+    help: >
+      Als dit uitgebreid wordt opgenomen wordt er bijvoorbeeld ook een boeteclausule opgenomen voor als de opdrachtgever de rechten heeft geschonden.
+    label: >
+      31b.<br>
+      Wil je dit uitgebreid of beknopt opnemen in de algemene voorwaarden?
+    input type: radio
+    choices:
+      - Beknopt *(meest gekozen)*: beknopt
+      - Uitgebreid: uitgebreid
+    js show if: |
+      val("intelrecht_ovk") == "nietexclusief" || val("intelrecht_ovk") == "exclusief"
+    required: False
+# _________________________________
+# 32 | aanpassingsrecht_ovk
+# _________________________________
+  - note: >
+      32. **Aanpassingsrecht:**<br>
+      Creëer je producten voor opdrachtgevers, waarvan je niet wilt dat ze zelf aanpassingen eraan maken, en wil je dit opnemen in de OvO?
+    help: >
+      Bijvoorbeeld het ontwerpen van een website. Je kunt afspreken dat het recht om aanpassingen in het ontwerp te maken bij jou blijft. 
+      Ze mogen dan bijvoorbeeld wel tekstuele aanpassingen maken, maar geen aanpassingen maken aan het design. Of als je een logo ontwerpt, 
+      dat je niet wilt dat ze daar dan zelf nog aanpassingen aan maken.
+      <br><br>
+      *Tip:<br>
+      Als je in de vorige vraag hebt aangegeven dat je de intellectuele eigendomsrechten van jouw werk wilt behouden, 
+      maar dat je de opdrachtgever een beperkt, niet-exclusief en niet-overdraagbaar recht tot gebruik van je werk geeft, 
+      dan staat in de algemene voorwaarden ook opgenomen dat jouw werk niet zonder toestemming aangepast mag worden. 
+      Je hoeft dit sowieso in principe alleen in de OvO op te nemen als dit in het bijzonder belangrijk is voor het type werkzaamheden dat je uitvoert 
+      (bijvoorbeeld als grafisch ontwerper of webdesigner).*
+  - field: aanpassingsrecht_ovk
+    label: >
+      32.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja, en ik wil dit ook opnemen in de OvO: ja ovo
+      - Ja, maar ik wil dit niet opnemen in de OvO: nee ovo
+# _________________________________
+# 33 | naamsvermelding_ovk
+# _________________________________
+  - note: >
+      33. **Naamsvermelding:**<br>
+      Wil je dat jouw (bedrijfs)naam wordt vermeld bij werk van jou dat gepubliceerd wordt door de opdrachtgever of door derden?
+    help: >
+      Bijvoorbeeld als je een website hebt ontworpen voor een opdrachtgever, 
+      kun je bijvoorbeeld jouw (bedrijfs)naam vermelden onderaan de footer *“created by …”*.
+  - field: naamsvermelding_ovk
+    label: >
+      33.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja, bij al mijn werk/creaties, tenzij anders wordt overeengekomen.: ja alles
+      - Ja, maar alleen bij bepaalde typen werk/creaties *(specificeer dit zelf nader in de algemene voorwaarden)*.: ja beperkt
+      - Ja, maar niet standaard bij alles en ook niet standaard bij een bepaald type werk. Als ik wil dat mijn naam ergens vermeld wordt geef ik dit specifiek aan.: ja op verzoek
+# _________________________________
+# 34 | vragen_intellectueeleigendom
+# _________________________________
+  - note: >
+      34. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_intellectueeleigendom
+    label:
+    input type: area
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 35
+section: sec_intellectueeleigendom
+---
+#---------------------------------
+# CODE INTELLECTUEEL EIGENDOM N/A
+#---------------------------------
+code: |
+  if intelrecht_ovk == "overdragen":
+    intelrechtuitgebreid_ovk = 'N/A'
+depends on: 
+  - intelrecht_ovk
+---

@@ -1,0 +1,246 @@
+# TO DO: vraag 61 b nog verwerken over meeruren abonnement
+#-----------------------------------------------------------------------------
+# METADATA SECTIE FACTURATIE > ABONNEMENT
+#----------------------------------------------------------------------------
+code: |
+  version_opdr_abonnement: '11v07'
+# last revision date: 2025-03-20
+---
+#---------------------------------
+# ABONNEMENT
+#---------------------------------
+id: id_abonnement
+# mandatory: True
+question: |
+  Abonnement
+fields:
+# _________________________________
+# 61 | uurbasispakket_ovk
+# _________________________________
+  - note: >
+      61. **Uurbasis of Projectbasis:**<br>
+      Werk je met een abonnement op uurbasis (dus een vast aantal uren per maand) of op projectbasis (dus een vast pakket aan werkzaamheden)?
+  - field: uurbasispakket_ovk
+    label: >
+      61.
+    input type: radio
+    choices:
+      - Uurbasis: "[AANTAL UREN]"
+      - Vast pakket aan werkzaamheden: "[SPECIFICATIE VAN PAKKET]" 
+      - Beide (zowel uurbasis als pakket): "[AANTAL UREN of SPECIFICATIE VAN PAKKET]"
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[AANTAL UREN / SPECIFICATIE VAN PAKKET]"
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 62 | abofacturatieperiode_ovk
+# _________________________________
+  - note: >
+      62. **Facturatiefrequentie:**<br>
+      Factureer je maandelijks of factureer je een hele contractsperiode in één keer? 
+  - field: abofacturatieperiode_ovk
+    label: >
+      62.
+    input type: radio
+    choices:
+      - Maandelijks *(meest gekozen)*: Maandelijks
+      - Wekelijks: Wekelijks
+      - Per kwartaal: Per kwartaal
+      - Jaarlijks: Jaarlijks
+      - Volledige contractsperiode: "Een volledige contractsperiode van [AANTAL MAANDEN],"
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: "[MAANDELIJKS of VOLLEDIGE CONTRACTSPERIODE VAN X AANTAL MAANDEN]"
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 63 | voorafachterafabo_ovk
+# _________________________________
+  - note: >
+      63. **Vooraf of achteraf:**<br>
+      Factureer je vooraf of achteraf?
+  - field: voorafachterafabo_ovk
+    label: >
+      63.
+    input type: radio
+    choices:
+      - Vooraf: vooraf
+      - Achteraf: achteraf
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: vooraf of achteraf
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 64 | ongebruikteuren_ovk
+# _________________________________
+  - note: >
+      64. **Ongebruikte uren of werkzaamheden meenemen:**<br>
+      Kunnen ongebruikte uren of werkzaamheden worden meegenomen naar de volgende maand?
+    help: >
+      *Tip:<br>
+      als je niet gebruikte uren laat meenemen naar de volgende maand, is het verstandig om hier wel een bepaald maximum aan te verbinden. 
+      Als je ongebruikte uren maximaal één maand laat meenemen, voorkom je een opeenstapeling van ongebruikte uren en kan het aantal openstaande 
+      uren in een maand maximaal tweemaal het overeengekomen maandelijkse aantal uren bedragen. 
+      Als je ongebruikte uren maximaal twee maanden laat meenemen kan het aantal openstaande uren oplopen tot driemaal 
+      het overeengekomen maandelijkse aantal uren, etc.*
+  - field: ongebruikteuren_ovk
+    label: >
+      64.
+    input type: radio
+    choices:
+      - Dit kan NIET meegenomen worden naar de volgende maand *(meest gekozen)*: Ongebruikte uren of werkzaamheden kunnen niet meegenomen worden naar de volgende maand
+      - Dit kan WEL meegenomen worden naar de volgende maand: Het is desgewenst mogelijk om ongebruikte uren of werkzaamheden mee te nemen naar de volgende maand
+      - Dit kan BEPERKT en uitsluitend in overleg meegenomen worden naar de volgende maand: Ongebruikte uren of werkzaamheden kunnen beperkt en uitsluitend in overleg worden meegenomen naar de volgende maand
+      - Dit kan maximaal 1 MAAND meegenomen worden. In de maand erop worden eerst de meegenomen uren/werkzaamheden opgemaakt en daarna pas de uren/werkzaamheden van die maand: Ongebruikte uren kunnen maximaal één maand meegenomen worden. In de maand erop worden eerst de meegenomen uren opgemaakt en daarna pas de reguliere uren
+      - Dit kan maximaal 1 MAAND meegenomen worden. In de maand erop worden eerst de uren/werkzaamheden van die maand opgemaakt en daarna pas de meegenomen uren/werkzaamheden: Ongebruikte uren kunnen maximaal één maand meegenomen worden. In de maand erop worden eerst de reguliere uren opgemaakt en daarna pas de meegenomen uren
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 65 | urencreditatie_ovk
+# _________________________________
+  - note: >
+      65. **Ongebruikte uren of werkzaamheden crediteren:**<br>
+      Kunnen niet gebruikte uren of werkzaamheden gecrediteerd (terugbetaald) worden?
+  - field: urencreditatie_ovk
+    label: >
+      65.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: niet
+      - Ja: desgewenst
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 66 | meeruren_ovk
+# _________________________________
+  - note: >
+      66. **Meeruren:**<br>
+      Hoe worden meeruren of meerwerk in rekening gebracht?
+  - field: meeruren_ovk
+    label: >
+      66.
+    datatype: radio
+    choices: 
+      - Op basis van nacalculatie *(meest gekozen)*: Meerwerk en/of meeruren worden in rekening gebracht op basis van nacalculatie
+      - Door middel van een verhoging van het abonnement voor die maand en alle toekomstige maanden: Meerwerk en/of meeruren worden in rekening gebracht door middel van een verhoging van het abonnement voor de betreffende maand en alle toekomstige maanden
+      - Dit wordt minder gewerkt in de maand erop (de gewerkte uren/werkzaamheden worden dus meegenomen naar de volgende maand): Meerwerk en/of meeruren worden in de erop volgende maand in mindering gebracht
+      - Deze worden niet in rekening gebracht: niet gefactureerd
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 67a | wijzigingabo_ovk
+# _________________________________
+  - note: >
+      67. **Tussentijdse wijziging**<br>
+      Kan het aantal uren en/of de omvang van het pakket aan werkzaamheden tussentijds gewijzigd worden?
+    help: >
+      Stel dat je een social media content abonnement aanbiedt, waarbij je overeenkomt om 8 posts per maand te maken voor Instagram, voor een vaste prijs. 
+      Kan dit dan tussentijds gewijzigd worden naar bijvoorbeeld 4 posts per maand voor een lagere prijs, of naar 12 posts per maand voor een hogere prijs?
+  - field: wijzigingabo_ovk
+    label: >
+      67a.
+    datatype: radio
+    choices: 
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+# _________________________________
+# 67b | wijzigingabotermijn_ovk
+# _________________________________
+  - field: wijzigingabotermijn_ovk
+    help: >
+      *Tip:<br>Je kunt ervoor kiezen om verschillende wijzigingstermijnen te hanteren voor een toename versus een afname van het aantal uren en/of de omvang 
+      van de werkzaamheden. Bijvoorbeeld: toename kan in overleg per direct. Voor afname van het aantal uren geldt een opzegtermijn van een maand.*
+    label: >
+      67b. Zo ja, hoe en welke wijzigingstermijn hanteer je?
+    datatype: radio
+    choices: 
+      - In onderling overleg ten minste één maand voorafgaand aan de maand waarin de **afname** van het aantal uren in dient te gaan. Een **toename** van het aantal uren kan in overleg per direct ingaan *(meest gekozen)*: in onderling overleg schriftelijk of per e-mail verlagen, ten minste één maand voorafgaand aan de maand waarin het lagere aantal uren of waarin de afname van de omvang van het pakket aan werkzaamheden in dient te gaan. Een toename van het aantal uren of een toename van de omvang van het pakket aan werkzaamheden kan in overleg per direct ingaan, indien dit schriftelijk of per e-mail is overeengekomen.
+      - In onderling overleg: in onderling overleg tussentijds schriftelijk of per e-mail wijzigen.
+      - In onderling overleg ten minste één maand voorafgaand aan de maand waarin de wijziging in dient te gaan: in onderling overleg ten minste één maand voorafgaand aan de maand waarin het gewijzigde aantal uren of de gewijzigde omvang van het pakket aan werkzaamheden in dient te gaan, schriftelijk of per e-mail wijzigen.
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    show if:
+      variable: wijzigingabo_ovk
+      is: ja
+# _________________________________
+# 68 | vragen_abonnement
+# _________________________________
+  - note: >
+      68. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_abonnement
+    label:
+    input type: area
+    show if:
+      code: |
+        facturatiewijze_ovk['abonnement']
+    required: False    
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.*<br><br>
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het menu op de sectie waar je iets wilt wijzigen.*
+#---
+progress: 55
+section: sec_abonnement
+---
+#---------------------------------
+# CODE ABONNEMENT N/A
+#---------------------------------
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    uurbasispakket_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    abofacturatieperiode_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    voorafachterafabo_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    ongebruikteuren_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    urencreditatie_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    meeruren_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    wijzigingabo_ovk = 'N/A'
+depends on: facturatiewijze_ovk
+---
+code: |
+  if not wijzigingabo_ovk == "ja":
+    wijzigingabotermijn_ovk = 'N/A'
+depends on: wijzigingabo_ovk
+---
+code: |
+  if not facturatiewijze_ovk['abonnement']:
+    vragen_abonnement = 'N/A'
+depends on: facturatiewijze_ovk
+---
