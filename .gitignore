@@ -25,6 +25,9 @@ Desktop.ini
 # Dependencies
 node_modules/
 
+# Next.js build output
+.next/
+
 # Temporary files
 *.tmp
 .tmp-*

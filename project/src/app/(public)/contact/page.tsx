@@ -1,0 +1,239 @@
+"use client";
+
+import { useState } from "react";
+
+export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    subject: "Algemene vraag",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const update = (field: string, value: string) =>
+    setForm((prev) => ({ ...prev, [field]: value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (!res.ok) {
+      setError("Kon bericht niet versturen. Probeer het opnieuw.");
+      setLoading(false);
+      return;
+    }
+
+    setSent(true);
+    setLoading(false);
+  };
+
+  if (sent) {
+    return (
+      <section className="py-12">
+        <div className="mx-auto max-w-2xl px-4 text-center">
+          <svg
+            className="h-12 w-12 text-success mx-auto"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <h1 className="text-2xl font-bold mt-4">Bericht verstuurd!</h1>
+          <p className="mt-2 text-muted">
+            Bedankt voor uw bericht. Wij reageren binnen 24 uur op werkdagen.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <h1 className="text-4xl font-bold">Contact</h1>
+          <p className="mt-4 text-lg text-muted">
+            Heeft u vragen? Neem gerust contact met ons op.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          {/* Form */}
+          <div className="rounded-xl bg-card border border-card-border p-6">
+            <h2 className="text-xl font-semibold mb-6">
+              Stuur ons een bericht
+            </h2>
+
+            {error && (
+              <div className="mb-4 rounded-lg bg-error/10 border border-error/20 px-4 py-3 text-sm text-error">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-muted mb-1">
+                  Naam *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => update("name", e.target.value)}
+                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  placeholder="Uw naam"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-muted mb-1">
+                  E-mailadres *
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => update("email", e.target.value)}
+                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  placeholder="uw@email.nl"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-muted mb-1">
+                  Bedrijfsnaam
+                </label>
+                <input
+                  type="text"
+                  value={form.company}
+                  onChange={(e) => update("company", e.target.value)}
+                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  placeholder="Optioneel"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-muted mb-1">
+                  Onderwerp *
+                </label>
+                <select
+                  value={form.subject}
+                  onChange={(e) => update("subject", e.target.value)}
+                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground focus:outline-none focus:border-primary"
+                >
+                  <option>Algemene vraag</option>
+                  <option>Vraag over een document</option>
+                  <option>Hulp bij vragenlijst</option>
+                  <option>Klacht</option>
+                  <option>Anders</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-muted mb-1">
+                  Bericht *
+                </label>
+                <textarea
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) => update("message", e.target.value)}
+                  className="w-full rounded-lg bg-background border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary resize-none"
+                  placeholder="Uw bericht..."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-lg bg-primary py-3 font-semibold text-background hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Bezig..." : "Versturen"}
+              </button>
+              <p className="text-xs text-muted text-center">
+                Wij reageren binnen 24 uur op werkdagen.
+              </p>
+            </form>
+          </div>
+
+          {/* Contact info */}
+          <div className="space-y-4">
+            {[
+              {
+                icon: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
+                title: "E-mail",
+                value: "info@virtually-yours.nl",
+              },
+              {
+                icon: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z",
+                title: "Telefoon",
+                value: "+31 (0)6 18755103",
+                sub: "Ma-Vr 09:00 - 17:00",
+              },
+              {
+                icon: "M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z",
+                title: "WhatsApp",
+                value: "+31 (0)6 18755103",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl bg-card border border-card-border p-5 flex items-start gap-4"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                  <svg
+                    className="h-5 w-5 text-primary"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d={item.icon}
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">{item.title}</h3>
+                  <p className="text-sm text-muted">{item.value}</p>
+                  {item.sub && (
+                    <p className="text-xs text-muted/60">{item.sub}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {/* Company details */}
+            <div className="rounded-xl bg-card border border-card-border p-5 mt-4">
+              <h3 className="font-semibold text-sm mb-3">
+                Bedrijfsgegevens
+              </h3>
+              <div className="space-y-1 text-sm text-muted">
+                <p className="font-medium text-foreground">
+                  Virtually Yours
+                </p>
+                <p>Wikkestraat 68, Alphen aan den Rijn</p>
+                <p>KvK: 76053881</p>
+                <p>BTW: NL003038893B59</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

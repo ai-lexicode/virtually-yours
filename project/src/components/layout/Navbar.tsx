@@ -1,0 +1,122 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/over-mij", label: "Over mij" },
+  { href: "/documenten", label: "Documenten" },
+  { href: "/pakketten", label: "Pakketten" },
+  { href: "/contact", label: "Contact" },
+];
+
+export function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-card-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="text-xl font-bold text-primary">
+            Virtually Yours
+          </Link>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Auth buttons */}
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/inloggen"
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Inloggen
+            </Link>
+            <Link
+              href="/registreren"
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-background hover:bg-primary-hover transition-colors"
+            >
+              Gratis account
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden text-foreground p-2 -mr-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menu"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {mobileOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-card-border bg-background">
+          <div className="px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block text-sm text-muted hover:text-foreground py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="pt-3 border-t border-card-border flex items-center gap-3">
+              <Link
+                href="/inloggen"
+                className="text-sm text-muted hover:text-foreground py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                Inloggen
+              </Link>
+              <Link
+                href="/registreren"
+                className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-background"
+                onClick={() => setMobileOpen(false)}
+              >
+                Gratis account
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
