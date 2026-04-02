@@ -2,4 +2,5 @@
 
 | # | Spec | Status | Blocked by | Conflicts |
 |---|------|--------|------------|-----------|
-| 1 | feat-001-clone-lexicode-virtually-yours | 🟦 approved | — | — |
+| 1 | feat-001-clone-lexicode-virtually-yours | ✅ implemented | — | — |
+| 2 | feat-002-stitch-redesign-content-migration | ⬜ draft | — | — |
