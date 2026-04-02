@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CookiePreferencesButton } from "@/components/public/CookiePreferencesButton";
 
 const documentLinks = [
   { href: "/documenten?cat=privacy", label: "Privacyverklaring" },
@@ -147,9 +148,13 @@ export function Footer() {
             <Link href="/privacyverklaring" className="hover:text-primary transition-colors">
               Privacyverklaring
             </Link>
+            <Link href="/privacyverklaring" className="hover:text-primary transition-colors">
+              Cookiebeleid
+            </Link>
             <Link href="/algemene-voorwaarden" className="hover:text-primary transition-colors">
               Algemene Voorwaarden
             </Link>
+            <CookiePreferencesButton />
           </div>
         </div>
       </div>
