@@ -6,6 +6,17 @@ pending_known_issues: []
 pending_patterns: []
 pending_decisions: []
 
+review_fix_tally:
+  - tag: missing-file-ref
+    spec: feat-001
+    date: 2026-04-02
+  - tag: wrong-path
+    spec: feat-001
+    date: 2026-04-02
+  - tag: vague-scope
+    spec: feat-001
+    date: 2026-04-02
+
 self_healing:
   applied_fixes: []
   resolved_errors: []
