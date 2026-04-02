@@ -1,22 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
-  --foreground: #1e293b;
-  --card: #ffffff;
-  --card-border: #e2e8f0;
-  --primary: #046bd2;
-  --primary-hover: #045cb4;
-  --primary-muted: #0369a1;
-  --sidebar: #f1f5f9;
-  --accent: #ffab00;
-  --accent-hover: #e09900;
-  --text-secondary: #334155;
-  --border: #cbd5e1;
-  --muted: #94a3b8;
+  --background: #f8f9ff;
+  --foreground: #0d1c2f;
+  --primary: #001825;
+  --primary-container: #0f2d3d;
+  --primary-hover: #0f2d3d;
+  --secondary: #7b5730;
+  --secondary-container: #ffce9e;
+  --surface: #f8f9ff;
+  --surface-container: #e6eeff;
+  --surface-container-high: #dde9ff;
+  --surface-container-highest: #d5e3fd;
+  --surface-container-low: #eff4ff;
+  --surface-container-lowest: #ffffff;
+  --on-primary: #ffffff;
+  --on-surface: #0d1c2f;
+  --on-secondary: #ffffff;
+  --outline: #73787c;
+  --outline-variant: #c2c7cc;
+  --accent: #ffce9e;
+  --error: #ba1a1a;
   --success: #22c55e;
   --warning: #f59e0b;
-  --error: #ef4444;
+  --muted: #73787c;
+  --card: #ffffff;
+  --card-border: transparent;
+  --sidebar: #eff4ff;
   --info: #3b82f6;
 }
 
@@ -27,34 +38,49 @@
   --color-card-border: var(--card-border);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
-  --color-primary-muted: var(--primary-muted);
-  --color-sidebar: var(--sidebar);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-on-primary: var(--on-primary);
+  --color-on-surface: var(--on-surface);
+  --color-on-secondary: var(--on-secondary);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
   --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-text-secondary: var(--text-secondary);
-  --color-border: var(--border);
+  --color-sidebar: var(--sidebar);
   --color-muted: var(--muted);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
   --color-info: var(--info);
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Noto Serif', Georgia, 'Times New Roman', serif;
+  --font-label: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans);
 }
 
-/* Typography scale */
+/* Typography scale — Editorial Clarity */
 .text-display {
+  font-family: var(--font-serif);
   font-size: 3.5rem;
   line-height: 1.1;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .text-headline {
+  font-family: var(--font-serif);
   font-size: 2.25rem;
   line-height: 1.2;
   font-weight: 700;
@@ -62,9 +88,10 @@ body {
 }
 
 .text-title {
+  font-family: var(--font-serif);
   font-size: 1.5rem;
   line-height: 1.3;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .text-body-lg {
@@ -78,8 +105,18 @@ body {
 }
 
 .text-caption {
+  font-family: var(--font-label);
   font-size: 0.875rem;
   line-height: 1.5;
+}
+
+.text-label {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* Smooth scroll */
@@ -87,9 +124,52 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring */
+/* Focus ring — ghost border with secondary color */
 *:focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--secondary);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 0.25rem;
+}
+
+/* Gradient button utility */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  color: var(--on-primary);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
+/* Surface layering — No-Line Rule */
+.surface-elevated {
+  background: var(--surface-container-lowest);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.surface-tonal {
+  background: var(--surface-container);
+}
+
+/* Input styles — No bottom line, surface bg */
+.input-field {
+  background: var(--surface-container-highest);
+  border: 2px solid transparent;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--foreground);
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--secondary);
 }

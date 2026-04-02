@@ -63,7 +63,7 @@ export default function RegistrerenPage() {
     return (
       <>
         <div className="lg:hidden mb-8 text-center">
-          <Link href="/" className="text-2xl font-bold text-primary">
+          <Link href="/" className="font-serif text-2xl font-bold text-primary">
             Virtually Yours
           </Link>
         </div>
@@ -82,7 +82,7 @@ export default function RegistrerenPage() {
               d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <h1 className="text-2xl font-bold mt-4">Account aangemaakt!</h1>
+          <h1 className="font-serif text-2xl font-bold mt-4 text-on-surface">Account aangemaakt!</h1>
           <p className="mt-2 text-sm text-muted">
             We hebben een bevestigingslink gestuurd naar{" "}
             <strong>{form.email}</strong>. Klik op de link om uw account te
@@ -90,7 +90,7 @@ export default function RegistrerenPage() {
           </p>
           <Link
             href="/inloggen"
-            className="mt-6 inline-block text-primary hover:text-primary-hover font-medium text-sm"
+            className="mt-6 inline-block text-secondary hover:text-secondary/80 font-medium text-sm"
           >
             Naar inloggen
           </Link>
@@ -107,13 +107,13 @@ export default function RegistrerenPage() {
         </Link>
       </div>
 
-      <h1 className="text-2xl font-bold">Account aanmaken</h1>
+      <h1 className="font-serif text-2xl font-bold text-on-surface">Account aanmaken</h1>
       <p className="mt-2 text-sm text-muted">
         Maak een gratis account aan om te beginnen
       </p>
 
       {error && (
-        <div className="mt-4 rounded-lg bg-error/10 border border-error/20 px-4 py-3 text-sm text-error">
+        <div className="mt-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
           {error}
         </div>
       )}
@@ -121,7 +121,7 @@ export default function RegistrerenPage() {
       <form onSubmit={handleRegister} className="mt-8 space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">
+            <label className="block text-sm font-medium text-muted mb-1 font-label">
               Voornaam *
             </label>
             <input
@@ -129,12 +129,12 @@ export default function RegistrerenPage() {
               required
               value={form.firstName}
               onChange={(e) => update("firstName", e.target.value)}
-              className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+              className="input-field"
               placeholder="Voornaam"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-muted mb-1">
+            <label className="block text-sm font-medium text-muted mb-1 font-label">
               Achternaam *
             </label>
             <input
@@ -142,37 +142,37 @@ export default function RegistrerenPage() {
               required
               value={form.lastName}
               onChange={(e) => update("lastName", e.target.value)}
-              className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+              className="input-field"
               placeholder="Achternaam"
             />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             Bedrijfsnaam
           </label>
           <input
             type="text"
             value={form.companyName}
             onChange={(e) => update("companyName", e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="Uw bedrijfsnaam"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             KvK-nummer
           </label>
           <input
             type="text"
             value={form.kvkNumber}
             onChange={(e) => update("kvkNumber", e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="12345678"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             E-mailadres *
           </label>
           <input
@@ -180,12 +180,12 @@ export default function RegistrerenPage() {
             required
             value={form.email}
             onChange={(e) => update("email", e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="uw@email.nl"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             Wachtwoord *
           </label>
           <input
@@ -194,7 +194,7 @@ export default function RegistrerenPage() {
             minLength={8}
             value={form.password}
             onChange={(e) => update("password", e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="Minimaal 8 tekens"
           />
         </div>
@@ -204,15 +204,15 @@ export default function RegistrerenPage() {
             type="checkbox"
             checked={form.terms}
             onChange={(e) => update("terms", e.target.checked)}
-            className="h-5 w-5 rounded border-card-border mt-0.5"
+            className="h-5 w-5 rounded-[0.25rem] mt-0.5 accent-secondary"
           />
           <span>
             Ik ga akkoord met de{" "}
-            <Link href="/algemene-voorwaarden" className="text-primary">
+            <Link href="/algemene-voorwaarden" className="text-secondary">
               algemene voorwaarden
             </Link>{" "}
             en het{" "}
-            <Link href="/privacyverklaring" className="text-primary">
+            <Link href="/privacyverklaring" className="text-secondary">
               privacybeleid
             </Link>
           </span>
@@ -221,7 +221,7 @@ export default function RegistrerenPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-primary py-3 font-semibold text-background hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-[0.25rem] btn-gradient py-3 font-semibold text-on-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Bezig..." : "Registreren"}
         </button>
@@ -231,7 +231,7 @@ export default function RegistrerenPage() {
         Al een account?{" "}
         <Link
           href="/inloggen"
-          className="text-primary hover:text-primary-hover font-medium"
+          className="text-secondary hover:text-secondary/80 font-medium"
         >
           Inloggen
         </Link>

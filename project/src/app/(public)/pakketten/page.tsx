@@ -36,7 +36,7 @@ export default async function PakkettenPage() {
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <h1 className="text-3xl sm:text-4xl font-bold">Pakketten</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Pakketten</h1>
           <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">
             Bespaar tot 20% met onze documentpakketten — alles wat u nodig heeft
             in een keer geregeld.
@@ -47,32 +47,32 @@ export default async function PakkettenPage() {
           {bundles.map((bundle) => (
             <div
               key={bundle.title}
-              className={`rounded-xl bg-card border p-6 flex flex-col ${
+              className={`rounded-[0.25rem] bg-surface-container-lowest p-6 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
                 bundle.popular
-                  ? "border-primary ring-1 ring-gold"
-                  : "border-card-border"
+                  ? "ring-2 ring-secondary"
+                  : ""
               }`}
             >
               {bundle.popular && (
-                <span className="self-center -mt-9 rounded-full bg-primary px-4 py-1 text-xs font-bold text-background">
+                <span className="self-center -mt-9 rounded-[0.25rem] bg-secondary px-4 py-1 text-xs font-bold text-on-secondary">
                   Meest gekozen
                 </span>
               )}
               <h3
-                className={`text-xl font-bold ${bundle.popular ? "mt-3" : ""}`}
+                className={`font-serif text-xl font-bold text-on-surface ${bundle.popular ? "mt-3" : ""}`}
               >
                 {bundle.title}
               </h3>
               <p className="text-sm text-muted mt-1">{bundle.description}</p>
 
               <div className="mt-6">
-                <span className="text-3xl font-bold text-primary">
+                <span className="text-3xl font-bold text-secondary">
                   {formatPrice(bundle.priceCents)}
                 </span>
                 <span className="ml-2 text-sm text-muted line-through">
                   {formatPrice(bundle.originalCents)}
                 </span>
-                <span className="ml-2 inline-block rounded-full bg-success/20 px-2 py-0.5 text-xs font-medium text-success">
+                <span className="ml-2 inline-block rounded-[0.25rem] bg-success/20 px-2 py-0.5 text-xs font-medium text-success">
                   Bespaar {bundle.discount}%
                 </span>
               </div>
@@ -81,7 +81,7 @@ export default async function PakkettenPage() {
                 {bundle.includes.map((item) => (
                   <li key={item.title} className="flex items-start gap-2">
                     <svg
-                      className="h-5 w-5 text-primary mt-0.5 shrink-0"
+                      className="h-5 w-5 text-secondary mt-0.5 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -107,10 +107,10 @@ export default async function PakkettenPage() {
 
               <Link
                 href={`/checkout?bundle=${bundle.title.toLowerCase().replace(/ /g, "-")}`}
-                className={`mt-6 block w-full rounded-lg py-3 text-center font-semibold transition-colors ${
+                className={`mt-6 block w-full rounded-[0.25rem] py-3 text-center font-semibold transition-colors ${
                   bundle.popular
-                    ? "bg-primary text-background hover:bg-primary-hover"
-                    : "border border-primary text-primary hover:bg-primary/10"
+                    ? "btn-gradient text-on-primary"
+                    : "bg-surface-container-lowest text-secondary hover:bg-surface-container-low"
                 }`}
               >
                 Bestellen
@@ -123,7 +123,7 @@ export default async function PakkettenPage() {
           Liever een individueel document?{" "}
           <Link
             href="/documenten"
-            className="text-primary hover:text-primary-hover"
+            className="text-secondary hover:text-secondary/80 font-medium"
           >
             Bekijk alle documenten &rarr;
           </Link>

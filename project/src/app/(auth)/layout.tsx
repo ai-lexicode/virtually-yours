@@ -8,8 +8,8 @@ export default function AuthLayout({
 }) {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
-      {/* Brand panel */}
-      <div className="hidden lg:flex flex-col justify-center items-center bg-primary p-12">
+      {/* Brand panel — gradient */}
+      <div className="hidden lg:flex flex-col justify-center items-center bg-gradient-to-br from-primary to-primary-container p-12">
         <Link href="/">
           <Image
             src="/images/logo.png"
@@ -19,7 +19,7 @@ export default function AuthLayout({
             className="h-14 w-auto brightness-0 invert"
           />
         </Link>
-        <p className="mt-6 text-lg text-white/80 text-center max-w-sm">
+        <p className="mt-6 text-lg text-on-primary/70 text-center max-w-sm font-serif">
           Uw juridische documenten, altijd binnen handbereik
         </p>
         <ul className="mt-10 space-y-4">
@@ -28,9 +28,9 @@ export default function AuthLayout({
             "Documenten altijd beschikbaar",
             "Voortgang opslaan en later verdergaan",
           ].map((item) => (
-            <li key={item} className="flex items-center gap-3 text-white/70">
+            <li key={item} className="flex items-center gap-3 text-on-primary/60">
               <svg
-                className="h-5 w-5 text-white shrink-0"
+                className="h-5 w-5 text-accent shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -49,7 +49,7 @@ export default function AuthLayout({
       </div>
 
       {/* Form panel */}
-      <div className="flex items-center justify-center p-6 sm:p-12">
+      <div className="flex items-center justify-center p-6 sm:p-12 bg-surface">
         <div className="w-full max-w-md">{children}</div>
       </div>
     </div>

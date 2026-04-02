@@ -42,17 +42,17 @@ const blogPosts = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Arbeidsrecht: "bg-blue-500/20 text-blue-600",
-  Privacy: "bg-teal-500/20 text-teal-600",
-  Ondernemingsrecht: "bg-purple-500/20 text-purple-600",
+  Arbeidsrecht: "bg-surface-container-high text-primary",
+  Privacy: "bg-secondary-container/40 text-secondary",
+  Ondernemingsrecht: "bg-surface-container text-primary-container",
 };
 
 export default function NieuwsPage() {
   return (
     <>
-      <section className="py-16 sm:py-20 text-center">
+      <section className="py-16 sm:py-20 text-center bg-surface-container-low">
         <div className="mx-auto max-w-3xl px-4">
-          <h1 className="text-3xl sm:text-4xl font-bold">Nieuws</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Nieuws</h1>
           <p className="mt-4 text-lg text-muted">
             Juridisch nieuws en updates voor online ondernemers, VA&apos;s en
             zzp&apos;ers.
@@ -66,23 +66,23 @@ export default function NieuwsPage() {
             <Link
               key={post.slug}
               href={`/nieuws/${post.slug}`}
-              className="group block rounded-xl bg-card border border-card-border p-6 hover:border-primary/40 transition-all"
+              className="group block rounded-[0.25rem] bg-surface-container-lowest p-6 hover:bg-surface-container-low transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
             >
               <div className="flex items-center gap-3 mb-3">
                 <span
-                  className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${categoryColors[post.category] || "bg-gray-500/20 text-gray-600"}`}
+                  className={`inline-block rounded-[0.25rem] px-3 py-1 text-xs font-medium font-label ${categoryColors[post.category] || "bg-surface-container text-muted"}`}
                 >
                   {post.category}
                 </span>
-                <span className="text-xs text-muted">{post.date}</span>
+                <span className="text-xs text-muted font-label">{post.date}</span>
               </div>
-              <h2 className="text-lg font-semibold group-hover:text-primary transition-colors">
+              <h2 className="font-serif text-lg font-bold group-hover:text-secondary transition-colors text-on-surface">
                 {post.title}
               </h2>
               <p className="mt-2 text-sm text-muted leading-relaxed line-clamp-3">
                 {post.summary}
               </p>
-              <span className="mt-4 inline-block text-sm text-primary font-medium group-hover:translate-x-1 transition-transform">
+              <span className="mt-4 inline-block text-sm text-secondary font-medium group-hover:translate-x-1 transition-transform">
                 Lees meer &rarr;
               </span>
             </Link>

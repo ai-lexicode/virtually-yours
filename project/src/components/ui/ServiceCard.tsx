@@ -9,8 +9,8 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon, title, description, href }: ServiceCardProps) {
   const content = (
-    <div className="rounded-xl bg-card border border-card-border p-6 hover:border-primary/40 transition-all group h-full">
-      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4">
+    <div className="rounded-[0.25rem] bg-surface-container-lowest p-6 hover:bg-surface-container-low transition-all group h-full shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-[0.25rem] bg-surface-container mb-4">
         <svg
           className="h-6 w-6 text-primary"
           fill="none"
@@ -21,12 +21,12 @@ export function ServiceCard({ icon, title, description, href }: ServiceCardProps
           <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
         </svg>
       </div>
-      <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+      <h3 className="font-serif text-lg font-bold group-hover:text-secondary transition-colors">
         {title}
       </h3>
       <p className="mt-2 text-sm text-muted leading-relaxed">{description}</p>
       {href && (
-        <span className="mt-4 inline-block text-sm text-primary font-medium group-hover:translate-x-1 transition-transform">
+        <span className="mt-4 inline-block text-sm text-secondary font-medium group-hover:translate-x-1 transition-transform">
           Meer informatie &rarr;
         </span>
       )}

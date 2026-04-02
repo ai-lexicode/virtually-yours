@@ -49,11 +49,11 @@ export default async function DocumentDetailPage({
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-sm text-muted mb-6">
-          <Link href="/" className="hover:text-foreground">
+          <Link href="/" className="hover:text-secondary transition-colors">
             Home
           </Link>{" "}
           &gt;{" "}
-          <Link href="/documenten" className="hover:text-foreground">
+          <Link href="/documenten" className="hover:text-secondary transition-colors">
             Documenten
           </Link>{" "}
           &gt; {doc.title}
@@ -62,24 +62,24 @@ export default async function DocumentDetailPage({
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* Left column */}
           <div className="lg:col-span-3">
-            <span className="inline-block rounded-full bg-blue-500/20 px-3 py-1 text-xs font-medium text-blue-400">
+            <span className="inline-block rounded-[0.25rem] bg-surface-container px-3 py-1 text-xs font-medium font-label text-primary">
               {categoryLabels[doc.category] || doc.category}
             </span>
-            <h1 className="mt-4 text-3xl sm:text-4xl font-bold">
+            <h1 className="mt-4 font-serif text-3xl sm:text-4xl font-bold text-on-surface">
               {doc.title}
             </h1>
             <p className="mt-4 text-lg text-muted">{doc.long_description || doc.description}</p>
 
             {/* Includes */}
             <div className="mt-10">
-              <h2 className="text-xl font-semibold mb-4">
+              <h2 className="font-serif text-xl font-bold mb-4 text-on-surface">
                 Wat is inbegrepen
               </h2>
               <ul className="space-y-3">
                 {(doc.includes as string[]).map((item: string) => (
                   <li key={item} className="flex items-start gap-3">
                     <svg
-                      className="h-5 w-5 text-primary mt-0.5 shrink-0"
+                      className="h-5 w-5 text-secondary mt-0.5 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -99,7 +99,7 @@ export default async function DocumentDetailPage({
 
             {/* Process */}
             <div className="mt-10">
-              <h2 className="text-xl font-semibold mb-4">Het proces</h2>
+              <h2 className="font-serif text-xl font-bold mb-4 text-on-surface">Het proces</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
                   ["1", "Bestellen & betalen", "Kies dit document en betaal veilig online"],
@@ -108,12 +108,12 @@ export default async function DocumentDetailPage({
                 ].map(([num, title, desc]) => (
                   <div
                     key={num}
-                    className="rounded-lg bg-card border border-card-border p-4"
+                    className="rounded-[0.25rem] bg-surface-container-low p-4"
                   >
-                    <span className="text-xs font-bold text-primary">
+                    <span className="text-label text-secondary">
                       STAP {num}
                     </span>
-                    <h3 className="mt-1 font-semibold text-sm">{title}</h3>
+                    <h3 className="mt-1 font-semibold text-sm text-on-surface">{title}</h3>
                     <p className="mt-1 text-xs text-muted">{desc}</p>
                   </div>
                 ))}
@@ -123,9 +123,9 @@ export default async function DocumentDetailPage({
 
           {/* Right column — pricing card */}
           <div className="lg:col-span-2">
-            <div className="lg:sticky lg:top-24 rounded-xl bg-card border border-card-border p-6 border-t-2 border-t-gold">
+            <div className="lg:sticky lg:top-24 rounded-[0.25rem] bg-surface-container-lowest p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
               <div className="text-center mb-6">
-                <span className="text-4xl font-bold text-primary">
+                <span className="text-4xl font-bold text-secondary">
                   {formatPrice(doc.price_cents)}
                 </span>
                 <p className="text-sm text-muted mt-1">incl. 21% BTW</p>
@@ -146,7 +146,7 @@ export default async function DocumentDetailPage({
                     className="flex items-center gap-2 text-sm text-muted"
                   >
                     <svg
-                      className="h-4 w-4 text-primary shrink-0"
+                      className="h-4 w-4 text-secondary shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -165,7 +165,7 @@ export default async function DocumentDetailPage({
 
               <Link
                 href={`/checkout?doc=${slug}`}
-                className="block w-full rounded-lg bg-primary py-3 text-center font-semibold text-background hover:bg-primary-hover transition-colors"
+                className="block w-full rounded-[0.25rem] btn-gradient py-3 text-center font-semibold text-on-primary"
               >
                 Bestellen
               </Link>

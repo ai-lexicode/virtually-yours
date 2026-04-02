@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 const statusColors: Record<string, string> = {
   completed: "bg-success/10 text-success",
   delivered: "bg-success/10 text-success",
-  questionnaire: "bg-primary/10 text-primary",
-  review: "bg-info/10 text-info",
-  pending: "bg-muted/10 text-muted",
-  paid: "bg-info/10 text-info",
-  processing: "bg-primary/10 text-primary",
+  questionnaire: "bg-secondary-container/30 text-secondary",
+  review: "bg-surface-container-high text-primary",
+  pending: "bg-surface-container text-muted",
+  paid: "bg-surface-container-high text-primary",
+  processing: "bg-secondary-container/30 text-secondary",
 };
 
 const statusLabels: Record<string, string> = {
@@ -58,7 +58,7 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <h1 className="font-serif text-2xl font-bold text-on-surface">Dashboard</h1>
         <p className="text-muted mt-1">
           Welkom terug{profile?.first_name ? `, ${profile.first_name}` : ""}. Hier is een overzicht van uw documenten.
         </p>
@@ -74,10 +74,10 @@ export default async function DashboardPage() {
         ].map((stat) => (
           <div
             key={stat.label}
-            className="bg-card border border-card-border rounded-xl p-5"
+            className="bg-surface-container-lowest rounded-[0.25rem] p-5 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
           >
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-[0.25rem] bg-surface-container flex items-center justify-center">
                 <svg
                   className="h-5 w-5 text-primary"
                   fill="none"
@@ -93,8 +93,8 @@ export default async function DashboardPage() {
                 </svg>
               </div>
               <div>
-                <p className="text-2xl font-bold">{stat.value}</p>
-                <p className="text-xs text-muted">{stat.label}</p>
+                <p className="text-2xl font-bold text-on-surface">{stat.value}</p>
+                <p className="text-xs text-muted font-label">{stat.label}</p>
               </div>
             </div>
           </div>
@@ -105,12 +105,12 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link
           href="/vragenlijsten"
-          className="bg-card border border-card-border rounded-xl p-5 hover:border-primary/50 transition-colors group"
+          className="bg-surface-container-lowest rounded-[0.25rem] p-5 hover:bg-surface-container-low transition-colors group shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
         >
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-[0.25rem] bg-secondary-container/30 flex items-center justify-center">
               <svg
-                className="h-5 w-5 text-primary"
+                className="h-5 w-5 text-secondary"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
@@ -124,19 +124,19 @@ export default async function DashboardPage() {
               </svg>
             </div>
             <div>
-              <p className="font-medium group-hover:text-primary transition-colors">
+              <p className="font-medium group-hover:text-secondary transition-colors text-on-surface">
                 Vragenlijsten invullen
               </p>
-              <p className="text-xs text-muted">{pendingCount} openstaand</p>
+              <p className="text-xs text-muted font-label">{pendingCount} openstaand</p>
             </div>
           </div>
         </Link>
         <Link
           href="/downloads"
-          className="bg-card border border-card-border rounded-xl p-5 hover:border-primary/50 transition-colors group"
+          className="bg-surface-container-lowest rounded-[0.25rem] p-5 hover:bg-surface-container-low transition-colors group shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
         >
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-success/10 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-[0.25rem] bg-success/10 flex items-center justify-center">
               <svg
                 className="h-5 w-5 text-success"
                 fill="none"
@@ -152,21 +152,21 @@ export default async function DashboardPage() {
               </svg>
             </div>
             <div>
-              <p className="font-medium group-hover:text-primary transition-colors">
+              <p className="font-medium group-hover:text-secondary transition-colors text-on-surface">
                 Downloads
               </p>
-              <p className="text-xs text-muted">{readyCount} document gereed</p>
+              <p className="text-xs text-muted font-label">{readyCount} document gereed</p>
             </div>
           </div>
         </Link>
         <Link
           href="/documenten"
-          className="bg-card border border-card-border rounded-xl p-5 hover:border-primary/50 transition-colors group"
+          className="bg-surface-container-lowest rounded-[0.25rem] p-5 hover:bg-surface-container-low transition-colors group shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
         >
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-info/10 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-[0.25rem] bg-surface-container-high flex items-center justify-center">
               <svg
-                className="h-5 w-5 text-info"
+                className="h-5 w-5 text-primary"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
@@ -180,34 +180,34 @@ export default async function DashboardPage() {
               </svg>
             </div>
             <div>
-              <p className="font-medium group-hover:text-primary transition-colors">
+              <p className="font-medium group-hover:text-secondary transition-colors text-on-surface">
                 Nieuw document kopen
               </p>
-              <p className="text-xs text-muted">Bekijk catalogus</p>
+              <p className="text-xs text-muted font-label">Bekijk catalogus</p>
             </div>
           </div>
         </Link>
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-card border border-card-border rounded-xl">
-        <div className="flex items-center justify-between p-5 border-b border-card-border">
-          <h2 className="font-semibold">Recente bestellingen</h2>
+      <div className="bg-surface-container-lowest rounded-[0.25rem] shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        <div className="flex items-center justify-between p-5 bg-surface-container-low rounded-t-[0.25rem]">
+          <h2 className="font-serif font-bold text-on-surface">Recente bestellingen</h2>
           <Link
             href="/facturen"
-            className="text-sm text-primary hover:text-primary-hover transition-colors"
+            className="text-sm text-secondary hover:text-secondary/80 transition-colors font-medium"
           >
             Alle bekijken
           </Link>
         </div>
-        <div className="divide-y divide-card-border">
-          {recentOrders.map((order) => (
+        <div>
+          {recentOrders.map((order, i) => (
             <div
               key={order.id}
-              className="flex flex-col sm:flex-row sm:items-center justify-between p-5 gap-3"
+              className={`flex flex-col sm:flex-row sm:items-center justify-between p-5 gap-3 ${i > 0 ? "bg-surface-container-low/20" : ""}`}
             >
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 rounded-lg bg-card-border/50 flex items-center justify-center">
+                <div className="h-10 w-10 rounded-[0.25rem] bg-surface-container flex items-center justify-center">
                   <svg
                     className="h-5 w-5 text-muted"
                     fill="none"
@@ -223,14 +223,14 @@ export default async function DashboardPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium">{order.document}</p>
-                  <p className="text-xs text-muted">
+                  <p className="font-medium text-on-surface">{order.document}</p>
+                  <p className="text-xs text-muted font-label">
                     {order.id} &middot; {order.date}
                   </p>
                 </div>
               </div>
               <span
-                className={`text-xs font-medium px-3 py-1 rounded-full ${statusColors[order.status]}`}
+                className={`text-xs font-medium px-3 py-1 rounded-[0.25rem] font-label ${statusColors[order.status]}`}
               >
                 {order.statusLabel}
               </span>

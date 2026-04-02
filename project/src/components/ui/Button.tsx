@@ -2,13 +2,13 @@ import Link from "next/link";
 
 const variants = {
   primary:
-    "bg-primary text-background hover:bg-primary-hover",
+    "btn-gradient font-semibold",
   secondary:
-    "bg-primary/10 text-primary hover:bg-primary/20",
+    "bg-surface-container-lowest text-secondary font-semibold hover:bg-surface-container-low",
   outline:
-    "border border-card-border text-foreground hover:border-primary/40",
+    "bg-transparent text-secondary font-semibold hover:bg-surface-container",
   ghost:
-    "text-muted hover:text-foreground hover:bg-card",
+    "text-muted hover:text-foreground hover:underline",
 } as const;
 
 const sizes = {
@@ -38,7 +38,7 @@ export function Button({
   disabled,
   onClick,
 }: ButtonProps) {
-  const base = `inline-flex items-center justify-center rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`;
+  const base = `inline-flex items-center justify-center rounded-[0.25rem] transition-all disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`;
 
   if (href) {
     return (

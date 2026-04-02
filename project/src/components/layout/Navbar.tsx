@@ -17,7 +17,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-card-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -38,7 +38,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -49,13 +49,13 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/inloggen"
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted hover:text-primary transition-colors"
             >
               Inloggen
             </Link>
             <Link
               href="/registreren"
-              className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-background hover:bg-primary-hover transition-colors"
+              className="rounded-[0.25rem] btn-gradient px-4 py-2 text-sm font-semibold text-on-primary"
             >
               Gratis account
             </Link>
@@ -100,16 +100,16 @@ export function Navbar() {
         }`}
       >
         <div
-          className="absolute inset-0 bg-black/50"
+          className="absolute inset-0 bg-primary/30"
           onClick={() => setMobileOpen(false)}
         />
         <div
-          className={`absolute top-0 right-0 h-full w-72 bg-background border-l border-card-border shadow-xl transition-transform duration-300 ${
+          className={`absolute top-0 right-0 h-full w-72 bg-surface shadow-xl transition-transform duration-300 ${
             mobileOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex items-center justify-between p-4 border-b border-card-border">
-            <span className="text-lg font-bold text-primary">Menu</span>
+          <div className="flex items-center justify-between p-4 bg-surface-container-low">
+            <span className="font-serif text-lg font-bold text-primary">Menu</span>
             <button
               onClick={() => setMobileOpen(false)}
               className="p-2 text-muted hover:text-foreground"
@@ -125,23 +125,23 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block rounded-lg px-3 py-3 text-sm text-muted hover:text-foreground hover:bg-card transition-colors"
+                className="block rounded-[0.25rem] px-3 py-3 text-sm text-muted hover:text-primary hover:bg-surface-container-low transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 mt-4 border-t border-card-border space-y-2">
+            <div className="pt-4 mt-4 space-y-2">
               <Link
                 href="/inloggen"
-                className="block rounded-lg px-3 py-3 text-sm text-muted hover:text-foreground hover:bg-card transition-colors"
+                className="block rounded-[0.25rem] px-3 py-3 text-sm text-muted hover:text-primary hover:bg-surface-container-low transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Inloggen
               </Link>
               <Link
                 href="/registreren"
-                className="block rounded-lg bg-primary px-3 py-3 text-sm font-medium text-background text-center hover:bg-primary-hover transition-colors"
+                className="block rounded-[0.25rem] btn-gradient px-3 py-3 text-sm font-semibold text-on-primary text-center"
                 onClick={() => setMobileOpen(false)}
               >
                 Gratis account

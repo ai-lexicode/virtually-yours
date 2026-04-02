@@ -55,7 +55,7 @@ export default function ContactPage() {
               d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <h1 className="text-2xl font-bold mt-4">Bericht verstuurd!</h1>
+          <h1 className="font-serif text-2xl font-bold mt-4 text-on-surface">Bericht verstuurd!</h1>
           <p className="mt-2 text-muted">
             Bedankt voor uw bericht. Wij reageren binnen 24 uur op werkdagen.
           </p>
@@ -68,7 +68,7 @@ export default function ContactPage() {
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <h1 className="text-3xl sm:text-4xl font-bold">Contact</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Contact</h1>
           <p className="mt-4 text-lg text-muted">
             Heeft u vragen? Neem gerust contact met mij op.
           </p>
@@ -76,20 +76,20 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {/* Form */}
-          <div className="rounded-xl bg-card border border-card-border p-6">
-            <h2 className="text-xl font-semibold mb-6">
+          <div className="rounded-[0.25rem] bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <h2 className="font-serif text-xl font-bold mb-6 text-on-surface">
               Stuur een bericht
             </h2>
 
             {error && (
-              <div className="mb-4 rounded-lg bg-error/10 border border-error/20 px-4 py-3 text-sm text-error">
+              <div className="mb-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-muted mb-1">
+                <label className="block text-sm font-medium text-muted mb-1 font-label">
                   Naam *
                 </label>
                 <input
@@ -97,12 +97,12 @@ export default function ContactPage() {
                   required
                   value={form.name}
                   onChange={(e) => update("name", e.target.value)}
-                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  className="input-field"
                   placeholder="Uw naam"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1">
+                <label className="block text-sm font-medium text-muted mb-1 font-label">
                   E-mailadres *
                 </label>
                 <input
@@ -110,30 +110,30 @@ export default function ContactPage() {
                   required
                   value={form.email}
                   onChange={(e) => update("email", e.target.value)}
-                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  className="input-field"
                   placeholder="uw@email.nl"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1">
+                <label className="block text-sm font-medium text-muted mb-1 font-label">
                   Bedrijfsnaam
                 </label>
                 <input
                   type="text"
                   value={form.company}
                   onChange={(e) => update("company", e.target.value)}
-                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+                  className="input-field"
                   placeholder="Optioneel"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1">
+                <label className="block text-sm font-medium text-muted mb-1 font-label">
                   Onderwerp *
                 </label>
                 <select
                   value={form.subject}
                   onChange={(e) => update("subject", e.target.value)}
-                  className="w-full rounded-lg bg-background border border-card-border px-4 py-3 text-foreground focus:outline-none focus:border-primary"
+                  className="input-field"
                 >
                   <option>Algemene vraag</option>
                   <option>Vraag over een document</option>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1">
+                <label className="block text-sm font-medium text-muted mb-1 font-label">
                   Bericht *
                 </label>
                 <textarea
@@ -152,14 +152,14 @@ export default function ContactPage() {
                   rows={5}
                   value={form.message}
                   onChange={(e) => update("message", e.target.value)}
-                  className="w-full rounded-lg bg-background border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary resize-none"
+                  className="input-field resize-none"
                   placeholder="Uw bericht..."
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-lg bg-primary py-3 font-semibold text-background hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-[0.25rem] btn-gradient py-3 font-semibold text-on-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Bezig..." : "Versturen"}
               </button>
@@ -203,9 +203,9 @@ export default function ContactPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-xl bg-card border border-card-border p-5 flex items-start gap-4"
+                className="rounded-[0.25rem] bg-surface-container-lowest p-5 flex items-start gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-[0.25rem] bg-surface-container shrink-0">
                   <svg
                     className="h-5 w-5 text-primary"
                     fill="none"
@@ -221,7 +221,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">{item.title}</h3>
+                  <h3 className="font-semibold text-sm text-on-surface">{item.title}</h3>
                   <p className="text-sm text-muted">{item.value}</p>
                   {item.sub && (
                     <p className="text-xs text-muted/60">{item.sub}</p>
@@ -231,12 +231,12 @@ export default function ContactPage() {
             ))}
 
             {/* Company details */}
-            <div className="rounded-xl bg-card border border-card-border p-5 mt-4">
-              <h3 className="font-semibold text-sm mb-3">
+            <div className="rounded-[0.25rem] bg-surface-container-lowest p-5 mt-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+              <h3 className="font-semibold text-sm mb-3 text-on-surface">
                 Bedrijfsgegevens
               </h3>
               <div className="space-y-1 text-sm text-muted">
-                <p className="font-medium text-foreground">
+                <p className="font-medium text-on-surface">
                   Virtually Yours
                 </p>
                 <p>Wikkestraat 68, Alphen aan den Rijn</p>

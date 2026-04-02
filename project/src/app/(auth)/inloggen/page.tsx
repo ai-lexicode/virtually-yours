@@ -110,14 +110,14 @@ function InloggenContent() {
     return (
       <>
         <div className="lg:hidden mb-8 text-center">
-          <Link href="/" className="text-2xl font-bold text-primary">
+          <Link href="/" className="font-serif text-2xl font-bold text-primary">
             Virtually Yours
           </Link>
         </div>
 
         <div className="text-center">
           <svg
-            className="h-12 w-12 text-primary mx-auto"
+            className="h-12 w-12 text-secondary mx-auto"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
@@ -129,14 +129,14 @@ function InloggenContent() {
               d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
             />
           </svg>
-          <h1 className="text-2xl font-bold mt-4">Controleer uw e-mail</h1>
+          <h1 className="font-serif text-2xl font-bold mt-4 text-on-surface">Controleer uw e-mail</h1>
           <p className="mt-2 text-sm text-muted">
             We hebben een inloglink gestuurd naar <strong>{email}</strong>.
             Klik op de link in de e-mail om in te loggen.
           </p>
           <button
             onClick={() => setMagicLinkSent(false)}
-            className="mt-6 text-sm text-primary hover:text-primary-hover"
+            className="mt-6 text-sm text-secondary hover:text-secondary/80"
           >
             Andere methode gebruiken
           </button>
@@ -153,20 +153,20 @@ function InloggenContent() {
         </Link>
       </div>
 
-      <h1 className="text-2xl font-bold">Welkom terug</h1>
+      <h1 className="font-serif text-2xl font-bold text-on-surface">Welkom terug</h1>
       <p className="mt-2 text-sm text-muted">
         Log in op uw Virtually Yours portaal
       </p>
 
       {emailNotConfirmed && (
-        <div className="mt-4 rounded-lg bg-primary/10 border border-primary/30 px-4 py-3 text-sm text-foreground">
+        <div className="mt-4 rounded-[0.25rem] bg-secondary-container/20 px-4 py-3 text-sm text-on-surface">
           <p className="font-medium">Account nog niet geactiveerd</p>
           <p className="mt-1 text-muted">
             Controleer uw e-mail en klik op de bevestigingslink om uw account te activeren.
             Controleer ook uw spam-map.
           </p>
           {resendSent ? (
-            <p className="mt-2 text-primary font-medium">
+            <p className="mt-2 text-secondary font-medium">
               Bevestigingsmail opnieuw verzonden!
             </p>
           ) : (
@@ -174,7 +174,7 @@ function InloggenContent() {
               type="button"
               onClick={handleResendConfirmation}
               disabled={loading}
-              className="mt-2 text-primary hover:text-primary-hover font-medium disabled:opacity-50"
+              className="mt-2 text-secondary hover:text-secondary/80 font-medium disabled:opacity-50"
             >
               Bevestigingsmail opnieuw versturen
             </button>
@@ -183,14 +183,14 @@ function InloggenContent() {
       )}
 
       {error && !emailNotConfirmed && (
-        <div className="mt-4 rounded-lg bg-error/10 border border-error/20 px-4 py-3 text-sm text-error">
+        <div className="mt-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
           {error}
         </div>
       )}
 
       <form onSubmit={handleLogin} className="mt-8 space-y-4">
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             E-mailadres
           </label>
           <input
@@ -198,12 +198,12 @@ function InloggenContent() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="uw@email.nl"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-muted mb-1">
+          <label className="block text-sm font-medium text-muted mb-1 font-label">
             Wachtwoord
           </label>
           <input
@@ -211,13 +211,13 @@ function InloggenContent() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg bg-card border border-card-border px-4 py-2.5 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary"
+            className="input-field"
             placeholder="••••••••"
           />
         </div>
 
         <div className="flex items-center justify-end text-sm">
-          <Link href="/wachtwoord-vergeten" className="text-primary hover:text-primary-hover">
+          <Link href="/wachtwoord-vergeten" className="text-secondary hover:text-secondary/80">
             Wachtwoord vergeten?
           </Link>
         </div>
@@ -225,7 +225,7 @@ function InloggenContent() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-primary py-3 font-semibold text-background hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full rounded-[0.25rem] btn-gradient py-3 font-semibold text-on-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Bezig..." : "Inloggen"}
         </button>
@@ -233,17 +233,17 @@ function InloggenContent() {
 
       <div className="mt-6 relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-card-border" />
+          <div className="w-full bg-outline-variant" style={{ height: "1px" }} />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-background px-4 text-muted">of</span>
+          <span className="bg-surface px-4 text-muted">of</span>
         </div>
       </div>
 
       <button
         onClick={handleMagicLink}
         disabled={loading}
-        className="mt-6 w-full rounded-lg border border-card-border py-3 text-sm font-medium text-foreground hover:border-primary/40 transition-colors disabled:opacity-50"
+        className="mt-6 w-full rounded-[0.25rem] bg-surface-container-lowest py-3 text-sm font-medium text-secondary hover:bg-surface-container-low transition-colors disabled:opacity-50"
       >
         Inloggen met magic link
       </button>
@@ -252,7 +252,7 @@ function InloggenContent() {
         Nog geen account?{" "}
         <Link
           href="/registreren"
-          className="text-primary hover:text-primary-hover font-medium"
+          className="text-secondary hover:text-secondary/80 font-medium"
         >
           Registreer gratis
         </Link>

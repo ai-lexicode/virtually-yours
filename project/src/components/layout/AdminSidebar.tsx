@@ -46,7 +46,7 @@ export function AdminSidebar() {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-card border border-card-border text-foreground"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-[0.25rem] bg-surface-container-lowest text-foreground shadow-[0_1px_3px_rgba(0,0,0,0.08)]"
         aria-label="Open menu"
       >
         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -57,21 +57,21 @@ export function AdminSidebar() {
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
-          className="md:hidden fixed inset-0 bg-black/50 z-40"
+          className="md:hidden fixed inset-0 bg-primary/30 z-40"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed top-0 left-0 h-full w-60 bg-sidebar border-r border-card-border flex-col z-50 ${mobileOpen ? "flex" : "hidden"} md:flex`}>
-        <div className="h-16 flex items-center justify-between px-6 border-b border-card-border">
+      <aside className={`fixed top-0 left-0 h-full w-60 bg-primary flex-col z-50 ${mobileOpen ? "flex" : "hidden"} md:flex`}>
+        <div className="h-16 flex items-center justify-between px-6 bg-primary-container">
           <Link href="/admin" className="flex items-center gap-2">
-            <Image src="/images/logo.png" alt="Virtually Yours" width={120} height={32} className="h-8 w-auto" />
-            <span className="text-xs font-normal text-muted">Admin</span>
+            <Image src="/images/logo.png" alt="Virtually Yours" width={120} height={32} className="h-8 w-auto brightness-0 invert" />
+            <span className="text-xs font-normal text-on-primary/60">Admin</span>
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className="md:hidden p-1 text-muted hover:text-foreground"
+            className="md:hidden p-1 text-on-primary/60 hover:text-on-primary"
             aria-label="Close menu"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -90,10 +90,10 @@ export function AdminSidebar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                className={`flex items-center gap-3 rounded-[0.25rem] px-3 py-2.5 text-sm transition-colors ${
                   active
-                    ? "bg-primary/10 text-primary border-l-2 border-primary"
-                    : "text-muted hover:text-foreground hover:bg-card"
+                    ? "bg-accent/20 text-accent font-semibold"
+                    : "text-on-primary/60 hover:text-on-primary hover:bg-primary-container"
                 }`}
               >
                 <svg
@@ -115,11 +115,11 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        <div className="px-3 py-4 border-t border-card-border space-y-1">
+        <div className="px-3 py-4 bg-primary-container space-y-1">
           <Link
             href="/dashboard"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted hover:text-foreground hover:bg-card transition-colors"
+            className="flex items-center gap-3 rounded-[0.25rem] px-3 py-2.5 text-sm text-on-primary/60 hover:text-on-primary hover:bg-primary transition-colors"
           >
             <svg
               className="h-5 w-5"
@@ -138,7 +138,7 @@ export function AdminSidebar() {
           </Link>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted hover:text-error hover:bg-card transition-colors w-full"
+            className="flex items-center gap-3 rounded-[0.25rem] px-3 py-2.5 text-sm text-on-primary/60 hover:text-error hover:bg-primary transition-colors w-full"
           >
             <svg
               className="h-5 w-5"

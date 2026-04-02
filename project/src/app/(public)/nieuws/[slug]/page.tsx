@@ -37,9 +37,9 @@ const blogPosts: Record<
 };
 
 const categoryColors: Record<string, string> = {
-  Arbeidsrecht: "bg-blue-500/20 text-blue-600",
-  Privacy: "bg-teal-500/20 text-teal-600",
-  Ondernemingsrecht: "bg-purple-500/20 text-purple-600",
+  Arbeidsrecht: "bg-surface-container-high text-primary",
+  Privacy: "bg-secondary-container/40 text-secondary",
+  Ondernemingsrecht: "bg-surface-container text-primary-container",
 };
 
 export async function generateMetadata({
@@ -69,11 +69,11 @@ export default async function NieuwsDetailPage({
     <section className="py-12 sm:py-16">
       <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <p className="text-sm text-muted mb-6">
-          <Link href="/" className="hover:text-foreground">
+          <Link href="/" className="hover:text-secondary transition-colors">
             Home
           </Link>{" "}
           &gt;{" "}
-          <Link href="/nieuws" className="hover:text-foreground">
+          <Link href="/nieuws" className="hover:text-secondary transition-colors">
             Nieuws
           </Link>{" "}
           &gt; {post.title}
@@ -81,20 +81,20 @@ export default async function NieuwsDetailPage({
 
         <div className="flex items-center gap-3 mb-4">
           <span
-            className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${categoryColors[post.category] || "bg-gray-500/20 text-gray-600"}`}
+            className={`inline-block rounded-[0.25rem] px-3 py-1 text-xs font-medium font-label ${categoryColors[post.category] || "bg-surface-container text-muted"}`}
           >
             {post.category}
           </span>
-          <span className="text-sm text-muted">{post.date}</span>
+          <span className="text-sm text-muted font-label">{post.date}</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-bold">{post.title}</h1>
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">{post.title}</h1>
 
         <div className="mt-8 text-muted leading-relaxed space-y-4">
           <p>{post.summary}</p>
         </div>
 
-        <div className="mt-10 rounded-xl bg-primary/5 border border-primary/20 p-6 text-center">
+        <div className="mt-10 rounded-[0.25rem] bg-surface-container-low p-6 text-center">
           <p className="text-sm text-muted mb-4">
             Lees het volledige artikel op onze blog.
           </p>
@@ -106,10 +106,10 @@ export default async function NieuwsDetailPage({
           </Button>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-card-border">
+        <div className="mt-10 pt-6">
           <Link
             href="/nieuws"
-            className="text-sm text-primary hover:text-primary-hover font-medium"
+            className="text-sm text-secondary hover:text-secondary/80 font-medium"
           >
             &larr; Terug naar alle artikelen
           </Link>

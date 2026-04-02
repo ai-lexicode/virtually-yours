@@ -19,7 +19,7 @@ export default async function DocumentenPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-sm text-muted mb-2">Home &gt; Documenten</p>
-          <h1 className="text-3xl sm:text-4xl font-bold">Juridische Documenten</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Juridische Documenten</h1>
           <p className="mt-3 text-muted">
             Kies het document dat past bij jouw situatie als online professional.
           </p>

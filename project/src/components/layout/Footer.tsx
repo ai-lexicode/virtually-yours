@@ -16,13 +16,13 @@ const infoLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-card-border bg-sidebar">
+    <footer className="bg-primary text-on-primary">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <span className="text-xl font-bold text-primary">Risha Smeding</span>
-            <p className="mt-2 text-sm text-muted">
+            <span className="font-serif text-xl font-bold text-accent">Risha Smeding</span>
+            <p className="mt-2 text-sm text-on-primary/60">
               Freelance jurist, Legal Engineer &amp; Juridisch VA
             </p>
             {/* Social icons */}
@@ -31,7 +31,7 @@ export function Footer() {
                 href="https://www.facebook.com/virtuallyyoursnl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-card border border-card-border text-muted hover:text-primary hover:border-primary/40 transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-[0.25rem] bg-primary-container text-on-primary/60 hover:text-accent hover:bg-primary-container/80 transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/rishasmeding/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-card border border-card-border text-muted hover:text-primary hover:border-primary/40 transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-[0.25rem] bg-primary-container text-on-primary/60 hover:text-accent hover:bg-primary-container/80 transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@ export function Footer() {
                 href="https://www.instagram.com/virtually_yours_nl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-card border border-card-border text-muted hover:text-primary hover:border-primary/40 transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-[0.25rem] bg-primary-container text-on-primary/60 hover:text-accent hover:bg-primary-container/80 transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Documents */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-label text-accent mb-4">
               Documenten
             </h3>
             <ul className="space-y-2">
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors"
+                    className="text-sm text-on-primary/60 hover:text-accent transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Info */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-label text-accent mb-4">
               Informatie
             </h3>
             <ul className="space-y-2">
@@ -92,7 +92,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors"
+                    className="text-sm text-on-primary/60 hover:text-accent transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -103,19 +103,19 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
+            <h3 className="text-label text-accent mb-4">
               Contact
             </h3>
-            <ul className="space-y-2 text-sm text-muted">
+            <ul className="space-y-2 text-sm text-on-primary/60">
               <li>Wikkestraat 68</li>
               <li>Alphen aan den Rijn</li>
               <li className="pt-1">
-                <a href="tel:+31618755103" className="hover:text-foreground transition-colors">
+                <a href="tel:+31618755103" className="hover:text-accent transition-colors">
                   +31 (0)6 18755103
                 </a>
               </li>
               <li>
-                <a href="mailto:info@virtually-yours.nl" className="hover:text-foreground transition-colors">
+                <a href="mailto:info@virtually-yours.nl" className="hover:text-accent transition-colors">
                   info@virtually-yours.nl
                 </a>
               </li>
@@ -126,16 +126,16 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-card-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted">
+        <div className="mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-on-primary/40">
             &copy; {new Date().getFullYear()} Virtually Yours. Alle rechten
             voorbehouden.
           </p>
-          <div className="flex gap-4 text-xs text-muted">
-            <Link href="/privacyverklaring" className="hover:text-foreground">
+          <div className="flex gap-4 text-xs text-on-primary/40">
+            <Link href="/privacyverklaring" className="hover:text-accent transition-colors">
               Privacyverklaring
             </Link>
-            <Link href="/algemene-voorwaarden" className="hover:text-foreground">
+            <Link href="/algemene-voorwaarden" className="hover:text-accent transition-colors">
               Algemene Voorwaarden
             </Link>
           </div>
