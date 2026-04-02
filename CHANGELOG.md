@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- AP-compliant cookie consent system with banner, personalization panel, and GTM integration (feat-003)
+- Cookie preferences button in footer for revoking/changing consent
+- Consent audit trail in localStorage (vy-consent-log)
+- Google Tag Manager with Consent Mode v2 (default denied, granted on analytics consent)
+
 ### Changed
 
 - Complete visual redesign using VY brand identity
