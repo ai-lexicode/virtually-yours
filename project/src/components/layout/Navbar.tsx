@@ -23,11 +23,19 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-monogram.png"
+              alt="VY"
+              width={40}
+              height={40}
+              className="h-10 w-10 md:hidden"
+              priority
+            />
+            <Image
+              src="/images/logo-full.png"
               alt="Virtually Yours"
-              width={140}
-              height={36}
-              className="h-9 w-auto brightness-0 invert"
+              width={180}
+              height={50}
+              className="hidden md:block h-10 w-auto"
               priority
             />
           </Link>

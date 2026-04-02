@@ -103,7 +103,7 @@ export default function RegistrerenPage() {
     <>
       <div className="lg:hidden mb-8 text-center">
         <Link href="/">
-          <Image src="/images/logo.png" alt="Virtually Yours" width={160} height={42} className="h-10 w-auto mx-auto" />
+          <Image src="/images/logo-monogram.png" alt="VY" width={60} height={60} className="h-14 w-14 mx-auto" />
         </Link>
       </div>
 

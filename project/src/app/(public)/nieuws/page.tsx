@@ -1,9 +1,17 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 
 export const metadata = {
   title: "Nieuws — Virtually Yours",
   description: "Juridisch nieuws en updates voor online ondernemers.",
+};
+
+const blogImages: Record<string, string> = {
+  "wet-vbar-schijnzelfstandigheid": "/images/blog/blog-wetboeken.jpg",
+  "voldoe-jij-aan-de-cookiewet": "/images/blog/blog-cookiewet.jpg",
+  "gevolgen-deliveroo-arrest-voor-vas": "/images/blog/blog-deliveroo.jpg",
+  "overeenkomst-van-opdracht-voor-vas": "/images/blog/blog-contract.jpg",
 };
 
 const blogPosts = [
@@ -51,7 +59,15 @@ export default function NieuwsPage() {
   return (
     <>
       <section className="py-16 sm:py-20 text-center bg-surface-container-low">
-        <div className="mx-auto max-w-3xl px-4">
+        <div className="mx-auto max-w-5xl px-4">
+          <Image
+            src="/images/blog/blog-header.png"
+            alt="Nieuws"
+            width={1200}
+            height={400}
+            className="w-full h-64 object-cover rounded-lg mb-8"
+            priority
+          />
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Nieuws</h1>
           <p className="mt-4 text-lg text-muted">
             Juridisch nieuws en updates voor online ondernemers, VA&apos;s en
@@ -66,8 +82,19 @@ export default function NieuwsPage() {
             <Link
               key={post.slug}
               href={`/nieuws/${post.slug}`}
-              className="group block rounded-[0.25rem] bg-surface-container-lowest p-6 hover:bg-surface-container-low transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+              className="group block rounded-[0.25rem] bg-surface-container-lowest overflow-hidden hover:bg-surface-container-low transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
             >
+              {blogImages[post.slug] && (
+                <div className="relative w-full h-40">
+                  <Image
+                    src={blogImages[post.slug]}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="p-6">
               <div className="flex items-center gap-3 mb-3">
                 <span
                   className={`inline-block rounded-[0.25rem] px-3 py-1 text-xs font-medium font-label ${categoryColors[post.category] || "bg-surface-container text-muted"}`}
@@ -85,6 +112,7 @@ export default function NieuwsPage() {
               <span className="mt-4 inline-block text-sm text-secondary font-medium group-hover:translate-x-1 transition-transform">
                 Lees meer &rarr;
               </span>
+              </div>
             </Link>
           ))}
         </div>

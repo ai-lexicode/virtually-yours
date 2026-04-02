@@ -1,6 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+
+const blogImages: Record<string, string> = {
+  "wet-vbar-schijnzelfstandigheid": "/images/blog/blog-wetboeken.jpg",
+  "voldoe-jij-aan-de-cookiewet": "/images/blog/blog-cookiewet.jpg",
+  "gevolgen-deliveroo-arrest-voor-vas": "/images/blog/blog-deliveroo.jpg",
+  "overeenkomst-van-opdracht-voor-vas": "/images/blog/blog-contract.jpg",
+};
 
 const blogPosts: Record<
   string,
@@ -89,6 +97,18 @@ export default async function NieuwsDetailPage({
         </div>
 
         <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">{post.title}</h1>
+
+        {blogImages[slug] && (
+          <div className="relative w-full h-64 mt-6 rounded-lg overflow-hidden">
+            <Image
+              src={blogImages[slug]}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <div className="mt-8 text-muted leading-relaxed space-y-4">
           <p>{post.summary}</p>

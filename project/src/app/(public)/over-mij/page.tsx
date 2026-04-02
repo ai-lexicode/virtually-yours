@@ -12,7 +12,7 @@ export default function OverMijPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-16 sm:py-20">
+      <section className="py-16 sm:py-20" style={{ backgroundImage: "url('/images/about-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Photo */}
@@ -65,6 +65,27 @@ export default function OverMijPage() {
                   Bekijk documenten
                 </Button>
               </div>
+
+              <div className="mt-6">
+                <Image
+                  src="/images/signature.png"
+                  alt="Signature"
+                  width={150}
+                  height={60}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Second photo section */}
+          <div className="mt-16 flex justify-center">
+            <div className="relative w-full max-w-2xl h-80 rounded-lg overflow-hidden border border-card-border shadow-lg">
+              <Image
+                src="/images/risha-justitia.jpg"
+                alt="Risha met Lady Justice"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

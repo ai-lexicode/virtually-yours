@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     siteName: "Virtually Yours",
     locale: "nl_NL",
     type: "website",
+    images: ["/images/og-image.png"],
   },
 };
 

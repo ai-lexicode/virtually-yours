@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -229,6 +230,16 @@ export default function ContactPage() {
                 </div>
               </div>
             ))}
+
+            {/* Decorative image */}
+            <div className="relative w-full h-48 rounded-lg overflow-hidden border border-card-border">
+              <Image
+                src="/images/risha-justitia.jpg"
+                alt="Risha met Lady Justice"
+                fill
+                className="object-cover"
+              />
+            </div>
 
             {/* Company details */}
             <div className="rounded-lg bg-card p-5 mt-4 border border-card-border">

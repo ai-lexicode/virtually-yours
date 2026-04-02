@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const documentLinks = [
   { href: "/documenten?cat=privacy", label: "Privacyverklaring" },
@@ -21,7 +22,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <span className="font-serif text-xl font-bold text-primary">Risha Smeding</span>
+            <div className="flex items-center gap-3 mb-2">
+              <Image
+                src="/images/logo-monogram.png"
+                alt="VY"
+                width={36}
+                height={36}
+                className="h-9 w-9"
+              />
+              <span className="font-serif text-xl font-bold text-primary">Risha Smeding</span>
+            </div>
             <p className="mt-2 text-sm text-white/50">
               Freelance jurist, Legal Engineer &amp; Juridisch VA
             </p>

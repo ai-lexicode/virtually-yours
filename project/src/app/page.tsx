@@ -54,7 +54,7 @@ export default async function HomePage() {
     <>
       <Navbar />
       {/* Hero — dark with gold accents */}
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-background">
+      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-background" style={{ backgroundImage: "url('/images/hero-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-label text-primary tracking-wide mb-4">
             Freelance Juridisch VA
@@ -122,18 +122,24 @@ export default async function HomePage() {
             title="Juridisch VA"
             description="Ik werk doorgaans remote en ondersteun juridische dienstverleners, zoals adviesbureaus en advocatenkantoren, met diverse juridische werkzaamheden."
             href="/over-mij"
+            image="/images/icons/icon-legal-va.png"
+            imageAlt="Juridisch VA"
           />
           <ServiceCard
             icon="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
             title="Juridische Documenten"
             description="Juridische documenten op maat voor online professionals. Van algemene voorwaarden tot verwerkersovereenkomsten, specifiek afgestemd op jouw situatie."
             href="/documenten"
+            image="/images/icons/icon-documents.png"
+            imageAlt="Documenten"
           />
           <ServiceCard
             icon="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
             title="Coaching VAs"
             description="Ik begeleid startende juridische VA's bij het opzetten van hun praktijk. Van het vinden van klanten tot het opbouwen van een sterk juridisch fundament."
             href="/contact"
+            image="/images/icons/icon-coaching.png"
+            imageAlt="Coaching"
           />
         </div>
       </Section>
