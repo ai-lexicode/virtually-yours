@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Social login with Google, LinkedIn, and GitHub OAuth (feat-005)
+- Post-OAuth company details form (/profiel-aanvullen)
+- All 5 document products linked to Docassemble interviews on da server
+- Privacydocumenten package (privacydocsp05 v5.28.23): Privacyverklaring, Cookieverklaring, Verwerkersovereenkomst
+- Start dispatch package (docassemble.start v1.0.6) installed on DA server
 - Overeenkomst van Opdracht document product (€109, docassemble.opdrachtdocsp03 v3.30.27) (feat-004)
 - DA package source stored in project/docassemble-packages/opdrachtdocsp03/
 - SQL seed script for Supabase documents table

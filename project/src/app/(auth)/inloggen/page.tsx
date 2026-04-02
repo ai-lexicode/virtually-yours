@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { createBrowserClient } from "@supabase/ssr";
+import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 
 export default function InloggenPage() {
   return (
@@ -149,7 +150,7 @@ function InloggenContent() {
     <>
       <div className="lg:hidden mb-8 text-center">
         <Link href="/">
-          <Image src="/images/logo-monogram.png" alt="VY" width={60} height={60} className="h-14 w-14 mx-auto" />
+          <Image src="/images/logo-full.png" alt="Virtually Yours" width={240} height={60} className="h-12 w-auto mx-auto" priority />
         </Link>
       </div>
 
@@ -157,6 +158,19 @@ function InloggenContent() {
       <p className="mt-2 text-sm text-muted">
         Log in op uw Virtually Yours portaal
       </p>
+
+      <div className="mt-8">
+        <SocialAuthButtons />
+      </div>
+
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-outline-variant" />
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="bg-surface px-4 text-muted">of</span>
+        </div>
+      </div>
 
       {emailNotConfirmed && (
         <div className="mt-4 rounded-[0.25rem] bg-secondary-container/20 px-4 py-3 text-sm text-on-surface">
@@ -188,7 +202,7 @@ function InloggenContent() {
         </div>
       )}
 
-      <form onSubmit={handleLogin} className="mt-8 space-y-4">
+      <form onSubmit={handleLogin} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-muted mb-1 font-label">
             E-mailadres

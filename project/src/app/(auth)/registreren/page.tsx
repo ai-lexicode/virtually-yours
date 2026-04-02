@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 export default function RegistrerenPage() {
   const [form, setForm] = useState({
     firstName: "",
@@ -103,7 +104,7 @@ export default function RegistrerenPage() {
     <>
       <div className="lg:hidden mb-8 text-center">
         <Link href="/">
-          <Image src="/images/logo-monogram.png" alt="VY" width={60} height={60} className="h-14 w-14 mx-auto" />
+          <Image src="/images/logo-full.png" alt="Virtually Yours" width={240} height={60} className="h-12 w-auto mx-auto" priority />
         </Link>
       </div>
 
@@ -112,13 +113,26 @@ export default function RegistrerenPage() {
         Maak een gratis account aan om te beginnen
       </p>
 
+      <div className="mt-8">
+        <SocialAuthButtons />
+      </div>
+
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-outline-variant" />
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="bg-surface px-4 text-muted">of</span>
+        </div>
+      </div>
+
       {error && (
-        <div className="mt-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
+        <div className="mb-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleRegister} className="mt-8 space-y-4">
+      <form onSubmit={handleRegister} className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-muted mb-1 font-label">
