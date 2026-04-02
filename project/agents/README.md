@@ -1,0 +1,1 @@
+../../.clawguard/modules/flow/templates/project/agents/README.md

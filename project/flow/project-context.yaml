@@ -1,0 +1,39 @@
+# Project context — created by setup.sh, refreshed by /triage and /implement
+# Planning skills read this instead of running git ls-files every time
+# Target ~80 lines — key: value only, no prose
+
+_meta:
+  generated_by: setup.sh
+  last_updated: 2026-04-02
+  project: virtualy-yours
+
+stack:
+  language: bash
+  framework: none
+  runtime: "bash unknown"
+  build_tool: null
+  test_framework: null
+  linter: null
+  package_manager: null
+
+structure:
+  entry_points: []
+  source_dirs: 
+    - project/
+  test_dirs: []
+  config_files: []
+  doc_files: []
+
+conventions:
+  commit_format: conventional
+  branch_format: "{type}/{NNN}-{slug}"
+
+dependencies:
+  runtime: []
+  dev: []
+
+architecture: []
+
+known_constraints: []
+
+notes: []

@@ -1,0 +1,1 @@
+../../.clawguard/modules/gov/claude/hooks/parallel-edit-guard.sh

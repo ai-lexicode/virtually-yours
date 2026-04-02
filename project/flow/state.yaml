@@ -1,0 +1,6 @@
+# Flow project state — cross-session pipeline orchestration
+# Auto-managed by /pipeline. Manual edits are fine.
+
+pipeline:
+  active: null
+  status: done

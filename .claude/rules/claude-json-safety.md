@@ -1,0 +1,1 @@
+../../.clawguard/modules/infra/claude/rules/claude-json-safety.md

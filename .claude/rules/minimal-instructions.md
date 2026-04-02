@@ -1,0 +1,1 @@
+../../.clawguard/modules/gov/claude/rules/minimal-instructions.md

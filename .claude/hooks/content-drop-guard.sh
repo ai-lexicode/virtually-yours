@@ -1,0 +1,1 @@
+../../.clawguard/modules/gov/claude/hooks/content-drop-guard.sh

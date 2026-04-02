@@ -1,0 +1,11 @@
+# Pending knowledge — accumulated by /implement, /qa, /pipeline
+# Drained by /learn sync. Not session state.
+# Auto-managed by skills. Manual edits are fine.
+
+pending_known_issues: []
+pending_patterns: []
+pending_decisions: []
+
+self_healing:
+  applied_fixes: []
+  resolved_errors: []

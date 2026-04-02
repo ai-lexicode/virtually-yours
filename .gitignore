@@ -1,0 +1,45 @@
+# Environment variables (contains secrets)
+.env
+.env.local
+.env.*.local
+
+# Claude Code local settings (machine-specific)
+.claude/settings.local.json
+.claude/worktrees/
+*.local.md
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.bak
+*.bak.*
+*~
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies
+node_modules/
+
+# Temporary files
+*.tmp
+.tmp-*
+
+# Logs
+*.log
+
+# ClawGuard symlinks (local clone — not tracked; re-run install.sh to recreate)
+.clawguard
+.clawguard-modules-installed
+.clawteam
+
+# Framework symlinks (re-run install.sh to recreate)
+project/flow/agents
+project/flow/knowledge
+project/flow/adws
+project/flow/docs
+governance/docs

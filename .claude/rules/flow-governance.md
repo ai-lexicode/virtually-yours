@@ -1,0 +1,1 @@
+../../.clawguard/modules/flow/claude/rules/flow-governance.md
