@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 const statusColors: Record<string, string> = {
   completed: "bg-success/10 text-success",
   delivered: "bg-success/10 text-success",
-  questionnaire: "bg-secondary-container/30 text-secondary",
-  review: "bg-surface-container-high text-primary",
-  pending: "bg-surface-container text-muted",
-  paid: "bg-surface-container-high text-primary",
-  processing: "bg-secondary-container/30 text-secondary",
+  questionnaire: "bg-accent/10 text-accent",
+  review: "bg-accent/20 text-primary",
+  pending: "bg-card text-muted",
+  paid: "bg-accent/20 text-primary",
+  processing: "bg-accent/10 text-accent",
 };
 
 const statusLabels: Record<string, string> = {

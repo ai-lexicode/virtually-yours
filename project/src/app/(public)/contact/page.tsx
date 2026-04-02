@@ -75,21 +75,21 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
-          {/* Form */}
-          <div className="rounded-[0.25rem] bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <h2 className="font-serif text-xl font-bold mb-6 text-on-surface">
+          {/* Form — light card for contrast */}
+          <div className="rounded-lg bg-surface-light p-6">
+            <h2 className="font-serif text-xl font-bold mb-6 text-on-primary">
               Stuur een bericht
             </h2>
 
             {error && (
-              <div className="mb-4 rounded-[0.25rem] bg-error/10 px-4 py-3 text-sm text-error">
+              <div className="mb-4 rounded-lg bg-error/10 px-4 py-3 text-sm text-error">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-muted mb-1 font-label">
+                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Naam *
                 </label>
                 <input
@@ -102,7 +102,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1 font-label">
+                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   E-mailadres *
                 </label>
                 <input
@@ -115,7 +115,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1 font-label">
+                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Bedrijfsnaam
                 </label>
                 <input
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1 font-label">
+                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Onderwerp *
                 </label>
                 <select
@@ -144,7 +144,7 @@ export default function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-muted mb-1 font-label">
+                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Bericht *
                 </label>
                 <textarea
@@ -159,11 +159,11 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-[0.25rem] btn-gradient py-3 font-semibold text-on-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-lg btn-gradient py-3 font-semibold text-on-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Bezig..." : "Versturen"}
               </button>
-              <p className="text-xs text-muted text-center">
+              <p className="text-xs text-on-primary/50 text-center">
                 Ik reageer binnen 24 uur op werkdagen.
               </p>
             </form>
@@ -203,9 +203,9 @@ export default function ContactPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-[0.25rem] bg-surface-container-lowest p-5 flex items-start gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+                className="rounded-lg bg-card p-5 flex items-start gap-4 border border-card-border"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-[0.25rem] bg-surface-container shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 shrink-0">
                   <svg
                     className="h-5 w-5 text-primary"
                     fill="none"
@@ -231,7 +231,7 @@ export default function ContactPage() {
             ))}
 
             {/* Company details */}
-            <div className="rounded-[0.25rem] bg-surface-container-lowest p-5 mt-4 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+            <div className="rounded-lg bg-card p-5 mt-4 border border-card-border">
               <h3 className="font-semibold text-sm mb-3 text-on-surface">
                 Bedrijfsgegevens
               </h3>

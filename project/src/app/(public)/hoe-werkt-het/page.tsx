@@ -48,7 +48,7 @@ export default function HoeWerktHetPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-20 text-center bg-surface-container-low">
+      <section className="py-20 text-center bg-sidebar">
         <div className="mx-auto max-w-3xl px-4">
           <h1 className="font-serif text-4xl sm:text-5xl font-bold text-on-surface">
             Hoe werkt Virtually Yours?
@@ -71,7 +71,7 @@ export default function HoeWerktHetPage() {
               }`}
             >
               <div className="flex-1">
-                <span className="text-3xl sm:text-5xl font-bold font-serif text-secondary/30">
+                <span className="text-3xl sm:text-5xl font-bold font-serif text-primary/30">
                   {step.number}
                 </span>
                 <h2 className="mt-2 font-serif text-2xl font-bold text-on-surface">{step.title}</h2>
@@ -80,8 +80,8 @@ export default function HoeWerktHetPage() {
                 </p>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="h-48 w-full max-w-sm rounded-[0.25rem] bg-surface-container-low flex items-center justify-center">
-                  <span className="text-4xl sm:text-6xl font-bold font-serif text-secondary/20">
+                <div className="h-48 w-full max-w-sm rounded-lg bg-card border border-card-border flex items-center justify-center">
+                  <span className="text-4xl sm:text-6xl font-bold font-serif text-primary/20">
                     {step.number}
                   </span>
                 </div>
@@ -92,24 +92,24 @@ export default function HoeWerktHetPage() {
       </section>
 
       {/* Comparison */}
-      <section className="py-20 bg-surface-container-low">
+      <section className="py-20 bg-sidebar">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-serif text-3xl font-bold text-center mb-10 text-on-surface">
             Waarom Virtually Yours?
           </h2>
-          <div className="rounded-[0.25rem] bg-surface-container-lowest overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-            <div className="grid grid-cols-1 sm:grid-cols-2 bg-surface-container">
+          <div className="rounded-lg bg-card border border-card-border overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 bg-surface-container-high">
               <div className="p-4 text-sm font-semibold text-muted">
                 Traditioneel
               </div>
-              <div className="p-4 text-sm font-semibold text-secondary">
+              <div className="p-4 text-sm font-semibold text-primary">
                 Met Virtually Yours
               </div>
             </div>
             {comparison.map((row, i) => (
               <div
                 key={i}
-                className={`grid grid-cols-1 sm:grid-cols-2 ${i > 0 ? "bg-surface-container-low/30" : ""}`}
+                className={`grid grid-cols-1 sm:grid-cols-2 ${i > 0 ? "border-t border-card-border" : ""}`}
               >
                 <div className="p-4 text-sm text-muted flex items-center gap-2">
                   <svg
@@ -129,7 +129,7 @@ export default function HoeWerktHetPage() {
                 </div>
                 <div className="p-4 text-sm text-on-surface flex items-center gap-2">
                   <svg
-                    className="h-4 w-4 text-secondary shrink-0"
+                    className="h-4 w-4 text-primary shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -152,15 +152,15 @@ export default function HoeWerktHetPage() {
       {/* CTA */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <div className="rounded-[0.25rem] bg-gradient-to-r from-primary to-primary-container p-6 sm:p-12">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-primary">Klaar om te beginnen?</h2>
-            <p className="mt-4 text-on-primary/70">
+          <div className="rounded-lg bg-card border border-card-border p-6 sm:p-12">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-surface">Klaar om te beginnen?</h2>
+            <p className="mt-4 text-muted">
               Bekijk onze documenten en ontvang uw document op maat binnen 24
               uur.
             </p>
             <Link
               href="/documenten"
-              className="mt-8 inline-block rounded-[0.25rem] bg-surface-container-lowest px-8 py-3 font-semibold text-secondary hover:bg-surface-container-low transition-colors"
+              className="mt-8 inline-block rounded-lg btn-gradient px-8 py-3 font-semibold text-on-primary"
             >
               Bekijk documenten
             </Link>

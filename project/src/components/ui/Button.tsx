@@ -4,11 +4,11 @@ const variants = {
   primary:
     "btn-gradient font-semibold",
   secondary:
-    "bg-surface-container-lowest text-secondary font-semibold hover:bg-surface-container-low",
+    "bg-transparent border border-primary text-primary font-semibold hover:bg-primary/10",
   outline:
-    "bg-transparent text-secondary font-semibold hover:bg-surface-container",
+    "bg-transparent text-primary font-semibold hover:bg-primary/10",
   ghost:
-    "text-muted hover:text-foreground hover:underline",
+    "text-muted hover:text-primary hover:underline",
 } as const;
 
 const sizes = {
@@ -38,7 +38,7 @@ export function Button({
   disabled,
   onClick,
 }: ButtonProps) {
-  const base = `inline-flex items-center justify-center rounded-[0.25rem] transition-all disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`;
+  const base = `inline-flex items-center justify-center rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`;
 
   if (href) {
     return (

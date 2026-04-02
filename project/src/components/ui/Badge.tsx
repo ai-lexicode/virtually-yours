@@ -1,10 +1,10 @@
 const variantColors: Record<string, string> = {
-  privacy: "bg-secondary-container/40 text-secondary",
-  commercieel: "bg-accent/30 text-secondary",
-  arbeidsrecht: "bg-surface-container-high text-primary",
-  ondernemingsrecht: "bg-surface-container text-primary-container",
-  vastgoed: "bg-surface-container-low text-secondary",
-  default: "bg-surface-container text-muted",
+  privacy: "bg-primary/20 text-primary",
+  commercieel: "bg-accent/20 text-accent",
+  arbeidsrecht: "bg-primary/15 text-primary-hover",
+  ondernemingsrecht: "bg-primary-dark/20 text-primary",
+  vastgoed: "bg-accent/15 text-accent",
+  default: "bg-surface-container-high text-muted",
 };
 
 interface BadgeProps {
@@ -17,7 +17,7 @@ export function Badge({ variant = "default", children, className = "" }: BadgePr
   const color = variantColors[variant] || variantColors.default;
   return (
     <span
-      className={`inline-block rounded-[0.25rem] px-3 py-1 text-xs font-medium font-label ${color} ${className}`}
+      className={`inline-block rounded-lg px-3 py-1 text-xs font-medium font-label ${color} ${className}`}
     >
       {children}
     </span>

@@ -47,14 +47,14 @@ export default async function PakkettenPage() {
           {bundles.map((bundle) => (
             <div
               key={bundle.title}
-              className={`rounded-[0.25rem] bg-surface-container-lowest p-6 flex flex-col shadow-[0_1px_3px_rgba(0,0,0,0.04)] ${
+              className={`rounded-lg bg-card p-6 flex flex-col border ${
                 bundle.popular
-                  ? "ring-2 ring-secondary"
-                  : ""
+                  ? "border-primary ring-1 ring-primary"
+                  : "border-card-border"
               }`}
             >
               {bundle.popular && (
-                <span className="self-center -mt-9 rounded-[0.25rem] bg-secondary px-4 py-1 text-xs font-bold text-on-secondary">
+                <span className="self-center -mt-9 rounded-lg bg-primary px-4 py-1 text-xs font-bold text-on-primary">
                   Meest gekozen
                 </span>
               )}
@@ -66,13 +66,13 @@ export default async function PakkettenPage() {
               <p className="text-sm text-muted mt-1">{bundle.description}</p>
 
               <div className="mt-6">
-                <span className="text-3xl font-bold text-secondary">
+                <span className="text-3xl font-bold text-primary">
                   {formatPrice(bundle.priceCents)}
                 </span>
                 <span className="ml-2 text-sm text-muted line-through">
                   {formatPrice(bundle.originalCents)}
                 </span>
-                <span className="ml-2 inline-block rounded-[0.25rem] bg-success/20 px-2 py-0.5 text-xs font-medium text-success">
+                <span className="ml-2 inline-block rounded-lg bg-success/20 px-2 py-0.5 text-xs font-medium text-success">
                   Bespaar {bundle.discount}%
                 </span>
               </div>
@@ -81,7 +81,7 @@ export default async function PakkettenPage() {
                 {bundle.includes.map((item) => (
                   <li key={item.title} className="flex items-start gap-2">
                     <svg
-                      className="h-5 w-5 text-secondary mt-0.5 shrink-0"
+                      className="h-5 w-5 text-primary mt-0.5 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -107,10 +107,10 @@ export default async function PakkettenPage() {
 
               <Link
                 href={`/checkout?bundle=${bundle.title.toLowerCase().replace(/ /g, "-")}`}
-                className={`mt-6 block w-full rounded-[0.25rem] py-3 text-center font-semibold transition-colors ${
+                className={`mt-6 block w-full rounded-lg py-3 text-center font-semibold transition-colors ${
                   bundle.popular
                     ? "btn-gradient text-on-primary"
-                    : "bg-surface-container-lowest text-secondary hover:bg-surface-container-low"
+                    : "bg-transparent border border-primary text-primary hover:bg-primary/10"
                 }`}
               >
                 Bestellen
@@ -123,7 +123,7 @@ export default async function PakkettenPage() {
           Liever een individueel document?{" "}
           <Link
             href="/documenten"
-            className="text-secondary hover:text-secondary/80 font-medium"
+            className="text-primary hover:text-primary-hover font-medium"
           >
             Bekijk alle documenten &rarr;
           </Link>

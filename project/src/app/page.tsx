@@ -53,44 +53,44 @@ export default async function HomePage() {
   return (
     <>
       <Navbar />
-      {/* Hero — gradient from primary to primary-container */}
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-gradient-to-br from-primary to-primary-container">
+      {/* Hero — dark with gold accents */}
+      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-label text-accent tracking-wide mb-4">
+          <p className="text-label text-primary tracking-wide mb-4">
             Freelance Juridisch VA
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-on-primary">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
             JOUW JURIDISCHE DOCUMENTEN
             <br />
-            <span className="text-accent">OP MAAT</span>
+            <span className="text-primary">OP MAAT</span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-on-primary/70 leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted leading-relaxed">
             Speciaal voor VA&apos;s, OBM&apos;s, SMM&apos;s en online
             ondernemers in Nederland. Beantwoord een paar vragen en ontvang
             jouw document dezelfde dag.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/documenten" size="lg" variant="secondary">
+            <Button href="/documenten" size="lg">
               Bekijk documenten
             </Button>
-            <Button href="/hoe-werkt-het" variant="ghost" size="lg" className="text-on-primary/80 hover:text-on-primary">
+            <Button href="/hoe-werkt-het" variant="secondary" size="lg">
               Hoe werkt het?
             </Button>
           </div>
-          <p className="mt-8 text-sm text-on-primary/50">
+          <p className="mt-8 text-sm text-muted/60">
             200+ ondernemers vertrouwen op Virtually Yours
           </p>
         </div>
       </section>
 
       {/* Trust bar */}
-      <section className="bg-surface-container-low py-6">
+      <section className="bg-surface-container-low py-6 border-y border-card-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {trustItems.map((item) => (
               <div key={item} className="flex items-center justify-center gap-2">
                 <svg
-                  className="h-5 w-5 text-secondary"
+                  className="h-5 w-5 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -141,12 +141,12 @@ export default async function HomePage() {
       {/* How it works */}
       <Section
         title="Zo werkt het"
-        bg="bg-surface-container-low"
+        bg="bg-sidebar"
       >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {steps.map((step) => (
             <div key={step.number} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-[0.25rem] bg-surface-container mb-4">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/15 mb-4">
                 <svg
                   className="h-7 w-7 text-primary"
                   fill="none"
@@ -161,10 +161,10 @@ export default async function HomePage() {
                   />
                 </svg>
               </div>
-              <span className="text-label text-secondary">
+              <span className="text-label text-primary">
                 STAP {step.number}
               </span>
-              <h3 className="mt-2 font-serif text-lg font-bold">{step.title}</h3>
+              <h3 className="mt-2 font-serif text-lg font-bold text-white">{step.title}</h3>
               <p className="mt-2 text-sm text-muted">{step.description}</p>
             </div>
           ))}
@@ -178,7 +178,7 @@ export default async function HomePage() {
         <div className="flex justify-end mb-6 -mt-8">
           <Link
             href="/documenten"
-            className="text-sm text-secondary hover:text-secondary/80 transition-colors font-medium"
+            className="text-sm text-primary hover:text-primary-hover transition-colors font-medium"
           >
             Alle documenten &rarr;
           </Link>
@@ -200,16 +200,16 @@ export default async function HomePage() {
       {/* CTA */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <div className="rounded-[0.25rem] bg-gradient-to-r from-primary to-primary-container p-6 sm:p-12 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-primary">
+          <div className="rounded-lg bg-card border border-card-border p-6 sm:p-12 text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-surface">
               Klaar om uw juridische zaken te regelen?
             </h2>
-            <p className="mt-4 text-on-primary/70">
+            <p className="mt-4 text-muted">
               Bekijk onze documenten en pakketten. Binnen 24 uur uw document op
               maat.
             </p>
             <div className="mt-8">
-              <Button href="/documenten" size="lg" variant="secondary">
+              <Button href="/documenten" size="lg">
                 Bekijk alle documenten
               </Button>
             </div>

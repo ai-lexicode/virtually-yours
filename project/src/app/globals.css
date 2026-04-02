@@ -2,32 +2,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f9ff;
-  --foreground: #0d1c2f;
-  --primary: #001825;
-  --primary-container: #0f2d3d;
-  --primary-hover: #0f2d3d;
-  --secondary: #7b5730;
-  --secondary-container: #ffce9e;
-  --surface: #f8f9ff;
-  --surface-container: #e6eeff;
-  --surface-container-high: #dde9ff;
-  --surface-container-highest: #d5e3fd;
-  --surface-container-low: #eff4ff;
-  --surface-container-lowest: #ffffff;
-  --on-primary: #ffffff;
-  --on-surface: #0d1c2f;
-  --on-secondary: #ffffff;
-  --outline: #73787c;
-  --outline-variant: #c2c7cc;
-  --accent: #ffce9e;
-  --error: #ba1a1a;
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --primary: #c89c6f;
+  --primary-container: #2a2a2a;
+  --primary-hover: #d4a853;
+  --primary-dark: #b8860b;
+  --secondary: #c89c6f;
+  --secondary-container: #c89c6f;
+  --surface: #1a1a1a;
+  --surface-container: #2a2a2a;
+  --surface-container-high: #333333;
+  --surface-container-highest: #3a3a3a;
+  --surface-container-low: #222222;
+  --surface-container-lowest: #222222;
+  --surface-light: #f5f0e8;
+  --on-primary: #1a1a1a;
+  --on-surface: #ffffff;
+  --on-secondary: #1a1a1a;
+  --outline: #333333;
+  --outline-variant: #444444;
+  --outline-gold: rgba(200, 156, 111, 0.3);
+  --accent: #d4a853;
+  --error: #ef4444;
   --success: #22c55e;
   --warning: #f59e0b;
-  --muted: #73787c;
-  --card: #ffffff;
-  --card-border: transparent;
-  --sidebar: #eff4ff;
+  --muted: #999999;
+  --card: #222222;
+  --card-border: rgba(200, 156, 111, 0.2);
+  --sidebar: #111111;
   --info: #3b82f6;
 }
 
@@ -39,6 +42,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-container: var(--primary-container);
+  --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
   --color-secondary-container: var(--secondary-container);
   --color-surface: var(--surface);
@@ -47,11 +51,13 @@
   --color-surface-container-highest: var(--surface-container-highest);
   --color-surface-container-low: var(--surface-container-low);
   --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-light: var(--surface-light);
   --color-on-primary: var(--on-primary);
   --color-on-surface: var(--on-surface);
   --color-on-secondary: var(--on-secondary);
   --color-outline: var(--outline);
   --color-outline-variant: var(--outline-variant);
+  --color-outline-gold: var(--outline-gold);
   --color-accent: var(--accent);
   --color-sidebar: var(--sidebar);
   --color-muted: var(--muted);
@@ -124,17 +130,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus ring — ghost border with secondary color */
+/* Focus ring — gold accent */
 *:focus-visible {
-  outline: 2px solid var(--secondary);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
 
-/* Gradient button utility */
+/* Gradient button utility — gold gradient */
 .btn-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
-  color: var(--on-primary);
+  background: linear-gradient(135deg, #c89c6f 0%, #d4a853 100%);
+  color: #1a1a1a;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -142,34 +148,54 @@ html {
   opacity: 0.9;
 }
 
-/* Surface layering — No-Line Rule */
+/* Surface layering — dark elevated */
 .surface-elevated {
-  background: var(--surface-container-lowest);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--card-border);
 }
 
 .surface-tonal {
   background: var(--surface-container);
 }
 
-/* Input styles — No bottom line, surface bg */
+/* Input styles — light bg on dark for readability */
 .input-field {
-  background: var(--surface-container-highest);
-  border: 2px solid transparent;
-  border-radius: 0.25rem;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  color: var(--foreground);
+  color: #1a1a1a;
   transition: border-color 0.2s ease;
   width: 100%;
 }
 
 .input-field::placeholder {
-  color: var(--muted);
+  color: #999999;
   opacity: 0.6;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: var(--secondary);
+  border-color: var(--primary);
+}
+
+/* Gold decorative utilities */
+.gold-border-left {
+  border-left: 3px solid var(--primary);
+}
+
+.gold-underline {
+  position: relative;
+}
+
+.gold-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(135deg, #c89c6f, #d4a853);
 }

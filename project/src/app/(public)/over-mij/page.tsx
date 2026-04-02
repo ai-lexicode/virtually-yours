@@ -17,7 +17,7 @@ export default function OverMijPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Photo */}
             <div className="flex justify-center lg:justify-start">
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-[0.25rem] overflow-hidden shadow-lg">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-lg overflow-hidden border border-card-border shadow-lg">
                 <Image
                   src="/images/profile-risha.jpg"
                   alt="Risha Smeding"
@@ -30,11 +30,11 @@ export default function OverMijPage() {
 
             {/* Bio */}
             <div>
-              <p className="text-label text-secondary tracking-wide mb-2">
+              <p className="text-label text-primary tracking-wide mb-2">
                 Over mij
               </p>
               <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Risha Smeding</h1>
-              <p className="mt-2 text-lg text-secondary font-medium">
+              <p className="mt-2 text-lg text-primary font-medium">
                 Freelance jurist, Legal Engineer &amp; Juridisch VA
               </p>
 
@@ -74,7 +74,7 @@ export default function OverMijPage() {
       <Section
         title="Mijn diensten"
         subtitle="Ik bied drie kernservices aan voor online ondernemers en juridische dienstverleners."
-        bg="bg-surface-container-low"
+        bg="bg-sidebar"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -99,9 +99,9 @@ export default function OverMijPage() {
           ].map((service) => (
             <div
               key={service.title}
-              className="rounded-[0.25rem] bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+              className="rounded-lg bg-card p-6 border border-card-border"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-[0.25rem] bg-surface-container mb-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/15 mb-4">
                 <svg
                   className="h-6 w-6 text-primary"
                   fill="none"
@@ -116,7 +116,7 @@ export default function OverMijPage() {
                   />
                 </svg>
               </div>
-              <h3 className="font-serif text-lg font-bold">{service.title}</h3>
+              <h3 className="font-serif text-lg font-bold text-on-surface">{service.title}</h3>
               <p className="mt-2 text-sm text-muted leading-relaxed">
                 {service.description}
               </p>
@@ -128,15 +128,15 @@ export default function OverMijPage() {
       {/* CTA */}
       <Section>
         <div className="max-w-3xl mx-auto text-center">
-          <div className="rounded-[0.25rem] bg-gradient-to-r from-primary to-primary-container p-6 sm:p-12">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-primary">
+          <div className="rounded-lg bg-card border border-card-border p-6 sm:p-12">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-on-surface">
               Wil je samenwerken?
             </h2>
-            <p className="mt-4 text-on-primary/70">
+            <p className="mt-4 text-muted">
               Neem gerust contact op voor een vrijblijvend kennismakingsgesprek.
             </p>
             <div className="mt-8">
-              <Button href="/contact" size="lg" variant="secondary">
+              <Button href="/contact" size="lg">
                 Neem contact op
               </Button>
             </div>

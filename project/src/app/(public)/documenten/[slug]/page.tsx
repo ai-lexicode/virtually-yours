@@ -49,11 +49,11 @@ export default async function DocumentDetailPage({
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-sm text-muted mb-6">
-          <Link href="/" className="hover:text-secondary transition-colors">
+          <Link href="/" className="hover:text-primary transition-colors">
             Home
           </Link>{" "}
           &gt;{" "}
-          <Link href="/documenten" className="hover:text-secondary transition-colors">
+          <Link href="/documenten" className="hover:text-primary transition-colors">
             Documenten
           </Link>{" "}
           &gt; {doc.title}
@@ -62,7 +62,7 @@ export default async function DocumentDetailPage({
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* Left column */}
           <div className="lg:col-span-3">
-            <span className="inline-block rounded-[0.25rem] bg-surface-container px-3 py-1 text-xs font-medium font-label text-primary">
+            <span className="inline-block rounded-lg bg-primary/15 px-3 py-1 text-xs font-medium font-label text-primary">
               {categoryLabels[doc.category] || doc.category}
             </span>
             <h1 className="mt-4 font-serif text-3xl sm:text-4xl font-bold text-on-surface">
@@ -79,7 +79,7 @@ export default async function DocumentDetailPage({
                 {(doc.includes as string[]).map((item: string) => (
                   <li key={item} className="flex items-start gap-3">
                     <svg
-                      className="h-5 w-5 text-secondary mt-0.5 shrink-0"
+                      className="h-5 w-5 text-primary mt-0.5 shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -108,9 +108,9 @@ export default async function DocumentDetailPage({
                 ].map(([num, title, desc]) => (
                   <div
                     key={num}
-                    className="rounded-[0.25rem] bg-surface-container-low p-4"
+                    className="rounded-lg bg-card border border-card-border p-4"
                   >
-                    <span className="text-label text-secondary">
+                    <span className="text-label text-primary">
                       STAP {num}
                     </span>
                     <h3 className="mt-1 font-semibold text-sm text-on-surface">{title}</h3>
@@ -123,9 +123,9 @@ export default async function DocumentDetailPage({
 
           {/* Right column — pricing card */}
           <div className="lg:col-span-2">
-            <div className="lg:sticky lg:top-24 rounded-[0.25rem] bg-surface-container-lowest p-6 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <div className="lg:sticky lg:top-24 rounded-lg bg-card border border-card-border p-6">
               <div className="text-center mb-6">
-                <span className="text-4xl font-bold text-secondary">
+                <span className="text-4xl font-bold text-primary">
                   {formatPrice(doc.price_cents)}
                 </span>
                 <p className="text-sm text-muted mt-1">incl. 21% BTW</p>
@@ -146,7 +146,7 @@ export default async function DocumentDetailPage({
                     className="flex items-center gap-2 text-sm text-muted"
                   >
                     <svg
-                      className="h-4 w-4 text-secondary shrink-0"
+                      className="h-4 w-4 text-primary shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -165,7 +165,7 @@ export default async function DocumentDetailPage({
 
               <Link
                 href={`/checkout?doc=${slug}`}
-                className="block w-full rounded-[0.25rem] btn-gradient py-3 text-center font-semibold text-on-primary"
+                className="block w-full rounded-lg btn-gradient py-3 text-center font-semibold text-on-primary"
               >
                 Bestellen
               </Link>
