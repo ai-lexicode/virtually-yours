@@ -15,6 +15,19 @@ export const metadata: Metadata = {
     "online ondernemer",
     "Nederland",
   ],
+  icons: {
+    icon: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
+  openGraph: {
+    title: "Virtually Yours — Jouw juridische documenten op maat",
+    description:
+      "Juridische documenten op maat voor online professionals, VA's, OBM's en SMM's in Nederland.",
+    url: "https://virtually-yours.nl",
+    siteName: "Virtually Yours",
+    locale: "nl_NL",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
