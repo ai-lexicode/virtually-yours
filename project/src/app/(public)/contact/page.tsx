@@ -68,9 +68,9 @@ export default function ContactPage() {
     <section className="py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <h1 className="text-4xl font-bold">Contact</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold">Contact</h1>
           <p className="mt-4 text-lg text-muted">
-            Heeft u vragen? Neem gerust contact met ons op.
+            Heeft u vragen? Neem gerust contact met mij op.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function ContactPage() {
           {/* Form */}
           <div className="rounded-xl bg-card border border-card-border p-6">
             <h2 className="text-xl font-semibold mb-6">
-              Stuur ons een bericht
+              Stuur een bericht
             </h2>
 
             {error && (
@@ -138,7 +138,8 @@ export default function ContactPage() {
                   <option>Algemene vraag</option>
                   <option>Vraag over een document</option>
                   <option>Hulp bij vragenlijst</option>
-                  <option>Klacht</option>
+                  <option>Coaching</option>
+                  <option>Samenwerking</option>
                   <option>Anders</option>
                 </select>
               </div>
@@ -163,7 +164,7 @@ export default function ContactPage() {
                 {loading ? "Bezig..." : "Versturen"}
               </button>
               <p className="text-xs text-muted text-center">
-                Wij reageren binnen 24 uur op werkdagen.
+                Ik reageer binnen 24 uur op werkdagen.
               </p>
             </form>
           </div>
@@ -172,20 +173,32 @@ export default function ContactPage() {
           <div className="space-y-4">
             {[
               {
-                icon: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
-                title: "E-mail",
-                value: "info@virtually-yours.nl",
+                icon: "M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z",
+                title: "Adres",
+                value: "Wikkestraat 68",
+                sub: "Alphen aan den Rijn",
+              },
+              {
+                icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z",
+                title: "Werkdagen",
+                value: "Maandag, dinsdag, vrijdag",
+                sub: "Andere dagen in overleg",
               },
               {
                 icon: "M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z",
                 title: "Telefoon",
                 value: "+31 (0)6 18755103",
-                sub: "Ma-Vr 09:00 - 17:00",
+              },
+              {
+                icon: "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
+                title: "E-mail",
+                value: "info@virtually-yours.nl",
               },
               {
                 icon: "M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z",
                 title: "WhatsApp",
                 value: "+31 (0)6 18755103",
+                sub: "Stuur gerust een berichtje!",
               },
             ].map((item) => (
               <div
