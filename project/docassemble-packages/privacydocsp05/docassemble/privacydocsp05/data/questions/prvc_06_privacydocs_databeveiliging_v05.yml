@@ -1,0 +1,182 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_databeveiliging: '06v05'
+# last revision date: 2025-09-05
+---
+#---------------------------------
+# SECTIE DATABEVEILIGING
+#---------------------------------
+id: id_databeveiliging
+mandatory: True
+question: |
+  Databeveiliging
+subquestion: |
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <strong>Beveiliging van de verwerking</strong>
+    <br>
+    De AVG stelt het verplicht om passende technische en organisatorische beveiligingsmaatregelen te treffen. In artikel 32 van de AVG lezen we het volgende:
+    <br><br>
+    <ol><em>
+      <li>
+        Rekening houdend met de stand van de techniek, de uitvoeringskosten, alsook met de aard, de omvang, de context 
+        en de verwerkingsdoeleinden en de qua waarschijnlijkheid en ernst uiteenlopende risico's voor de rechten en vrijheden van personen, 
+        treffen de verwerkingsverantwoordelijke en de verwerker passende technische en organisatorische maatregelen 
+        om een op het risico afgestemd beveiligingsniveau te waarborgen, die, waar passend, onder meer het volgende omvatten:
+        <br><br>
+          <ol type="a">
+          <li>de pseudonimisering en versleuteling van persoonsgegevens;</li>
+          <li>het vermogen om op permanente basis de vertrouwelijkheid, integriteit, beschikbaarheid en veerkracht van de verwerkingssystemen en diensten te garanderen;</li>
+          <li>het vermogen om bij een fysiek of technisch incident de beschikbaarheid van en de toegang tot de persoonsgegevens tijdig te herstellen;</li>
+          <li>een procedure voor het op gezette tijdstippen testen, beoordelen en evalueren van de doeltreffendheid van de technische en organisatorische maatregelen ter beveiliging van de verwerking.</li>
+          </ol>
+      </li>
+      <br>
+      <li>
+        Bij de beoordeling van het passende beveiligingsniveau wordt met name rekening gehouden met de verwerkingsrisico’s, vooral als gevolg van de vernietiging, het verlies, 
+        de wijziging of de ongeoorloofde verstrekking van of ongeoorloofde toegang tot doorgezonden, opgeslagen of anderszins verwerkte gegevens, hetzij per ongeluk hetzij onrechtmatig.
+      </li>
+    </em></ol>
+  </div>
+    <br>
+fields:
+# _________________________________
+# Beveiligingsmaatregelen
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Beveiligingsmaatregelen</strong>
+      </div>
+# 30 | techmaatregelen_pvv
+  - note: >
+      30. **Technische maatregelen:**<br>
+      Welke technische maatregelen neem je om verlies, onbevoegde toegang, etc. van gegevens 
+      die je verwerkt tegen te gaan? *(selecteer ten minste één optie)*
+    help: >
+      Dit lijstje bevat enkele suggesties van **technische** maatregelen die je misschien genomen hebt, 
+      en dient ook voor een stukje bewustwording over maatregelen die je zou kúnnen nemen. 
+      De maatregelen die je treft moeten afgestemd worden op de risico’s en de aard van de te beschermen persoonsgegevens. 
+      Dus als er een hoog risico is zul je strengere maatregelen moeten treffen dan wanneer je gegevens verwerkt die 
+      niet zo privacygevoelig zijn en/of weinig schade opleveren als er iets misgaat met de gegevens.
+      <br><br>
+      Als je ook nog technische beveiligingsmaatregelen in je privacyverklaring wilt opnemen die niet hier staan vermeld, 
+      vink dan (ook) “Anders / Ik weet het (nog) niet en pas dit later zelf aan” aan. 
+      Er komt dan in je privacyverklaring een blauw stukje tekst te staan waar je later zelf (andere) 
+      technische beveiligingsmaatregelen kunt invullen.
+      <br><br>
+      Het is overigens niet noodzakelijk om álle maatregelen te vermelden die je kunt bedenken. 
+      Ook hoef je niet al te veel in detail te treden. 
+      Het kan juist een veiligheidsrisico zijn als je te gedetailleerd de door jou getroffen maatregelen uiteenzet 
+      in je openbaar toegankelijke privacyverklaring. Een korte opsomming van een aantal maatregelen is voldoende.
+      <br><br>
+      *Tip:
+      <br>
+      Vraag degene die je website heeft gemaakt (indien van toepassing) welke websitebeveiliging in jouw geval van toepassing is.*
+  - field: techmaatregelen_pvv
+    label: >
+      30.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - SSL-certificaat voor je website: ssl
+      - Computer, programma’s en accounts beveiligen met veilige wachtwoorden: wachtwoorden
+      - Beveiliging met tweestapsverificatie waar mogelijk: 2staps
+      - Het gebruiken van een beveiligde cloudopslag: cloudopslag
+      - Het gebruik van een beveiligd CRM-systeem (bijv. beveiligd door SSL-encryptie): crm
+      - Het gebruiken van anti-virus software en firewall: anti-virus
+      - Software up-to-date houden, zoals browsers, virusscanners en besturingssystemen: up-to-date
+      - Het regelmatig maken van back-ups: back-ups
+      - Pseudonimiseren en versleutelen (encryptie): encryptie
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+# 31 | orgmaatregelen_pvv
+  - note: >
+      31. **Organisatorische maatregelen:**<br>
+      Welke organisatorische maatregelen neem je om verlies, onbevoegde toegang, etc. 
+      van gegevens die je verwerkt tegen te gaan? *(selecteer ten minste één optie)*
+    help: >
+      Dit lijstje bevat enkele suggesties van **organisatorische** maatregelen die je misschien genomen hebt, 
+      en dient ook voor een stukje bewustwording over maatregelen die je zou kúnnen nemen. 
+      De maatregelen die je treft moeten afgestemd worden op de risico’s en de aard van de te beschermen persoonsgegevens. 
+      Dus als er een hoog risico is zul je strengere maatregelen moeten treffen dan wanneer je gegevens verwerkt die 
+      niet zo privacygevoelig zijn en/of weinig schade opleveren als er iets misgaat met de gegevens.
+      <br><br>
+      Als je ook nog organisatorische beveiligingsmaatregelen in je privacyverklaring wilt opnemen die niet hier staan vermeld, 
+      vink dan (ook) “Anders / Ik weet het (nog) niet en pas dit later zelf aan” aan. 
+      Er komt dan in je privacyverklaring een blauw stukje tekst te staan waar je later zelf (andere) 
+      organisatorische beveiligingsmaatregelen kunt invullen.
+      <br><br>
+      Het is overigens niet noodzakelijk om álle maatregelen te vermelden die je kunt bedenken. 
+      Ook hoef je niet al te veel in detail te treden. 
+      Het kan juist een veiligheidsrisico zijn als je te gedetailleerd de door jou getroffen maatregelen uiteenzet 
+      in je openbaar toegankelijke privacyverklaring. Een korte opsomming van een aantal maatregelen is voldoende.
+      <br><br>
+      *Tip:
+      <br>
+      Vraag degene die je website heeft gemaakt (indien van toepassing) welke websitebeveiliging in jouw geval van toepassing is.*
+  - field: orgmaatregelen_pvv
+    label: >
+      31.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Maatregelen worden van tijd tot tijd getest, beoordeeld en geëvalueerd: maatregelen testen
+      - Als beleid nooit inloggen op een onbeveiligd netwerk: onbeveiligd netwerk
+      - Verouderde gegevens automatisch verwijderen: verouderde gegevens
+      - Regelmatig beoordelen of u dezelfde doelen kunt behalen met minder persoonsgegevens: minder gegevens
+      - Als zich er toch een incident voordoet, kan het tijdig hersteld worden: tijdig herstel
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 32 | vragen_prvcdatabeveiliging
+  - note: >
+      32. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvcdatabeveiliging
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 49
+section: sec_databeveiliging
+--- 

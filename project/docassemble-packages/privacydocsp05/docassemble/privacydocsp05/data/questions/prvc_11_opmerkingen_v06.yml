@@ -1,0 +1,102 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_opmerkingen: '09v06'
+# last revision date: 2025-10-31
+---
+#---------------------------------
+# SECTIE Vragen
+#---------------------------------
+id: id_vragen
+mandatory: True
+question: |
+  Vragen of opmerkingen
+fields:
+# _________________________________
+# 42 | vragen_prvcalgemeen
+# _________________________________
+  - note: >
+      42. **Vragen en opmerkingen Algemeen:**<br>
+      Heb je nog specifieke vragen en/of opmerkingen in het algemeen?
+    help: >
+      Zijn er bijvoorbeeld bijzondere omstandigheden waar rekening mee gehouden moet worden? 
+      Of heb je vragen over deze vragenlijst?
+      <br><br>
+      *(Let op, verzoeken voor het toevoegen van specifieke clausules of artikelen kunnen extra kosten 
+      met zich meebrengen. Uiteraard bespreek ik de kosten eerst met je voordat ik het verzoek ga verwerken)* 
+  - field: vragen_prvcalgemeen
+    label:
+    input type: area
+    required: False
+# _________________________________
+# 43 | urgentdocprvc_ovk
+# _________________________________
+  - note: >
+      43. **Spoedaanvraag:**<br>
+      Heb je een document urgent nodig?
+    help: >
+      Laat het me weten als je een deadline hebt voor een document, bijvoorbeeld omdat je verwacht op korte 
+      termijn een opdracht aan te nemen. Dan doe ik mijn best om daar rekening mee te houden.
+      <br><br>
+      Heb je het document binnen 48 uur nodig? Neem dan contact met mij op via Whatsapp (06-18722103) om de mogelijkheden en de meerprijs voor een spoedopdracht te bespreken.
+  - field: urgentdocprvc_ovk
+    label:
+    label above field: True
+    input type: area
+    required: False
+# _________________________________
+# 00 | Intern
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Intern</strong>
+      </div>
+    show if:
+      code: |
+        user_info().email == 'info@lexicode.nl'
+# _________________________________
+# 44 | opmerkingenintern_prvc
+# _________________________________
+  - note: >
+      44. Interne opmerkingen:<br>
+    show if:
+      code: |
+        user_info().email == 'info@lexicode.nl'      
+  - field: opmerkingenintern_prvc
+    label:
+    input type: area
+    show if:
+      code: |
+        user_info().email == 'info@lexicode.nl'
+    required: False
+# _________________________________
+# 45 | aanleverdatum_prvc
+# _________________________________
+  - Aanleverdatum: aanleverdatum_prvc
+    datatype: date
+    default: |
+      ${ format_date( current_datetime(), format='dd-MM-yy' ) }
+    show if:
+      code: |
+        user_info().email == 'info@lexicode.nl'      
+    required: False
+#---
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 70
+section: sec_vragen
+---

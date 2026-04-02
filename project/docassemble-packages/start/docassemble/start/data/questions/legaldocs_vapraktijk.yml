@@ -1,0 +1,72 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+metadata:
+  title: |
+    Opdrachtdocumenten
+  short title: |
+    legaldocs
+  description: |
+    Vragenlijsten voor het opstellen van juridische documenten
+  error help: |
+    Ay, dat gaat even niet helemaal goed.
+    Sorry!
+    Neem alsjeblieft contact op met 
+    [de webmaster](mailto:webmaster@lexicode.nl).
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-07-24
+---
+code: |
+  version_AFF = 'vapraktijk_v1'
+---
+mandatory: true
+question: |
+  Vragenlijsten starten
+subquestion: |
+  Welkom!
+  
+  We gaan aan de slag met de juridische opdrachtdocumenten voor je onderneming.
+  Door middel van een vragenlijst kunnen we de documenten voor je op maat maken.
+  
+  We gaan de volgende documenten opstellen:
+  <ul>
+  <li>{Overeenkomst van opdracht}</li>
+  <li>{Algemene voorwaarden}</li>
+  </ul>
+  
+  <span style="color: LightSeaGreen;">**Nieuwe vragenlijst starten**</span>
+    <br>
+    Klik hier om de vragenlijst te starten:  [Opdrachtdocumenten]
+    [Opdrachtdocumenten]: ${ interview_url(i='docassemble.opdrachtdocsp03:data/questions/Yaml_opdr_p03y30_AFF.yml') }
+  
+
+  <span style="color: LightSeaGreen;">**Verder gaan met eerder gestarte vragenlijst**</span>
+    <br>
+    Je hoeft de vragenlijst niet in één keer af te ronden. Je antwoorden worden opgeslagen, zodat je op een later moment weer verder kunt gaan.
+  
+    Wil je verder gaan met een vragenlijst die je al eerder bent gestart? 
+    Klik dan rechtsboven in het menu op "Mijn Interviews" en vervolgens op de vragenlijst die je wilt hervatten.
+    Mogelijk moet je eerst inloggen.
+  
+  
+  <span style="color: LightSeaGreen;">**Vragen?**</span>
+     <br> 
+    Heb je vragen? Neem dan contact op met VA Praktijk.
+
+  Veel succes!
+
+  Anne, Anoeska & Risha
+terms:
+  Overeenkomst van opdracht: |
+    Voorkom misverstanden door alle opdrachtspecifieke afspraken tussen jou en je opdrachtgever vast te leggen en verklein het risico op schijnzelfstandigheid.
+  Algemene voorwaarden: |
+    Beperk het bedrijfsrisico van je onderneming en verklein de kans op een (juridisch) geschil met je opdrachtgever door alle rechten en plichten vast te leggen.
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist*
+under: |
+  <br>[FILE vapraktijk.png]<br>
+---

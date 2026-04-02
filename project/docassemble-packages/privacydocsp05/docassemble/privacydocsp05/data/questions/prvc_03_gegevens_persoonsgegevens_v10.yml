@@ -1,0 +1,216 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_persoonsgegevens = '03v09'
+# last revision date: 2025-08-19
+---
+#-----------------------------------------------------------------------------
+# SECTIE PERSOONSGEGEVENS
+#-----------------------------------------------------------------------------
+id: id_persoonsgegevensclientprvc
+mandatory: True
+question: |
+  Persoonsgegevens
+fields:
+# _________________________________
+# Naam
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Naam</strong>
+      </div>
+# 8 | voornaam_client
+  - note: >
+      8. **Voornaam:**<br>
+      Wat is je voornaam?
+  - field: voornaam_client
+    label: >
+      8.
+# 9 | achternaam_client
+  - note: >
+      9. **Achternaam:**<br>
+      Wat is je achternaam?
+  - field: achternaam_client
+    label: >
+      9.
+# _________________________________
+# Schrijfwijze
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Schrijfwijze</strong>
+      </div>
+# 10 | geslacht_client
+  - note: >
+      10. **Gender:**<br>
+      Hoe wil je aangesproken worden in de documenten?
+  - field: geslacht_client
+    label: >
+     10.
+    input type: radio
+    choices:
+      - Vrouwelijk<br>[zij; haar]: Vrouwelijk
+      - Mannelijk<br>[hij; hem; zijn]: Mannelijk
+      - Neutraal<br>[hij/zij; hem/haar; zijn/haar]: Neutraal
+# 11 | formeel_doc
+  - note: >
+      11. **Formeel of informeel:**<br>
+      Wil je een formele (u/uw) of informele (jij/jouw) toon voor de privacy- en/of cookieverklaring?
+    help: >
+      De autoriteit persoonsgegevens schrijft het volgende:
+      <br><br>
+      *“De informatie over de gegevensverwerking moet beknopt, transparant en begrijpelijk zijn. Daarom moet u duidelijke en eenvoudige taal gebruiken. 
+      Dat betekent onder meer: wees kort en bondig, vermijd vaktermen en verplaats u in de lezer.”*
+      <br><br>
+      De tekst zelf zal dus enigszins informeel zijn met zo veel mogelijk eenvoudige taal. 
+  - field: formeel_doc
+    label: >
+      11.
+    input type: radio
+    choices:
+      - Informeel *(meest gekozen)*: Informeel
+      - Formeel: Formeel 
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 12 | vragen_prvcpersoonsgegevens
+  - note: >
+      12. **Opmerkingen:**<br>
+      Heb je opmerkingen over bovenstaande vragen en antwoorden?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvcpersoonsgegevens
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 28
+section: sec_persoonsgegevensprvc
+---
+#-----------------------------------------------------------------------------
+# CODE PERSOONSGEGEVENS
+#-----------------------------------------------------------------------------
+# voornaamwoorden
+#-----------------------------------------------------------------------------
+id: id_voornaamwoorden
+mandatory: True
+code: |
+      if geslacht_client == "Vrouwelijk":
+        bezitvnw_client = 'haar'
+        bezitvnwcap_client = 'Haar'
+        persvnwonderwerp_client = 'zij'
+        persvnwonderwerpcap_client = 'Zij'
+        persvnwvoorwerp_client = 'haar'
+        persvnwvoorwerpcap_client = 'Haar'
+      if geslacht_client == "Mannelijk":
+        bezitvnw_client = 'zijn'
+        bezitvnwcap_client = 'Zijn'
+        persvnwonderwerp_client = 'hij'
+        persvnwonderwerpcap_client = 'Hij'
+        persvnwvoorwerp_client = 'hem'
+        persvnwvoorwerpcap_client = 'Hem'
+      if geslacht_client == "Neutraal":
+        bezitvnw_client = 'zijn/haar'  
+        bezitvnwcap_client = 'Zijn/haar'
+        persvnwonderwerp_client = 'hij/zij'
+        persvnwonderwerpcap_client = 'Hij/zij'
+        persvnwvoorwerp_client = 'hem/haar'
+        persvnwvoorwerpcap_client = 'Hem/haar'
+---
+#-----------------------------------------------------------------------------
+# formele voornaamwoorden
+#-----------------------------------------------------------------------------
+id: id_formeelvoornaamwoorden
+mandatory: True
+code: |
+      if formeel_doc == "Informeel":
+        bezitvnwinf_lezer = 'jouw'
+        bezitvnwinfcap_lezer = 'Jouw'
+        persvnwonderwerpinf_lezer = 'je'
+        persvnwonderwerpinfcap_lezer = 'Je'
+        persvnwvoorwerpinf_lezer = 'jou'
+        persvnwvoorwerpinfcap_lezer = 'Jou'
+      if formeel_doc == "Formeel":
+        bezitvnwinf_lezer = 'uw'
+        bezitvnwinfcap_lezer = 'Uw'
+        persvnwonderwerpinf_lezer = 'u'
+        persvnwonderwerpinfcap_lezer = 'U'
+        persvnwvoorwerpinf_lezer = 'u'
+        persvnwvoorwerpinfcap_lezer = 'U'
+---
+# _________________________________
+# Background task
+# _________________________________
+mandatory: True
+code: |
+  task_startmail = background_action('bg_taskstart')
+  log("bg_taskstart gestart.")
+---
+#-----------------------------------------------------------------------------
+# CODE
+#-----------------------------------------------------------------------------
+mandatory: True
+event: bg_taskstart
+code: |
+  if welkedocs_prvc:
+    send_email(to=['info@lexicode.nl'],
+      template=inform_admin
+    )
+  log("bg_taskstart afgerond.")
+  background_response()
+---
+template: inform_admin
+subject: |
+  Vragenlijst ${ version_prvc } gestart door ${ bedrijfsnaam_client }
+content: |
+  De online vragenlijst voor privacydocumenten:
+  
+  **Versie vragenlijst:** ${ version_prvc }
+  
+  is gestart door:
+
+  **Bedrijfsnaam:** ${ bedrijfsnaam_client }
+
+  **Voornaam:** ${ voornaam_client }
+
+  **Gestart door user:** ${ user_info().email }
+
+  Klik op de link om het interview te bekijken:
+  
+  [${ interview_url() }](${ interview_url() })
+---

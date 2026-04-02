@@ -1,0 +1,96 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_huisstijl: '10v03'
+# last revision date: 2025-09-05
+---
+#---------------------------------
+# SECTIE huisstijl
+#---------------------------------
+id: id_huisstijl
+mandatory: True
+question: |
+  Huisstijl
+subquestion: |
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <strong>Opmaak documenten</strong>
+    <br>
+      De juridische documenten worden aangeleverd als Word-files (docx) met een witte achtergrond en zwarte letters.
+      Je mag je juridische documenten verder naar eigen wens opmaken.
+    <br><br>
+      Je ontvangt de documenten dus <em>niet</em> standaard in je eigen huisstijl,
+      maar je kunt voor de zekerheid de kleuren van je huisstijl hier doorgeven.
+  </div>
+  <br>
+fields:
+# _________________________________
+# Kleuren
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Kleuren</strong>
+      </div>
+  - note: >
+      **Huisstijlkleuren:**<br>
+      41. Welke kleuren gebruik je voor je (juridische) documenten? *(optioneel)*
+    help: >
+      Geef hier desgewenst de kleurcodes van je huisstijl. 
+      Geef bij voorkeur de kleurcodes als hex-code. Hex-codes bestaan uit 6 cijfers of letters en worden voorafgegaan door een '#'. 
+      Bijvoorbeeld #000000 staat voor zwart en #ffffff voor wit.
+# 41a | achtergrondkleur_client
+  - field: achtergrondkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor de achtergrond van documenten of op de pagina's van je website.
+    label: >
+      41a.
+      <br>
+      Wat gebruik je als achtergrondkleur?
+    input type: area
+    required: False
+# 41b | tekstkleur_client
+  - field: tekstkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor teksten in documenten of teksten op je website.  
+    label: >
+      41b.
+      <br>
+      Wat gebruik je als tekstkleur?
+    input type: area
+    required: False
+# 41c | accentkleur_client
+  - field: accentkleur_client
+    help: >
+      Bijvoorbeeld de kleur die je gebruikt voor titels, kopjes of knoppen op je website of in documenten.    
+    label: >
+      41c.
+      <br>
+      Wat gebruik je als accentkleur?
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 83
+section: sec_huisstijl
+---

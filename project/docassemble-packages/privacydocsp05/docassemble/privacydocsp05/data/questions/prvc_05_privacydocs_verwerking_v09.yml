@@ -1,0 +1,410 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_verwerking: '05v09'
+# last revision date: 2025-09-05
+---
+#-----------------------------------------------------------------------------
+# SECTIE VERWERKING PERSOONSGEGEVENS
+#-----------------------------------------------------------------------------
+id: id_verwerking
+mandatory: True
+question: |
+  Verwerking persoonsgegevens
+subquestion: |
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    Deze sectie gaat over de verwerking van persoonsgegevens. De definities van “persoonsgegevens” en van "verwerking" staan in artikel 4 van de AVG:
+    <br><br>
+    <ol>
+    <li> <u>persoonsgegevens</u>:
+    <br>
+    alle informatie over een geïdentificeerde of identificeerbare {natuurlijke persoon} („{de betrokkene}”); 
+    als identificeerbaar wordt beschouwd een natuurlijke persoon die direct of indirect kan worden geïdentificeerd, 
+    met name aan de hand van een identificator zoals een naam, een identificatienummer, locatiegegevens, een online identificator 
+    of van een of meer elementen die kenmerkend zijn voor de fysieke, fysiologische, genetische, psychische, economische, culturele of 
+    sociale identiteit van die natuurlijke persoon;
+    <br>
+    <br>
+    <li> <u>verwerking</u>:
+    <br>
+    een bewerking of een geheel van bewerkingen met betrekking tot persoonsgegevens of een geheel van persoonsgegevens, 
+    al dan niet uitgevoerd via geautomatiseerde procedés, zoals het verzamelen, vastleggen, ordenen, structureren, opslaan, bijwerken of 
+    wijzigen, opvragen, raadplegen, gebruiken, verstrekken door middel van doorzending, verspreiden of 
+    op andere wijze ter beschikking stellen, aligneren of combineren, afschermen, wissen of vernietigen van gegevens;
+    </ol>
+  </div>
+    <br>
+terms:
+  natuurlijke persoon: |
+    Een **natuurlijke persoon** is een mens van vlees en bloed die zelfstandig drager is van rechten en plichten.
+    Ook eenmanszaken vallen hieronder omdat de eigenaar van de eenmanszaak persoonlijk aansprakelijk is voor de verplichtingen van de onderneming.
+  de betrokkene: |
+    Als we het hebben over een **betrokkene** dan gaat het dus om een geïdentificeerde of identificeerbare natuurlijke persoon.  
+fields:
+# _________________________________
+# Verwerkingsdoelen
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Verwerkingsdoelen</strong>
+      </div>
+# 19 | verwerkingsdoelen_pvv
+  - note: >
+      19. **Verwerkingsdoelen:**<br>
+      Voor welke doelen verwerk jij persoonsgegevens?
+    help: >
+      De doelen met betrekking tot wettelijke plicht en facturen zijn alvast aangevinkt, omdat die sowieso van toepassing zijn.
+      <br><br>
+      Als je ook nog persoonsgegevens verwerkt voor doelen die niet hier (of in de andere vragen in deze sectie) staan vermeld, vink dan (ook) 
+      *“Anders / Ik weet het (nog) niet en pas dit later zelf aan”* aan. 
+      Er komt dan in je privacyverklaring een blauw stukje tekst te staan waar je dan later zelf (andere) verwerkingsdoelen kunt invullen.
+      <br><br>
+      *Tip:<br>
+      om de privacyverklaring niet onnodig lang te maken kun je het beste alleen datgene selecteren wat daadwerkelijk nu van 
+      toepassing is en/of waarvan je weet dat je dat op korte termijn gaat toepassen.*
+  - field: verwerkingsdoelen_pvv
+    label: >
+      19.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Om facturen te kunnen versturen en incasseren<br>*(verplicht)*: facturen
+      - Om facturen te betalen<br>*(verplicht)*: betalingen
+      - Om aan een wettelijke plicht te voldoen<br>*(verplicht)*: plicht
+      - Om een overeenkomst aan te gaan en uit te voeren en contact te onderhouden<br>*(verplicht)*: uitvoering
+      - Om te reageren op contact- of informatieverzoeken<br>*(verplicht)*: contactverzoek
+      - Om offertes op te stellen en te versturen: offertes
+      - Om (kennismakings)gesprekken in te plannen en te bevestigen: kennismakingsgesprek
+      - Om contacten te informeren over wijzigingen in je dienstverlening: wijzigingen
+      - Om nieuwsbrieven te versturen: nieuwsbrieven
+      - Om relatiegeschenken, attenties en kaarten te versturen: relatiegeschenken
+      - Om reviews op je website of socialemediakanalen te plaatsen: reviews
+      - Om evaluatieformulieren toe te sturen: evaluatieformulieren
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+    default:
+      - facturen
+      - betalingen
+      - plicht
+      - uitvoering
+      - contactverzoek
+# 20 | webtraffic_pvv
+  - note: >
+      20. **Online identificatoren:**<br>
+      Verwerk je ook voor deze doelen persoonsgegevens?
+    help: >
+      Zijn een of meerdere van deze doelen op jou van toepassing? Dan verzamel je mogelijk **IP-adressen**, **locaties** of **browsegegevens**.
+      <br><br>
+      De cookies die je gebruikt op je website komen verderop in deze vragenlijst nog uitgebreider aan de orde.
+      <br><br>
+      In de AVG (Overweging 30) staat het volgende: 
+      <br><br>
+      *“Natuurlijke personen kunnen worden gekoppeld aan online-identificatoren via hun apparatuur, applicaties, instrumenten en protocollen, 
+      zoals internetprotocol (IP)-adressen, identificatiecookies of andere identificatoren zoals radiofrequentie-identificatietags.
+      <br><br>
+      Dit kan sporen achterlaten die, met name wanneer zij met unieke identificatoren en andere door de servers ontvangen informatie worden gecombineerd, 
+      kunnen worden gebruikt om profielen op te stellen van natuurlijke personen en natuurlijke personen te herkennen.”*
+      <br><br>
+      Mocht je online identifcatoren, zoals ip-adressen, locaties of browsegegevens verzamelen voor andere dan de hier genoemde doelen, 
+      vink dan (ook) *“Ik verwerk online identificatoren voor andere doelen dan hierboven genoemd”* aan.
+      Er komt dan in je privacyverklaring een blauw stukje tekst te staan waar je dan later zelf (andere) verwerkingsdoelen kunt invullen.
+  - field: webtraffic_pvv
+    label: >
+      20.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Om via je website iDEAL betalingen te ontvangen: ideal
+      - Om gratis digitale weggevers te overhandigen: weggevers
+      - Om websitebezoeken te monitoren: websitebezoeken
+      - Ik verwerk online identificatoren (ook) voor andere doelen dan hierboven genoemd: anders
+      - Nee, ik verwerk geen persoonsgegevens voor deze doelen: nee
+    none of the above: False
+# _________________________________
+# Persoonsgegevens
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Persoonsgegevens</strong>
+      </div>
+# 21 | persoonsgegevensniet_client
+  - note: >
+      21. **Vermoedelijk verwerken:**<br>
+      Ik ga ervan uit dat je de gegevens in deze lijst verwerkt (zie toelichting). Lees in de toelichting waarom ik vermoed dat je deze gegevens verwerkt. Verwerk je ze toch niet, verwijder dan het vinkje.
+    help: >
+      **Bedrijfsnaam, KvK nummer, rechtsvorm, naam,** en **adres**: Als je werkt met een overeenkomst van opdracht en/of een verwerkersovereenkomst, 
+      dan verwerk je als het goed is al deze gegevens van je opdrachtgever.
+      <br><br>
+      **Gender** verwerk je ook als je bijvoorbeeld relaties aan wilt spreken met “de heer” of “mevrouw”.
+      <br><br>
+      **Functie** verwerk je ook als je een overeenkomst van opdracht aangaat met een rechtspersoon (bijv. BV of stichting). 
+      Is jouw opdrachtgever dus een BV of stichting, dan verwerk je ook de functie van je opdrachtgever.
+      <br><br>
+      Voor het opstellen van offertes en/of het maken van facturen of het doen van betalingen verwerk je mogelijk alle bij deze vraag vermelde gegevens.
+  - field: persoonsgegevensniet_client
+    label: >
+      21.
+    datatype: checkboxes
+    minlength: 1
+    choices: 
+      - Bedrijfsnaam: bedrijfsnaam 
+      - KvK nummer: kvk
+      - Rechtsvorm: rechtsvorm
+      - Voor- en achternaam: naam
+      - Gender: gender
+      - Woonadres en/of vestigingsadres: adres
+      - Telefoonnummer: telefoon
+      - Websiteadres: website
+      - E-mailadres: email
+      - Functie: functie
+      - Betaalgegevens zoals een bankrekeningnummer: betaalgegevens
+      - Btw-ID nummer: btw
+      - Klantnummer, offertenummer en factuurnummer: klantnummer
+    none of the above: False
+    default:
+      - bedrijfsnaam 
+      - kvk
+      - rechtsvorm
+      - naam
+      - gender
+      - adres
+      - telefoon
+      - website
+      - email
+      - functie
+      - betaalgegevens
+      - btw
+      - klantnummer
+# 22 | geboortedatum_pvv
+  - note: >
+      22. **Geboortedatum:**<br>
+      Verwerk je geboortedatums? Bijvoorbeeld om een attentie of felicitatie te sturen op iemands verjaardag.
+  - field: geboortedatum_pvv
+    label: >
+      22.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# 23 | fotos_pvv
+  - note: >
+      23. **Foto's:**<br>
+      Verwerk je foto's? Bijvoorbeeld om te plaatsen bij een review.
+  - field: fotos_pvv
+    label: >
+      23.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# 24 | overigegegevens_pvv
+  - note: >
+      24. **Overige gegevens:**<br>
+      Verwerk je één of meerdere van de volgende persoonsgegevens?
+    help: >
+      Met financiële gegevens wordt hier NIET bedoeld de betaalgegevens die je verzamelt als je een betaling doet of ontvangt, 
+      maar financiële gegevens waar je inzage in hebt, bijvoorbeeld inzage in het banksaldo van iemand.
+  - field: overigegegevens_pvv
+    label: >
+      24.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Filmmateriaal: filmmateriaal
+      - Financiële gegevens: financiële gegevens
+      - Geboorteplaats: geboorteplaats
+      - BSN: bsn
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+      - Nee, ik verwerk deze persoonsgegegevens niet *(meest gekozen)*: nee
+    none of the above: False
+# 25 | bijzonderepersgeg_pvv
+  - note: >
+      25. **Bijzondere persoonsgegevens:**<br>
+      Verwerk je bijzondere persoonsgegevens?
+  - field: bijzonderepersgegverwerkt_pvv
+    label: >
+      25a.
+    help: > 
+      De AVG maakt onderscheid tussen ‘gewone’ en ‘bijzondere’ persoonsgegevens. Bijzondere persoonsgegevens zijn gegevens die zó privacygevoelig zijn dat het 
+      grote(re) impact op iemand kan hebben als deze gegevens worden verwerkt. Daarom krijgen bijzondere persoonsgegevens extra bescherming in de AVG. 
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+  - field: bijzonderepersgeg_pvv
+    label: >
+      25b.<br>
+      Welke bijzondere persoonsgegevens verwerk je?
+    datatype: checkboxes
+    choices:
+      - Medische gegevens: medisch
+      - Ras of etnische afkomst: afkomst
+      - Seksuele voorkeur: seksueel
+      - Religieuze of levensbeschouwelijke overtuiging: religie
+      - Politieke voorkeur: politiek
+      - Biometrische persoonsgegevens: biometrisch
+      - Genetische persoonsgegevens: genetisch
+      - Lidmaatschap vakvereniging: vakvereniging
+      - Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+    required: False
+    show if: 
+      variable: bijzonderepersgegverwerkt_pvv
+      is: ja
+# _________________________________
+# Derden
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Derden</strong>
+      </div>
+# 26 | derdepartijenspec_pvv
+  - note: >
+      26. **Derde partijen:**<br>
+      Welke derde partijen verwerken persoonsgegevens in opdracht van jou?
+    help: >
+      Bij derde partijen kun je bijvoorbeeld denken aan partners, leveranciers van externe software of tools.  
+  - field: derdepartijenspec_pvv
+    label: >
+      26.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Nieuwsbrieven versturen<br>(bijv. Mailblue): nieuwsbrief
+      - Mijn boekhouding doen<br>(bijv. boekhouder en MoneyBird): boekhouding
+      - Betalingen en incasso’s afhandelen<br>(bijv. MoneyBird): betalingen
+      - Gewerkte uren registreren<br>(bijv. Toggl): urenregistratie
+      - Digitaal handtekeningen verzorgen<br>(bijv. DocuSign): digitale handtekening
+      - Website hosten en e-mails versturen<br>(bijv. Vimexx): webhosting
+      - Webanalyses doen: webanalyse
+      - Online meetings organiseren<br>(bijv. Google Meet/ Teams): online meetings
+      - Online agenda verzorgen<br>(bijv. Calendly): online agenda
+      - Documenten opslaan in de cloud<br>(bijv. Google Drive): cloudopslag
+      - Prettig online samenwerken<br>(bijv. Trello): online samenwerking
+      - Klanten beheren in een CRM-systeem: crm
+      - Efficiënt communiceren<br>(bijv. Whatsapp/Slack): communicatie
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+      - Nvt, ik werk niet samen met derde partijen die voor mij persoonsgegevens verwerken: nee
+    none of the above: False
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 27 | bewaartermijn
+  - note: >
+      27. **Bewaartermijn (ter info):**<br>
+      Hoe lang wil je persoonsgegevens bewaren (als er geen wettelijke bewaartermijn van toepassing is)?
+      <br><br>
+      *Je hoeft deze vraag hier nu niet te beantwoorden. Je dient de bewaartermijnen zelf achteraf nog in te vullen in de privacyverklaring.*
+    help: >
+      Voor ieder gegeven antwoord bij de vraag "Voor welke doelen verwerk jij persoonsgegevens?" dien je een bewaartermijn te hanteren. 
+      In de privacyverklaring kun je zelf straks per doel de bewaartermijn aanpassen.
+      Standaard staat er bij de meeste doelen “niet langer dan strikt noodzakelijk”, maar dit kun (moet) je dus zelf nader specificeren.
+      <br><br>
+      Om een goede administratie te kunnen bijhouden, moeten organisaties bepaalde persoonsgegevens een tijd bewaren. Maar dat mag niet langer gebeuren dan noodzakelijk is.
+      In de AVG staat geen concrete bewaartermijn voor persoonsgegevens. Organisaties bepalen zelf hoe lang zij persoonsgegevens bewaren. 
+      De bewaartermijn kan ook nog verschillen per type gegevens of type verwerking.
+      <br><br>
+      Voor sommige gegevens geldt een wettelijke termijn in verband met belastingplicht (bijv. gegevens met betrekking tot facturen). 
+      De bewaartermijn voor deze gegevens worden automatisch ingevuld in de privacyverklaring. Deze vraag heeft dus betrekking op de bewaartermijn van gegevens die geen wettelijk verplichte bewaartermijn kennen.
+# 28 | buiten EER
+  - note: >
+      28. **Buiten EER:**<br>
+      Verwerk je **zelf** gegevens buiten de Europese Economische Ruimte (EER)?
+    help: >
+      De Europese Economische Ruimte (EER) is een uitgebreid economisch samenwerkingsgebied tussen de Europese Unie (EU)-landen en Noorwegen, IJsland en Liechtenstein. 
+      Deze vraag gaat over of **jijzelf** persoonsgegevens verwerkt buiten de EER, bijvoorbeeld als je werkt in het buitenland. 
+      Het gaat dus niet over **andere partijen** die in jouw opdracht persoonsgegevens buiten de EER verwerken.
+      <br><br>
+      Het is namelijk goed mogelijk dat je gebruik maakt van andere partijen, voor bijvoorbeeld hosting of cloudopslag, die de gegevens verwerken in landen van buiten de EER, 
+      bijvoorbeeld de Verenigde Staten. Denk hierbij aan partijen als Google. Je moet je ervan verzekeren dat deze buitenlandse partijen bij de verwerking van persoonsgegevens een beschermingsniveau 
+      bieden dat gelijk is aan het beschermingsniveau van de AVG. In de privacyverklaring wordt standaard opgenomen dat je je ervan verzekert dat deze derde partijen voldoende zorgvuldig 
+      omgaan met de veiligheid van de persoonsgegevens.
+      <br><br>
+      *Tip:<br>
+      op de website van de Autoriteit Persoonsgegevens kun je zien hoe je passende waarborgen kunt treffen en ook in welke situatie en voor welke landen je geen aanvullende maatregelen hoeft te nemen, 
+      bijvoorbeeld omdat de Europese Commissie besloten heeft dat de nationale wetgeving van een land een passend niveau van gegevensbescherming biedt.*
+    #https://www.autoriteitpersoonsgegevens.nl/themas/internationaal/doorgifte-binnen-en-buiten-de-eer/doorgifte-persoonsgegevens-buiten-de-eer#
+  - field: buiteneer_pvv
+    label: >
+      28.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# _________________________________
+# 29 | vragen_prvcverwerking
+# _________________________________
+  - note: >
+      29. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvcverwerking
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 42
+section: sec_verwerking
+---
+#-----------------------------------------------------------------------------
+# CODE VERWERKING
+#-----------------------------------------------------------------------------
+# SHOWIFS
+#-----------------------------------------------------------------------------
+code: |
+  if bijzonderepersgegverwerkt_pvv == "nee":
+    bijzonderepersgeg_pvv = ['N.v.t.']
+depends on:
+  - bijzonderepersgegverwerkt_pvv
+---

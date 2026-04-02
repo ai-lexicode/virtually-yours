@@ -1,0 +1,117 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+metadata:
+  title: |
+    Juridische documentenportal
+  short title: |
+    home
+  description: |
+    Documentenportal voor het opstellen van juridische documenten
+  error help: |
+    Ay, dat gaat even niet helemaal goed.
+    Sorry!
+    Neem alsjeblieft contact op met 
+    [de webmaster](mailto:webmaster@lexicode.nl).
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-09-29
+---
+code: |
+  version_home = 'home_v01'
+---
+mandatory: true
+question: |
+  Home
+subquestion: |
+  Welkom bij de Documentenportal voor juridische documenten!
+  
+  Via deze portal kun je de vragenlijsten starten voor het opstellen van de volgende juridische documenten.
+  <br>
+  <br>
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <span style="color: #0dcaf0;"><b>OPDRACHTDOCUMENTEN</b></span>
+    <br>
+    <br>
+    <ul>
+      <li>
+        <strong>overeenkomst van opdracht</strong>
+          <br>
+          voorkom misverstanden door alle opdrachtspecifieke afspraken tussen jou en je opdrachtgever 
+          vast te leggen en verklein het risico op schijnzelfstandigheid.
+      </li><br>
+      <li>
+        <strong>algemene voorwaarden</strong>
+          <br>
+          beperk het bedrijfsrisico van je onderneming en verklein de kans op een (juridisch) geschil met je opdrachtgever 
+          door alle rechten en plichten vast te leggen.
+      </li>
+    </ul>
+  </div>
+    <br>
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <span style="color: #0dcaf0;"><b>PRIVACYDOCUMENTEN</b></span>
+    <br>
+    <br>
+    <ul>
+      <li>
+        <strong>privacyverklaring</strong>
+          <br>
+          in een privacyverklaring leg je vast welke persoonsgegevens je verwerkt voor je eigen onderneming en met welk doel je dat doet. <em>(wettelijk verplicht)</em></li>
+      </li><br>
+      <li>
+        <strong>cookieverklaring</strong>
+          <br>
+          in een cookieverklaring leg je vast welke cookies je website gebruikt en met welk doel je die gebruikt. <em>(wettelijk verplicht als je een website met cookies hebt)</em>
+      </li><br>
+      <li>
+        <strong>disclaimer</strong>
+          <br>
+          eenzijdige verklaring over het gebruik van je website. <em>(niet verplicht en hoofdzakelijk informatief met weinig juridische waarde)</em>
+      </li><br>
+      <li>
+        <strong>verwerkersovereenkomst</strong>
+          <br>
+          in een verwerkersovereenkomst leg je vast welke persoonsgegevens je gaat verwerken in opdracht van je opdrachtgever, en met welk doel.
+          Ook beveiligingsmaatregelen en wat te doen bij een datalek leg je hierin vast. <em>(wettelijk verplicht als je gegevens gaat verwerken voor een opdrachtgever)</em>
+      </li>
+    </ul>
+  </div>
+  <br> 
+    <span style="color: #0dcaf0;">**Via coach of opleider**</span><br>
+    Ben je hier terechtgekomen via je coach of opleider?
+    Gebruik dan de directe link die je van hen hebt ontvangen om de juiste vragenlijst(en) te starten.
+
+    <span style="color: #0dcaf0;">**Via webshop**</span><br>
+    Ben je hier terechtgekomen via de webshop van Virtually Yours?
+    Gebruik dan de directe link die je per e-mail hebt ontvangen om de juiste vragenlijst(en) te starten.
+
+    <span style="color: #0dcaf0;">**Bestellen**</span><br>
+    Wil je aanvullende documenten bestellen of juridisch advies inwinnen? Neem dan een kijkje op de [webshop](https://virtuallyyours.legalwebshop.nl/) van Virtually Yours.
+
+    <span style="color: #0dcaf0;">**Vragen?**</span><br>
+    Heb je vragen? Neem dan contact op met degene die jou de url naar deze site heeft gegeven, bijvoorbeeld je coach, opleider, jurist of contactpersoon.
+
+    Succes!
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist*
+---

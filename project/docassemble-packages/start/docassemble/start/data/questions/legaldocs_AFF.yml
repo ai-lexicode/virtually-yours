@@ -1,0 +1,77 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+metadata:
+  title: |
+    Juridische documenten via je coach of opleider
+  short title: |
+    legaldocs
+  description: |
+    Vragenlijsten voor het opstellen van juridische documenten
+  error help: |
+    Ay, dat gaat even niet helemaal goed.
+    Sorry!
+    Neem alsjeblieft contact op met 
+    [de webmaster](mailto:webmaster@lexicode.nl).
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-09-29
+---
+code: |
+  version_AFF = 'AFF_v06'
+---
+mandatory: true
+question: |
+  Vragenlijsten starten
+subquestion: |
+  Welkom!
+  
+  Wat goed dat je waarde hecht aan een goede juridische basis voor jouw onderneming.
+  Door middel van vragenlijsten kunnen we juridische documenten voor je op maat maken.
+
+  <span style="color: LightCoral;">**Nieuwe vragenlijst starten**</span>
+  <br>
+  Selecteer hieronder de vragenlijst die je wilt starten:
+  <br>
+  
+  [Opdrachtdocumenten]
+  <br>
+    Voor de volgende documenten:
+  <ul>
+  <li>Overeenkomst van opdracht</li>
+  <li>Algemene voorwaarden</li>
+  </ul>
+  [Privacydocumenten]
+  <br>
+    Voor de volgende documenten:
+  <ul>
+  <li>Privacyverklaring</li>
+  <li>Cookieverklaring</li>
+  <li>Disclaimer</li>
+  <li>Verwerkersovereenkomst</li>
+  </ul>  
+
+  [Opdrachtdocumenten]: ${ interview_url(i='docassemble.opdrachtdocsp03:data/questions/Yaml_opdr_p03y30_AFF.yml') }
+  [Privacydocumenten]: ${ interview_url(i='docassemble.privacydocsp05:data/questions/Yaml_prvc_p05y27_AFF.yml') }
+
+  <span style="color: LightCoral;">**Verder gaan met eerder gestarte vragenlijst**</span>
+  <br>
+  Je hoeft de vragenlijst niet in één keer af te ronden. Je antwoorden worden opgeslagen, zodat je op een later moment weer verder kunt gaan.
+  
+  Wil je verder gaan met een vragenlijst die je al eerder bent gestart? 
+  Klik dan rechtsboven in het menu op "Mijn Interviews" en vervolgens op de vagenlijst die je wilt hervatten.
+  Mogelijk moet je eerst inloggen.
+  
+  <span style="color: LightCoral;">**Vragen?**</span>
+  <br>
+  Heb je vragen? Neem dan contact op met degene die jou de url naar deze site heeft gegeven, bijvoorbeeld je coach, opleider, jurist of contactpersoon.
+
+  Veel succes!
+
+  Risha
+right: |
+  <br><br><br><br><br><br>[FILE fotorishavy.png]<br>
+  *Risha Smeding<br>
+  Jurist*
+---

@@ -1,0 +1,212 @@
+#-----------------------------------------------------------------------------
+# METADATA Privacydocs
+#-----------------------------------------------------------------------------
+metadata:
+  title: |
+    Privacydocumenten
+  short title: |
+    privacydocs
+  description: |
+    Vragenlijst voor het opstellen van privacydocumenten (privacyverklaring, cookieverklaring, disclaimer, verwerkersovereenkomst)
+  tags:
+    - prvc
+  error help: |
+    Ay, dat gaat even niet helemaal goed.
+    Sorry!
+    Neem alsjeblieft contact op met 
+    [de webmaster](mailto:webmaster@lexicode.nl).
+  sessions are unique:
+    - client  
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-10-31
+---
+code: |
+  version_prvc = 'prvc_p05y28_AFF'
+---
+#-----------------------------------------------------------------------------
+# INITIAL CODE
+#-----------------------------------------------------------------------------
+objects:
+  - respondenten_prvc: DADict.using(gathered=True)
+  - client: Individual
+  - admin: Individual
+#  - bedrijf: Person
+# e.g. bedrijf.client.voornaam
+# e.g. bedrijf.bedrijfsnaam
+---
+code: |
+  if user_logged_in() and user_has_privilege('admin'):
+    user = admin
+    role = 'admin'
+  else:
+    user = client
+    role = 'client'
+  set_info(user=user, role=role)
+---
+initial: True
+code: |
+  if not user_logged_in():
+    kick_out_user
+---
+event: kick_out_user
+question: |
+  Aanmelden of inloggen
+subquestion: |
+  <span style="color: SandyBrown;">**Nieuwe vragenlijst starten**</span>
+  <br>
+  Als je voor het eerst een vragenlijst gaat starten, registreer je dan eerst via het menu rechtsboven. Door je te registreren ga je ermee akkoord dat ik je gegevens verwerk conform mijn [privacyverklaring](https://virtually-yours.nl/privacyverklaring/).
+  <br><br>
+  <span style="color: SandyBrown;">**Verder gaan met eerder gestarte vragenlijst?**</span>
+  <br>
+  Als je verder wilt gaan met een vragenlijst die je eerder bent gestart, log dan in via het menu rechtsboven. 
+  Selecteer na het inloggen bij "Mijn interviews" de vragenlijst die je eerder bent gestart (let op de startdatum).
+---
+initial: True
+code: |
+  multi_user = True
+  if user_logged_in():
+    if user_info().email not in respondenten_prvc:
+      respondenten_prvc.initializeObject(user_info().email)
+    user = respondenten_prvc[user_info().email]
+    lets_start
+  else:
+    kick_out_user
+---
+include:
+  - interview-design_24v06.yml
+---
+#-----------------------------------------------------------------------------
+# SECTIONS
+#-----------------------------------------------------------------------------
+id: id_sections
+sections:
+  - sec_start: Start
+    subsections:
+      - sec_privacy: Jouw privacy
+      - sec_tipstechnisch: Technische tips
+      - sec_tipsinhoud: Inhoudelijke tips
+      - sec_docselect: Documentenselectie
+  - sec_gegevens: Gegevens
+    subsections:
+      - sec_bedrijfsgegevensprvc: Bedrijfsgegevens
+      - sec_persoonsgegevensprvc: Persoonsgegevens
+      - sec_contactmogelijkheden: Contact
+  - sec_privacydocs: Privacydocumenten
+    subsections:
+      - sec_verwerking: Gegevensverwerking
+      - sec_databeveiliging: Databeveiliging
+      - sec_cookies: Cookies
+      - sec_verwerkersovk: Verwerkersovereenkomst
+  - sec_branding: Branding
+    subsections:
+      - sec_logo: Logo uploaden
+      - sec_huisstijl: Huisstijl
+  - sec_opmerkingen: Opmerkingen
+    subsections:
+      - sec_vragen: Vragen en opmerkingen
+  - sec_einde: Afronding
+    subsections:
+      - sec_verstuurd: Antwoorden versturen
+      - sec_klaar: Einde
+---
+#---------------------------------
+# QUESTIONS
+#---------------------------------
+include:
+  - prvc_00_reviewevents_v14.yml
+  - prvc_01_start_v08.yml
+  - prvc_02_gegevens_bedrijfsgegevens_v10.yml
+  - prvc_03_gegevens_persoonsgegevens_v10.yml
+  - prvc_04_gegevens_contactmogelijkheden_v11.yml
+  - prvc_05_privacydocs_verwerking_v09.yml
+  - prvc_06_privacydocs_databeveiliging_v05.yml
+  - prvc_07_privacydocs_cookies_v08.yml
+  - prvc_08_privacydocs_verwerkersovk_v06.yml
+  - prvc_09_branding_logo_v04.yml
+  - prvc_10_branding_huisstijl_v03.yml
+  - prvc_11_opmerkingen_v06_AFF.yml
+  - prvc_12_einde_v14_AFF.yml
+---
+#-----------------------------------------------------------------------------
+# HELP
+#-----------------------------------------------------------------------------
+interview help:
+  heading: Problemen oplossen
+  content: |
+    Hi!
+
+    Ben je hier gekomen omdat je tijdens het doorlopen van de interviewvragen ergens tegenaan bent gelopen? Dan gaan we kijken of we je verder kunnen helpen.
+
+    <span style="color: SandyBrown;">**Ik kom steeds weer terug bij dezelfde vragen, terwijl ik die al heb ingevuld**</span>
+    <br>
+    Ay, dat is vervelend. Dit betekent dat er een klein foutje in de vragenlijst is geslopen, waardoor je niet helemaal door kunt klikken naar het Einde. Als je ingelogd bent, worden jouw antwoorden wel gewoon opgeslagen.<br> 
+    <ul>
+    <li> Controleer of je ingelogd bent door rechtsboven te kijken of je jouw e-mailadres ziet staan.</li>
+    <li> Als je niet ingelogd bent, log dan alsnog in (of maak een account aan als je die nog niet hebt).</li>
+    <li> Controleer of je met het beantwoorden van de vragen tot de laatste sectie "Opmerkingen" bent gekomen (dan heb je alle vragen gehad).</li>
+    <li> Je kunt de webpagina gewoon afsluiten, je antwoorden zijn wel opgeslagen.</li>
+    <li> Stuur een e-mail naar webmaster@lexicode.nl met je bedrijfsnaam en geef in de e-mail aan dat je tijdens het beantwoorden van je vragenlijkst niet helemaal hebt kunnen doorklikken naar Einde.</li>
+    <li> Wij zorgen dat het foutje in het systeem wordt opgelost. Je hoeft verder geen actie meer te ondernemen.</li>
+    </ul>
+
+    <span style="color: SandyBrown;">**Ik krijg een error in beeld te zien**</span>
+    <br>
+    Oeps. Dit betekent dat er een foutje in de vragenlijst is geslopen. Als je ingelogd bent, worden jouw antwoorden wel gewoon opgeslagen.<br>
+    <ul>
+    <li> Kopieer de tekst van de error of maak een screenshot (indien mogelijk)</li>
+    <li> Controleer of je ingelogd bent door rechtsboven op "menu" te klikken (mogelijk moet je eerst een keer op "terug" klikken in je webbrowser).</li>
+    <li> Als je niet ingelogd bent, log dan alsnog in (of maak een account aan als je die nog niet hebt).</li>
+    <li> Stuur een e-mail naar webmaster@lexicode.nl met je bedrijfsnaam en vermeld in je e-mail de error of voeg de screenshot bij.</li>
+    <li> Wij zorgen dat het foutje in het systeem wordt opgelost en laten het je weten zodra dit gelukt is en wat de vervolgstappen zijn.</li>
+    <li> Je kunt daarna als het goed is weer verder gaan met de vragenlijst.</li>
+    </ul>
+    
+    <span style="color: SandyBrown;">**Ik wilde verder gaan met de vragenlijst, maar al mijn antwoorden zijn verdwenen**</span>
+    <br>
+    Geen paniek! Je antwoorden zijn hoogstwaarschijnlijk gewoon opgeslagen, alleen is het systeem een nieuwe vragenlijst gestart toen je inlogde.<br>
+    <ul>
+    <li> Probeer eerst een keer de pagina te verversen.</li>
+    <li> Helpt dat niet, klik dan rechtsboven op je e-mailadres om het account-menu te openen.</li>
+    <li> Klik op "Mijn Interviews" en vervolgens op de vragenlijst met jouw bedrijfsnaam in de titel, zodat je deze opnieuw opent.</li>
+    </ul>
+    Je antwoorden zouden nu weer zichtbaar moeten zijn. Is dat niet het geval, probeer dan een van de volgende opties:
+    <br>
+    <ul>
+    <li> Verwijder de cookies in je browser.</li>
+    <li> Gebruik een andere browser, bij voorkeur Chrome.</li>
+    <li> Neem contact met mij op via webmaster@lexicode.nl</li>
+    </ul>
+
+    <span style="color: SandyBrown;">**Mijn antwoorden zijn verdwenen nadat ik ben teruggegaan naar de vorige pagina**</span>
+    <br>
+    Probeer de knop "terug" niet te gebruiken. Als je deze knop gebruikt om terug te gaan naar een eerdere pagina, dan raak je je ingevulde antwoorden van die pagina kwijt. 
+    Je kunt het beste via het menu het betreffende onderwerp aanklikken en dan klikken op Wijzigen. Wijzig vervolgens je antwoord en klik op "Hervatten" om weer terug te keren naar de pagina waar je was gebleven.
+    Zo raak je geen antwoorden kwijt.
+
+    <span style="color: SandyBrown;">**Ik zit in de verkeerde vragenlijst**</span>
+    <br>
+    Als je meerdere vragenlijsten bent gestart, en je wil verder gaan met een andere vragenlijst dan de vragenlijst waar je nu in zit, kun je een andere vragenlijst openen:<br>
+    <ul>
+    <li> Klik rechtsboven op je e-mailadres om het accountmenu te openen.
+    <li> Klik daar op "Mijn Interviews" voor een overzicht van de door jou gestarte vragenlijsten.
+    <li> Klik op de vragenlijst die je wilt openen.
+    </ul>
+    Als het probleem is dat de vragenlijst die je nu hebt geopend niet de juiste is voor jou 
+    (bijvoorbeeld omdat de vragenlijst niet bedoeld is voor de documenten die je wilt laten opstellen), neem dan contact op via info@lexicode.nl    
+  
+    <span style="color: SandyBrown;">**Kan ik de vragenlijsten ook op papier krijgen?**</span>
+    <br>
+    Vaak is dit mogelijk. Je ontvangt dan een Word-document met de vragen. Je antwoorden kun je dan in het Word-document invullen en per e-mail naar mij toesturen.
+    Hou er wel rekening mee dat het dan wat langer kan duren voordat de documenten klaar zijn.
+    Ook betekent dit dat je alle vragen te zien krijgt, ook als deze niet relevant voor je zijn.
+    Zorg dus dat je goed kijkt welke vragen je wel en welke vragen je niet hoeft in te vullen, naar aanleiding van je eigen gegeven antwoorden.
+    Neem contact op met info@lexicode.nl om te informeren naar de beschikbaarheid van een Word-versie van de vragenlijst.
+
+    <span style="color: SandyBrown;">**Ik heb juridisch inhoudelijke ondersteuning nodig**</span>
+    <br>
+    Gratis juridisch inhoudelijke ondersteuning is in de meeste gevallen niet beschikbaar is, tenzij je daar afspraken over hebt gemaakt met je coach of opleider. 
+    Als juridisch inhoudelijke ondersteuning niet inbegrepen is, dan is het vaak mogelijk om tegen betaling juridisch advies over de documenten te ontvangen. 
+    Neem voor de mogelijkheden contact op met info@lexicode.nl.
+---

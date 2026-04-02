@@ -1,0 +1,203 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_verwerkersovk: '08v06'
+# last revision date: 2025-09-05
+--- 
+#---------------------------------
+# SECTIE Verwerkersovereenkomst
+#---------------------------------
+id: id_verwerkersovereenkomst
+mandatory: True
+question: |
+  Verwerkersovereenkomst
+subquestion: |
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <strong>De verwerkersovereenkomst</strong>
+    <br>
+    Wanneer je voor een opdrachtgever {persoonsgegevens} gaat {verwerken}, 
+    en jouw opdrachtgever bepaalt het doel en de essentiële middelen voor de verwerking, 
+    dan ben jij een ‘{verwerker}’ en is jouw opdrachtgever de ‘{verwerkingsverantwoordelijke}’. 
+    Over ‘niet-essentiële middelen’, zoals bijvoorbeeld welk type hard- of software je gebruikt,
+    mag je als verwerker wel zelfstandig beslissingen nemen.
+    <br><br>
+    Als je persoonsgegevens gaat verwerken in opdracht van je opdrachtgever, dan is een verwerkersovereenkomst in de meeste gevallen wettelijk verplicht.
+    In de verwerkersovereenkomst leg je dan o.a. vast welke persoonsgegevens je gaat verwerken, en met welke doelen je deze gegevens gaat verwerken. 
+    Ook leg je hierin vast hoe de gegevens beveiligd worden en wat je zult doen als er zich een datalek voordoet.
+    Daarnaast moet de verwerkersovereenkomst nog andere onderwerpen verplicht behandelen, zoals een geheimhoudingsplicht, subverwerkers, privacyrechten en audits. 
+  </div>
+    <br>
+terms:
+  persoonsgegevens: |
+    Bij persoonsgegevens gaat het om informatie die ofwel direct over iemand gaat, 
+    ofwel indirect naar deze persoon te herleiden is. Bijvoorbeeld door meerdere persoonsgegevens met elkaar te combineren. 
+    Van bijvoorbeeld adresgegevens en namen is het voor iedereen wel duidelijk dat het om persoonsgegevens gaat. 
+    Maar soms ligt het iets minder voor de hand. 
+    Accountnamen op social media kunnen bijvoorbeeld soms ook herleidbaar zijn tot een individu en vallen dan ook onder persoonsgegevens.
+  verwerken: |
+    Bij het werkwoord *“verwerken”* denk je misschien aan het actief dingen doen met de gegevens, 
+    maar het begrip moet dus ruim gezien worden. Volgens de AVG vallen in ieder geval de volgende handelingen onder het verwerken van persoonsgegevens: 
+    verzamelen, vastleggen, ordenen, structureren, opslaan, bijwerken of wijzigen, opvragen, raadplegen, gebruiken, doorzenden, verspreiden, 
+    beschikbaar stellen, samenbrengen, met elkaar in verband brengen, afschermen, wissen en vernietigen. 
+    Dus ook het simpelweg raadplegen van gegevens valt onder het begrip ‘verwerken’.
+  verwerker: |
+    De **verwerker** is de partij die ten behoeve van de verwerkingsverantwoordelijke persoonsgegevens verwerkt.
+    Dit is meestal de VA.
+  verwerkingsverantwoordelijke: |
+    De **verwerkingsverantwoordelijke** is de partij die het doel en de essentiële middelen voor de verwerking bepaalt.
+    Dit is meestal de opdrachtgever.
+fields:
+# _________________________________
+# Rollen
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Rollen</strong>
+      </div>
+# 37 | verwofverantw_vwo
+  - note: >
+      37. **Verwerker:**<br>
+      Gebruik je de verwerkersovereenkomst als 'Verwerker' of als 'Verwerkingsverantwoordelijke'?
+    help: >
+      De partij die het doel en de essentiële middelen voor de verwerking bepaalt is de **verwerkingsverantwoordelijke**. 
+      Dit is meestal de opdrachtgever.
+      <br><br>
+      De partij die ten behoeve van de verwerkingsverantwoordelijke persoonsgegevens verwerkt is de **verwerker**. 
+      Dit is meestal de VA.
+      <br><br>
+      In de praktijk neemt de verwerkingsverantwoordelijke vaak het initiatief voor het opstellen van een verwerkersovereenkomst. 
+      Het initiatief om een verwerking uit te besteden komt immers ook van deze partij. Maar het mag ook andersom. 
+      Let op dat volgens de wet zowel de verwerkingsverantwoordelijke als de verwerker verantwoordelijk zijn voor het 
+      gebruiken van een goede verwerkersovereenkomst. Beide partijen zijn dus aansprakelijk als zo een overeenkomst ontbreekt. 
+      Het maakt hierbij niet uit wie de overeenkomst aanlevert.
+      <br><br>
+      De verwerkingsverantwoordelijke blijft wel altijd verantwoordelijk voor de verwerking. 
+      Ook als de verwerkersovereenkomst is opgesteld door de verwerker.
+      <br><br>
+      *Tip:<br>
+      Als de overeenkomst is opgesteld voor de situatie waarin jij de verwerker bent, kun je deze eenvoudig zelf aanpassen naar een overeenkomst waarin jij de verwerkingsverantwoordelijke bent.*
+  - field: verwofverantw_vwo
+    label: >
+      37.
+    input type: radio
+    choices:
+      - Als verwerker *(meest gekozen)*: Verwerker
+      - Als verwerkingsverantwoordelijke: Verwerkingsverantwoordelijke
+      - Ik gebruik geen verwerkersovereenkomst: geen verwerkersovereenkomst
+# _________________________________
+# Accorderen
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Accorderen</strong>
+      </div>
+# 38a | akkoord_vwo
+  - note: >
+      38. a. **Akkoord:**<br>
+      Op welke wijze wil je dat partijen akkoord geven op de verwerkersovereenkomst?
+    help: >
+      Voor de rechtsgeldigheid van de overeenkomst is het voldoende als je opdrachtgever een e-mail stuurt waarin deze expliciet aangeeft akkoord te gaan met de overeenkomst. 
+      Zorg wel dat duidelijk is om welke overeenkomst het gaat. Dit kan bijvoorbeeld door de opdrachtgever bij de e-mail met het akkoord de overeenkomst als bijlage te laten toevoegen 
+      (“ik ga akkoord met bijgevoegde overeenkomst”). Maar als je een offerte e-mailt naar een opdrachtgever, en deze stuurt als reply een akkoord, is het ook goed. 
+      Het gaat er met andere woorden om dat beide partijen expliciet akkoord gaan met de overeenkomst en dat er geen twijfel kan bestaan over welke overeenkomst het dan zou gaan.
+      <br><br>
+      Je kunt ook gebruik maken van digitale handtekeningen met behulp van een programma zoals DocuSign, of Signrequest.
+  - field: akkoord_vwo
+    label: >
+      38a.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Akkoord via e-mail. Er wordt geen handtekening geplaatst. *(meest gekozen)*: e-mail
+      - Via een digitale handtekening: digitaal
+      - Schriftelijk (op papier) middels een handtekening: schriftelijk
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+# 38b | handtekening_vwo
+  - note: >
+      38. b. **Handtekening:**<br>
+      Wil je dat de verwerkersovereenkomst onderaan voorzien is van een ruimte 
+      waar beide partijen hun handtekening dienen te plaatsen?
+    help: >
+      Mocht je toch liever de overeenkomst aan gaan met handtekeningen, dan kan dat natuurlijk ook. 
+      In dat geval moet er een ruimte opgenomen worden in het document waar de handtekeningen geplaatst kunnen worden. 
+      Het document kan dan per post worden verstuurd, of gescand en gemaild worden.   
+  - field: handtekening_vwo
+    label: >
+      38b.
+    input type: radio
+    choices:
+      - Nee, akkoord gaat via e-mail en er worden geen handtekeningen geplaatst *(meest gekozen)*: e-mail
+      - Ja: ja
+      - Nee: nee
+# 38c | paraaf_vwo
+  - note: >
+      38. c. **Paraaf:**<br>
+      Wil je dat verwerkersovereenkomst op elke pagina in de footer voorzien is van een ruimte 
+      waar beide partijen hun paraaf dienen te plaatsen?
+  - field: paraaf_vwo
+    label: >
+      38c.
+    input type: radio
+    choices:
+      - Nee, akkoord gaat via e-mail en er worden geen parafen geplaatst. *(meest gekozen)*: e-mail
+      - Ja: ja
+      - Nee: nee
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 39 | vragen_prvcverwerkers
+  - note: >
+      39. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvcverwerkers
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+# ---
+progress: 63
+section: sec_verwerkersovk

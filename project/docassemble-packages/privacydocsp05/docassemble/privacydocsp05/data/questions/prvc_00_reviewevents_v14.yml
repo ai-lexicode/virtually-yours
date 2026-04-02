@@ -1,0 +1,544 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_review = '00v14'
+# last revision date: 2025-10-03
+---
+#-----------------------------------------------------------------------------
+# REVIEW EVENTS
+#-----------------------------------------------------------------------------
+#   review tips
+#-----------------------------------------------------------------------------
+id: id_privacy
+event: sec_privacy
+section: sec_privacy
+question: |
+  Jouw privacy
+review:
+  - Bekijken: naar_techtips
+    button: |
+      Klik op de knop *Bekijken* om de pagina met de privacyverklaring nogmaals te bekijken.<br><br>
+under: |
+  *Klik op `Hervatten` om weer verder de te gaan met de vragenlijst. Je keert dan terug naar de pagina waar je gebleven was.*
+---
+id: id_revprvctechtips
+event: sec_tipstechnisch
+section: sec_tipstechnisch
+question: |
+  Technische tips
+review:
+  - Bekijken: naar_inhtips
+    button: |
+      Klik op de knop *Bekijken* om de pagina met technische tips nogmaals te bekijken.<br><br>
+under: |
+  *Klik op `Hervatten` om weer verder de te gaan met de vragenlijst. Je keert dan terug naar de pagina waar je gebleven was.*
+---
+id: id_revprvcinhtips
+event: sec_tipsinhoud
+section: sec_tipsinhoud
+question: |
+  Inhoudelijke tips
+review:
+  - Bekijken: aan_de_slag
+    button: |
+      Klik op de knop *Bekijken* om de pagina met inhoudelijke tips nogmaals te bekijken.<br><br>
+under: |
+  *Klik op `Hervatten` om weer verder de te gaan met de vragenlijst. Je keert dan terug naar de pagina waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review documentenselectie
+#-----------------------------------------------------------------------------
+id: id_revprvcstart
+event: sec_docselect
+section: sec_docselect
+question: |
+  Privacydocumenten
+review:
+  - note: >
+      **Documentenselectie**
+  - Wijzigen: welkedocs_prvc
+    button: |
+      *Welke documenten moeten opgesteld worden?<br><br>*
+      `${ welkedocs_prvc }`
+---
+#-----------------------------------------------------------------------------
+#   review bedrijfsgegevens
+#-----------------------------------------------------------------------------
+id: id_revbedrijfsgegevensprvc
+event: sec_bedrijfsgegevensprvc
+section: sec_bedrijfsgegevensprvc
+question: |
+  Overzicht van Bedrijfsgegevens
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+# _________________________________
+# Bedrijfsnaam
+# _________________________________
+  - note: >
+      **Bedrijfsnaam:**
+# 1 | bedrijfsnaam_client
+  - Wijzigen: bedrijfsnaam_client
+    button: |
+      1. Wat is je bedrijfsnaam?<br>
+      `${ bedrijfsnaam_client }`
+# _________________________________
+# Adresgegevens
+# _________________________________
+  - note: >
+      **Vestigingsadres:**
+# 2a | straatnaam_client
+# 2b | huisnummer_client
+# 2c | postcode_client
+# 2d | plaatsnaam_client
+  - Wijzigen: straatnaam_client
+    button: |
+      2. Wat is je vestigingsadres?<br>
+      `${ straatnaam_client } ${ huisnummer_client }`<br>
+      `${ postcode_client } ${ plaatsnaam_client }`
+# Contactadres
+  - note: >
+      **Contactadres:**
+# 3a | andercontactadres_client
+  - Wijzigen: andercontactadres_client
+    button: |
+      3. Heb je een kantoor-, bezoek- of postadres dat afwijkt van je vestigingsadres?<br>
+      `${ andercontactadres_client }`
+# 3b | contactstraatnaam_client
+# 3c | contacthuisnummer_client
+# 3d | contactpostcode_client
+# 3e | contactplaatsnaam_client
+  - Wijzigen: contactstraatnaam_client
+    button: |
+      3. Wat is je contactadres?<br>
+      `${ contactstraatnaam_client } ${ contacthuisnummer_client }`<br>
+      `${ contactpostcode_client } ${ contactplaatsnaam_client }`
+# 3f | contactadresvermelden_client
+  - Wijzigen: contactadresvermelden_client
+    button: |
+      3. Zo ja, wil je je post-, bezoek- of kantooradres ook in je documenten vermelden?<br>
+      `${ contactadresvermelden_client }`
+# _________________________________
+# Juridische gegevens
+# _________________________________
+# 4 | rechtsvorm_client
+  - note: >
+      **Rechtsvorm:**
+  - Wijzigen: rechtsvorm_client
+    button: |
+      4. Welke rechtsvorm heeft je onderneming?<br>
+      `${ rechtsvorm_client }`
+# 5a | kvkinschrijving_client
+  - note: >
+      **KvK-nummer:**
+  - Wijzigen: kvkinschrijving_client
+    button: |
+      5. Sta je (al) ingeschreven bij de Kamer van Koophandel?<br>
+      `${ kvkinschrijving_client }`
+# 5b | kvknummer_client
+  - Wijzigen: kvknummer_client
+    button: |
+      5. Zo ja, wat is je KvK-nummer?<br>
+      `${ kvknummer_client }`
+# _________________________________
+# Overig
+# _________________________________
+# 6 | Opdrachtgever
+# 7 | vragen_prvcbedrijfsgegevens
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcbedrijfsgegevens
+    button: |
+      7. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvcbedrijfsgegevens }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review persoonsgegevens
+#-----------------------------------------------------------------------------
+id: id_revpersoonsgegevensprvc
+event: sec_persoonsgegevensprvc
+section: sec_persoonsgegevensprvc
+question: |
+  Overzicht van Persoonsgegevens
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Naam:**
+  - Wijzigen: voornaam_client
+    button: |
+      8. Wat is je voornaam?<br>
+      `${ voornaam_client }`
+  - Wijzigen: achternaam_client
+    button: |
+      9. Wat is je achternaam?<br>
+      `${ achternaam_client }`
+  - note: >
+      **Gender:**
+  - Wijzigen: geslacht_client
+    button: |
+      10. Hoe wil je aangesproken worden in de documenten?<br>
+      `${ geslacht_client }`
+  - note: >
+      **Toon:**
+  - Wijzigen: formeel_doc
+    button: |
+      11. Wil je de privacydocumenten op formele of op informele toon?<br>
+      `${ formeel_doc }`
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcpersoonsgegevens
+    button: |
+      12. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvcpersoonsgegevens }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review contactmogelijkheden
+#-----------------------------------------------------------------------------
+id: id_revprvccontactmogelijkheden
+event: sec_contactmogelijkheden
+section: sec_contactmogelijkheden
+question: |
+  Overzicht van contactmogelijkheden
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Website:**
+  - Wijzigen: website_client
+    button: |
+      13. a. Heb je een website waar je een privacyverklaring en eventueel een cookieverklaring voor nodig hebt?<br>
+      `${ website_client }`
+  - Wijzigen: url_client
+    button: |
+      13. b. Wat is de URL van de website waar je privacyveklaring en eventuele cookieverklaring betrekking op hebben?<br>
+      `${ url_client }`
+  - note: >
+      **Contactmogelijkheden:**
+  - Wijzigen: contact_client
+    button: |
+      14. Op welke manieren kan er contact met je opgenomen worden?<br>
+      `${ contact_client }`
+  - note: >
+      **E-mail:**
+  - Wijzigen: email_client
+    button: |
+      15. Wat is het e-mailadres dat in je privacyverklaring en eventuele cookieverklaring opgenomen mag worden?<br>
+      `${ email_client }`
+  - note: >
+      **Adres:**
+  - Wijzigen: adres_pvv
+    button: |
+      16. Wil je naast je e-mailadres ook je vestigingsadres of contactadres opnemen in je privacyverklaring en eventuele cookieverklaring?<br>
+      `${ adres_pvv }`
+  - note: >
+      **Telefoon:**
+  - Wijzigen: telefoon_pvv
+    button: |
+      17. a. Wil je naast je e-mailadres ook je telefoonnummer opnemen in je privacyverklaring en eventuele cookieverklaring?<br>
+      `${ telefoon_pvv }`
+  - Wijzigen: telefoonnummer_client
+    button: |
+      17. b. Wat is het telefoonnummer dat in je privacyverklaring en eventuele cookieverklaring opgenomen mag worden?<br>
+      `${ telefoonnummer_client }`
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvccontact
+    button: |
+      18. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvccontact }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review verwerking persoonsgegevens
+#-----------------------------------------------------------------------------
+id: id_revverwerking
+event: sec_verwerking
+section: sec_verwerking
+question: |
+  Jouw antwoorden bij Gegevensverwerking
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Verwerkingsdoelen:**
+  - Wijzigen: verwerkingsdoelen_pvv
+    button: |
+      19. Voor welke doelen verwerk jij persoonsgegevens?<br>
+      `${ verwerkingsdoelen_pvv.true_values() }`
+  - Wijzigen: webtraffic_pvv
+    button: |
+      20. Verwerk je ook voor deze doelen persoonsgegevens?<br>
+      `${ webtraffic_pvv.true_values() }`
+  - note: >
+      **Persoonsgegevens:**
+  - Wijzigen: persoonsgegevensniet_client
+    button: |
+      21. Ik ga ervan uit dat je de gegevens in deze lijst verwerkt (zie toelichting). 
+      Lees in de toelichting waarom ik vermoed dat je deze gegevens verwerkt. 
+      Verwerk je ze toch niet, verwijder dan het vinkje.<br>
+      `${ persoonsgegevensniet_client.true_values() }`
+  - Wijzigen: geboortedatum_pvv
+    button: |
+      22. Verwerk je geboortedatums? Bijvoorbeeld om een attentie of felicitatie te sturen op iemands verjaardag.<br>
+      `${ geboortedatum_pvv }`
+  - Wijzigen: fotos_pvv
+    button: |
+      23. Verwerk je foto's? Bijvoorbeeld om te plaatsen bij een review.<br>
+      `${ fotos_pvv }`
+  - Wijzigen: overigegegevens_pvv
+    button: |
+      24. Verwerk je één of meerdere van de volgende persoonsgegevens?<br>
+      `${ overigegegevens_pvv.true_values() }` 
+  - Wijzigen: bijzonderepersgeg_pvv
+    button: |
+      25. Verwerk je bijzondere persoonsgegevens?<br>
+      `${ bijzonderepersgeg_pvv.true_values() }`   
+  - note: >
+      **Derde partijen:**
+  - Wijzigen: derdepartijenspec_pvv
+    button: |
+      26. Welke derde partijen verwerken persoonsgegevens in opdracht van jou?<br>
+      `${ derdepartijenspec_pvv.true_values() }` 
+  - note: >
+      **EER:**
+  - Wijzigen: buiteneer_pvv
+    button: |
+      28. Verwerk je **zelf** gegevens buiten de Europese Economische Ruimte (EER)?<br>
+      `${ buiteneer_pvv }`
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcverwerking
+    button: |
+      29. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvcverwerking }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review databeveiliging
+#-----------------------------------------------------------------------------
+id: id_databeveiliging
+event: sec_databeveiliging
+section: sec_databeveiliging
+question: |
+  Overzicht van Databeveiliging
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Maatregelen:**
+  - Wijzigen: techmaatregelen_pvv
+    button: |
+      30. Welke technische maatregelen neem je om verlies, onbevoegde toegang, etc. van gegevens 
+      die je verwerkt tegen te gaan?<br>
+      `${ techmaatregelen_pvv.true_values() }`
+  - Wijzigen: orgmaatregelen_pvv
+    button: |
+      31. Welke organisatorische maatregelen neem je om verlies, onbevoegde toegang, etc. 
+      van gegevens die je verwerkt tegen te gaan?<br>
+      `${ orgmaatregelen_pvv.true_values() }`
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcdatabeveiliging
+    button: |
+      32. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvcdatabeveiliging }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review cookies
+#-----------------------------------------------------------------------------
+id: id_cookies
+event: sec_cookies
+section: sec_cookies
+question: |
+  Overzicht van Cookies
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Cookies:**
+  - Wijzigen: cookies_pvv
+    button: |
+      33. a. Welke cookies gebruik je?<br>
+      `${ cookies_pvv.true_values() }`
+  - Wijzigen: funcookiedoel_cov
+    button: |
+      33. b. Ik gebruik <u>functionele</u> cookies om...<br>
+      `${ funcookiedoel_cov.true_values() }`
+  - Wijzigen: anacookiedoel_cov
+    button: |
+      33. c. Ik gebruik <u>analytische</u> cookies om...<br>
+      `${ anacookiedoel_cov.true_values() }`
+  - Wijzigen: tracookiedoel_cov
+    button: |
+      33. d. Ik gebruik <u>tracking</u>cookies om...<br>
+      `${ tracookiedoel_cov.true_values() }`
+  - note: >
+      **Subcateorieën cookies:**
+  - Wijzigen: cookiessub_pvv
+    button: |
+      34. a. Welke cookies uit deze subcategorieën gebruik je?<br>
+      `${ cookiessub_pvv.true_values() }`
+  - Wijzigen: soccookiedoel_cov
+    button: |
+      34. b. Ik gebruik <u>social media</u> buttons om...<br>
+      `${ soccookiedoel_cov.true_values() }`
+  - Wijzigen: optcookiedoel_cov
+    button: |
+      34. c. Ik gebruik <u>optimalisatie</u> cookies om...<br>
+      `${ optcookiedoel_cov.true_values() }` 
+  - Wijzigen: goocookiedoel_cov
+    button: |
+      34. d. Ik gebruik <u>Google</u> cookies om...<br>
+      `${ goocookiedoel_cov.true_values() }`  
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvccookies
+    button: |
+      36. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvccookies }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---     
+#-----------------------------------------------------------------------------
+#   review verwekersovereenkomst
+#-----------------------------------------------------------------------------
+id: id_verwerkersovk
+event: sec_verwerkersovk
+section: sec_verwerkersovk
+question: |
+  Overzicht van Verwerkingsovereenkomst
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Verwerker:**
+  - Wijzigen: verwofverantw_vwo
+    button: |
+      37. Gebruik je de verwerkersovereenkomst als 'Verwerker' of als 'Verwerkingsverantwoordelijke'?<br>
+      `${ verwofverantw_vwo }`
+  - note: >
+      **Akkoord:**
+  - Wijzigen: akkoord_vwo
+    button: |
+      38. a. Op welke wijze wil je dat partijen akkoord geven op de verwerkersovereenkomst?<br>
+      `${ akkoord_vwo.true_values() }`  
+  - Wijzigen: handtekening_vwo
+    button: |
+      38. b. Wil je dat de verwerkersovereenkomst onderaan voorzien is van een ruimte 
+      waar beide partijen hun handtekening dienen te plaatsen?<br>
+      `${ handtekening_vwo }`
+  - Wijzigen: paraaf_vwo
+    button: |
+      38. c. Wil je dat verwerkersovereenkomst op elke pagina in de footer voorzien is van een ruimte 
+      waar beide partijen hun paraaf dienen te plaatsen?<br>
+      `${ paraaf_vwo }`
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcverwerkers
+    button: |
+      39. Heb je opmerkingen over bovenstaande vragen en antwoorden?<br>
+      `${ vragen_prvcverwerkers }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review logo
+#-----------------------------------------------------------------------------
+id: id_revlogo
+event: sec_logo
+section: sec_logo
+question: |
+  Logo uploaden
+review:
+  - note: >
+      Dit zijn jouw antwoorden.<br>
+      Klik op de knop *Wijzigen* om naar de sectie <u>Logo uploaden</u> te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      40. Heb je een bedrijfslogo dat je graag in je documenten zou willen verwerken?
+      <br>
+      Je kunt je logo hier desgewenst uploaden.
+  - Nieuw logo uploaden: logo_client
+    button: |
+      ${ logo_client }
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review huisstijl
+#-----------------------------------------------------------------------------
+id: id_revhuisstijl
+event: sec_huisstijl
+section: sec_huisstijl
+question: |
+  Huisstijlkleuren
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      41. De documenten worden niet standaard in je eigen huisstijl opgemaakt, maar aangeleverd als Word-files met een witte achtergrond en zwarte letters.
+      Je kunt voor de zekerheid de kleuren van je huisstijl hier doorgeven.
+  - Wijzigen: achtergrondkleur_client
+    button: |
+      41a. Wat gebruik je meestal als achtergrondkleur?<br>
+      `${ achtergrondkleur_client }`
+  - Wijzigen: tekstkleur_client
+    button: |
+      41b. Wat gebruik je meestal als tekstkleur?<br>
+      `${ tekstkleur_client }`
+  - Wijzigen: accentkleur_client
+    button: |
+      41c. Wat gebruik je meestal als accentkleur?<br>
+      `${ accentkleur_client }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---
+#-----------------------------------------------------------------------------
+#   review vragen en opmerkingen
+#-----------------------------------------------------------------------------
+id: id_vragen
+event: sec_vragen
+section: sec_vragen
+question: |
+  Overzicht van Vragen en opmerkingen
+review:
+  - note: >
+      Dit zijn jouw antwoorden. Klik op de knop *Wijzigen* om naar de betreffende sectie te gaan. 
+      Je kunt daar dan je antwoorden aanpassen. 
+  - note: >
+      **Opmerkingen:**
+  - Wijzigen: vragen_prvcalgemeen
+    button: |
+      42. Heb je nog specifieke vragen en/of opmerkingen in het algemeen?<br>
+      `${ vragen_prvcalgemeen }`
+  - Wijzigen: urgentdocprvc_ovk
+    button: |
+      43. Heb je een document urgent nodig?<br>
+      `${ urgentdocprvc_ovk }`
+  - note: >
+      **Interne opmerkingen:**
+  - Wijzigen: opmerkingenintern_prvc
+    button: |
+      44. Interne opmerkingen:<br>
+      `${ opmerkingenintern_prvc }`
+under: |
+  *Klik op de knop `Hervatten` om terug te gaan naar de sectie waar je gebleven was.*
+---

@@ -1,0 +1,45 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#-----------------------------------------------------------------------------
+metadata:
+  description: |
+    design file voor interviews
+  authors:
+    - name: Risha Smeding
+      organization: LexiCode BV
+  revision_date: 2025-01-10
+# version: 24v05
+#-----------------------------------------------------------------------------
+# DESIGN
+#-----------------------------------------------------------------------------
+  exit link: |
+    https://virtuallyyours.legalwebshop.nl/faq
+  exit label: |
+    Stoppen
+  continue button label: |
+    Verder
+  resume button label: |
+    Hervatten
+  back button label: |
+    Terug
+---
+#-----------------------------------------------------------------------------
+# FEATURES
+#-----------------------------------------------------------------------------
+id: id_features
+features:
+  question back button: True
+  navigation back button: False
+  navigation: True
+  progress bar: True
+  cache documents: False
+  small screen navigation: dropdown
+---
+#-----------------------------------------------------------------------------
+# MENU
+#-----------------------------------------------------------------------------
+#id: id_menuitems
+#mandatory: True
+#code: |
+#  menu_items = [ action_menu_item('Roadmap', 'road_map') ]
+#---

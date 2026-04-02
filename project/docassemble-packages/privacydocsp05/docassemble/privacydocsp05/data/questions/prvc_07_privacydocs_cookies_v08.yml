@@ -1,0 +1,424 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_cookies: '07v08'
+# last revision date: 2025-09-05
+---
+objects:
+  - cookies_pvv: DADict
+  - cookiessub_pvv: DADict
+  - funcookiedoel_cov: DADict
+  - anacookiedoel_cov: DADict
+  - tracookiedoel_cov: DADict
+  - soccookiedoel_cov: DADict
+  - optcookiedoel_cov: DADict
+  - goocookiedoel_cov: DADict
+---
+#---------------------------------
+# SECTIE COOKIES
+#---------------------------------
+id: id_cookies
+mandatory: True
+question: |
+  Cookies
+fields:
+# _________________________________
+# Cookies
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        background:#f6efe7;
+        color:#000000;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Wat zijn cookies?</strong>
+        <br>
+        Cookies zijn kleine tekstbestanden die door de server van een website die je bezoekt op de harde schijf van je computer worden opgeslagen.
+        Als je de website dan een volgende keer bezoekt, ontvangt de server deze informatie weer, zodat je computer wordt herkend.
+        Dit is bijvoorbeeld noodzakelijk voor een optimale gebruikerservaring van de website, maar cookies kunnen ook gebruikt worden voor andere doeleinden.
+        <br><br>
+        Cookies zijn in principe ongevaarlijk en kunnen eenvoudig verwijderd worden door gebruikers.
+        Voor sommige soorten cookies bestaat er een wettelijke plicht om toestemming van gebruikers te vragen voordat deze geplaatst mogen worden.
+      </div>
+# _________________________________
+# Cookiegebruik
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Cookiegebruik</strong>
+      </div>
+# 33a | cookiesgebruik_pvv
+  - note: >
+      33. **Cookies:**<br>
+      Gebruik je cookies op je website?
+  - field: cookiesgebruik_pvv
+    label: >
+      33a.
+    input type: radio
+    choices:
+      - Ja: ja
+      - Nee, ik heb geen website: geen website
+      - Nee, ik heb wel een website maar deze gebruikt geen cookies: nee
+# _________________________________
+# Cookiesoorten
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        background:#f6efe7;
+        color:#000000;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Wat voor soorten cookies zijn er?</strong>
+        <br>
+        Er zijn drie hoofdcategorieën cookies: functionele cookies, analytische cookies en trackingcookies.
+        Daarnaast behandelen we in deze vragenlijst ook nog drie subcategorieën: 
+        social media buttons, optimalisatiecookies en google cookies. 
+        Deze subcategorieën vallen in de meeste gevallen onder analytische cookies of trackingcookies.
+      </div>
+    js show if: |
+      val("cookiesgebruik_pvv") == "ja"
+# 33b | cookies_pvv
+  - field: cookies_pvv
+    label: >
+      33b.<br>
+      Welke cookies gebruik je?
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Functionele cookies *(meest gekozen)*: functioneel
+      - Analytische cookies *(vaak gekozen)*: analytisch
+      - Tracking cookies: tracking
+    none of the above: False
+    js show if: |
+      val("cookiesgebruik_pvv") == "ja"
+    help: >
+      **Functionele cookies:** cookies die noodzakelijk zijn voor de 
+      technische werking van je website en voor het gebruiksgemak van de bezoeker.
+      Als je een website hebt, gebruik je vrijwel altijd functionele cookies.
+      <br><br>
+      **Analytische cookies:** cookies om je website te optimaliseren, 
+      bijvoorbeeld door het gedrag van je websitebezoekers te monitoren 
+      (hoe vaak wordt een bepaalde pagina bezocht? Etc.).
+      <br><br>
+      **Tracking cookies:** cookies die het surfgedrag volgen en ook bij andere websites kunnen worden uitgelezen, 
+      bedoeld voor bijvoorbeeld het tonen van relevante advertenties of op maat gemaakte content.
+      <br><br>
+      *Tip: als je niet zeker weet of je website tracking cookies gebruikt, 
+      dan kun je een compliance scan doen van bijvoorbeeld Cookiebot. Je krijgt dan een overzicht van trackers 
+      op je website en er wordt gecontroleerd of je op de juiste manier toestemming vraagt en naar welke landen 
+      je eventueel gegevens doorstuurt.*
+# https://usercentrics.sjv.io/o4qDDn
+# 33c | funcookiedoel_cov
+  - field: funcookiedoel_cov
+    label: >
+      33c.<br>
+      Ik gebruik *functionele* cookies om...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - mijn website goed en veilig te laten werken: veilig
+      - je een optimale gebruikerservaring te bieden: optimaal
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+    help: >
+      **Functionele cookies:**<br>
+      Cookies die noodzakelijk zijn voor de technische werking van je website en voor het gebruiksgemak van de bezoeker.
+      Het is niet nodig om hier toestemming voor te vragen. 
+      <br><br>
+      *Tip:<br>
+      Als je een website hebt, gebruik je vrijwel altijd functionele cookies.*
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookies_pvv") || []).includes("functioneel")
+# 33d | anacookiedoel_cov
+  - field: anacookiedoel_cov
+    label: >
+      33d.<br>
+      Ik gebruik *analytische* cookies om...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - bezoekersstatistieken te verzamelen: statistieken
+      - gebruiksgedrag te analyseren: gebruiksgedrag
+      - problemen bij het gebruik van mijn website op te sporen: problemen
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+    help: >
+      **Analytische cookies:**<br>
+      Cookies om je website te verbeteren, bijvoorbeeld door het gedrag van je websitebezoekers te monitoren 
+      (hoe vaak wordt een bepaalde pagina bezocht? Waar wordt op geklikt?). In sommige gevallen is het nodig om hier toestemming 
+      voor te vragen (als er privacygevoelige informatie wordt verzameld en/of als de gegevens niet zijn geanonimiseerd).
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookies_pvv") || []).includes("analytisch") 
+# 33e | tracookiedoel_cov
+  - field: tracookiedoel_cov
+    label: >
+      33e.<br>
+      Ik gebruik *tracking* cookies om...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - gepersonaliseerde inhoud en advertenties aan te bieden: personalisatie
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False
+    help: >
+      **Tracking cookies:**<br>
+      Cookies die het surfgedrag volgen en ook bij andere websites kunnen worden uitgelezen, 
+      bedoeld voor bijvoorbeeld het tonen van relevante advertenties of op maat gemaakte content.
+      Het is altijd nodig om hier toestemming voor te vragen.
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookies_pvv") || []).includes("tracking")
+# _________________________________
+# Subcategorieen cookies
+# _________________________________
+  - note: >
+      34. **Subcategorieën cookies:**<br>
+      Welke cookies uit deze subcategorieën gebruik je?
+    help: >
+      Het is geen probleem als je bij vraag 33b analytische cookies of trackingcookies NIET hebt aangevinkt, 
+      maar er nu achter komt dat je eigenlijk toch analytische cookies en/of trackingcookies gebruikt omdat je wél 
+      cookies uit één van de subcategorieën gebruikt. 
+      Je hoeft je antwoord bij vraag 33b niet aan te passen.
+    show if:
+      variable: cookiesgebruik_pvv
+      is: ja
+# 34a | cookiessub_pvv
+  - field: cookiessub_pvv
+    label: >
+      34a.
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - Social media buttons: social
+      - Optimalisatiecookies: optimalisatie
+      - Google (analytics of ads) cookies: google
+      - Ik gebruik geen cookies uit deze subcategorieën: nee
+    none of the above: False
+    show if:
+      variable: cookiesgebruik_pvv
+      is: ja
+    help: >
+      **Social media cookies:**<br>
+      Buttons (knoppen) om artikelen of pagina’s makkelijk te kunnen delen op socialemediakanalen, 
+      die werken met stukjes code die van de netwerken zelf afkomstig zijn. 
+      Het gaat hier NIET om icoontjes die je op website plaatst en die je zelf voorziet van een directe link naar je 
+      socialemedia-accounts. In de meeste gevallen vallen deze social media buttons onder trackingcookies, 
+      omdat ze gebruikers cross-site kunnen volgen en data delen met derden. 
+      Het is altijd nodig om hier toestemming voor te vragen.
+      <br><br>
+      **Optimalisatie cookies:**<br>
+      Cookies om de website te optimaliseren. Bijvoorbeeld door verschillende versies van een webpagina te testen om te 
+      kijken welke pagina het beste wordt bezocht. In de meeste gevallen vallen optimalisatiecookies onder analytische cookies. 
+      Het is noodzakelijk om toestemming te vragen als de gegevens niet zijn geanonimiseerd.
+      <br><br>
+      **Google cookies:**<br>
+      Voor data analyses met Google Analytics en/of advertenties via Google Ads.
+# 34b | soccookiedoel_cov
+  - field: soccookiedoel_cov
+    label: >
+      34b.<br>
+      Ik gebruik *social media* buttons...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - zodat je eenvoudig informatie kunt delen op socialemediakanalen: info delen
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False      
+    help: >
+      **Social media cookies:**<br>
+      Buttons (knoppen) om artikelen of pagina’s makkelijk te kunnen delen op socialemediakanalen, 
+      die werken met stukjes code die van de netwerken zelf afkomstig zijn. 
+      Het gaat hier NIET om icoontjes die je op website plaatst en die je zelf voorziet van een directe link naar je 
+      socialemedia-accounts. In de meeste gevallen vallen deze social media buttons onder trackingcookies, 
+      omdat ze gebruikers cross-site kunnen volgen en data delen met derden. 
+      Het is altijd nodig om hier toestemming voor te vragen.
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookiessub_pvv") || []).includes("social")
+# 34c | optcookiedoel_cov
+  - field: optcookiedoel_cov
+    label: >
+      34c.<br>
+      Ik gebruik *optimalisatiecookies* om...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - verschillende versies van mijn website te testen: testen
+      - mijn website te verbeteren: verbeteren
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False      
+    help: >
+      **Optimalisatiecookies:**<br>
+      Cookies om de website te optimaliseren. Bijvoorbeeld door verschillende versies van een webpagina te testen om te 
+      kijken welke pagina het beste wordt bezocht. In de meeste gevallen vallen optimalisatiecookies onder analytische cookies. 
+      Het is noodzakelijk om toestemming te vragen als de gegevens niet zijn geanonimiseerd.
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookiessub_pvv") || []).includes("optimalisatie")
+# 34d | goocookiedoel_cov
+  - field: goocookiedoel_cov
+    label: >
+      34d.<br>
+      Ik gebruik *Google* (analytics of ads) cookies om...
+    datatype: checkboxes
+    minlength: 1
+    choices:
+      - gegevens over mijn websitebezoekers en surfgedrag te verzamelen (Google Analytics 4 - GA4): verzamelen
+      - advertenties via Google Ads te plaatsen: ads
+      - Anders / Ik weet het (nog) niet en pas dit later zelf aan in het document: anders
+    none of the above: False      
+    help: >
+      **Google cookies:**<br>
+      Voor data analyses en/of advertenties.
+      <br><br>
+      *Tip:<br>
+      Op dit moment bestaat er nog veel onduidelijkheid over of Google Analytics voldoet aan de gestelde eisen omtrent privacy. 
+      Je kunt ervoor kiezen om bepaalde instellingen in Google Analytics aan te passen, om zo privacyvriendelijk mogelijk te werk te gaan. 
+      Naar verwachting zal de Autoriteit Persoonsgegevens een rapport gaan publiceren over de privacyvriendelijkheid van Google Analytics, dat gevolgen kan hebben voor het gebruik ervan. 
+      Mocht je gebruik maken van GA4, houd dan de berichtgeving hierover in de gaten en/of overleg met je webdesigner.*
+    js show if: |
+      (val("cookiesgebruik_pvv") == "ja") && (val("cookiessub_pvv") || []).includes("google")
+# _________________________________
+# 35 | cookiebanner_pvv
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Cookiebanner</strong>
+      </div>
+    js show if: |
+      val("cookiesgebruik_pvv") == "ja"
+  - note: >
+      35. **Cookiebanner (ter info):**<br>
+      Als je cookies gebruikt op je website dien je een cookiebanner te gebruiken.
+      Met deze cookiebanner informeer je je websitebezoekers over de cookies die je gebruikt.
+      Daarnaast vraag je via de cookiebanner toestemming voor het gebruik van cookies waar toestemming voor is vereist (indien van toepassing).
+      <br><br>
+      <div style="
+        display:block;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        background:#f6efe7;
+        color:#000000;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Vuistregels cookiebanner</strong>
+        <br>
+        De Autoriteit Persoonsgegevens heeft een aantal vuistregels opgesteld voor cookiebanners.
+        Controleer of jouw cookiebanner hieraan voldoet:
+        <br><br>
+          <ul>
+          <li>Geef informatie over het doel</li>
+          <li>Zet vinkjes niet automatisch aan</li>
+          <li>Gebruik duidelijke tekst</li>
+          <li>Zet verschillende keuzes op één laag</li>
+          <li>Verberg bepaalde keuzes niet</li>
+          <li>Laat iemand niet extra klikken</li>
+          <li>Gebruik geen onopvallende link in de tekst</li>
+          <li>Wees helder over het intrekken van toestemming</li>
+          <li>Verwar toestemming niet met gerechtvaardigd belang</li>
+          </ul>
+      </div>
+    help: >
+      Mocht je het bouwen en onderhouden van website hebben uitbesteed aan een webdesigner of technisch VA, 
+      bespreek dan met hem/haar je cookiebanner en van welke cookies je website gebruik maakt. 
+      Ook kan hij/zij je misschien helpen met een automatische tool die de cookies die je website gebruikt in kaart brengt.
+      <br><br>
+      *Tip:<br>
+      Kijk voor meer uitleg en voorbeelden over de vuistregels op de website van de Autoriteit Persoonsgegevens (AP).*
+      <br><br> 
+      *Tip:<br>
+      De AP gaat vanaf 2024 vaker controleren of websites op de juiste manier toestemming vragen voor (tracking) cookies of andere volgsoftware. 
+      Vragen organisaties niet op de juiste manier toestemming voor het plaatsen van cookies en andere volgsoftware? Dan kan de AP onderzoek doen en handhaven, 
+      bijvoorbeeld door een boete op te leggen.*
+    js show if: |
+      val("cookiesgebruik_pvv") == "ja"
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 36 | vragen_prvccookies
+  - note: >
+      36. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvccookies
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+# ---
+progress: 56
+section: sec_cookies
+---
+#-----------------------------------------------------------------------------
+# CODE COOKIES
+#-----------------------------------------------------------------------------
+# SHOWIFS
+#-----------------------------------------------------------------------------
+code: |
+  if cookiesgebruik_pvv != "ja":
+    cookies_pvv['n.v.t.'] = True
+    cookiessub_pvv['n.v.t.'] = True
+depends on:
+  - cookiesgebruik_pvv
+---
+code: |
+  if not cookies_pvv.get('functioneel', False):
+    funcookiedoel_cov['n.v.t.'] = True
+  if not cookies_pvv.get('analytisch', False):
+    anacookiedoel_cov['n.v.t.'] = True
+  if not cookies_pvv.get('tracking', False):
+    tracookiedoel_cov['n.v.t.'] = True
+depends on:
+  - cookies_pvv
+---
+code: |
+  if not cookiessub_pvv.get('social', False):
+    soccookiedoel_cov['n.v.t.'] = True
+  if not cookiessub_pvv.get('optimalisatie', False):
+    optcookiedoel_cov['n.v.t.'] = True
+  if not cookiessub_pvv.get('google', False):
+    goocookiedoel_cov['n.v.t.'] = True
+depends on:
+  - cookiessub_pvv
+---

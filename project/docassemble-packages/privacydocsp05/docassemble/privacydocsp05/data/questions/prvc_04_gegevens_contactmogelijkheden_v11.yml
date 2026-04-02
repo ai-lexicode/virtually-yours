@@ -1,0 +1,280 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_contactmogelijkheden = '04v11'
+# last revision date: 2025-10-31
+---
+#-----------------------------------------------------------------------------
+# SECTIE CONTACT
+#-----------------------------------------------------------------------------
+id: id_contactmogelijkhedenclientprvc
+mandatory: True
+question: |
+  Contact
+fields:
+# _________________________________
+# Website
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Website</strong>
+      </div>
+# 13a | website_client
+  - note: >
+      13. **Website:**<br>
+      Heb je een website waar je een privacyverklaring en eventueel een cookieverklaring voor nodig hebt?
+    help: >
+      Een privacyverklaring is wettelijk verplicht als je persoonsgegevens verwerkt voor je onderneming, ook als je geen website hebt. 
+      Als je wel een website hebt, wordt in je privacyverklaring ook opgenomen hoe je gegevens verwerkt via je website.
+      <br><br>
+      Een cookieverklaring is wettelijk verplicht als je een website hebt en (privacygevoelige) cookies gebruikt.
+  - field: website_client
+    label: >
+      13a.
+    input type: radio
+    choices:
+      - Ja *(meest gekozen)*: ja
+      - Nog niet, maar ik wil wel alvast mijn privacy- en cookieverklaring opstellen voor mijn toekomstige website en ik heb WEL al een URL: alvast
+      - Nog niet, maar ik wil wel alvast mijn privacy- en cookieverklaring opstellen voor mijn toekomstige website. Ik heb nog GEEN URL: nog geen URL
+      - Nee: nee
+  - note: >
+      <div style="
+        display:block;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        background:#f6efe7;
+        color:#000000;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Opmerking</strong>
+        <br>
+        Als je nog geen website hebt, maar wel alvast de privacyverklaring en cookieverklaring wilt opstellen voor je toekomstige website, 
+        beantwoord alle vragen in deze vragenlijst dan zoals je ze zou beantwoorden als je wél al een website zou hebben.
+      </div>  
+    js show if: |
+      val('website_client') == "alvast" || val('website_client') == "nog geen URL"  
+# 13b | url_client
+  - field: url_client
+    label: >
+      13b.<br>
+      Wat is de URL van je website? (vul in zonder "https")
+    help: >
+      Ik kies er bewust voor om in de privacy- en cookieverklaring de URL van je website op te nemen 
+      zonder "https", maar met "www".
+      Dat doe ik omdat **https** verwijst naar jouw SSL-beveiligde website, 
+      terwijl **http** verwijst naar je website als die niet is beveiligd met SSL.
+      Tegenwoordig is een SSL-beveiligde website de standaard, 
+      maar door alleen **www** te vermelden weten we zeker dat ook een 
+      eventuele http-versie van jouw website onder de privacyverklaring valt.
+    default: www.
+    js show if: |
+      val('website_client') == "ja" || val('website_client') == "alvast"
+# Opmerking
+  - note: >
+      <div style="
+        display:block;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        background:#f6efe7;
+        color:#000000;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Opmerking</strong>
+        <br>
+        Als je een zakelijke website hebt waar je je diensten op aanbiedt ben je wettelijk verplicht om bepaalde informatie op een logische plaats op je website te vermelden.
+        <br><br>
+        De volgende informatie is in ieder geval verplicht:
+          <ul>
+          <li>bedrijfsnaam (zoals ingeschreven bij de KvK)</li>
+          <li>adresgegevens (een geografisch bezoekadres, dus geen postbus)</li>
+          <li>KvK-nummer</li>
+          <li>btw-nummer</li>
+          <li>e-mailadres</li>
+          <li>naast je e-mailadres moet je nog minstens één andere snelle en directe contactmogelijkheid vermelden (zoals een telefoonnummer of contactformulier)</li>
+          <li>privacyverklaring en eventuele cookieverklaring</li>
+          </ul>
+      </div>
+    js show if: |
+      val('website_client') == "ja" || val('website_client') == "alvast" || val('website_client') == "nog geen URL"
+# _________________________________
+# Contact
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Contact</strong>
+      </div>
+# 14 | contactmogelijkheden
+  - note: >
+      14. **Contactmogelijkheden:**<br>
+      Op welke manieren kan er contact met je opgenomen worden?
+    help: >
+      **WhatsApp:**
+      <br>
+      Als je WhatsApp gebruikt als communicatiemiddel, dan 'verwerk' je, naast het telefoonnummer, vaak ook de naam en profielfoto van deze persoon. 
+      Daarnaast kun je vaak gegevens zoals online status, tijdstip van verzenden of verzendstatus bekijken.
+      <br><br>
+      **Contactformulier:**      
+      <br>
+      Heeft jouw website een formulier dat ingevuld kan worden, bijvoorbeeld een contactformulier? 
+      Dan verzamel je mogelijk het *IP-adres* en de *locatie* van degene die het formulier invult en verstuurt.
+      <br><br>
+      *Tip: vraag via het contactformulier alleen informatie die je écht nodig hebt. 
+      Het is niet toegestaan om overbodige of niet relevante informatie te vragen. 
+      Ga dus bij elk veld na óf je die informatie daadwerkelijk nodig hebt en verwijder desgewenst niet relevante velden.*
+      <br><br>
+      **Socialemediakanalen**
+      <br>
+      *Socialemedia-accountnamen* kunnen ook onder ‘persoonsgegevens’ vallen als deze accountnamen herleidbaar zijn tot een persoon. 
+      Dit is sowieso het geval als de accountnaam iemands echte naam bevat. Maar zelfs als de accountnaam op het eerste gezicht anoniem lijkt, 
+      kan deze toch herleidbaar zijn tot een persoon. 
+      Bijvoorbeeld doordat het profiel is gekoppeld aan foto’s, locatie of een bio.
+  - field: contact_client
+    label: >
+      14.
+    datatype: checkboxes
+    minlength: 2
+    choices:
+      - Bezoek- of postadres (verplicht): adres
+      - E-mail (verplicht): e-mail
+      - Telefonisch bellen: telefoon
+      - WhatsApp: whatsapp
+      - Contactformulier website: contactformulier
+      - Socialemediakanalen: socials
+      - Anders / Ik weet het (nog) niet.<br>*(pas later zelf aan in het document)*: anders
+    default:
+      - adres
+      - e-mail
+    none of the above: False 
+# 15 | email_client
+  - note: >
+      15. **E-mail:**<br>
+      Wat is het e-mailadres dat in je privacyverklaring en eventuele cookieverklaring opgenomen mag worden?
+  - field: email_client
+    label: >
+      15.
+# 16 | adres_pvv
+  - note: >
+      16. **Adres:**<br>
+      Wil je naast je e-mailadres ook je vestigingsadres of contactadres opnemen in je privacyverklaring en eventuele cookieverklaring?
+    help: >
+      Het is niet verplicht om je volledige vestigingsadres op te nemen in je privacy- en cookieverklaring. 
+      Je vestigingsplaats wordt wel standaard opgenomen.
+  - field: adres_pvv
+    label: >
+      16.
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+# 17a | telefoon_pvv
+  - note: >
+      17. **Telefoon:**<br>
+      Wil je naast je e-mailadres ook je telefoonnummer opnemen in je privacyverklaring en eventuele cookieverklaring? 
+    help: >
+      Het is niet verplicht om je telefoonnummer op te nemen in je privacy- en cookieverklaring. 
+      Het is wél verplicht om duidelijke contactinformatie te verstrekken, maar dat mag dus ook een e-mailadres zijn.
+    js show if: |
+      (val("contact_client") || []).includes("telefoon") || (val("contact_client") || []).includes("whatsapp")
+  - field: telefoon_pvv
+    label: >
+      17a. 
+    input type: radio
+    choices:
+      - Nee *(meest gekozen)*: nee
+      - Ja: ja
+    js show if: |
+      (val("contact_client") || []).includes("telefoon") || (val("contact_client") || []).includes("whatsapp") 
+# 17b | telefoonnummer_client
+  - field: telefoonnummer_client
+    label: >
+      17b.<br>
+      Wat is je telefoonnummer?
+    help: >
+      Het telefoonnummer dat je hier invult wordt opgenomen in je privacyverklaring en eventuele cookieverklaring.
+      Dit mag zowel een mobiel nummer als een vast nummer zijn.
+    default: +31(0)
+    js show if: |
+      val('telefoon_pvv') == "ja" && ((val("contact_client") || []).includes("telefoon") || (val("contact_client") || []).includes("whatsapp"))
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 18 | vragen_prvccontact
+  - note: >
+      18. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvccontact
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 35
+section: sec_contactmogelijkheden
+---
+#-----------------------------------------------------------------------------
+# CODE CONTACTMOGELIJKHEDEN
+#-----------------------------------------------------------------------------
+# SHOWIFS
+#-----------------------------------------------------------------------------
+code: |
+  if website_client == "nee":
+    url_client = 'N.v.t.'
+depends on:
+  - website_client
+---
+code: |
+  if website_client == "nog geen URL":
+    url_client = 'N.v.t.'
+depends on:
+  - website_client
+---
+code: |
+  if not contact_client.get('telefoon', False) and not contact_client.get('whatsapp', False):
+    telefoon_pvv = 'N.v.t.'
+depends on:
+  - contact_client
+---
+code: |
+  if not telefoon_pvv == "ja":
+    telefoonnummer_client = 'N.v.t.'
+depends on:
+  - telefoon_pvv
+---

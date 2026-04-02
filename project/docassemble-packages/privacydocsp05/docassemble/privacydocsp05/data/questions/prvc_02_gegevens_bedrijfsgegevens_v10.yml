@@ -1,0 +1,334 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_bedrijfsgegevens = '02v10'
+# last revision date: 2025-09-05
+---
+#-----------------------------------------------------------------------------
+# SECTIE BEDRIJFSGEGEVENS
+#-----------------------------------------------------------------------------
+id: id_bedrijfsgegevensclientprvc
+mandatory: True
+question: |
+  Bedrijfsgegevens
+fields:
+# _________________________________
+# Bedrijfsnaam
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Bedrijfsnaam</strong>
+      </div>
+# Bedrijfsnaam
+  - note: >
+      1. **Bedrijfsnaam**<br>
+      Wat is je bedrijfsnaam?
+# 1 | bedrijfsnaam_client
+  - field: bedrijfsnaam_client
+    label: >
+      Bedrijfsnaam
+    floating label: True
+# _________________________________
+# Adresgegevens
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Adresgegevens</strong>
+      </div>
+# Vestigingsadres
+  - note: >
+      2. **Vestigingsadres**<br>
+      Wat is het vestigingsadres van je onderneming, zoals ingeschreven bij de KvK?
+    help: >
+      Het gaat hier om het vestigingsadres, dus om het adres waarmee je staat ingeschreven, of waarmee je je gaat inschrijven, bij de KvK.
+      <br><br>
+      Je kunt je vestigingsadres in het handelsregister van de KvK afschermen.
+      Het is dan niet meer door iedereen in te zien in het openbare gedeelte van het handelsregister.
+      In dat geval zal je een afwijkend kantoor-, bezoek- of postadres moeten opgeven bij de KvK.
+      Dit afwijkende adres wordt dan getoond in het openbare gedeelte van het handelsregister, 
+      maar is niet je *vestigings*adres.
+# 2a | straatnaam_client
+  - field: straatnaam_client
+    label: >
+      Straatnaam
+    grid: 8
+    floating label: True
+# 2b | huisnummer_client
+  - field: huisnummer_client
+    grid: 4
+    label: >
+      Huisnummer
+    floating label: True
+# 2c | postcode_client
+  - field: postcode_client
+    label: >
+      Postcode
+    grid: 4
+    floating label: True
+# 2d | plaatsnaam_client
+  - field: plaatsnaam_client
+    grid: 8
+    floating label: True
+    label: >
+      Plaatsnaam
+# Contactadres
+  - note: >
+      3. **Contactadres:**<br>
+      Heb je een kantoor-, bezoek- of postadres dat afwijkt van je vestigingsadres?
+# 3a | andercontactadres_client
+  - field: andercontactadres_client
+    label: >
+      3a.
+    input type: radio
+    choices: 
+      - Nee *(meest gekozen)*: nee
+      - Ja, namelijk: ja
+# 3b | contactstraatnaam_client
+  - field: contactstraatnaam_client
+    label: >
+      Straatnaam
+    grid: 8
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# 3c | contacthuisnummer_client
+  - field: contacthuisnummer_client
+    grid: 4
+    label: >
+      Huisnummer
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# 3d | contactpostcode_client
+  - field: contactpostcode_client
+    label: >
+      Postcode
+    grid: 4
+    floating label: True
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# 3e | contactplaatsnaam_client
+  - field: contactplaatsnaam_client
+    grid: 8
+    floating label: True
+    label: >
+      Plaatsnaam
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# 3f | contactadresvermelden_client
+  - field: contactadresvermelden_client
+    label: >
+      3f. Zo ja, wil je je post-, bezoek- of kantooradres ook in je documenten vermelden?
+    help: >
+      Bijvoorbeeld: “Gevestigd te Adres X, kantoorhoudende te Adres Y” 
+    input type: radio
+    choices: 
+      - Ja *(meest gekozen)*: ja
+      - Nee: nee
+    show if:
+      variable: andercontactadres_client
+      is: ja
+# _________________________________
+# Juridische gegevens
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:8px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Juridische gegevens</strong>
+      </div>
+# 4 | rechtsvorm_client
+  - note: >
+      4. **Rechtsvorm:**<br>
+      Welke rechtsvorm heeft je onderneming?
+    help: >
+      In de meeste gevallen zal een Virtual Assistant of Online Business Manager een eenmanszaak hebben (zzp’er), maar bijvoorbeeld een VOF of een BV komen ook voor.
+      <br><br>
+      Heb je een andere rechtsvorm dan “eenmanszaak” en is dit niet van tevoren besproken? 
+      Neem dan eerst contact op om te kijken of de op te stellen documenten passend voor je zijn.
+  - field: rechtsvorm_client
+    label: >
+      4.
+    input type: radio
+    choices:
+      - Eenmanszaak: eenmanszaak
+      - VOF: vof
+      - Anders (bijv. BV of stichting): anders
+    default: eenmanszaak
+# 5a | kvkinschrijving_client
+  - note: >
+      5. **KvK-nummer:**<br>
+      Sta je (al) ingeschreven bij de Kamer van Koophandel?
+  - field: kvkinschrijving_client
+    label: >
+      5a.
+    input type: radio
+    choices: 
+      - Ja: ja
+      - Nee: nee
+# 5b | kvknummer_client
+  - field: kvknummer_client
+    label: >
+      5b.<br>
+      Zo ja, wat is je KvK-nummer?
+    show if:
+      variable: kvkinschrijving_client
+      is: ja
+# _________________________________
+# Overig
+# _________________________________
+  - note: >
+      <div style="
+        display:block;
+        padding:10px;
+        border-radius:3px;
+        background:#0dcaf0;
+        color:#ffffff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+      ">
+        <strong>Overig</strong>
+      </div>
+# 6 | Opdrachtgever
+  - note: >
+      6. **Opdrachtgever:**<br>
+      Iets om rekening mee te houden (geen antwoord nodig hier): Zorg dat je de bedrijfs- en persoonsgegevens van de opdrachtgever ontvangt om te verwerken in de overeenkomst.
+    help: >
+      *Tip:<br>
+      Zoek bij de KvK het bedrijf van je opdrachtgever op en controleer of de door de opdrachtgever aangeleverde gegevens overeenkomen met hetgeen er in het handelsregister staat. 
+      Ook kun je hier bekijken welke rechtsvorm jouw opdrachtgever heeft (bijvoorbeeld eenmanszaak, VOF of BV).
+      De rechtsvorm van de partijen is van invloed op de wijze waarop de partijen in de overeenkomst worden vermeld.*
+# 7 | vragen_prvcbedrijfsgegevens
+  - note: >
+      7. **Opmerkingen:**<br>
+      Heb je opmerkingen over jouw antwoorden op bovenstaande vragen?
+    help: >
+      Plaats alleen opmerkingen die betrekking hebben op de gegeven antwoorden 
+      op deze pagina. Op het einde van de vragenlijst is er 
+      nog ruimte voor algemene opmerkingen.
+  - field: vragen_prvcbedrijfsgegevens
+    label:
+    input type: area
+    required: False
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 21
+section: sec_bedrijfsgegevensprvc
+---
+#-----------------------------------------------------------------------------
+# CODE - bedrijfsgegevens
+#-----------------------------------------------------------------------------
+id: id_settitleprvc
+mandatory: True
+code: |
+  set_parts(
+    title=bedrijfsnaam_client + " " + version_prvc)
+  log("set_parts bedrijfsnaam.")
+---
+#-----------------------------------------------------------------------------
+# CODE N/A
+#-----------------------------------------------------------------------------
+code: |
+  if not kvkinschrijving_client == "ja":
+    kvknummer_client = 'n.v.t.'
+depends on:
+  - kvkinschrijving_client
+---
+code: |
+  if andercontactadres_client == "nee":
+    contactstraatnaam_client = 'n.v.t.'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if andercontactadres_client == "nee":
+    contacthuisnummer_client = 'n.v.t.'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if andercontactadres_client == "nee":
+    contactpostcode_client = 'n.v.t.'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if andercontactadres_client == "nee":
+    contactplaatsnaam_client = 'n.v.t.'
+depends on:
+  - andercontactadres_client
+---
+code: |
+  if andercontactadres_client == "nee":
+    contactadresvermelden_client = 'n.v.t.'
+depends on:
+  - andercontactadres_client
+---
+# _________________________________
+# Background task
+# _________________________________
+mandatory: True
+code: |
+  task_sendurl = background_action('bg_tasksendurl')
+  log("bg_tasksendurl gestart.")
+---
+#-----------------------------------------------------------------------------
+# CODE
+#-----------------------------------------------------------------------------
+mandatory: True
+event: bg_tasksendurl
+code: |
+  if welkedocs_prvc:
+    send_email(to=user_info().email,
+      template=send_url
+    )
+  log("bg_tasksendurl afgerond.")
+  background_response()
+---
+template: send_url
+subject: |
+  Link naar vragenlijst privacydocumenten
+content: |
+  Hi!
+  
+  Je bent zojuist gestart met de online vragenlijst voor privacydocumenten.
+  
+  Wil je op een later moment verdergaan met de vragenlijst of de door jou gegeven antwoorden nogmaals bekijken? Klik dan op deze 
+  [link](${ interview_url() }). Mogelijk moet je eerst weer opnieuw inloggen.
+  
+  ------
+
+  <u>Technische gegegevens</u><br>
+  User: *${ user_info().email }*<br>
+  Bedrijf: *${ bedrijfsnaam_client }*<br>
+  Versie vragenlijst: *${ version_prvc }*
+---

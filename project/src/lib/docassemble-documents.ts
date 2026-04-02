@@ -18,12 +18,12 @@ export interface DocumentConfig {
 export const vyDocuments: DocumentConfig[] = [
   {
     id: "vy-doc-001",
-    slug: "privacyverklaring",
-    title: "Privacyverklaring",
+    slug: "privacyverklaring-avg",
+    title: "Privacyverklaring AVG",
     description:
-      "Een privacyverklaring op maat voor virtueel assistenten en online professionals die persoonsgegevens van klanten verwerken. Voldoet aan de AVG/GDPR.",
-    price_cents: 4900,
-    interview_name: "docassemble.virtually-yours:data/questions/privacyverklaring.yml",
+      "Een privacyverklaring op maat, inclusief cookieverklaring. Voldoet aan de AVG/GDPR. Voor VA's, freelancers en online professionals.",
+    price_cents: 10900,
+    interview_name: "docassemble.privacydocsp05:data/questions/Yaml_prvc_p05y28.yml",
     required_fields: [
       "bedrijfsnaam",
       "kvk_nummer",
@@ -43,8 +43,8 @@ export const vyDocuments: DocumentConfig[] = [
     title: "Verwerkersovereenkomst",
     description:
       "Een verwerkersovereenkomst tussen u als VA/online professional en uw opdrachtgever. Verplicht wanneer u als verwerker persoonsgegevens verwerkt namens een klant.",
-    price_cents: 5900,
-    interview_name: "docassemble.virtually-yours:data/questions/verwerkersovereenkomst.yml",
+    price_cents: 9900,
+    interview_name: "docassemble.privacydocsp05:data/questions/Yaml_prvc_p05y28.yml",
     required_fields: [
       "verwerker_bedrijfsnaam",
       "verwerker_kvk",
@@ -66,8 +66,8 @@ export const vyDocuments: DocumentConfig[] = [
     title: "Algemene Voorwaarden",
     description:
       "Algemene voorwaarden voor online dienstverleners, VA's en freelancers. Beschermt u juridisch en schept duidelijkheid voor uw klanten over uw dienstverlening.",
-    price_cents: 6900,
-    interview_name: "docassemble.virtually-yours:data/questions/algemene-voorwaarden.yml",
+    price_cents: 11900,
+    interview_name: "docassemble.opdrachtdocsp03:data/questions/Yaml_opdr_p03y30.yml",
     required_fields: [
       "bedrijfsnaam",
       "kvk_nummer",
@@ -97,6 +97,20 @@ export const vyDocuments: DocumentConfig[] = [
       "voornaam",
       "achternaam",
       "werkzaamheden",
+    ],
+  },
+  {
+    id: "vy-doc-005",
+    slug: "cookieverklaring",
+    title: "Cookieverklaring",
+    description:
+      "Een cookieverklaring op maat voor je website. Verplicht als je cookies plaatst op de apparaten van bezoekers.",
+    price_cents: 3900,
+    interview_name: "docassemble.privacydocsp05:data/questions/Yaml_prvc_p05y28.yml",
+    required_fields: [
+      "bedrijfsnaam",
+      "website_url",
+      "cookie_types",
     ],
   },
 ];

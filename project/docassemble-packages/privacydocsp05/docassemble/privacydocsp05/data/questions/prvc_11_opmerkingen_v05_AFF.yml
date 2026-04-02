@@ -1,0 +1,66 @@
+#-----------------------------------------------------------------------------
+# METADATA
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_opmerkingen_AFF: '09v05'
+# last revision date: 2025-04-09
+---
+#---------------------------------
+# SECTIE Vragen
+#---------------------------------
+id: id_vragen
+mandatory: True
+question: |
+  Vragen of opmerkingen
+fields:
+# _________________________________
+# 42 | vragen_prvcalgemeen
+# _________________________________
+  - note: >
+      42. **Opmerkingen:**<br>
+      Heb je nog opmerkingen?
+    help: >
+      Zijn er bijvoorbeeld bijzondere omstandigheden waar rekening mee gehouden moet worden? 
+      <br><br>
+      *(Let op, verzoeken voor het toevoegen van specifieke clausules of artikelen die niet gebruikelijk zijn voor online dienstverleners kunnen extra kosten 
+      met zich meebrengen. Bespreek de mogelijkheden met je coach, opleider, of contactpersoon.)* 
+  - field: vragen_prvcalgemeen
+    label:
+    input type: area
+    required: False
+# _________________________________
+# 43 | urgentdocprvc_ovk
+# _________________________________
+  - note: >
+      43. **Spoedaanvraag:**<br>
+      Heb je een document urgent nodig?
+    help: >
+      Laat het ons weten als je een deadline hebt voor een document, bijvoorbeeld omdat je verwacht op korte 
+      termijn een opdracht aan te nemen. We kunnen niets beloven, maar zullen ons best doen om daar rekening mee te houden.
+  - field: urgentdocprvc_ovk
+    label:
+    label above field: True
+    input type: area
+    required: False
+# _________________________________
+# 44 | affiliate
+# _________________________________
+  - note: >
+      44. **Hoe ben je bij deze vragenlijst gekomen?:**<br>
+      Kun je aangeven hoe of via wie je bij deze vragenlijst bent gekomen?
+      Bijvoorbeeld via je coach, je opleider, een jurist of een webshop.
+      En kun je de naam van deze persoon of de webshop hier vermelden?
+  - field: opmerkingenintern_prvc
+    label:
+    input type: area
+under: |
+  *Let op, door op `<Terug` te klikken, verlies je mogelijk de hier gegeven antwoorden. 
+  Klik op de knop `Verder` om de hier gegeven antwoorden op te slaan.<br><br>*
+  *Wil je terug om een eerder gegeven antwoord te wijzigen? 
+  Klik dan eerst op de knop `Verder` om de hier gegeven antwoorden op te slaan. 
+  Klik daarna in het linkermenu op het pijltje (►) bij de sectie waar je iets wilt wijzigen en vervolgens op de subsectie. 
+  Je krijgt dan een overzicht van de door jou gegeven antwoorden in die subsectie te zien en kunt deze wijzigen.*
+#---
+progress: 70
+section: sec_vragen
+---

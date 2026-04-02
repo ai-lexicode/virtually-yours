@@ -1,0 +1,53 @@
+#-----------------------------------------------------------------------------
+# METADATA logo
+#----------------------------------------------------------------------------
+code: |
+  version_prvc_logo: '10v04'
+# last revision date: 2025-09-05
+---
+#---------------------------------
+# SECTIE Logo uploaden
+#---------------------------------
+# _________________________________
+# 40 | logo_client
+# _________________________________
+id: id_logo
+mandatory: True
+question: |
+  Bedrijfslogo
+subquestion: |
+  <div style="
+    display:block;
+    padding:16px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    background:#f6efe7;
+    color:#000000;
+    box-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.1);
+  ">
+    <strong>Opmaak documenten</strong>
+    <br>
+    De juridische documenten worden aangeleverd als Word-files (docx) met een witte achtergrond en zwarte letters.
+    Je mag je juridische documenten verder naar eigen wens opmaken.
+    <br><br>
+    Je ontvangt de documenten dus <em>niet</em> standaard in je eigen huisstijl,
+    maar je kunt voor de zekerheid je logo hier uploaden (png).
+  </div>
+  <br>
+under: |
+  *Lukt het uploaden niet of wil je het logo graag in een ander format dan png aanleveren? Stuur dan je logo per e-mail naar info@lexicode.nl.*
+fields:
+# 40 | logo_client
+  - note: >
+      40. **Bedrijfslogo**
+      <br>
+      Heb je een bedrijfslogo dat je graag in je documenten zou willen verwerken?
+  - Logo uploaden<br>[in png]<br>*(optioneel)*: logo_client
+    datatype: file
+    maximum image size: 250
+    image upload type: png
+    required: False
+#---
+progress: 90
+section: sec_logo
+---
