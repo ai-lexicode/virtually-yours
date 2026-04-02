@@ -9,7 +9,11 @@
   --primary-hover: #045cb4;
   --primary-muted: #0369a1;
   --sidebar: #f1f5f9;
-  --muted: #64748b;
+  --accent: #ffab00;
+  --accent-hover: #e09900;
+  --text-secondary: #334155;
+  --border: #cbd5e1;
+  --muted: #94a3b8;
   --success: #22c55e;
   --warning: #f59e0b;
   --error: #ef4444;
@@ -25,6 +29,10 @@
   --color-primary-hover: var(--primary-hover);
   --color-primary-muted: var(--primary-muted);
   --color-sidebar: var(--sidebar);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
   --color-muted: var(--muted);
   --color-success: var(--success);
   --color-warning: var(--warning);
