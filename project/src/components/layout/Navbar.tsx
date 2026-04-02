@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/over-mij", label: "Over mij" },
   { href: "/documenten", label: "Documenten" },
   { href: "/pakketten", label: "Pakketten" },
+  { href: "/juridisch-va", label: "Juridisch VA" },
   { href: "/nieuws", label: "Nieuws" },
   { href: "/contact", label: "Contact" },
 ];

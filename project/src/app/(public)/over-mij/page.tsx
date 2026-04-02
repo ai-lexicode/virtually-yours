@@ -43,7 +43,8 @@ export default function OverMijPage() {
                   Al enige jaren ben ik werkzaam als virtueel assistent en online
                   business manager. Nadat ik Rechtsgeleerdheid was gaan studeren
                   aan de Open Universiteit, ben ik mij als VA volledig gaan
-                  richten op de juridische niche.
+                  richten op de juridische niche. De beste keuze ever! Want hoe
+                  leuk is het om juridisch VA te zijn.
                 </p>
                 <p>
                   Als juridisch VA help ik online ondernemers aan een goed
@@ -53,9 +54,16 @@ export default function OverMijPage() {
                   afgestemd op de situatie van de ondernemer.
                 </p>
                 <p>
+                  Omdat ik zelf werkzaam ben als VA en werkzaam ben geweest als
+                  OBM en SMM, kan ik juridische documenten opstellen die, zowel
+                  juridisch als praktisch, volledig zijn gericht op de behoeften
+                  van virtueel professionals.
+                </p>
+                <p>
                   Ik ondersteun ook juridische dienstverleners, zoals
                   adviesbureaus en advocatenkantoren. Mijn werkzaamheden voer ik
-                  remote uit.
+                  remote uit. Het is dus geen probleem als je niet beschikt over
+                  een kantoorruimte of een werkplek voor mij.
                 </p>
               </div>
 

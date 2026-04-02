@@ -11,6 +11,7 @@ const documentLinks = [
 const infoLinks = [
   { href: "/over-mij", label: "Over mij" },
   { href: "/hoe-werkt-het", label: "Hoe werkt het" },
+  { href: "/juridisch-va", label: "Juridisch VA" },
   { href: "/nieuws", label: "Nieuws" },
   { href: "/contact", label: "Contact" },
 ];
@@ -119,6 +120,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-white/50">
               <li>Wikkestraat 68</li>
               <li>Alphen aan den Rijn</li>
+              <li className="text-xs text-white/30">Werkdagen: Ma, Di, Vr</li>
               <li className="pt-1">
                 <a href="tel:+31618755103" className="hover:text-primary transition-colors">
                   +31 (0)6 18755103
