@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 function getServiceClient() {
   return createClient(

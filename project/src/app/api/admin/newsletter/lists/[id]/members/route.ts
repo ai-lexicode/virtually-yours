@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, getAdminClient } from "@/lib/admin";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 const addMemberSchema = z.object({
   userId: z.string().uuid().optional(),
@@ -8,16 +8,9 @@ const addMemberSchema = z.object({
   email: z.string().email().optional(),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-}).check(
-  (ctx) => {
-    if (!ctx.value.userId && !ctx.value.leadId && !ctx.value.email) {
-      ctx.issues.push({
-        code: "custom",
-        message: "Either userId, leadId, or email is required",
-        path: [],
-      });
-    }
-  }
+}).refine(
+  (data) => data.userId || data.leadId || data.email,
+  { message: "Either userId, leadId, or email is required" }
 );
 
 export async function GET(

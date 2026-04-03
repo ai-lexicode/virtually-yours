@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, getAdminClient } from "@/lib/admin";
-import { z } from "zod/v4";
+import { z } from "zod";
 import { getRecipients } from "@/lib/newsletter/helpers";
 
 const sendSchema = z.object({

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, getAdminClient } from "@/lib/admin";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 const createSchema = z.object({
   name: z.string().min(1).max(200),

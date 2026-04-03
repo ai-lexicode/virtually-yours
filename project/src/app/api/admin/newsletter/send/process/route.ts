@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, getAdminClient } from "@/lib/admin";
 import { sendEmail } from "@/lib/newsletter/send";
 import { renderBlocksToHtml, type EmailBlock } from "@/lib/newsletter/render-blocks-to-html";
-import { z } from "zod/v4";
+import { z } from "zod";
 import {
   injectTrackingPixel,
   rewriteUrlsForTracking,

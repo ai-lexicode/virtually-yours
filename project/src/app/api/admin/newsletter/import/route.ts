@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, getAdminClient } from "@/lib/admin";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 const MAX_CHUNK_SIZE = 200;
 
