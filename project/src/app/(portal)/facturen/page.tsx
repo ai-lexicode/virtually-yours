@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { formatPrice, calculateBtw } from "@/lib/mollie";
+import { formatPrice, calculateBtw } from "@/lib/stripe";
 
 export default async function FacturenPage() {
   const supabase = await createClient();

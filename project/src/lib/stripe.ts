@@ -1,12 +1,14 @@
-import { createMollieClient, type MollieClient } from "@mollie/api-client";
+import Stripe from "stripe";
 
-let _mollie: MollieClient | null = null;
+let _stripe: Stripe | null = null;
 
-export function getMollie(): MollieClient {
-  if (!_mollie) {
-    _mollie = createMollieClient({ apiKey: process.env.MOLLIE_API_KEY! });
+export function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2026-03-25.dahlia",
+    });
   }
-  return _mollie;
+  return _stripe;
 }
 
 export function formatPrice(cents: number): string {

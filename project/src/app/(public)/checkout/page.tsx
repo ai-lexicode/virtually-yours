@@ -138,7 +138,7 @@ function CheckoutContent() {
 
       const { orderId } = await orderRes.json();
 
-      // Create Mollie payment
+      // Create Stripe Checkout session
       const paymentRes = await fetch("/api/payments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -240,11 +240,11 @@ function CheckoutContent() {
         <div className="bg-card border border-card-border rounded-xl p-6 mb-6">
           <h2 className="font-semibold mb-4">Betaling</h2>
           <p className="text-sm text-muted">
-            Na het klikken op &quot;Betalen&quot; wordt u doorgestuurd naar Mollie
-            om veilig te betalen via iDEAL, creditcard, Bancontact of Klarna.
+            Na het klikken op &quot;Betalen&quot; wordt u doorgestuurd naar Stripe
+            om veilig te betalen via iDEAL of creditcard.
           </p>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-4">
-            {["iDEAL", "Visa", "Mastercard", "Klarna"].map((method) => (
+            {["iDEAL", "Visa", "Mastercard"].map((method) => (
               <span
                 key={method}
                 className="text-xs bg-card-border/50 px-3 py-1.5 rounded-md text-muted"
@@ -340,7 +340,7 @@ function CheckoutContent() {
               d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             />
           </svg>
-          Veilig betalen via Mollie — SSL beveiligd
+          Veilig betalen via Stripe — SSL beveiligd
         </div>
 
         <p className="text-center text-xs text-muted mt-4">

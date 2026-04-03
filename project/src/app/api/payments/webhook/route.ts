@@ -1,80 +1,79 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getMollie } from "@/lib/mollie";
+import { getStripe } from "@/lib/stripe";
 import { createServerClient } from "@supabase/ssr";
 import { sendPaymentConfirmation } from "@/lib/resend";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.formData();
-    const paymentId = body.get("id") as string;
+    const body = await request.text();
+    const signature = request.headers.get("stripe-signature");
 
-    if (!paymentId) {
-      return NextResponse.json({ error: "Missing payment ID" }, { status: 400 });
+    if (!signature) {
+      return NextResponse.json({ error: "Missing signature" }, { status: 400 });
     }
 
-    // Validate paymentId format (Mollie uses tr_ prefix + alphanumeric)
-    if (!/^tr_[a-zA-Z0-9]+$/.test(paymentId)) {
-      return NextResponse.json({ error: "Invalid payment ID format" }, { status: 400 });
+    const stripe = getStripe();
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        body,
+        signature,
+        process.env.STRIPE_WEBHOOK_SECRET!
+      );
+    } catch (err) {
+      console.error("Webhook signature verification failed:", err);
+      return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
-    // Verify payment with Mollie (recommended approach — Mollie doesn't sign webhooks)
-    const payment = await getMollie().payments.get(paymentId);
-
-    if (payment.status !== "paid") {
-      return NextResponse.json({ status: payment.status });
+    if (event.type !== "checkout.session.completed") {
+      return NextResponse.json({ received: true });
     }
 
-    // Validate metadata contains orderId
-    const metadata = payment.metadata as { orderId?: string } | null;
-    if (!metadata?.orderId) {
-      console.error(`Webhook: payment ${paymentId} has no orderId in metadata`);
-      return NextResponse.json({ error: "Missing order metadata" }, { status: 400 });
+    const session = event.data.object;
+    const orderId = session.metadata?.orderId;
+
+    if (!orderId) {
+      console.error("Webhook: no orderId in session metadata");
+      return NextResponse.json({ error: "Missing metadata" }, { status: 400 });
     }
 
-    const { orderId } = metadata;
-
-    // Use service role for webhook (no user context)
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!,
       { cookies: { getAll: () => [], setAll: () => {} } }
     );
 
-    // Verify the order exists before processing
+    // Verify order exists
     const { data: existingOrder, error: orderError } = await supabase
       .from("orders")
-      .select("id, mollie_payment_id")
+      .select("id, status, mollie_payment_id")
       .eq("id", orderId)
       .single();
 
     if (orderError || !existingOrder) {
-      console.error(`Webhook: order ${orderId} not found for payment ${paymentId}`);
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
     }
 
-    // Prevent replay attacks: ensure the payment belongs to this order
-    if (existingOrder.mollie_payment_id && existingOrder.mollie_payment_id !== paymentId) {
-      console.error(
-        `Webhook: payment ID mismatch for order ${orderId} — ` +
-        `expected ${existingOrder.mollie_payment_id}, got ${paymentId}`
-      );
-      return NextResponse.json({ error: "Payment ID mismatch" }, { status: 403 });
+    // Already processed
+    if (existingOrder.status !== "pending") {
+      return NextResponse.json({ status: "already_processed" });
     }
 
-    // Update order status
+    // Update order
     await supabase
       .from("orders")
       .update({
         status: "questionnaire",
-        payment_method: String(payment.method),
+        payment_method: session.payment_method_types?.[0] || "card",
         paid_at: new Date().toISOString(),
       })
       .eq("id", orderId);
 
-    // Create questionnaire records for each order item
+    // Create questionnaire records
     const { data: orderItems } = await supabase
       .from("order_items")
-      .select("id, documents(docassemble_interview_id)")
+      .select("id")
       .eq("order_id", orderId);
 
     if (orderItems) {
@@ -101,12 +100,7 @@ export async function POST(request: NextRequest) {
       const docTitles = (order.order_items as unknown as { documents: { title: string } }[])
         .map((i) => i.documents.title)
         .join(", ");
-
-      await sendPaymentConfirmation(
-        profile.email,
-        order.order_number,
-        docTitles
-      );
+      await sendPaymentConfirmation(profile.email, order.order_number, docTitles);
     }
 
     // Log activity
@@ -115,14 +109,15 @@ export async function POST(request: NextRequest) {
       entity_type: "order",
       entity_id: orderId,
       metadata: {
-        payment_method: payment.method,
-        amount: payment.amount.value,
+        payment_method: session.payment_method_types?.[0],
+        amount: session.amount_total,
+        stripe_session_id: session.id,
       },
     });
 
     return NextResponse.json({ status: "ok" });
   } catch (error) {
-    console.error("Webhook processing error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    console.error("Webhook error:", error);
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

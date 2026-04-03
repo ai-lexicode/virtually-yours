@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
-import { formatPrice } from "@/lib/mollie";
+import { formatPrice } from "@/lib/stripe";
 
 const statusColors: Record<string, string> = {
   pending: "bg-muted/10 text-muted",

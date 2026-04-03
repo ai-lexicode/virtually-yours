@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice } from "@/lib/mollie";
+import { formatPrice } from "@/lib/stripe";
 
 const categoryColors: Record<string, string> = {
   arbeidsrecht: "bg-primary/15 text-primary-hover",
@@ -35,7 +35,7 @@ export function DocumentCard({
   return (
     <Link
       href={`/documenten/${slug}`}
-      className="group block rounded-lg bg-card p-6 hover:border-primary/40 transition-all border border-card-border"
+      className="group block rounded-xl bg-card/80 backdrop-blur-sm p-6 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300 border border-card-border"
     >
       <span
         className={`inline-block rounded-lg px-3 py-1 text-xs font-medium font-label ${categoryColors[category] || "bg-surface-container-high text-muted"}`}

@@ -52,7 +52,7 @@ export default function AlgemeneVoorwaardenPage() {
             <h2 className="font-serif text-xl font-bold text-on-surface">Artikel 4 — Bestelling en Betaling</h2>
             <ul className="list-disc pl-6 space-y-1 text-muted">
               <li>De overeenkomst komt tot stand op het moment dat de betaling is ontvangen.</li>
-              <li>Betaling geschiedt via de betalingsprovider Mollie. Virtually Yours accepteert iDEAL, creditcard, Bancontact en Klarna.</li>
+              <li>Betaling geschiedt via de betalingsprovider Stripe. Virtually Yours accepteert iDEAL en creditcard (Visa, Mastercard).</li>
               <li>Na betaling ontvangt de Klant een bevestigingse-mail en toegang tot de vragenlijst.</li>
             </ul>
           </section>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice } from "@/lib/mollie";
+import { formatPrice } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {

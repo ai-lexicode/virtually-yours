@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatPrice } from "@/lib/mollie";
+import { formatPrice } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 
 const categoryLabels: Record<string, string> = {
@@ -184,7 +184,7 @@ export default async function DocumentDetailPage({
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                   />
                 </svg>
-                Veilig betalen via Mollie
+                Veilig betalen via Stripe
               </div>
             </div>
           </div>

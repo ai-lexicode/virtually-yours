@@ -50,7 +50,7 @@ export default function PrivacyverklaringPage() {
                 <strong className="text-on-surface">
                   Betalingsgegevens:
                 </strong>{" "}
-                betaalmethode, transactie-informatie (via Mollie)
+                betaalmethode, transactie-informatie (via Stripe)
               </li>
               <li>
                 <strong className="text-on-surface">
@@ -101,7 +101,7 @@ export default function PrivacyverklaringPage() {
               Wij delen uw gegevens alleen met de volgende partijen, voor zover noodzakelijk:
             </p>
             <ul className="list-disc pl-6 space-y-1 text-muted">
-              <li><strong className="text-on-surface">Mollie:</strong> betalingsverwerking</li>
+              <li><strong className="text-on-surface">Stripe:</strong> betalingsverwerking</li>
               <li><strong className="text-on-surface">Supabase:</strong> hosting van de database (EU-regio)</li>
               <li><strong className="text-on-surface">Resend:</strong> versturen van transactionele e-mails</li>
               <li><strong className="text-on-surface">Vercel:</strong> hosting van de website</li>
