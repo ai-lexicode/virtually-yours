@@ -16,6 +16,17 @@ pending_known_issues:
     promote_candidate: false
     reason: "Project-specific deploy script"
 
+review_fix_tally:
+  - tag: missing-relevant-files
+    spec: feat-010
+    date: 2026-04-04
+  - tag: missing-relevant-files
+    spec: feat-011
+    date: 2026-04-04
+  - tag: missing-status-column
+    spec: umb-001
+    date: 2026-04-04
+
 pending_patterns:
   - pattern: "Hetzner server architecture for virtually-yours"
     context: "Standalone Next.js (not Docker) on cx33, systemd service virtually-yours.service, port 3001, nginx reverse proxy with SSL (Certbot), user 'virtually', app at /home/virtually/app/. Deploy via GitHub Actions SSH (deploy.yml)."

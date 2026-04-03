@@ -18,11 +18,11 @@ Volledig newsletter-systeem voor Virtually Yours: lijstbeheer, block-editor, ope
 
 ## Sub-specs
 
-| # | Spec | Title | Depends on | Size |
-|---|------|-------|------------|------|
-| 1 | feat-009 | Database + Core API | — | medium |
-| 2 | feat-010 | Admin UI | feat-009 | medium |
-| 3 | feat-011 | Public UI + Email | feat-009 | small |
+| # | Spec | Title | Depends on | Size | Status |
+|---|------|-------|------------|------|--------|
+| 1 | feat-009 | Database + Core API | — | medium | 🟧 in-progress |
+| 2 | feat-010 | Admin UI | feat-009 | medium | ⬜ draft |
+| 3 | feat-011 | Public UI + Email | feat-009 | small | ⬜ draft |
 
 ## Execution order
 
