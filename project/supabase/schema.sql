@@ -404,3 +404,132 @@ where b.slug = 'privacy-compleet' and d.slug in ('privacyverklaring-avg', 'verwe
 insert into bundle_items (bundle_id, document_id)
 select b.id, d.id from bundles b, documents d
 where b.slug = 'samenwerkingspakket' and d.slug in ('overeenkomst-van-opdracht', 'nda-geheimhoudingsverklaring', 'freelance-samenwerkingsovereenkomst');
+
+-- ============================================================
+-- Newsletter (feat-009)
+-- ============================================================
+create type newsletter_status as enum ('draft', 'sending', 'sent');
+create type newsletter_list_type as enum ('general', 'list');
+create type newsletter_recipient_status as enum ('queued', 'sent', 'delivered', 'opened', 'clicked', 'bounced', 'complained');
+
+create table newsletter_subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null unique references profiles(id) on delete cascade,
+  is_active boolean not null default true,
+  general boolean not null default true,
+  bounce_count integer not null default 0,
+  unsubscribe_token uuid not null default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table newsletter_leads (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  first_name text,
+  last_name text,
+  source text not null default 'footer',
+  is_active boolean not null default false,
+  bounce_count integer not null default 0,
+  unsubscribe_token uuid not null default gen_random_uuid(),
+  locale text default 'nl',
+  confirmed_at timestamptz,
+  confirm_token text unique,
+  confirm_token_expires_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table newsletter_lists (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  description text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table newsletter_list_members (
+  id uuid primary key default gen_random_uuid(),
+  list_id uuid not null references newsletter_lists(id) on delete cascade,
+  user_id uuid references profiles(id) on delete cascade,
+  lead_id uuid references newsletter_leads(id) on delete cascade,
+  added_at timestamptz not null default now(),
+  constraint at_least_one_member check (user_id is not null or lead_id is not null),
+  unique (list_id, user_id),
+  unique (list_id, lead_id)
+);
+
+create table newsletters (
+  id uuid primary key default gen_random_uuid(),
+  subject text not null,
+  content jsonb not null default '[]'::jsonb,
+  status newsletter_status not null default 'draft',
+  list_type newsletter_list_type not null default 'general',
+  list_id uuid references newsletter_lists(id) on delete set null,
+  sent_by uuid references profiles(id) on delete set null,
+  sent_at timestamptz,
+  recipient_count integer not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table newsletter_recipients (
+  id uuid primary key default gen_random_uuid(),
+  newsletter_id uuid not null references newsletters(id) on delete cascade,
+  email text not null,
+  user_id uuid,
+  resend_message_id text unique,
+  status newsletter_recipient_status not null default 'queued',
+  delivered_at timestamptz,
+  opened_at timestamptz,
+  clicked_at timestamptz,
+  bounced_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create table newsletter_clicks (
+  id uuid primary key default gen_random_uuid(),
+  recipient_id uuid not null references newsletter_recipients(id) on delete cascade,
+  original_url text not null,
+  clicked_at timestamptz not null default now()
+);
+
+-- Newsletter indexes
+create index idx_newsletter_subs_user on newsletter_subscriptions(user_id);
+create index idx_newsletter_subs_active on newsletter_subscriptions(is_active) where is_active = true;
+create index idx_newsletter_leads_email on newsletter_leads(email);
+create index idx_newsletter_leads_active on newsletter_leads(is_active) where is_active = true;
+create index idx_newsletter_list_members_list on newsletter_list_members(list_id);
+create index idx_newsletters_status on newsletters(status);
+create index idx_newsletters_sent_at on newsletters(sent_at desc);
+create index idx_newsletter_recipients_newsletter on newsletter_recipients(newsletter_id);
+create index idx_newsletter_recipients_resend on newsletter_recipients(resend_message_id);
+
+-- Newsletter RLS
+alter table newsletter_subscriptions enable row level security;
+alter table newsletter_leads enable row level security;
+alter table newsletter_lists enable row level security;
+alter table newsletter_list_members enable row level security;
+alter table newsletters enable row level security;
+alter table newsletter_recipients enable row level security;
+alter table newsletter_clicks enable row level security;
+
+create policy "Users can view own subscription" on newsletter_subscriptions
+  for select using (auth.uid() = user_id);
+create policy "Users can update own subscription" on newsletter_subscriptions
+  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "Admins full access subscriptions" on newsletter_subscriptions
+  for all using (public.is_admin());
+
+create policy "Admins full access leads" on newsletter_leads
+  for all using (public.is_admin());
+create policy "Admins full access lists" on newsletter_lists
+  for all using (public.is_admin());
+create policy "Admins full access list members" on newsletter_list_members
+  for all using (public.is_admin());
+create policy "Admins full access newsletters" on newsletters
+  for all using (public.is_admin());
+create policy "Admins full access recipients" on newsletter_recipients
+  for all using (public.is_admin());
+create policy "Admins full access clicks" on newsletter_clicks
+  for all using (public.is_admin());
