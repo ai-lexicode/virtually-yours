@@ -11,4 +11,5 @@
 | 7 | feat-006-stripe-payments | ✅ implemented | — | — |
 | 8 | feat-007-branded-email-templates | ✅ implemented | — | — |
 | 9 | feat-008-faq-page-zoho-migration | ✅ implemented | — | — |
-| 10 | bug-001-mobile-menu-background | ⬜ draft | — | — |
+| 10 | bug-001-mobile-menu-background | ⬛ canceled (already fixed in 282cd2b) | — | — |
+| 11 | bug-002-google-oauth-redirect-localhost | ✅ implemented | — | — |

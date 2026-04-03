@@ -15,6 +15,10 @@ pending_known_issues:
     reason: "Common Supabase + LinkedIn integration gotcha — two providers with same name"
 
 pending_patterns:
+  - pattern: "Supabase OAuth redirectTo must match Site URL + Redirect URLs allowlist in Supabase Dashboard"
+    context: "Google OAuth redirected to localhost:3000 because Supabase Site URL was still set to localhost. Code used window.location.origin (correct in browser) but Supabase validates against its configured allowlist and falls back to Site URL when no match. Fix: use NEXT_PUBLIC_SITE_URL env var for redirectTo + update Supabase Dashboard Site URL and Redirect URLs."
+    promote_candidate: true
+    reason: "Universal Supabase OAuth pattern — any project using Supabase social auth will hit this"
   - pattern: "Reuse existing DB columns for provider migration instead of adding new columns"
     context: "Mollie→Stripe migration: reused mollie_payment_id column for Stripe session IDs, avoiding DB migration"
     promote_candidate: false
@@ -31,6 +35,9 @@ review_fix_tally:
   - tag: vague-scope
     spec: feat-001
     date: 2026-04-02
+  - tag: vague-scope
+    spec: bug-002
+    date: 2026-04-03
 
 self_healing:
   applied_fixes: []
