@@ -70,6 +70,7 @@ export default function InstellingenPage() {
     }
 
     loadProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSave = async () => {

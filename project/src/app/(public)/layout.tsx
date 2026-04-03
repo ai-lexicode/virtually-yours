@@ -10,7 +10,7 @@ export default function PublicLayout({
   return (
     <>
       <Navbar />
-      <main className="pt-16 bg-background">{children}</main>
+      <main className="pt-24 bg-background">{children}</main>
       <Footer />
       <CookieConsent />
     </>

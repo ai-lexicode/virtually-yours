@@ -14,6 +14,7 @@ const infoLinks = [
   { href: "/hoe-werkt-het", label: "Hoe werkt het" },
   { href: "/juridisch-va", label: "Juridisch VA" },
   { href: "/nieuws", label: "Nieuws" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -24,15 +25,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-2">
+            <div className="mb-2">
               <Image
-                src="/images/logo-monogram.png"
-                alt="VY"
-                width={36}
-                height={36}
-                className="h-9 w-9"
+                src="/images/logo-full.png"
+                alt="Virtually Yours"
+                width={450}
+                height={125}
+                className="h-[100px] w-auto"
               />
-              <span className="font-serif text-xl font-bold text-primary">Risha Smeding</span>
             </div>
             <p className="mt-2 text-sm text-white/50">
               Freelance jurist, Legal Engineer &amp; Juridisch VA

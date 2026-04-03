@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
-import { Resend } from "resend";
+import React from "react";
 import { z } from "zod";
+import { getResend, SITE_URL } from "@/lib/resend";
+import { DocumentApprovedEmail } from "@/emails/DocumentApprovedEmail";
+import { DocumentRejectedEmail } from "@/emails/DocumentRejectedEmail";
+import { ChangesRequestedEmail } from "@/emails/ChangesRequestedEmail";
 
 function getAdminClient() {
   return createServiceClient(
@@ -120,6 +124,7 @@ export async function POST(request: NextRequest) {
     documents: { title: string };
   }[];
   const docTitle = orderItems[0]?.documents.title || "Document";
+  const resend = getResend();
 
   if (action === "approve") {
     // Update order status to delivered
@@ -129,17 +134,16 @@ export async function POST(request: NextRequest) {
       .eq("id", orderId);
 
     // Send email notification
-    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Uw document "${docTitle}" is gereed`,
-      html: `
-        <h2>Goed nieuws, ${orderProfile.first_name}!</h2>
-        <p>Uw document <strong>${docTitle}</strong> is goedgekeurd en klaar om te downloaden.</p>
-        ${note ? `<p><strong>Opmerking:</strong> ${note}</p>` : ""}
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/downloads">Download uw document</a></p>
-      `,
+      react: React.createElement(DocumentApprovedEmail, {
+        firstName: orderProfile.first_name,
+        docTitle,
+        note,
+        siteUrl: SITE_URL,
+      }),
     });
 
     await admin.from("activity_log").insert({
@@ -161,17 +165,16 @@ export async function POST(request: NextRequest) {
       .update({ status: "in_progress" })
       .eq("order_item_id", orderItems[0] && (orderItems[0] as unknown as { id: string }).id);
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Actie vereist: ${docTitle}`,
-      html: `
-        <h2>Hallo ${orderProfile.first_name},</h2>
-        <p>Uw document <strong>${docTitle}</strong> vereist aanpassingen.</p>
-        ${note ? `<p><strong>Reden:</strong> ${note}</p>` : ""}
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/vragenlijsten">Pas uw antwoorden aan</a></p>
-      `,
+      react: React.createElement(DocumentRejectedEmail, {
+        firstName: orderProfile.first_name,
+        docTitle,
+        note,
+        siteUrl: SITE_URL,
+      }),
     });
 
     await admin.from("activity_log").insert({
@@ -207,18 +210,16 @@ export async function POST(request: NextRequest) {
       .eq("id", orderId);
 
     // Send email notification about requested changes
-    const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Wijzigingen gevraagd: ${docTitle}`,
-      html: `
-        <h2>Hallo ${orderProfile.first_name},</h2>
-        <p>Na beoordeling van uw document <strong>${docTitle}</strong> zijn er enkele wijzigingen nodig.</p>
-        ${note ? `<p><strong>Gevraagde wijzigingen:</strong> ${note}</p>` : ""}
-        <p>U kunt uw antwoorden aanpassen via onderstaande link.</p>
-        <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}/vragenlijsten">Pas uw antwoorden aan</a></p>
-      `,
+      react: React.createElement(ChangesRequestedEmail, {
+        firstName: orderProfile.first_name,
+        docTitle,
+        note,
+        siteUrl: SITE_URL,
+      }),
     });
 
     // Log the activity

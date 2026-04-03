@@ -12,8 +12,9 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon, title, description, href, image, imageAlt }: ServiceCardProps) {
   const content = (
-    <div className="rounded-lg bg-surface-light p-6 hover:shadow-lg transition-all group h-full border-l-3 border-primary">
-      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4">
+    <div className="rounded-xl bg-surface-light p-6 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 group h-full border-l-4 border-transparent hover:border-primary relative overflow-hidden">
+      <div className="absolute top-0 right-0 p-8 bg-gradient-to-br from-primary/5 to-transparent w-32 h-32 rounded-bl-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
         {image ? (
           <Image src={image} alt={imageAlt || title} width={64} height={64} className="h-8 w-8 object-contain" />
         ) : (

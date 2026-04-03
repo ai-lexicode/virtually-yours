@@ -52,7 +52,7 @@ const blogPosts = [
 const categoryColors: Record<string, string> = {
   Arbeidsrecht: "bg-surface-container-high text-primary",
   Privacy: "bg-secondary-container/40 text-secondary",
-  Ondernemingsrecht: "bg-surface-container text-primary-container",
+  Ondernemingsrecht: "bg-primary-dark/20 text-primary",
 };
 
 export default function NieuwsPage() {

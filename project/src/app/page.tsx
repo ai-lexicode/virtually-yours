@@ -54,22 +54,23 @@ export default async function HomePage() {
     <>
       <Navbar />
       {/* Hero — dark with gold accents */}
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-background" style={{ backgroundImage: "url('/images/hero-bg.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-label text-primary tracking-wide mb-4">
+      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28 bg-background" style={{ backgroundImage: "url('/images/hero-bg-premium.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-background/60 to-background pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center z-10">
+          <p className="text-label text-primary tracking-wide mb-4 animate-fade-in-up" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}>
             Freelance Juridisch VA
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white animate-fade-in-up delay-100" style={{ textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 4px 24px rgba(0,0,0,0.5)" }}>
             JOUW JURIDISCHE DOCUMENTEN
             <br />
             <span className="text-primary">OP MAAT</span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted leading-relaxed">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-muted leading-relaxed animate-fade-in-up delay-200" style={{ textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}>
             Speciaal voor VA&apos;s, OBM&apos;s, SMM&apos;s en online
             ondernemers in Nederland. Beantwoord een paar vragen en ontvang
             jouw document dezelfde dag.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
             <Button href="/documenten" size="lg">
               Bekijk documenten
             </Button>
@@ -77,7 +78,7 @@ export default async function HomePage() {
               Hoe werkt het?
             </Button>
           </div>
-          <p className="mt-8 text-sm text-muted/60">
+          <p className="mt-8 text-sm text-muted/60 animate-fade-in-up delay-300">
             200+ ondernemers vertrouwen op Virtually Yours
           </p>
         </div>
@@ -121,25 +122,19 @@ export default async function HomePage() {
             icon="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0"
             title="Juridisch VA"
             description="Ik werk doorgaans (fully) remote, hoewel ik ook (deels) op locatie kan werken."
-            href="/over-mij"
-            image="/images/icons/icon-legal-va.png"
-            imageAlt="Juridisch VA"
+            href="/juridisch-va"
           />
           <ServiceCard
             icon="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
             title="Juridische Documenten"
             description="Juridische documenten op maat voor online professionals."
             href="/documenten"
-            image="/images/icons/icon-documents.png"
-            imageAlt="Documenten"
           />
           <ServiceCard
             icon="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
             title="Coaching VA's"
             description="Ik begeleid startende juridische VA's bij het opzetten van hun onderneming."
-            href="/contact"
-            image="/images/icons/icon-coaching.png"
-            imageAlt="Coaching"
+            href="/coaching-va"
           />
         </div>
       </Section>
@@ -150,9 +145,9 @@ export default async function HomePage() {
         bg="bg-sidebar"
       >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {steps.map((step) => (
-            <div key={step.number} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg bg-primary/15 mb-4">
+          {steps.map((step, idx) => (
+            <div key={step.number} className="text-center group border border-transparent hover:border-sidebar/50 hover:bg-sidebar/30 p-4 rounded-xl transition-all duration-300">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-primary/15 mb-4 group-hover:scale-110 group-hover:bg-primary/25 transition-transform duration-300">
                 <svg
                   className="h-7 w-7 text-primary"
                   fill="none"

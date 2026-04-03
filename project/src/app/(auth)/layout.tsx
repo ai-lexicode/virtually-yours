@@ -10,20 +10,14 @@ export default function AuthLayout({
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
       {/* Brand panel — dark with gold accents */}
       <div className="hidden lg:flex flex-col justify-center items-center bg-sidebar p-12">
-        <Image
-          src="/images/logo-monogram.png"
-          alt="VY"
-          width={80}
-          height={80}
-          className="mb-6"
-        />
-        <Link href="/">
+        <Link href="/" className="mb-6">
           <Image
             src="/images/logo-full.png"
             alt="Virtually Yours"
-            width={200}
-            height={52}
-            className="h-14 w-auto"
+            width={360}
+            height={100}
+            className="h-24 w-auto"
+            priority
           />
         </Link>
         <p className="mt-6 text-lg text-muted text-center max-w-sm font-serif">

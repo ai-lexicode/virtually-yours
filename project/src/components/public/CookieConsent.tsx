@@ -5,8 +5,6 @@ import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/Button";
 import { saveConsent, getConsent, type ConsentState } from "@/hooks/useConsentTracking";
 
-const CONSENT_KEY = "vy-cookie-consent";
-
 /* ---------- cross-tab sync ---------- */
 function subscribe(cb: () => void) {
   window.addEventListener("storage", cb);
@@ -36,7 +34,11 @@ export function CookieConsent() {
 
   // Show banner if no consent yet
   useEffect(() => {
-    if (!consent) setVisible(true);
+    if (!consent) {
+      // Avoid synchronous setState in effect warning by deferring slightly
+      const timer = setTimeout(() => setVisible(true), 0);
+      return () => clearTimeout(timer);
+    }
   }, [consent]);
 
   // Listen for footer button to re-open

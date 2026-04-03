@@ -3,27 +3,28 @@ import Link from "next/link";
 const steps = [
   {
     number: "01",
-    title: "Kies uw document",
-    description:
-      "Blader door onze catalogus of kies een compleet pakket. Elk document bevat een duidelijke omschrijving van wat erin staat en voor wie het geschikt is. Twijfelt u? Neem gerust contact op — wij helpen u graag bij de juiste keuze.",
+    title: "Document of pakket kiezen",
+    description: "Kies het document of startpakket dat het beste past bij jouw bedrijf. Twijfel je? Vraag gerust een Gratis Quickscan aan of boek een juridisch adviesgesprek in.",
   },
   {
     number: "02",
-    title: "Betaal veilig online",
-    description:
-      "Betaal eenvoudig via iDEAL, creditcard of Klarna. Uw betaling wordt verwerkt door Mollie — de meest gebruikte betaalprovider van Nederland. Na betaling krijgt u direct toegang tot uw persoonlijke portaal.",
+    title: "Online Vragenlijst",
+    description: "Direct na de betaling ontvang je een link naar een dynamische online vragenlijst. Hierin beantwoord je gerichte vragen over jouw specifieke situatie en wensen, zodat we maatwerk kunnen leveren.",
   },
   {
     number: "03",
-    title: "Vul de vragenlijst in",
-    description:
-      "In uw persoonlijke portaal vindt u een slimme vragenlijst die is afgestemd op het gekozen document. Beantwoord de vragen over uw bedrijf en situatie — dit duurt gemiddeld 10-15 minuten. U kunt tussentijds opslaan en later verdergaan.",
+    title: "Conceptversie",
+    description: "Binnen 5 werkdagen na ontvangst van je ingevulde vragenlijst stellen we het document op maat voor je op en sturen we je de conceptversie per e-mail (tenzij je hebt gekozen voor een spoedaanvraag binnen 48 uur).",
   },
   {
     number: "04",
-    title: "Ontvang uw document",
-    description:
-      "Eenvoudige documenten ontvangt u direct. Complexere documenten worden eerst gecontroleerd door onze jurist en zijn binnen 24 uur beschikbaar. Download uw document als PDF of Word vanuit uw portaal. Inclusief 3 maanden gratis nazorg.",
+    title: "Revisieronde",
+    description: "Je hebt de mogelijkheid om de conceptversie rustig door te nemen. Tijdens één revisieronde kun je vragen stellen of nog kleine aanpassingen doorgeven, zodat alles perfect aansluit op jouw werkwijze.",
+  },
+  {
+    number: "05",
+    title: "Definitieve Versie",
+    description: "Na het verwerken van eventuele feedback ontvang je de definitieve, juridisch sluitende versie van je documenten, klaar voor direct gebruik in je bedrijf!",
   },
 ];
 

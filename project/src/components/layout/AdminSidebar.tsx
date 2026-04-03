@@ -64,14 +64,13 @@ export function AdminSidebar() {
 
       {/* Sidebar */}
       <aside className={`fixed top-0 left-0 h-full w-60 bg-sidebar flex-col z-50 ${mobileOpen ? "flex" : "hidden"} md:flex`}>
-        <div className="h-16 flex items-center justify-between px-6 border-b border-card-border">
-          <Link href="/admin" className="flex items-center gap-2">
-            <Image src="/images/logo.png" alt="Virtually Yours" width={120} height={32} className="h-8 w-auto brightness-0 invert" />
-            <span className="text-xs font-normal text-primary/60">Admin</span>
+        <div className="h-24 flex items-center justify-center px-5 border-b border-card-border relative">
+          <Link href="/" className="flex items-center w-3/4 mx-auto">
+            <Image src="/images/logo-full.png" alt="Virtually Yours" width={360} height={100} className="w-full h-auto object-contain" priority />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className="md:hidden p-1 text-muted hover:text-foreground"
+            className="md:hidden p-1 text-muted hover:text-foreground shrink-0 absolute right-5"
             aria-label="Close menu"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -117,7 +116,7 @@ export function AdminSidebar() {
 
         <div className="px-3 py-4 border-t border-card-border space-y-1">
           <Link
-            href="/dashboard"
+            href="/"
             onClick={() => setMobileOpen(false)}
             className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted hover:text-foreground hover:bg-surface-container transition-colors"
           >
@@ -134,7 +133,7 @@ export function AdminSidebar() {
                 d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
               />
             </svg>
-            Naar portaal
+            Naar website
           </Link>
           <button
             onClick={handleLogout}

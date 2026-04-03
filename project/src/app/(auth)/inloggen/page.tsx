@@ -93,7 +93,7 @@ function InloggenContent() {
     const { error: authError } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || window.location.origin}${safeRedirect}`,
+        emailRedirectTo: `${window.location.origin}${safeRedirect}`,
       },
     });
 
