@@ -21,7 +21,7 @@ Volledig newsletter-systeem voor Virtually Yours: lijstbeheer, block-editor, ope
 | # | Spec | Title | Depends on | Size | Status |
 |---|------|-------|------------|------|--------|
 | 1 | feat-009 | Database + Core API | — | medium | ✅ implemented |
-| 2 | feat-010 | Admin UI | feat-009 | medium | ⬜ draft |
+| 2 | feat-010 | Admin UI | feat-009 | medium | ✅ implemented |
 | 3 | feat-011 | Public UI + Email | feat-009 | small | ⬜ draft |
 
 ## Execution order
