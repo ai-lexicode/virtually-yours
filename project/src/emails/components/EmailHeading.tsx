@@ -10,9 +10,11 @@ export function EmailHeading({ children }: EmailHeadingProps) {
     <Heading
       as="h1"
       style={{
-        margin: "0 0 16px",
-        fontSize: 22,
+        margin: "0 0 20px",
+        fontSize: 24,
+        fontWeight: 700,
         color: "#1e293b",
+        letterSpacing: "-0.3px",
         fontFamily:
           "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}

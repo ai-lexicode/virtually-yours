@@ -63,10 +63,21 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
             style={{
               backgroundColor: "#ffffff",
               borderRadius: 12,
-              padding: "32px",
+              padding: "0",
+              boxShadow: "0 4px 24px rgba(0, 0, 0, 0.15)",
+              overflow: "hidden" as const,
             }}
           >
-            {children}
+            {/* Gold accent bar */}
+            <div
+              style={{
+                height: 4,
+                background: "linear-gradient(90deg, #c89c6f 0%, #d4a853 50%, #c89c6f 100%)",
+              }}
+            />
+            <div style={{ padding: "36px 40px 32px" }}>
+              {children}
+            </div>
           </Section>
 
           {/* Footer */}
