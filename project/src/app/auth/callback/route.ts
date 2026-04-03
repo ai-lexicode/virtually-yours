@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
 
         const { data: profile } = await serviceClient
           .from("profiles")
-          .select("company_name, role")
+          .select("first_name, role")
           .eq("id", user.id)
           .single();
 
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
           return NextResponse.redirect(`${origin}/admin`);
         }
 
-        if (!profile?.company_name) {
+        if (!profile?.first_name) {
           return NextResponse.redirect(`${origin}/profiel-aanvullen`);
         }
 

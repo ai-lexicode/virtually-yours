@@ -8,8 +8,6 @@ export default function RegistrerenPage() {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
-    companyName: "",
-    kvkNumber: "",
     email: "",
     password: "",
     terms: false,
@@ -43,8 +41,6 @@ export default function RegistrerenPage() {
         password: form.password,
         firstName: form.firstName,
         lastName: form.lastName,
-        companyName: form.companyName || undefined,
-        kvkNumber: form.kvkNumber || undefined,
       }),
     });
 
@@ -160,30 +156,6 @@ export default function RegistrerenPage() {
               placeholder="Achternaam"
             />
           </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-muted mb-1 font-label">
-            Bedrijfsnaam
-          </label>
-          <input
-            type="text"
-            value={form.companyName}
-            onChange={(e) => update("companyName", e.target.value)}
-            className="input-field"
-            placeholder="Uw bedrijfsnaam"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-muted mb-1 font-label">
-            KvK-nummer
-          </label>
-          <input
-            type="text"
-            value={form.kvkNumber}
-            onChange={(e) => update("kvkNumber", e.target.value)}
-            className="input-field"
-            placeholder="12345678"
-          />
         </div>
         <div>
           <label className="block text-sm font-medium text-muted mb-1 font-label">

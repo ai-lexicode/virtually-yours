@@ -2,8 +2,23 @@
 # Drained by /learn sync. Not session state.
 # Auto-managed by skills. Manual edits are fine.
 
-pending_known_issues: []
-pending_patterns: []
+pending_known_issues:
+  - error: "Stripe webhooks cannot reach localhost during development"
+    solution: "Install Stripe CLI (`brew install stripe/stripe-cli/stripe`), run `stripe listen --forward-to localhost:3001/api/payments/webhook` to forward webhooks locally"
+    tier: 1
+    promote_candidate: true
+    reason: "Universal Stripe integration pattern — applies to any project using Stripe webhooks"
+  - error: "LinkedIn OAuth fails with 'unauthorized_scope_error' for openid scope"
+    solution: "In Supabase use 'LinkedIn (OIDC)' provider (not legacy 'LinkedIn'). In LinkedIn Developer Portal activate 'Sign In with LinkedIn using OpenID Connect' product"
+    tier: 1
+    promote_candidate: true
+    reason: "Common Supabase + LinkedIn integration gotcha — two providers with same name"
+
+pending_patterns:
+  - pattern: "Reuse existing DB columns for provider migration instead of adding new columns"
+    context: "Mollie→Stripe migration: reused mollie_payment_id column for Stripe session IDs, avoiding DB migration"
+    promote_candidate: false
+    reason: "Project-specific shortcut, not a universal best practice"
 pending_decisions: []
 
 review_fix_tally:

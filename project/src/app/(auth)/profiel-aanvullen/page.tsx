@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,8 +8,8 @@ import { createBrowserClient } from "@supabase/ssr";
 
 export default function ProfielAanvullenPage() {
   const router = useRouter();
-  const [companyName, setCompanyName] = useState("");
-  const [kvkNumber, setKvkNumber] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,14 +18,36 @@ export default function ProfielAanvullenPage() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
+  // Pre-fill name from OAuth metadata if available
+  useEffect(() => {
+    async function loadProfile() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const meta = user.user_metadata;
+      setFirstName(meta?.given_name || meta?.first_name || meta?.full_name?.split(" ")[0] || "");
+      setLastName(
+        meta?.family_name ||
+        meta?.last_name ||
+        meta?.full_name?.split(" ").slice(1).join(" ") ||
+        ""
+      );
+    }
+    loadProfile();
+  }, [supabase]);
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!firstName.trim() || !lastName.trim()) {
+      setError("Voornaam en achternaam zijn verplicht");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
       setError("Sessie verlopen. Log opnieuw in.");
@@ -36,8 +58,8 @@ export default function ProfielAanvullenPage() {
     const { error: updateError } = await supabase
       .from("profiles")
       .update({
-        company_name: companyName || null,
-        kvk_number: kvkNumber || null,
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
         updated_at: new Date().toISOString(),
       })
       .eq("id", user.id);
@@ -48,11 +70,6 @@ export default function ProfielAanvullenPage() {
       return;
     }
 
-    router.push("/dashboard");
-    router.refresh();
-  };
-
-  const handleSkip = () => {
     router.push("/dashboard");
     router.refresh();
   };
@@ -76,8 +93,7 @@ export default function ProfielAanvullenPage() {
         Welkom bij Virtually Yours!
       </h1>
       <p className="mt-2 text-sm text-muted">
-        Vul optioneel uw bedrijfsgegevens aan. Dit helpt ons bij het opstellen
-        van uw documenten.
+        Vul uw gegevens aan om uw account compleet te maken.
       </p>
 
       {error && (
@@ -87,31 +103,34 @@ export default function ProfielAanvullenPage() {
       )}
 
       <form onSubmit={handleSave} className="mt-8 space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-muted mb-1 font-label">
-            Bedrijfsnaam
-          </label>
-          <input
-            type="text"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
-            className="input-field"
-            placeholder="Uw bedrijfsnaam"
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-muted mb-1 font-label">
+              Voornaam *
+            </label>
+            <input
+              type="text"
+              required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="input-field"
+              placeholder="Voornaam"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-muted mb-1 font-label">
+              Achternaam *
+            </label>
+            <input
+              type="text"
+              required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="input-field"
+              placeholder="Achternaam"
+            />
+          </div>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-muted mb-1 font-label">
-            KvK-nummer
-          </label>
-          <input
-            type="text"
-            value={kvkNumber}
-            onChange={(e) => setKvkNumber(e.target.value)}
-            className="input-field"
-            placeholder="12345678"
-          />
-        </div>
-
         <button
           type="submit"
           disabled={loading}
@@ -120,16 +139,6 @@ export default function ProfielAanvullenPage() {
           {loading ? "Bezig..." : "Opslaan"}
         </button>
       </form>
-
-      <p className="mt-6 text-center">
-        <button
-          type="button"
-          onClick={handleSkip}
-          className="text-sm text-secondary hover:text-secondary/80 font-medium"
-        >
-          Overslaan
-        </button>
-      </p>
     </>
   );
 }
