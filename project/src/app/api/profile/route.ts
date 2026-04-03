@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
+import { z } from "zod";
+
+const profileSchema = z.object({
+  first_name: z.string().max(100).optional(),
+  last_name: z.string().max(100).optional(),
+  company_name: z.string().max(200).nullable().optional(),
+  kvk_number: z.string().max(20).nullable().optional(),
+  btw_number: z.string().max(30).nullable().optional(),
+  phone: z.string().max(20).nullable().optional(),
+});
 
 export async function GET() {
   const supabase = await createClient();
@@ -42,7 +52,16 @@ export async function PUT(request: Request) {
   }
 
   const body = await request.json();
-  const { first_name, last_name, company_name, kvk_number, btw_number, phone } = body;
+  const parsed = profileSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: "Ongeldige invoer", details: parsed.error.flatten().fieldErrors },
+      { status: 400 }
+    );
+  }
+
+  const { first_name, last_name, company_name, kvk_number, btw_number, phone } = parsed.data;
 
   // Use service role client to bypass RLS
   const serviceClient = createServiceClient(

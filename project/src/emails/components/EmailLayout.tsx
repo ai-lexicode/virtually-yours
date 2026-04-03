@@ -11,8 +11,8 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-const LOGO_URL = "https://virtually-yours.nl/images/logo-full.png";
-const SITE_URL = "https://virtually-yours.nl";
+const LOGO_URL = `${process.env.NEXT_PUBLIC_SITE_URL || "https://virtually-yours.nl"}/images/logo-email.png`;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://virtually-yours.nl";
 const FONT_STACK =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 

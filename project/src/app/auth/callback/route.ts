@@ -10,12 +10,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const code = searchParams.get("code");
 
-    console.log("[auth/callback] code present:", !!code, "origin:", origin);
-
     if (code) {
       const cookieStore = await cookies();
-      const allCookies = cookieStore.getAll();
-      console.log("[auth/callback] cookies:", allCookies.map(c => c.name).join(", "));
 
       const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -34,9 +30,7 @@ export async function GET(request: NextRequest) {
         }
       );
 
-      console.log("[auth/callback] exchanging code for session...");
       const { error } = await supabase.auth.exchangeCodeForSession(code);
-      console.log("[auth/callback] exchange result:", error ? `ERROR: ${error.message}` : "SUCCESS");
 
       if (!error) {
         const {
@@ -69,8 +63,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.redirect(`${origin}/inloggen?error=auth`);
-  } catch (err) {
-    console.error("[auth/callback] UNHANDLED ERROR:", err);
+  } catch {
     return NextResponse.redirect(`${origin}/inloggen?error=auth`);
   }
 }
