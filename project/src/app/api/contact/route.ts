@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import React from "react";
+import { render } from "@react-email/render";
 import { z } from "zod";
 import { getResend } from "@/lib/resend";
 import { ContactFormAdminEmail } from "@/emails/ContactFormAdminEmail";
@@ -38,30 +39,30 @@ export async function POST(request: NextRequest) {
   const resend = getResend();
 
   // Send to admin
+  const adminHtml = await render(
+    React.createElement(ContactFormAdminEmail, {
+      name, email, company, subject, message,
+    })
+  );
   await resend.emails.send({
     from: "Virtually Yours Contact <noreply@virtually-yours.nl>",
     to: "info@virtually-yours.nl",
     replyTo: email,
     subject: `[Contact] ${escapeHtml(subject)} — ${escapeHtml(name)}`,
-    react: React.createElement(ContactFormAdminEmail, {
-      name,
-      email,
-      company,
-      subject,
-      message,
-    }),
+    html: adminHtml,
   });
 
   // Send confirmation to sender
+  const confirmHtml = await render(
+    React.createElement(ContactFormConfirmationEmail, {
+      name, subject, message,
+    })
+  );
   await resend.emails.send({
     from: "Virtually Yours <noreply@virtually-yours.nl>",
     to: email,
     subject: "Wij hebben uw bericht ontvangen — Virtually Yours",
-    react: React.createElement(ContactFormConfirmationEmail, {
-      name,
-      subject,
-      message,
-    }),
+    html: confirmHtml,
   });
 
   return NextResponse.json({ success: true });

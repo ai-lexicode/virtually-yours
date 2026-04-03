@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import React from "react";
+import { render } from "@react-email/render";
 import { z } from "zod";
 import { getResend, SITE_URL } from "@/lib/resend";
 import { DocumentApprovedEmail } from "@/emails/DocumentApprovedEmail";
@@ -134,16 +135,16 @@ export async function POST(request: NextRequest) {
       .eq("id", orderId);
 
     // Send email notification
+    const approvedHtml = await render(
+      React.createElement(DocumentApprovedEmail, {
+        firstName: orderProfile.first_name, docTitle, note, siteUrl: SITE_URL,
+      })
+    );
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Uw document "${docTitle}" is gereed`,
-      react: React.createElement(DocumentApprovedEmail, {
-        firstName: orderProfile.first_name,
-        docTitle,
-        note,
-        siteUrl: SITE_URL,
-      }),
+      html: approvedHtml,
     });
 
     await admin.from("activity_log").insert({
@@ -165,16 +166,16 @@ export async function POST(request: NextRequest) {
       .update({ status: "in_progress" })
       .eq("order_item_id", orderItems[0] && (orderItems[0] as unknown as { id: string }).id);
 
+    const rejectedHtml = await render(
+      React.createElement(DocumentRejectedEmail, {
+        firstName: orderProfile.first_name, docTitle, note, siteUrl: SITE_URL,
+      })
+    );
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Actie vereist: ${docTitle}`,
-      react: React.createElement(DocumentRejectedEmail, {
-        firstName: orderProfile.first_name,
-        docTitle,
-        note,
-        siteUrl: SITE_URL,
-      }),
+      html: rejectedHtml,
     });
 
     await admin.from("activity_log").insert({
@@ -210,16 +211,16 @@ export async function POST(request: NextRequest) {
       .eq("id", orderId);
 
     // Send email notification about requested changes
+    const changesHtml = await render(
+      React.createElement(ChangesRequestedEmail, {
+        firstName: orderProfile.first_name, docTitle, note, siteUrl: SITE_URL,
+      })
+    );
     await resend.emails.send({
       from: "Virtually Yours <noreply@virtually-yours.nl>",
       to: orderProfile.email,
       subject: `Wijzigingen gevraagd: ${docTitle}`,
-      react: React.createElement(ChangesRequestedEmail, {
-        firstName: orderProfile.first_name,
-        docTitle,
-        note,
-        siteUrl: SITE_URL,
-      }),
+      html: changesHtml,
     });
 
     // Log the activity

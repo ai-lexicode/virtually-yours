@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import React from "react";
+import { render } from "@react-email/render";
 import { ConfirmationEmail } from "@/emails/ConfirmationEmail";
 import { PasswordResetEmail } from "@/emails/PasswordResetEmail";
 import { PaymentConfirmationEmail } from "@/emails/PaymentConfirmationEmail";
@@ -21,20 +22,26 @@ export async function sendConfirmationEmail(
   name: string,
   confirmUrl: string
 ) {
+  const html = await render(
+    React.createElement(ConfirmationEmail, { name, confirmUrl })
+  );
   return getResend().emails.send({
     from: FROM,
     to,
     subject: "Bevestig uw account — Virtually Yours",
-    react: React.createElement(ConfirmationEmail, { name, confirmUrl }),
+    html,
   });
 }
 
 export async function sendPasswordResetEmail(to: string, resetUrl: string) {
+  const html = await render(
+    React.createElement(PasswordResetEmail, { resetUrl })
+  );
   return getResend().emails.send({
     from: FROM,
     to,
     subject: "Wachtwoord resetten — Virtually Yours",
-    react: React.createElement(PasswordResetEmail, { resetUrl }),
+    html,
   });
 }
 
@@ -44,15 +51,18 @@ export async function sendPaymentConfirmation(
   orderNumber: number,
   documentTitle: string
 ) {
+  const html = await render(
+    React.createElement(PaymentConfirmationEmail, {
+      orderNumber,
+      documentTitle,
+      siteUrl: SITE_URL,
+    })
+  );
   return getResend().emails.send({
     from: FROM,
     to,
     subject: `Betaling ontvangen — bestelling #VY-${orderNumber}`,
-    react: React.createElement(PaymentConfirmationEmail, {
-      orderNumber,
-      documentTitle,
-      siteUrl: SITE_URL,
-    }),
+    html,
   });
 }
 
@@ -61,15 +71,18 @@ export async function sendDocumentReady(
   orderNumber: number,
   documentTitle: string
 ) {
+  const html = await render(
+    React.createElement(DocumentReadyEmail, {
+      orderNumber,
+      documentTitle,
+      siteUrl: SITE_URL,
+    })
+  );
   return getResend().emails.send({
     from: FROM,
     to,
     subject: `Uw document is gereed — ${documentTitle}`,
-    react: React.createElement(DocumentReadyEmail, {
-      orderNumber,
-      documentTitle,
-      siteUrl: SITE_URL,
-    }),
+    html,
   });
 }
 
@@ -78,14 +91,17 @@ export async function sendQuestionnaireReminder(
   orderNumber: number,
   documentTitle: string
 ) {
+  const html = await render(
+    React.createElement(QuestionnaireReminderEmail, {
+      orderNumber,
+      documentTitle,
+      siteUrl: SITE_URL,
+    })
+  );
   return getResend().emails.send({
     from: FROM,
     to,
     subject: `Herinnering: vul uw vragenlijst in — ${documentTitle}`,
-    react: React.createElement(QuestionnaireReminderEmail, {
-      orderNumber,
-      documentTitle,
-      siteUrl: SITE_URL,
-    }),
+    html,
   });
 }
