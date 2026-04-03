@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
   });
 
   if (error) {
+    console.error("[register] Supabase error:", error.message, error);
     const msg =
       error.message === "A user with this email address has already been registered"
         ? "Dit e-mailadres is al geregistreerd"
@@ -67,7 +68,11 @@ export async function POST(request: NextRequest) {
   // Send branded confirmation email via Resend
   const confirmUrl = data.properties?.action_link;
   if (confirmUrl) {
-    await sendConfirmationEmail(email, firstName, confirmUrl);
+    try {
+      await sendConfirmationEmail(email, firstName, confirmUrl);
+    } catch (e) {
+      console.error("[register] Email send failed:", e);
+    }
   }
 
   return NextResponse.json({ success: true });

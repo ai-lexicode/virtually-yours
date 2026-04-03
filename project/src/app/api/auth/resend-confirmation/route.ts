@@ -37,7 +37,11 @@ export async function POST(request: NextRequest) {
   }
 
   const name = user.user_metadata?.first_name || "gebruiker";
-  await sendConfirmationEmail(email, name, data.properties.action_link);
+  try {
+    await sendConfirmationEmail(email, name, data.properties.action_link);
+  } catch (e) {
+    console.error("[resend-confirmation] Email send failed:", e);
+  }
 
   return NextResponse.json({ success: true });
 }

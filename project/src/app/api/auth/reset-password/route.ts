@@ -28,7 +28,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
-  await sendPasswordResetEmail(email, data.properties.action_link);
+  try {
+    await sendPasswordResetEmail(email, data.properties.action_link);
+  } catch (e) {
+    console.error("[reset-password] Email send failed:", e);
+  }
 
   return NextResponse.json({ success: true });
 }
