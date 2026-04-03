@@ -6,6 +6,10 @@ on:
     paths:
       - 'project/**'
 
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     name: Build & Deploy
@@ -52,11 +56,13 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts 2>/dev/null
 
-          # Upload build
-          scp -i ~/.ssh/deploy_key deploy.tar.gz $USER@$HOST:/tmp/deploy.tar.gz
+          DEPLOY_FILE="deploy-${{ github.sha }}.tar.gz"
+
+          # Upload build with unique name (prevents race condition)
+          scp -i ~/.ssh/deploy_key deploy.tar.gz $USER@$HOST:/tmp/$DEPLOY_FILE
 
           # Deploy on server
-          ssh -i ~/.ssh/deploy_key $USER@$HOST << 'ENDSSH'
+          ssh -i ~/.ssh/deploy_key $USER@$HOST << ENDSSH
             set -e
             cd /home/virtually
 
@@ -67,11 +73,37 @@ jobs:
             # Extract new build
             cd app
             rm -rf .next node_modules server.js package.json
-            tar -xzf /tmp/deploy.tar.gz
-            rm /tmp/deploy.tar.gz
+            tar -xzf /tmp/$DEPLOY_FILE
+            rm -f /tmp/$DEPLOY_FILE
 
             echo "Deploy complete — restarting service..."
           ENDSSH
 
-          # Restart service (needs root)
+          # Restart service
           ssh -i ~/.ssh/deploy_key $USER@$HOST "sudo systemctl restart virtually-yours"
+
+          # Health check with rollback
+          echo "Waiting for app to start..."
+          sleep 5
+          for i in 1 2 3 4 5; do
+            STATUS=$(ssh -i ~/.ssh/deploy_key $USER@$HOST "curl -sf -o /dev/null -w '%{http_code}' http://localhost:3001/api/health" 2>/dev/null || echo "000")
+            if [ "$STATUS" = "200" ]; then
+              echo "Health check passed!"
+              exit 0
+            fi
+            echo "Attempt $i: status $STATUS, retrying..."
+            sleep 3
+          done
+
+          # Rollback on failure
+          echo "Health check failed — rolling back..."
+          ssh -i ~/.ssh/deploy_key $USER@$HOST << 'ENDSSH'
+            set -e
+            cd /home/virtually
+            rm -rf app
+            cp -r app-old app
+            echo "Rollback complete."
+          ENDSSH
+          ssh -i ~/.ssh/deploy_key $USER@$HOST "sudo systemctl restart virtually-yours"
+          echo "Rolled back to previous version."
+          exit 1

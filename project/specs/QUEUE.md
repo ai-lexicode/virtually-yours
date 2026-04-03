@@ -14,8 +14,8 @@
 | 10 | bug-001-mobile-menu-background | ⬛ canceled (already fixed in 282cd2b) | — | — |
 | 11 | bug-002-google-oauth-redirect-localhost | ✅ implemented | — | — |
 | 12 | plan-001-full-stack-audit | ✅ implemented | — | — |
-| 13 | bug-003-critical-security-fixes | ⬜ draft (partial — keys rotation manual) | — | — |
+| 13 | bug-003-critical-security-fixes | ✅ implemented (keys rotation manual) | — | — |
 | 14 | chore-002-seo-infrastructure | ✅ implemented | — | — |
-| 15 | chore-003-infrastructure-hardening | ⬜ draft (partial — deploy rollback pending) | — | — |
+| 15 | chore-003-infrastructure-hardening | ✅ implemented | — | — |
 | 16 | chore-004-email-compliance | ✅ implemented | — | — |
 | 17 | chore-005-accessibility-fixes | ✅ implemented | — | — |

@@ -1,7 +1,7 @@
 ---
 title: Critical Security Fixes
 type: bug
-status: draft
+status: implemented
 priority: critical
 size: M
 created: 2026-04-04

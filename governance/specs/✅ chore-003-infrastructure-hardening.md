@@ -1,7 +1,7 @@
 ---
 title: Infrastructure Hardening
 type: chore
-status: draft
+status: implemented
 priority: high
 size: M
 created: 2026-04-04
