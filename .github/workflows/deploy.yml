@@ -1,0 +1,76 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'project/**'
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: project/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: project
+
+      - name: Build
+        run: npm run build
+        working-directory: project
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: Package standalone build
+        run: |
+          mkdir -p deploy
+          cp -r project/.next/standalone/. deploy/
+          cp -r project/.next/static deploy/.next/static
+          cp -r project/public deploy/public
+          tar -czf deploy.tar.gz -C deploy .
+
+      - name: Deploy to Hetzner
+        env:
+          SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
+          HOST: ${{ secrets.HETZNER_HOST }}
+          USER: ${{ secrets.HETZNER_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Upload build
+          scp -i ~/.ssh/deploy_key deploy.tar.gz $USER@$HOST:/tmp/deploy.tar.gz
+
+          # Deploy on server
+          ssh -i ~/.ssh/deploy_key $USER@$HOST << 'ENDSSH'
+            set -e
+            cd /home/virtually
+
+            # Backup current app
+            rm -rf app-old
+            cp -r app app-old
+
+            # Extract new build
+            cd app
+            rm -rf .next node_modules server.js package.json
+            tar -xzf /tmp/deploy.tar.gz
+            rm /tmp/deploy.tar.gz
+
+            echo "Deploy complete — restarting service..."
+          ENDSSH
+
+          # Restart service (needs root)
+          ssh -i ~/.ssh/deploy_key $USER@$HOST "sudo systemctl restart virtually-yours"
