@@ -11,7 +11,7 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-const LOGO_URL = "https://virtually-yours.nl/images/logo-email.png";
+const LOGO_URL = "https://virtually-yours.nl/images/logo-full.png";
 const SITE_URL = "https://virtually-yours.nl";
 const FONT_STACK =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
@@ -48,11 +48,11 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
           }}
         >
           {/* Header with logo */}
-          <Section style={{ textAlign: "center" as const, padding: "24px 0" }}>
+          <Section style={{ textAlign: "center" as const, padding: "40px 0 32px" }}>
             <Img
               src={LOGO_URL}
               alt="Virtually Yours"
-              width={180}
+              width={220}
               height="auto"
               style={{ margin: "0 auto" }}
             />
