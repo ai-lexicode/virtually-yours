@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text } from "@react-email/components";
+import { Text, Hr } from "@react-email/components";
 import { EmailLayout } from "./components/EmailLayout";
 import { EmailHeading } from "./components/EmailHeading";
 import { EmailText } from "./components/EmailText";
@@ -20,18 +20,33 @@ export function ConfirmationEmail({ name, confirmUrl }: ConfirmationEmailProps) 
         e-mailadres te bevestigen en uw account te activeren.
       </EmailText>
       <EmailButton href={confirmUrl}>Account activeren</EmailButton>
-      <EmailText>Of kopieer deze link in uw browser:</EmailText>
+      <Text
+        style={{
+          fontSize: 13,
+          color: "#94a3b8",
+          lineHeight: "1.5",
+          margin: "0 0 8px",
+        }}
+      >
+        Of kopieer deze link in uw browser:
+      </Text>
       <Text
         style={{
           wordBreak: "break-all",
-          fontSize: 13,
+          fontSize: 12,
           color: "#c89c6f",
-          lineHeight: "1.6",
+          lineHeight: "1.5",
+          margin: "0 0 0",
+          padding: "12px 16px",
+          backgroundColor: "#f8f6f3",
+          borderRadius: 6,
+          border: "1px solid #e8e0d6",
         }}
       >
         {confirmUrl}
       </Text>
-      <EmailText style={{ marginTop: 24, fontSize: 13 }}>
+      <Hr style={{ borderColor: "#e2e8f0", margin: "24px 0" }} />
+      <EmailText style={{ fontSize: 13, color: "#94a3b8" }}>
         Deze link is 24 uur geldig. Als u geen account heeft aangemaakt, kunt u
         deze e-mail negeren.
       </EmailText>
