@@ -60,7 +60,5 @@ export async function GET(request: NextRequest) {
   }
 
   // Fallback: auth failed or no code
-  return NextResponse.redirect(
-    `${new URL(request.url).origin}/inloggen?error=auth`
-  );
+  return NextResponse.redirect(`${origin}/inloggen?error=auth`);
 }
