@@ -1,7 +1,7 @@
 ---
 title: SEO Infrastructure
 type: chore
-status: draft
+status: implemented
 priority: high
 size: S
 created: 2026-04-04

@@ -1,7 +1,7 @@
 ---
 title: Accessibility & UX Fixes
 type: chore
-status: draft
+status: implemented
 priority: medium
 size: M
 created: 2026-04-04
