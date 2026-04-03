@@ -5,12 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/over-mij", label: "Over mij" },
   { href: "/documenten", label: "Documenten" },
   { href: "/pakketten", label: "Pakketten" },
-  { href: "/juridisch-va", label: "Juridisch VA" },
+  { href: "/coaching-va", label: "Coaching" },
   { href: "/nieuws", label: "Nieuws" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -18,25 +18,17 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-card-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface-container md:bg-surface-container/85 backdrop-blur-md border-b border-card-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-24 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo-monogram.png"
-              alt="VY"
-              width={40}
-              height={40}
-              className="h-10 w-10 md:hidden"
-              priority
-            />
-            <Image
               src="/images/logo-full.png"
               alt="Virtually Yours"
-              width={180}
-              height={50}
-              className="hidden md:block h-10 w-auto"
+              width={360}
+              height={100}
+              className="h-[72px] w-auto"
               priority
             />
           </Link>
@@ -54,19 +46,16 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Auth buttons */}
+          {/* Portal icon */}
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/inloggen"
-              className="text-sm font-medium text-muted hover:text-primary transition-colors"
+              className="p-2 text-muted hover:text-primary transition-colors hover:bg-surface-container rounded-full"
+              aria-label="Klantportaal"
             >
-              Inloggen
-            </Link>
-            <Link
-              href="/registreren"
-              className="rounded-lg btn-gradient px-4 py-2 text-sm font-semibold text-on-primary"
-            >
-              Gratis account
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
             </Link>
           </div>
 
@@ -140,20 +129,16 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 mt-4 border-t border-card-border space-y-2">
+            <div className="pt-4 mt-4 border-t border-card-border">
               <Link
                 href="/inloggen"
-                className="block rounded-lg px-3 py-3 text-sm text-muted hover:text-primary hover:bg-surface-container transition-colors"
+                className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-muted hover:text-primary hover:bg-surface-container transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
-                Inloggen
-              </Link>
-              <Link
-                href="/registreren"
-                className="block rounded-lg btn-gradient px-3 py-3 text-sm font-semibold text-on-primary text-center"
-                onClick={() => setMobileOpen(false)}
-              >
-                Gratis account
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+                Inloggen / Klantportaal
               </Link>
             </div>
           </div>
