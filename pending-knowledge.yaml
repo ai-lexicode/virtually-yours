@@ -1,0 +1,16 @@
+pending_known_issues:
+  - error: "validate-gov pre-commit fails with duplicate spec numbers and misplaced completed specs"
+    solution: "Move completed specs (✅) from project/specs/ to governance/specs/. Renumber duplicates. Run validate-gov before commit to catch early."
+    tier: 1
+    promote_candidate: false
+    reason: "Project-specific spec management"
+
+pending_patterns:
+  - pattern: "Hetzner server architecture for virtually-yours"
+    context: "Standalone Next.js (not Docker) on cx33, systemd service virtually-yours.service, port 3001, nginx reverse proxy with SSL (Certbot), user 'virtually', app at /home/virtually/app/. Deploy via GitHub Actions SSH (deploy.yml)."
+    promote_candidate: false
+    reason: "Project-specific infrastructure"
+  - pattern: "Bitwarden CLI session tokens are shell-scoped"
+    context: "BW_SESSION env var must be set in each shell independently. Export in one terminal does not propagate to Claude Code session. Use 'bw unlock --raw' to get token, then set in the target shell."
+    promote_candidate: true
+    reason: "Universal pattern — affects any Claude Code + Bitwarden integration"
