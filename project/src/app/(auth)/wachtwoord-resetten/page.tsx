@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,11 +12,26 @@ export default function WachtwoordResettenPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [sessionReady, setSessionReady] = useState(false);
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  const supabaseRef = useRef(
+    createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
   );
+  const supabase = supabaseRef.current;
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event) => {
+        if (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN") {
+          setSessionReady(true);
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, [supabase]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +53,7 @@ export default function WachtwoordResettenPage() {
     });
 
     if (updateError) {
+      console.error("[reset-password] updateUser failed:", updateError.message);
       setError("Kon wachtwoord niet bijwerken. Probeer het opnieuw.");
       setLoading(false);
       return;
@@ -98,10 +114,14 @@ export default function WachtwoordResettenPage() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !sessionReady}
           className="w-full rounded-lg bg-primary py-3 font-semibold text-background hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? "Bezig..." : "Wachtwoord opslaan"}
+          {!sessionReady
+            ? "Sessie laden..."
+            : loading
+              ? "Bezig..."
+              : "Wachtwoord opslaan"}
         </button>
       </form>
     </>
