@@ -54,7 +54,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
               alt="Virtually Yours"
               width={220}
               height="auto"
-              style={{ margin: "0 auto" }}
+              style={{ margin: "0 auto", padding: "25px" }}
             />
           </Section>
 
@@ -81,7 +81,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
           </Section>
 
           {/* Footer */}
-          <Section style={{ textAlign: "center" as const, padding: "24px 32px" }}>
+          <Section style={{ textAlign: "center" as const, padding: "24px 32px 40px" }}>
             <Hr style={{ borderColor: "#3a3a3a", margin: "0 0 16px" }} />
             <Text
               style={{
