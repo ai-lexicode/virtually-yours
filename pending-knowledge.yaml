@@ -5,6 +5,17 @@ pending_known_issues:
     promote_candidate: false
     reason: "Project-specific spec management"
 
+  - error: "502 Bad Gateway on Supabase OAuth callback behind nginx"
+    solution: "Two fixes needed: (1) Use NEXT_PUBLIC_SITE_URL instead of request.url.origin in auth callback — standalone mode resolves to 0.0.0.0:PORT. (2) Increase nginx proxy_buffer_size to 128k and proxy_buffers to 4x256k — Supabase JWT session cookies exceed default 4KB buffer."
+    tier: 1
+    promote_candidate: true
+    reason: "Universal pattern — affects any Next.js standalone + Supabase + nginx deployment"
+  - error: "GitHub Actions deploy race condition — /tmp/deploy.tar.gz not found"
+    solution: "Two deploys triggered simultaneously (rapid pushes). Second deploy's SSH command finds tar already deleted by first. Fix: use unique filenames (/tmp/deploy-{SHA}.tar.gz) or add concurrency group to workflow."
+    tier: 1
+    promote_candidate: false
+    reason: "Project-specific deploy script"
+
 pending_patterns:
   - pattern: "Hetzner server architecture for virtually-yours"
     context: "Standalone Next.js (not Docker) on cx33, systemd service virtually-yours.service, port 3001, nginx reverse proxy with SSL (Certbot), user 'virtually', app at /home/virtually/app/. Deploy via GitHub Actions SSH (deploy.yml)."
