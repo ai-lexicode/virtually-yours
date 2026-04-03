@@ -82,7 +82,7 @@ export default function OverMijPage() {
               <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-tl-full rounded-tr-full overflow-hidden shadow-2xl group border border-primary/30 bg-surface-container">
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent z-10 pointer-events-none" />
                 <Image
-                  src="/images/profile-risha-premium.png.png"
+                  src="/images/profile-risha-premium.png"
                   alt="Risha Smeding"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"

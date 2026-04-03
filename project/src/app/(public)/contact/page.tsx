@@ -42,7 +42,7 @@ export default function ContactPage() {
   if (sent) {
     return (
       <section className="py-12">
-        <div className="mx-auto max-w-2xl px-4 text-center">
+        <div className="mx-auto max-w-2xl px-4 text-center" aria-live="polite">
           <svg
             className="h-12 w-12 text-success mx-auto"
             fill="none"
@@ -83,17 +83,18 @@ export default function ContactPage() {
             </h2>
 
             {error && (
-              <div className="mb-4 rounded-lg bg-error/10 px-4 py-3 text-sm text-error">
+              <div className="mb-4 rounded-lg bg-error/10 px-4 py-3 text-sm text-error" aria-live="polite">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
+                <label htmlFor="contact-name" className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Naam *
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={form.name}
@@ -103,10 +104,11 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
+                <label htmlFor="contact-email" className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   E-mailadres *
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   value={form.email}
@@ -116,10 +118,11 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
+                <label htmlFor="contact-company" className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Bedrijfsnaam
                 </label>
                 <input
+                  id="contact-company"
                   type="text"
                   value={form.company}
                   onChange={(e) => update("company", e.target.value)}
@@ -128,10 +131,11 @@ export default function ContactPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
+                <label htmlFor="contact-subject" className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Onderwerp *
                 </label>
                 <select
+                  id="contact-subject"
                   value={form.subject}
                   onChange={(e) => update("subject", e.target.value)}
                   className="input-field"
@@ -145,10 +149,11 @@ export default function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
+                <label htmlFor="contact-message" className="block text-sm font-medium text-on-primary/70 mb-1 font-label">
                   Bericht *
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={5}
                   value={form.message}

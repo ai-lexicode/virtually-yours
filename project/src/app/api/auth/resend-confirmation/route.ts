@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { sendConfirmationEmail } from "@/lib/resend";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const limited = rateLimit(ip, "auth/resend-confirmation", 3, 60 * 60 * 1000);
+  if (limited) return limited;
+
   const { email } = await request.json();
 
   if (!email) {

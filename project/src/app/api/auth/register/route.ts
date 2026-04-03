@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import { sendConfirmationEmail } from "@/lib/resend";
+import { rateLimit } from "@/lib/rate-limit";
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -13,6 +14,10 @@ const registerSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const limited = rateLimit(ip, "auth/register", 5, 15 * 60 * 1000);
+  if (limited) return limited;
+
   const body = await request.json();
   const parsed = registerSchema.safeParse(body);
 

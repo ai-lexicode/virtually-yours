@@ -63,6 +63,7 @@ export function Navbar() {
           <button
             className="md:hidden text-foreground p-2 -mr-2"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
             aria-label="Menu"
           >
             <svg

@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto";
+
+function verifyWebhookSignature(body: string, signature: string | null, secret: string): boolean {
+  if (!signature) return false;
+  const expected = crypto.createHmac("sha256", secret).update(body).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+}
 
 export async function POST(request: NextRequest) {
   const supabase = createClient(
@@ -7,12 +14,26 @@ export async function POST(request: NextRequest) {
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   );
 
+  const secret = process.env.DOCASSEMBLE_WEBHOOK_SECRET;
+  if (!secret) {
+    return NextResponse.json({ error: "Webhook not configured" }, { status: 500 });
+  }
+
+  const rawBody = await request.text();
+
+  // Verify HMAC signature if present, fall back to API key header
+  const signature = request.headers.get("x-webhook-signature");
   const apiKey = request.headers.get("x-api-key");
-  if (apiKey !== process.env.DOCASSEMBLE_WEBHOOK_SECRET) {
+
+  if (signature) {
+    if (!verifyWebhookSignature(rawBody, signature, secret)) {
+      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+    }
+  } else if (apiKey !== secret) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { questionnaireId, status, fileUrl } = await request.json();
+  const { questionnaireId, status, fileUrl } = JSON.parse(rawBody);
 
   if (!questionnaireId || !status) {
     return NextResponse.json(
