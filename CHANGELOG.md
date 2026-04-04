@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Sentry error tracking with server and edge runtime support (chore-007)
+- Web Vitals collector (LCP, INP, CLS, FCP, TTFB) with batched reporting to Supabase (chore-007)
+- POST `/api/analytics/web-vitals` endpoint with Zod validation and rate limiting (chore-007)
+- `web_vitals` and `web_vital_alerts` database tables (chore-007)
+- ErrorBoundary now reports exceptions to Sentry (chore-007)
 - Shared component library: ErrorBoundary, EmptyState, SkeletonCard, SkeletonTable (chore-006)
 - `cn()` utility (`clsx` + `tailwind-merge`) at `project/src/lib/utils.ts`
 - Admin dashboard loading skeleton via `loading.tsx`

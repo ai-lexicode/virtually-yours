@@ -1,7 +1,7 @@
 ---
 id: chore-007
 type: chore
-status: approved
+status: implemented
 title: Sentry error tracking and Web Vitals collection
 created: 2026-04-04
 spec: chore-007-sentry-monitoring

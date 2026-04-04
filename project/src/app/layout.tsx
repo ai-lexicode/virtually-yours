@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleTagManager } from "@/components/tracking/GoogleTagManager";
+import { WebVitals } from "./web-vitals";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
         <GoogleTagManager />
+        <WebVitals />
         {children}
       </body>
     </html>
