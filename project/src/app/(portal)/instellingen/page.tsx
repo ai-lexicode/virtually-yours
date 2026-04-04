@@ -45,11 +45,28 @@ export default function InstellingenPage() {
       // Load notification preferences from user metadata
       const notifPrefs = user.user_metadata?.notifications;
       if (notifPrefs) {
-        setNotifications({
+        setNotifications((prev) => ({
+          ...prev,
           email: notifPrefs.email ?? true,
           documentReady: notifPrefs.documentReady ?? true,
-          marketing: notifPrefs.marketing ?? false,
-        });
+        }));
+      }
+
+      // Load newsletter subscription status from API
+      try {
+        const nlRes = await fetch("/api/newsletter/preferences");
+        if (nlRes.ok) {
+          const nlData = await nlRes.json();
+          setNotifications((prev) => ({
+            ...prev,
+            marketing: nlData.isActive ?? false,
+          }));
+        } else {
+          // 404 or other error — default to false
+          setNotifications((prev) => ({ ...prev, marketing: false }));
+        }
+      } catch {
+        setNotifications((prev) => ({ ...prev, marketing: false }));
       }
 
       setProfile((prev) => ({ ...prev, email: user.email ?? "" }));
@@ -168,9 +185,24 @@ export default function InstellingenPage() {
   async function handleNotificationChange(key: string, value: boolean) {
     const updated = { ...notifications, [key]: value };
     setNotifications(updated);
+
+    // Keep metadata in sync for backward compat
     await supabase.auth.updateUser({
       data: { notifications: updated },
     });
+
+    // For the marketing/newsletter toggle, also update newsletter_subscriptions
+    if (key === "marketing") {
+      try {
+        await fetch("/api/newsletter/preferences", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ isActive: value, general: value }),
+        });
+      } catch {
+        // Silently fail — metadata update already persisted
+      }
+    }
   }
 
   return (
