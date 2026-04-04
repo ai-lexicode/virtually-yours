@@ -19,3 +19,9 @@
 | 15 | chore-003-infrastructure-hardening | ✅ implemented | — | — |
 | 16 | chore-004-email-compliance | ✅ implemented | — | — |
 | 17 | chore-005-accessibility-fixes | ✅ implemented | — | — |
+| 18 | umb-001-newsletter-system | ✅ implemented | — | — |
+| 19 | feat-009-newsletter-database-api | ✅ implemented | — | — |
+| 20 | feat-010-newsletter-admin-ui | ✅ implemented | feat-009 | — |
+| 21 | feat-011-newsletter-public-ui | ✅ implemented | feat-009 | — |
+| 22 | feat-012-newsletter-editor-fixes | ✅ implemented | feat-009 | — |
+| 23 | feat-013-newsletter-integration-fixes | ✅ implemented | feat-012 | — |

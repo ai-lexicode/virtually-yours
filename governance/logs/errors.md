@@ -8,6 +8,8 @@
 
 ## Entries
 
+[2026-04-04T22:00] [WARNING] [security] Resend API key `re_XcVL7r6C...` is committed in `.env` (was rotated but old value still in git history). Production uses rotated key in `.env.local`. Consider adding `.env` to `.gitignore` or using placeholder values only. **User:** lexicode
+
 <!-- entries below -->
 <!-- clawguard-managed: errors-log v1 -->
 

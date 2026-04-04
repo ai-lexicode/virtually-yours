@@ -19,6 +19,14 @@ pending_patterns:
     context: "Google OAuth redirected to localhost:3000 because Supabase Site URL was still set to localhost. Code used window.location.origin (correct in browser) but Supabase validates against its configured allowlist and falls back to Site URL when no match. Fix: use NEXT_PUBLIC_SITE_URL env var for redirectTo + update Supabase Dashboard Site URL and Redirect URLs."
     promote_candidate: true
     reason: "Universal Supabase OAuth pattern — any project using Supabase social auth will hit this"
+  - pattern: "When porting components between projects, verify all field names match between frontend component and API response"
+    context: "Newsletter subscriber component used sub.type/sub.lists but API returned sub.source/sub.listIds — caused 500 error. Also block types in editor (text) didn't match renderer (email-text)."
+    promote_candidate: true
+    reason: "Universal pattern — any cross-project port risks field name mismatches"
+  - pattern: "Resend webhook endpoint must be created via API to get signing secret — cannot be retrieved retroactively"
+    context: "Created via POST /webhooks API. Response contains signing_secret (whsec_...) which must be saved immediately — Resend does not show it again."
+    promote_candidate: true
+    reason: "Universal Resend integration pattern"
   - pattern: "Reuse existing DB columns for provider migration instead of adding new columns"
     context: "Mollie→Stripe migration: reused mollie_payment_id column for Stripe session IDs, avoiding DB migration"
     promote_candidate: false
@@ -38,6 +46,15 @@ review_fix_tally:
   - tag: vague-scope
     spec: bug-002
     date: 2026-04-03
+  - tag: missing-dep
+    spec: feat-012
+    date: 2026-04-04
+  - tag: missing-dod
+    spec: feat-012
+    date: 2026-04-04
+  - tag: frontmatter-fix
+    spec: feat-012
+    date: 2026-04-04
 
 self_healing:
   applied_fixes: []
