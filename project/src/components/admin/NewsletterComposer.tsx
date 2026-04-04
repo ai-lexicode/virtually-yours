@@ -7,9 +7,9 @@ import EmailEditorShell, { type EmailBlock } from "./EmailEditorShell";
 interface DraftSummary {
   id: string;
   subject: string;
-  listType: string;
-  createdAt: string;
-  updatedAt: string;
+  list_type: string;
+  created_at: string;
+  updated_at: string;
 }
 
 interface SendProgress {
@@ -132,7 +132,7 @@ export default function NewsletterComposer() {
       setDraftId(draft.id);
       setSubject(draft.subject);
       setBlocks(Array.isArray(draft.content) ? draft.content : []);
-      setAudience({ listType: draft.listType || "general" });
+      setAudience({ listType: draft.list_type || "general" });
       setDraftsOpen(false);
       showToast("Concept geladen", "success");
     } catch {
@@ -433,7 +433,7 @@ export default function NewsletterComposer() {
                     >
                       <div className="text-white text-sm font-medium truncate">{d.subject}</div>
                       <div className="text-muted text-xs mt-1">
-                        {d.listType} &middot; {new Date(d.updatedAt).toLocaleDateString("nl-NL")}
+                        {d.list_type} &middot; {new Date(d.updated_at).toLocaleDateString("nl-NL")}
                       </div>
                     </button>
                     <button
