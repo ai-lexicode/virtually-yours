@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { createClient as createServiceClient } from "@supabase/supabase-js";
 import { formatPrice } from "@/lib/stripe";
+import { ErrorBoundary } from "@/components/shared";
 
 const statusColors: Record<string, string> = {
   pending: "bg-muted/10 text-muted",
@@ -73,6 +74,7 @@ export default async function AdminDashboardPage() {
     };
   });
   return (
+    <ErrorBoundary errorTitle="Dashboard fout" errorDescription="Het dashboard kon niet worden geladen.">
     <div className="space-y-8">
       <h1 className="text-2xl font-bold">Admin Dashboard</h1>
 
@@ -172,5 +174,6 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
     </div>
+    </ErrorBoundary>
   );
 }

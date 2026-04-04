@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Shared component library: ErrorBoundary, EmptyState, SkeletonCard, SkeletonTable (chore-006)
+- `cn()` utility (`clsx` + `tailwind-merge`) at `project/src/lib/utils.ts`
+- Admin dashboard loading skeleton via `loading.tsx`
 - Social login with Google, LinkedIn, and GitHub OAuth (feat-005)
 - Post-OAuth company details form (/profiel-aanvullen)
 - All 5 document products linked to Docassemble interviews on da server

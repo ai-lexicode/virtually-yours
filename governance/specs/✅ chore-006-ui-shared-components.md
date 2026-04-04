@@ -1,7 +1,7 @@
 ---
 id: chore-006
 type: chore
-status: approved
+status: implemented
 title: UI shared components library
 created: 2026-04-04
 spec: chore-006-ui-shared-components

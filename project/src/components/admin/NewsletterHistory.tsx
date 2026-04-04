@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { Clock } from "lucide-react";
+import { EmptyState } from "@/components/shared";
 
 type NewsletterItem = {
   id: string;
@@ -73,7 +75,11 @@ export default function NewsletterHistory() {
           </svg>
         </div>
       ) : items.length === 0 ? (
-        <div className="text-center py-12 text-muted">Geen verzonden nieuwsbrieven</div>
+        <EmptyState
+          icon={Clock}
+          title="Geen verzonden nieuwsbrieven"
+          description="Verstuurde nieuwsbrieven verschijnen hier."
+        />
       ) : (
         <>
           <div className="overflow-x-auto rounded-xl border border-card-border">
