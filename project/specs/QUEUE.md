@@ -25,3 +25,4 @@
 | 21 | feat-011-newsletter-public-ui | ✅ implemented | feat-009 | — |
 | 22 | feat-012-newsletter-editor-fixes | ✅ implemented | feat-009 | — |
 | 23 | feat-013-newsletter-integration-fixes | ✅ implemented | feat-012 | — |
+| 24 | chore-008-verify-purchase-questionnaire-flow | 🟦 approved | — | — |
