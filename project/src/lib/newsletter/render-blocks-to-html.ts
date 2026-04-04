@@ -14,6 +14,12 @@ export interface EmailBlock {
 
 // ---- Individual block renderers ----
 
+function renderHeadingBlock(props: { text: string; level: number; color: string; align: string }): string {
+  const tag = props.level === 2 ? "h2" : "h1";
+  const size = props.level === 2 ? "20px" : "26px";
+  return `<${tag} style="color: ${props.color || "#ffffff"}; font-size: ${size}; font-weight: 700; text-align: ${props.align || "left"}; margin: 0 0 16px; font-family: Georgia, serif;">${escapeHtml(props.text || "")}</${tag}>`;
+}
+
 function renderTextBlock(props: { text: string; fontSize: number; color: string; align: string }): string {
   return `<p style="margin: 0 0 16px; font-size: ${props.fontSize}px; color: ${props.color}; text-align: ${props.align}; line-height: 1.6; white-space: pre-line;">${escapeHtml(props.text || "")}</p>`;
 }
@@ -117,6 +123,9 @@ export function renderBlocksToHtml(blocks: EmailBlock[]): string {
         break;
       case "email-footer":
         footerHtml = renderFooterBlock(block.props as { text: string; unsubscribeUrl: string });
+        break;
+      case "email-heading":
+        bodyParts.push(renderHeadingBlock(block.props as { text: string; level: number; color: string; align: string }));
         break;
       case "email-text":
         bodyParts.push(renderTextBlock(block.props as { text: string; fontSize: number; color: string; align: string }));

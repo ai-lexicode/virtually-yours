@@ -7,6 +7,7 @@ import { useState, useCallback, useMemo } from "react";
 export type EmailBlockType =
   | "email-header"
   | "email-footer"
+  | "email-heading"
   | "email-text"
   | "email-image"
   | "email-button"
@@ -28,6 +29,7 @@ const DEFAULT_PROPS: Record<EmailBlockType, Record<string, string | number>> = {
     text: "Virtually Yours \u2014 virtually-yours.nl",
     unsubscribeUrl: "{{unsubscribeUrl}}",
   },
+  "email-heading": { text: "Titel", level: 1, color: "#ffffff", align: "left" },
   "email-text": { text: "Voer hier uw tekst in...", fontSize: 14, color: "#e0e0e0", align: "left" },
   "email-image": { src: "", alt: "", width: 600, align: "center", href: "" },
   "email-button": {
@@ -110,6 +112,17 @@ function BlockPreview({ block }: { block: EmailBlock }) {
           <p className="text-[10px] text-muted/60 mt-1">Unsubscribe</p>
         </div>
       );
+    case "email-heading": {
+      const Tag = p.level === 2 ? "h2" : "h1";
+      return (
+        <Tag
+          className={p.level === 2 ? "text-xl font-bold" : "text-2xl font-bold"}
+          style={{ color: String(p.color || "#ffffff"), textAlign: (String(p.align) || "left") as "left" | "center" | "right" }}
+        >
+          {String(p.text) || "Titel"}
+        </Tag>
+      );
+    }
     case "email-text":
       return (
         <p
@@ -285,6 +298,15 @@ function BlockEditor({
           {field("Uitschrijf-URL", "unsubscribeUrl", "readonly")}
         </div>
       );
+    case "email-heading":
+      return (
+        <div className="space-y-3">
+          {field("Tekst", "text")}
+          {field("Niveau", "level", "select", ["1", "2"])}
+          {field("Kleur", "color", "color")}
+          {field("Uitlijning", "align", "select", ["left", "center", "right"])}
+        </div>
+      );
     case "email-text":
       return (
         <div className="space-y-3">
@@ -375,6 +397,11 @@ function renderBlocksToHtml(blocks: EmailBlock[]): string {
       }
       case "email-footer":
         return `<div style="padding:24px 0;text-align:center;border-top:1px solid rgba(200,156,111,0.2);"><p style="color:#666;font-size:12px;margin:0 0 4px;">${escapeHtml(String(p.text || "Virtually Yours"))}</p><p style="color:#555;font-size:11px;margin:0 0 8px;">Virtually Yours \u2014 Nederland</p><a href="#" style="color:#c89c6f;font-size:11px;text-decoration:underline;">Unsubscribe</a></div>`;
+      case "email-heading": {
+        const tag = p.level === 2 ? "h2" : "h1";
+        const size = p.level === 2 ? "20px" : "26px";
+        return `<${tag} style="color:${escapeHtml(String(p.color || "#ffffff"))};font-size:${size};font-weight:700;text-align:${escapeHtml(String(p.align || "left"))};margin:0 0 16px;font-family:Georgia,serif;">${escapeHtml(String(p.text))}</${tag}>`;
+      }
       case "email-text":
         return `<p style="color:${escapeHtml(String(p.color || "#e0e0e0"))};font-size:${Number(p.fontSize || 14)}px;text-align:${escapeHtml(String(p.align || "left"))};line-height:1.6;margin:0 0 16px;white-space:pre-line;">${escapeHtml(String(p.text)).replace(/\n/g, "<br/>")}</p>`;
       case "email-button":
@@ -417,6 +444,11 @@ function escapeHtml(str: string): string {
 // ---- Widget palette (user-addable blocks only, no header/footer) ----
 
 const WIDGET_OPTIONS: { type: EmailBlockType; label: string; iconPath: string }[] = [
+  {
+    type: "email-heading",
+    label: "Titel",
+    iconPath: "M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5",
+  },
   {
     type: "email-text",
     label: "Tekst",
