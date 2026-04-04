@@ -6,6 +6,8 @@ import { PasswordResetEmail } from "@/emails/PasswordResetEmail";
 import { PaymentConfirmationEmail } from "@/emails/PaymentConfirmationEmail";
 import { DocumentReadyEmail } from "@/emails/DocumentReadyEmail";
 import { QuestionnaireReminderEmail } from "@/emails/QuestionnaireReminderEmail";
+import { NewsletterConfirmEmail } from "@/emails/NewsletterConfirmEmail";
+import { NewsletterWelcomeEmail } from "@/emails/NewsletterWelcomeEmail";
 
 export function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
@@ -102,6 +104,37 @@ export async function sendQuestionnaireReminder(
     from: FROM,
     to,
     subject: `Herinnering: vul uw vragenlijst in — ${documentTitle}`,
+    html,
+  });
+}
+
+// ─── Newsletter emails ──────────────────────────────────────────────
+export async function sendNewsletterConfirmation(
+  to: string,
+  confirmUrl: string
+) {
+  const html = await render(
+    React.createElement(NewsletterConfirmEmail, { confirmUrl })
+  );
+  return getResend().emails.send({
+    from: FROM,
+    to,
+    subject: "Bevestig uw aanmelding — Virtually Yours Newsletter",
+    html,
+  });
+}
+
+export async function sendNewsletterWelcome(
+  to: string,
+  unsubscribeUrl?: string
+) {
+  const html = await render(
+    React.createElement(NewsletterWelcomeEmail, { unsubscribeUrl })
+  );
+  return getResend().emails.send({
+    from: FROM,
+    to,
+    subject: "Welkom bij de Virtually Yours newsletter!",
     html,
   });
 }
