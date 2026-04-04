@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Admin analytics overview dashboard with KPI cards: revenue, active customers, orders, completion rate (feat-018)
+- Web Vitals dashboard with p50/p75/p95 metrics, color-coded ratings, SVG trend charts (feat-018)
+- Per-page Web Vitals performance table sorted by worst-performing pages (feat-018)
+- Auto-alert detection when p75 exceeds poor threshold for 3+ of last 7 days (feat-018)
+- Alert management with resolve/dismiss capability (feat-018)
+- Analytics section in admin sidebar navigation (feat-018)
 - Newsletter drip campaign sequences with welcome and re-engagement triggers (feat-017)
 - Admin drip UI: sequence builder with step management, active/inactive toggle, reordering (feat-017)
 - Cron endpoint `POST /api/cron/newsletter-drip` for automated drip email delivery (feat-017)

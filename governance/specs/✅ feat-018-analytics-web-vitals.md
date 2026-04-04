@@ -1,7 +1,7 @@
 ---
 id: feat-018
 type: feature
-status: approved
+status: implemented
 title: Analytics and Web Vitals admin dashboard
 created: 2026-04-04
 spec: feat-018-analytics-web-vitals
