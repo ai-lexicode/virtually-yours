@@ -34,11 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { subject, content } = validation.data;
-    const adminEmail = auth.user.email;
-
-    if (!adminEmail) {
-      return NextResponse.json({ error: "NO_ADMIN_EMAIL" }, { status: 400 });
-    }
+    const adminEmail = "info@virtually-yours.nl";
 
     // Render using the same pipeline as production sends
     const baseHtml = renderBlocksToHtml(content as unknown as EmailBlock[]);
