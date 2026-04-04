@@ -26,3 +26,9 @@
 | 22 | feat-012-newsletter-editor-fixes | ✅ implemented | feat-009 | — |
 | 23 | feat-013-newsletter-integration-fixes | ✅ implemented | feat-012 | — |
 | 24 | chore-008-verify-purchase-questionnaire-flow | ✅ implemented | — | — |
+| 25 | umb-002-cubania-migration | ✅ implemented | — | — |
+| 26 | chore-006-ui-shared-components | ✅ implemented | — | — |
+| 27 | chore-007-sentry-monitoring | ✅ implemented | — | — |
+| 28 | feat-016-blog-system | ✅ implemented | — | — |
+| 29 | feat-017-newsletter-drip | ✅ implemented | — | — |
+| 30 | feat-018-analytics-web-vitals | ✅ implemented | chore-007 | — |

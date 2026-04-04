@@ -4,36 +4,73 @@
 
 _meta:
   generated_by: setup.sh
-  last_updated: 2026-04-02
+  last_updated: 2026-04-04
   project: virtualy-yours
 
 stack:
-  language: bash
-  framework: none
-  runtime: "bash unknown"
-  build_tool: null
+  language: TypeScript
+  framework: Next.js 15 (App Router)
+  runtime: "Node.js"
+  build_tool: next build (standalone)
   test_framework: null
-  linter: null
-  package_manager: null
+  linter: eslint
+  package_manager: npm
 
 structure:
-  entry_points: []
-  source_dirs: 
-    - project/
+  entry_points:
+    - project/src/app/layout.tsx
+    - project/src/app/(public)/
+    - project/src/app/(admin)/admin/
+  source_dirs:
+    - project/src/
   test_dirs: []
-  config_files: []
-  doc_files: []
+  config_files:
+    - project/next.config.ts
+    - project/tsconfig.json
+    - project/.env.example
+  doc_files:
+    - CHANGELOG.md
+    - project/backlog.md
 
 conventions:
   commit_format: conventional
   branch_format: "{type}/{NNN}-{slug}"
 
 dependencies:
-  runtime: []
-  dev: []
+  runtime:
+    - next
+    - react
+    - "@supabase/supabase-js"
+    - "@supabase/ssr"
+    - stripe
+    - resend
+    - zod
+    - "@sentry/nextjs"
+    - web-vitals
+    - react-markdown
+    - lucide-react
+    - clsx
+    - tailwind-merge
+  dev:
+    - typescript
+    - tailwindcss
+    - eslint
 
-architecture: []
+architecture:
+  - "Supabase (no Prisma) — direct SQL migrations in supabase/migrations/"
+  - "Admin routes: requireAdmin + getAdminClient from @/lib/admin"
+  - "Public theme: surface-container-* tokens, font-serif headings"
+  - "Admin theme: bg-card, border-card-border, text-muted dark theme"
+  - "Payments: Stripe checkout + webhooks"
+  - "Email: Resend with open/click tracking"
+  - "Monitoring: Sentry error tracking + Web Vitals to Supabase"
+  - "Blog: DB-driven at /nieuws/ with react-markdown"
+  - "Newsletter: lists, segmentation, drip campaigns, double opt-in"
+  - "Deploy: GitHub Actions + SSH to Hetzner (standalone build)"
 
-known_constraints: []
+known_constraints:
+  - "No Prisma — all DB via Supabase client + raw SQL migrations"
+  - "No i18n — single locale (nl)"
+  - "auto_push: false — manual push required"
 
 notes: []

@@ -27,6 +27,10 @@ pending_patterns:
     context: "Created via POST /webhooks API. Response contains signing_secret (whsec_...) which must be saved immediately — Resend does not show it again."
     promote_candidate: true
     reason: "Universal Resend integration pattern"
+  - pattern: "When migrating components between projects, replace framework-specific CSS classes (e.g. cubania-*) with the target project's theme tokens (bg-card, border-card-border, text-muted)"
+    context: "cubania→virtualy-yours migration: all 4 shared components had cubania-surface-border, cubania-text-gold, cubania-dark classes that don't exist in VY. Systematic find-replace needed per component."
+    promote_candidate: true
+    reason: "Universal cross-project migration pattern — any themed component port requires class mapping"
   - pattern: "Reuse existing DB columns for provider migration instead of adding new columns"
     context: "Mollie→Stripe migration: reused mollie_payment_id column for Stripe session IDs, avoiding DB migration"
     promote_candidate: false
