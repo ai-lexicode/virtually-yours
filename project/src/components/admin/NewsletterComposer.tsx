@@ -23,7 +23,7 @@ interface SendProgress {
 export default function NewsletterComposer() {
   const [subject, setSubject] = useState("");
   const [blocks, setBlocks] = useState<EmailBlock[]>([]);
-  const [audience, setAudience] = useState<AudienceSelection>({ listType: "GENERAL" });
+  const [audience, setAudience] = useState<AudienceSelection>({ listType: "general" });
   const [audienceCount, setAudienceCount] = useState<number>(0);
   const [draftId, setDraftId] = useState<string | null>(null);
 
@@ -111,7 +111,7 @@ export default function NewsletterComposer() {
       setDraftId(draft.id);
       setSubject(draft.subject);
       setBlocks(Array.isArray(draft.content) ? draft.content : []);
-      setAudience({ listType: draft.listType || "GENERAL" });
+      setAudience({ listType: draft.listType || "general" });
       setDraftsOpen(false);
       showToast("Concept geladen", "success");
     } catch {

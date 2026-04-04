@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 type ListOption = { id: string; name: string; memberCount: number };
 
 export type AudienceSelection = {
-  listType: "GENERAL" | "LIST";
+  listType: "general" | "list";
   listId?: string;
 };
 
@@ -63,30 +63,30 @@ export default function NewsletterAudienceSelector({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        <label className={radioClass(value.listType === "GENERAL")}>
+        <label className={radioClass(value.listType === "general")}>
           <input
             type="radio"
             name="listType"
-            checked={value.listType === "GENERAL"}
-            onChange={() => onChange({ listType: "GENERAL" })}
+            checked={value.listType === "general"}
+            onChange={() => onChange({ listType: "general" })}
             className="accent-[#c89c6f]"
           />
           <span className="text-sm">Alle abonnees</span>
         </label>
 
-        <label className={radioClass(value.listType === "LIST")}>
+        <label className={radioClass(value.listType === "list")}>
           <input
             type="radio"
             name="listType"
-            checked={value.listType === "LIST"}
-            onChange={() => onChange({ listType: "LIST" })}
+            checked={value.listType === "list"}
+            onChange={() => onChange({ listType: "list" })}
             className="accent-[#c89c6f]"
           />
           <span className="text-sm">Specifieke lijst</span>
         </label>
       </div>
 
-      {value.listType === "LIST" && (
+      {value.listType === "list" && (
         <select
           value={value.listId || ""}
           onChange={(e) =>
