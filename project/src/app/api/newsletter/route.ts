@@ -84,20 +84,10 @@ export async function POST(request: NextRequest) {
         confirm_token_expires_at: confirmTokenExpiresAt,
       }, { onConflict: "email" });
 
-    // Send confirmation email using Resend directly
-    // (keeping it simple — no template dependency for feat-009)
+    // Send confirmation email using React Email template
     const confirmUrl = `${BASE_URL}/api/newsletter/confirm/${confirmToken}`;
-    const { getResend, FROM } = await import("@/lib/resend");
-    const resend = getResend();
-
-    await resend.emails.send({
-      from: FROM,
-      to: normalizedEmail,
-      subject: locale === "nl"
-        ? "Bevestig uw nieuwsbrief aanmelding — Virtually Yours"
-        : "Confirm your newsletter subscription — Virtually Yours",
-      html: `<p>${locale === "nl" ? "Klik op de onderstaande link om uw aanmelding te bevestigen:" : "Click the link below to confirm your subscription:"}</p><p><a href="${confirmUrl}">${locale === "nl" ? "Bevestigen" : "Confirm"}</a></p>`,
-    });
+    const { sendNewsletterConfirmation } = await import("@/lib/resend");
+    await sendNewsletterConfirmation(normalizedEmail, confirmUrl);
 
     return NextResponse.json({ success: true, pending: true });
   } catch (err) {

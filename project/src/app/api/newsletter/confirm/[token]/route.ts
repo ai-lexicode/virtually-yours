@@ -25,35 +25,40 @@ export async function GET(
       .single();
 
     if (!lead) {
-      return NextResponse.redirect(`${BASE_URL}/newsletter/expired`);
+      return NextResponse.redirect(`${BASE_URL}/newsletter/bevestigd?status=expired`);
     }
-
-    const locale = lead.locale || "nl";
 
     // Already confirmed
     if (lead.is_active && lead.confirmed_at) {
-      return NextResponse.redirect(`${BASE_URL}/newsletter/confirmed`);
+      return NextResponse.redirect(`${BASE_URL}/newsletter/bevestigd`);
     }
 
     // Check expiry
     if (!lead.confirm_token_expires_at || new Date(lead.confirm_token_expires_at) < new Date()) {
-      return NextResponse.redirect(`${BASE_URL}/newsletter/expired`);
+      return NextResponse.redirect(`${BASE_URL}/newsletter/bevestigd?status=expired`);
     }
 
-    // Activate the lead
+    // Activate the lead and generate unsubscribe token
+    const unsubscribeToken = crypto.randomUUID();
     await db
       .from("newsletter_leads")
       .update({
         is_active: true,
         confirmed_at: new Date().toISOString(),
         confirm_token_expires_at: null,
+        unsubscribe_token: unsubscribeToken,
         updated_at: new Date().toISOString(),
       })
       .eq("id", lead.id);
 
-    return NextResponse.redirect(`${BASE_URL}/newsletter/confirmed`);
+    // Send welcome email
+    const { sendNewsletterWelcome } = await import("@/lib/resend");
+    const unsubscribeUrl = `${BASE_URL}/newsletter/uitschrijven/${unsubscribeToken}`;
+    await sendNewsletterWelcome(lead.email, unsubscribeUrl);
+
+    return NextResponse.redirect(`${BASE_URL}/newsletter/bevestigd`);
   } catch (err) {
     console.error("[Newsletter Confirm] GET failed", err);
-    return NextResponse.redirect(`${BASE_URL}/newsletter/expired`);
+    return NextResponse.redirect(`${BASE_URL}/newsletter/bevestigd?status=expired`);
   }
 }

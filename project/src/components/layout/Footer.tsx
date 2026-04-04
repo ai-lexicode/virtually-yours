@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CookiePreferencesButton } from "@/components/public/CookiePreferencesButton";
+import { NewsletterForm } from "@/components/public/NewsletterForm";
 
 const documentLinks = [
   { href: "/documenten?cat=privacy", label: "Privacyverklaring" },
@@ -22,6 +23,17 @@ export function Footer() {
   return (
     <footer className="bg-sidebar text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        {/* Newsletter */}
+        <div className="mb-10 pb-8 border-b border-card-border">
+          <h3 className="text-label text-primary mb-1">Blijf op de hoogte</h3>
+          <p className="text-sm text-white/50 mb-4">
+            Ontvang juridische tips en updates in uw inbox.
+          </p>
+          <div className="max-w-md relative">
+            <NewsletterForm />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
