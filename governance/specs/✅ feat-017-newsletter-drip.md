@@ -1,7 +1,7 @@
 ---
 id: feat-017
 type: feature
-status: in-progress
+status: implemented
 title: Newsletter drip campaign sequences
 created: 2026-04-04
 spec: feat-017-newsletter-drip
