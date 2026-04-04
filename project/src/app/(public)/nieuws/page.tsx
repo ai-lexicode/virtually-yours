@@ -18,14 +18,14 @@ function getPublicClient() {
   );
 }
 
-interface BlogPost {
+interface BlogPostRow {
   id: string;
   title: string;
   slug: string;
   excerpt: string | null;
   cover_image: string | null;
   published_at: string | null;
-  blog_categories: { name: string; slug: string } | null;
+  blog_categories: { name: string; slug: string } | { name: string; slug: string }[] | null;
 }
 
 export default async function NieuwsPage({
@@ -125,7 +125,11 @@ export default async function NieuwsPage({
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {(posts as BlogPost[] || []).map((post) => (
+          {((posts as unknown as BlogPostRow[]) || []).map((post) => {
+            const cat = Array.isArray(post.blog_categories)
+              ? post.blog_categories[0] || null
+              : post.blog_categories;
+            return (
             <BlogCard
               key={post.id}
               title={post.title}
@@ -133,10 +137,11 @@ export default async function NieuwsPage({
               excerpt={post.excerpt}
               cover_image={post.cover_image}
               published_at={post.published_at}
-              category_name={post.blog_categories?.name || null}
-              category_slug={post.blog_categories?.slug || null}
+              category_name={cat?.name || null}
+              category_slug={cat?.slug || null}
             />
-          ))}
+            );
+          })}
         </div>
 
         {(!posts || posts.length === 0) && (
