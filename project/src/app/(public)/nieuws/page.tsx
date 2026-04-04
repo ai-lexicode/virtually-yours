@@ -1,61 +1,77 @@
-import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "@supabase/supabase-js";
 import { Section } from "@/components/ui/Section";
+import { BlogCard } from "@/components/public/BlogCard";
+import { BlogPagination } from "@/components/public/BlogPagination";
 
 export const metadata = {
   title: "Nieuws — Virtually Yours",
   description: "Juridisch nieuws en updates voor online ondernemers.",
 };
 
-const blogImages: Record<string, string> = {
-  "wet-vbar-schijnzelfstandigheid": "/images/blog/blog-wetboeken.jpg",
-  "voldoe-jij-aan-de-cookiewet": "/images/blog/blog-cookiewet.jpg",
-  "gevolgen-deliveroo-arrest-voor-vas": "/images/blog/blog-deliveroo.jpg",
-  "overeenkomst-van-opdracht-voor-vas": "/images/blog/blog-contract.jpg",
-};
+const POSTS_PER_PAGE = 12;
 
-const blogPosts = [
-  {
-    slug: "wet-vbar-schijnzelfstandigheid",
-    title: "Wet VBAR en schijnzelfstandigheid",
-    date: "25 mei 2024",
-    summary:
-      "De Wet VBAR (Verduidelijking Beoordeling Arbeidsrelaties en Rechtsvermoeden) brengt belangrijke veranderingen voor zzp'ers en opdrachtgevers. Wat betekent dit voor jou als VA of online ondernemer?",
-    category: "Arbeidsrecht",
-  },
-  {
-    slug: "voldoe-jij-aan-de-cookiewet",
-    title: "Voldoe jij aan de Cookiewet?",
-    date: "25 februari 2024",
-    summary:
-      "Veel online ondernemers gebruiken cookies op hun website, maar voldoen niet aan de Cookiewet. In dit artikel lees je wat je moet regelen om wel compliant te zijn.",
-    category: "Privacy",
-  },
-  {
-    slug: "gevolgen-deliveroo-arrest-voor-vas",
-    title: "Gevolgen van het Deliveroo-arrest voor VA's",
-    date: "13 december 2023",
-    summary:
-      "Het Deliveroo-arrest van de Hoge Raad heeft grote gevolgen voor de beoordeling van arbeidsrelaties. Wat betekent deze uitspraak voor virtueel assistenten en hun opdrachtgevers?",
-    category: "Arbeidsrecht",
-  },
-  {
-    slug: "overeenkomst-van-opdracht-voor-vas",
-    title: "Overeenkomst van Opdracht voor VA's",
-    date: "7 december 2023",
-    summary:
-      "Als VA werk je op basis van een overeenkomst van opdracht. Maar wat moet er precies in staan? En hoe voorkom je dat jouw overeenkomst als arbeidsovereenkomst wordt gezien?",
-    category: "Ondernemingsrecht",
-  },
-];
+function getPublicClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
-const categoryColors: Record<string, string> = {
-  Arbeidsrecht: "bg-surface-container-high text-primary",
-  Privacy: "bg-secondary-container/40 text-secondary",
-  Ondernemingsrecht: "bg-primary-dark/20 text-primary",
-};
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  cover_image: string | null;
+  published_at: string | null;
+  blog_categories: { name: string; slug: string } | null;
+}
 
-export default function NieuwsPage() {
+export default async function NieuwsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string; category?: string }>;
+}) {
+  const params = await searchParams;
+  const page = Math.max(1, parseInt(params.page || "1"));
+  const categoryFilter = params.category || "";
+  const offset = (page - 1) * POSTS_PER_PAGE;
+
+  const db = getPublicClient();
+
+  // Fetch categories for filter
+  const { data: categories } = await db
+    .from("blog_categories")
+    .select("name, slug")
+    .order("name");
+
+  // Fetch posts
+  let query = db
+    .from("blog_posts")
+    .select("id, title, slug, excerpt, cover_image, published_at, blog_categories(name, slug)", {
+      count: "exact",
+    })
+    .eq("status", "PUBLISHED");
+
+  if (categoryFilter) {
+    // Get category id first
+    const { data: cat } = await db
+      .from("blog_categories")
+      .select("id")
+      .eq("slug", categoryFilter)
+      .single();
+    if (cat) {
+      query = query.eq("category_id", cat.id);
+    }
+  }
+
+  const { data: posts, count } = await query
+    .order("published_at", { ascending: false })
+    .range(offset, offset + POSTS_PER_PAGE - 1);
+
+  const totalPages = Math.ceil((count || 0) / POSTS_PER_PAGE);
+
   return (
     <>
       <section className="py-16 sm:py-20 text-center bg-surface-container-low">
@@ -68,7 +84,9 @@ export default function NieuwsPage() {
             className="w-full h-64 object-cover rounded-lg mb-8"
             priority
           />
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">Nieuws</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-on-surface">
+            Nieuws
+          </h1>
           <p className="mt-4 text-lg text-muted">
             Juridisch nieuws en updates voor online ondernemers, VA&apos;s en
             zzp&apos;ers.
@@ -77,45 +95,55 @@ export default function NieuwsPage() {
       </section>
 
       <Section className="!pt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {blogPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/nieuws/${post.slug}`}
-              className="group block rounded-[0.25rem] bg-surface-container-lowest overflow-hidden hover:bg-surface-container-low transition-all shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+        {/* Category filter */}
+        {categories && categories.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 max-w-5xl mx-auto mb-8">
+            <a
+              href="/nieuws"
+              className={`rounded-[0.25rem] px-3 py-1.5 text-sm font-medium transition-colors ${
+                !categoryFilter
+                  ? "bg-primary text-white"
+                  : "bg-surface-container-lowest text-muted hover:text-on-surface"
+              }`}
             >
-              {blogImages[post.slug] && (
-                <div className="relative w-full h-40">
-                  <Image
-                    src={blogImages[post.slug]}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              )}
-              <div className="p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <span
-                  className={`inline-block rounded-[0.25rem] px-3 py-1 text-xs font-medium font-label ${categoryColors[post.category] || "bg-surface-container text-muted"}`}
-                >
-                  {post.category}
-                </span>
-                <span className="text-xs text-muted font-label">{post.date}</span>
-              </div>
-              <h2 className="font-serif text-lg font-bold group-hover:text-secondary transition-colors text-on-surface">
-                {post.title}
-              </h2>
-              <p className="mt-2 text-sm text-muted leading-relaxed line-clamp-3">
-                {post.summary}
-              </p>
-              <span className="mt-4 inline-block text-sm text-secondary font-medium group-hover:translate-x-1 transition-transform">
-                Lees meer &rarr;
-              </span>
-              </div>
-            </Link>
+              Alles
+            </a>
+            {categories.map((cat) => (
+              <a
+                key={cat.slug}
+                href={`/nieuws?category=${cat.slug}`}
+                className={`rounded-[0.25rem] px-3 py-1.5 text-sm font-medium transition-colors ${
+                  categoryFilter === cat.slug
+                    ? "bg-primary text-white"
+                    : "bg-surface-container-lowest text-muted hover:text-on-surface"
+                }`}
+              >
+                {cat.name}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {(posts as BlogPost[] || []).map((post) => (
+            <BlogCard
+              key={post.id}
+              title={post.title}
+              slug={post.slug}
+              excerpt={post.excerpt}
+              cover_image={post.cover_image}
+              published_at={post.published_at}
+              category_name={post.blog_categories?.name || null}
+              category_slug={post.blog_categories?.slug || null}
+            />
           ))}
         </div>
+
+        {(!posts || posts.length === 0) && (
+          <p className="text-center text-muted mt-8">Geen artikelen gevonden.</p>
+        )}
+
+        <BlogPagination page={page} totalPages={totalPages} baseUrl="/nieuws" />
       </Section>
     </>
   );
