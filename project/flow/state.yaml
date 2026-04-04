@@ -4,3 +4,81 @@
 pipeline:
   active: null
   status: done
+
+orchestration:
+  active: null
+  spec_file: "governance/specs/✅ umb-002-cubania-migration.md"
+  status: done
+  started_at: "2026-04-04T14:00"
+  current_wave: 3
+  total_waves: 3
+  on_failure: stop
+  gate_mode: null
+  advisories:
+    - wave: 1
+      type: conflict
+      description: "chore-006 must execute before chore-007 (ErrorBoundary.tsx dependency)"
+  cross_repo_specs: []
+  progress:
+    - spec: chore-006
+      wave: 1
+      started_at: "2026-04-04T14:01"
+      status: implemented
+      execution: sequential
+      completed_at: "2026-04-04T14:06"
+      metrics:
+        duration_ms: 280479
+        context_tokens_used: 50733
+        compaction_occurred: false
+        auto_heals: []
+        scope_drift: {expected: 10, actual: 11, unexpected: ["project/src/app/(admin)/admin/loading.tsx"], missing: []}
+    - spec: chore-007
+      wave: 1
+      started_at: "2026-04-04T14:07"
+      status: implemented
+      execution: sequential
+      completed_at: "2026-04-04T14:56"
+      metrics:
+        duration_ms: 2920463
+        context_tokens_used: 45139
+        compaction_occurred: false
+        auto_heals: []
+        scope_drift: {expected: 11, actual: 12, unexpected: ["project/.env.example"], missing: []}
+    - spec: feat-016
+      wave: 2
+      started_at: "2026-04-04T14:57"
+      status: implemented
+      execution: sequential
+      completed_at: "2026-04-04T15:37"
+      metrics:
+        duration_ms: 2407295
+        context_tokens_used: 93571
+        compaction_occurred: false
+        auto_heals: []
+        scope_drift: {expected: 21, actual: 21, unexpected: [], missing: []}
+    - spec: feat-017
+      wave: 2
+      started_at: "2026-04-04T15:38"
+      status: implemented
+      execution: sequential
+      completed_at: "2026-04-04T15:48"
+      metrics:
+        duration_ms: 600033
+        context_tokens_used: 70161
+        compaction_occurred: false
+        auto_heals: []
+        scope_drift: {expected: 10, actual: 10, unexpected: [], missing: []}
+    - spec: feat-018
+      wave: 3
+      started_at: "2026-04-04T15:49"
+      status: implemented
+      execution: sequential
+      completed_at: "2026-04-04T16:30"
+      metrics:
+        duration_ms: 40240706
+        context_tokens_used: 61737
+        compaction_occurred: false
+        auto_heals: []
+        scope_drift: {expected: 14, actual: 14, unexpected: [], missing: []}
+
+locks: []

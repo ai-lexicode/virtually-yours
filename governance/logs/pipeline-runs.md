@@ -8,6 +8,7 @@ Last updated: (auto)
 
 | Date | ADW | Description | Steps | Result | Duration | Manual | Lines | Retries | Notes |
 |------|-----|-------------|-------|--------|----------|--------|-------|---------|-------|
+| 2026-04-04 | orchestrate | umb-002 Cubania Feature Migration | 5/5 | success | ~150min | 0 | ~70f | 0 | 3 waves, 5 sub-specs, TypeScript clean all waves |
 
 | 2026-04-02 | plan-build | Stitch redesign + WP content migration | 4/4 | success | ~65min | 1 | 22f, +1092 -132 | 0 | Stitch skipped (fallback), 4 WP images downloaded |
 | 2026-04-02 | plan-build | Clone LexiCode for Virtually Yours | 4/4 | success | ~45min | 1 | 74f, +16250 | 0 | Stitch partial (timeout), build fix applied |
