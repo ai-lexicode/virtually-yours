@@ -12,6 +12,7 @@ export default function RegistrerenPage() {
     password: "",
     terms: false,
   });
+  const [newsletter, setNewsletter] = useState(true);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -41,6 +42,7 @@ export default function RegistrerenPage() {
         password: form.password,
         firstName: form.firstName,
         lastName: form.lastName,
+        newsletter,
       }),
     });
 
@@ -202,6 +204,16 @@ export default function RegistrerenPage() {
               privacybeleid
             </Link>
           </span>
+        </label>
+
+        <label className="flex items-start gap-2 text-sm text-muted">
+          <input
+            type="checkbox"
+            checked={newsletter}
+            onChange={(e) => setNewsletter(e.target.checked)}
+            className="h-5 w-5 rounded-[0.25rem] mt-0.5 accent-secondary"
+          />
+          <span>Ik wil de Virtually Yours nieuwsbrief ontvangen</span>
         </label>
 
         <button

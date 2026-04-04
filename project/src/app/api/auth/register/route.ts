@@ -11,6 +11,7 @@ const registerSchema = z.object({
   lastName: z.string(),
   companyName: z.string().optional(),
   kvkNumber: z.string().optional(),
+  newsletter: z.boolean().optional().default(true),
 });
 
 export async function POST(request: NextRequest) {
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { email, password, firstName, lastName, companyName, kvkNumber } =
+  const { email, password, firstName, lastName, companyName, kvkNumber, newsletter } =
     parsed.data;
 
   const serviceClient = createServiceClient(
@@ -68,6 +69,20 @@ export async function POST(request: NextRequest) {
         kvk_number: kvkNumber || null,
       })
       .eq("id", data.user.id);
+  }
+
+  // Create newsletter subscription if opted in
+  if (data.user && newsletter) {
+    try {
+      await serviceClient
+        .from("newsletter_subscriptions")
+        .upsert(
+          { user_id: data.user.id, is_active: true, general: true },
+          { onConflict: "user_id", ignoreDuplicates: true }
+        );
+    } catch (e) {
+      console.error("[register] Newsletter subscription insert failed:", e);
+    }
   }
 
   // Send branded confirmation email via Resend
