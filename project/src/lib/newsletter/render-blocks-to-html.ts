@@ -18,7 +18,7 @@ function renderTextBlock(props: { text: string; fontSize: number; color: string;
   return `<p style="margin: 0 0 16px; font-size: ${props.fontSize}px; color: ${props.color}; text-align: ${props.align}; line-height: 1.6; white-space: pre-line;">${escapeHtml(props.text || "")}</p>`;
 }
 
-function renderImageBlock(props: { src: string; alt: string; width: number; align: string }): string {
+function renderImageBlock(props: { src: string; alt: string; width: number; align: string; href?: string }): string {
   if (!props.src) return "";
   const margin =
     props.align === "center"
@@ -26,8 +26,12 @@ function renderImageBlock(props: { src: string; alt: string; width: number; alig
       : props.align === "right"
         ? "0 0 0 auto"
         : "0 auto 0 0";
+  const imgTag = `<img src="${escapeAttr(props.src)}" alt="${escapeAttr(props.alt || "")}" style="width: ${props.width}px; max-width: 100%; border-radius: 8px; display: block; margin: ${margin};" />`;
+  const inner = props.href && props.href.trim() !== ""
+    ? `<a href="${escapeAttr(props.href)}" style="text-decoration: none;">${imgTag}</a>`
+    : imgTag;
   return `<div style="text-align: ${props.align}; margin: 16px 0;">
-  <img src="${escapeAttr(props.src)}" alt="${escapeAttr(props.alt || "")}" style="width: ${props.width}px; max-width: 100%; border-radius: 8px; display: block; margin: ${margin};" />
+  ${inner}
 </div>`;
 }
 
@@ -118,7 +122,7 @@ export function renderBlocksToHtml(blocks: EmailBlock[]): string {
         bodyParts.push(renderTextBlock(block.props as { text: string; fontSize: number; color: string; align: string }));
         break;
       case "email-image":
-        bodyParts.push(renderImageBlock(block.props as { src: string; alt: string; width: number; align: string }));
+        bodyParts.push(renderImageBlock(block.props as { src: string; alt: string; width: number; align: string; href?: string }));
         break;
       case "email-button":
         bodyParts.push(renderButtonBlock(block.props as { text: string; url: string; bgColor: string; textColor: string; borderRadius: number }));

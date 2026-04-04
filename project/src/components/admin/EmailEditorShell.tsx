@@ -29,7 +29,7 @@ const DEFAULT_PROPS: Record<EmailBlockType, Record<string, string | number>> = {
     unsubscribeUrl: "{{unsubscribeUrl}}",
   },
   "email-text": { text: "Voer hier uw tekst in...", fontSize: 14, color: "#e0e0e0", align: "left" },
-  "email-image": { src: "", alt: "", width: 600, align: "center" },
+  "email-image": { src: "", alt: "", width: 600, align: "center", href: "" },
   "email-button": {
     text: "Klik hier",
     url: "https://",
@@ -140,7 +140,7 @@ function BlockPreview({ block }: { block: EmailBlock }) {
     }
     case "email-image":
       return p.src ? (
-        <div style={{ textAlign: (String(p.align) || "center") as "left" | "center" | "right" }}>
+        <div style={{ textAlign: (String(p.align) || "center") as "left" | "center" | "right" }} className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={String(p.src)}
@@ -148,6 +148,14 @@ function BlockPreview({ block }: { block: EmailBlock }) {
             className="max-w-full h-auto rounded-lg"
             style={{ maxHeight: 200, width: Number(p.width || 600), maxWidth: "100%" }}
           />
+          {p.href && String(p.href).trim() !== "" && (
+            <span className="absolute top-1 right-1 bg-[#2a2a2a]/80 text-primary text-[10px] px-1.5 py-0.5 rounded flex items-center gap-0.5">
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.04a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364l1.757 1.757" />
+              </svg>
+              Link
+            </span>
+          )}
         </div>
       ) : (
         <div className="h-24 rounded-lg border-2 border-dashed border-[#333] flex items-center justify-center text-muted text-sm">
@@ -333,6 +341,7 @@ function BlockEditor({
             </div>
           </div>
           {field("Alt tekst", "alt")}
+          {field("Link URL", "href")}
           {field("Breedte (px)", "width", "number")}
           {field("Uitlijning", "align", "select", ["left", "center", "right"])}
         </div>
@@ -370,10 +379,14 @@ function renderBlocksToHtml(blocks: EmailBlock[]): string {
         return `<p style="color:${escapeHtml(String(p.color || "#e0e0e0"))};font-size:${Number(p.fontSize || 14)}px;text-align:${escapeHtml(String(p.align || "left"))};line-height:1.6;margin:0 0 16px;white-space:pre-line;">${escapeHtml(String(p.text)).replace(/\n/g, "<br/>")}</p>`;
       case "email-button":
         return `<div style="text-align:center;margin:24px 0;"><a href="${escapeHtml(String(p.url))}" style="display:inline-block;padding:12px 28px;background-color:${escapeHtml(String(p.bgColor || "#c89c6f"))};color:${escapeHtml(String(p.textColor || "#1a1a1a"))};text-decoration:none;border-radius:${Number(p.borderRadius || 8)}px;font-weight:600;font-size:16px;">${escapeHtml(String(p.text))}</a></div>`;
-      case "email-image":
-        return p.src
-          ? `<div style="text-align:${escapeHtml(String(p.align || "center"))};margin:16px 0;"><img src="${escapeHtml(String(p.src))}" alt="${escapeHtml(String(p.alt || ""))}" style="width:${Number(p.width || 600)}px;max-width:100%;border-radius:8px;" /></div>`
-          : "";
+      case "email-image": {
+        if (!p.src) return "";
+        const imgTag = `<img src="${escapeHtml(String(p.src))}" alt="${escapeHtml(String(p.alt || ""))}" style="width:${Number(p.width || 600)}px;max-width:100%;border-radius:8px;" />`;
+        const inner = p.href && String(p.href).trim() !== ""
+          ? `<a href="${escapeHtml(String(p.href))}" style="text-decoration:none;">${imgTag}</a>`
+          : imgTag;
+        return `<div style="text-align:${escapeHtml(String(p.align || "center"))};margin:16px 0;">${inner}</div>`;
+      }
       case "email-divider":
         return `<hr style="border:none;border-top:${Number(p.thickness || 1)}px solid ${escapeHtml(String(p.color || "#333333"))};margin:16px 0;" />`;
       default:
