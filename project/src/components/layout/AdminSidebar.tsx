@@ -30,6 +30,25 @@ const navItems = [
   },
 ];
 
+const blogItems = [
+  {
+    href: "/admin/blog",
+    label: "Artikelen",
+    icon: "M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H5.625a2.25 2.25 0 01-2.25-2.25V7.875c0-.621.504-1.125 1.125-1.125H6.75",
+    exact: true,
+  },
+  {
+    href: "/admin/blog/new",
+    label: "Nieuw artikel",
+    icon: "M12 4.5v15m7.5-7.5h-15",
+  },
+  {
+    href: "/admin/blog/categories",
+    label: "Categorieën",
+    icon: "M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z",
+  },
+];
+
 const newsletterItems = [
   {
     href: "/admin/newsletter",
@@ -115,6 +134,43 @@ export function AdminSidebar() {
 
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
+            const active = item.exact
+              ? pathname === item.href
+              : pathname === item.href || pathname.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                  active
+                    ? "bg-primary/15 text-primary font-semibold"
+                    : "text-muted hover:text-foreground hover:bg-surface-container"
+                }`}
+              >
+                <svg
+                  className="h-5 w-5 shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d={item.icon}
+                  />
+                </svg>
+                {item.label}
+              </Link>
+            );
+          })}
+
+          <div className="pt-3 pb-1 px-3">
+            <span className="text-xs font-medium text-muted uppercase tracking-wider">Blog</span>
+          </div>
+
+          {blogItems.map((item) => {
             const active = item.exact
               ? pathname === item.href
               : pathname === item.href || pathname.startsWith(item.href + "/");

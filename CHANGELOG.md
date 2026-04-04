@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Dynamic blog system replacing static /nieuws/ pages with DB-driven content (feat-016)
+- Admin blog management: create, edit, publish, archive posts with markdown editor (feat-016)
+- Admin blog category management with inline CRUD (feat-016)
+- Public blog listing with pagination and category filter (feat-016)
+- Blog post detail pages with react-markdown rendering (feat-016)
+- RSS 2.0 feed at /api/blog/rss (feat-016)
+- Blog database schema: blog_posts and blog_categories tables with RLS policies (feat-016)
+- Seed script converting 4 existing static articles to database (feat-016)
 - Sentry error tracking with server and edge runtime support (chore-007)
 - Web Vitals collector (LCP, INP, CLS, FCP, TTFB) with batched reporting to Supabase (chore-007)
 - POST `/api/analytics/web-vitals` endpoint with Zod validation and rate limiting (chore-007)
