@@ -111,6 +111,22 @@ export async function getRecipients(
           }
         }
       }
+
+      // Include active leads (confirmed, not user-linked)
+      const { data: leads } = await db
+        .from("newsletter_leads")
+        .select("email")
+        .eq("is_active", true)
+        .not("confirmed_at", "is", null);
+
+      if (leads) {
+        const existingEmails = new Set(recipients.map((r) => r.email));
+        for (const l of leads) {
+          if (l.email && !existingEmails.has(l.email)) {
+            recipients.push({ email: l.email });
+          }
+        }
+      }
       break;
     }
     case "list": {

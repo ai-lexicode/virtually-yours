@@ -15,12 +15,17 @@ export async function GET(request: NextRequest) {
 
     switch (listType) {
       case "general": {
-        const { count: c } = await db
+        const { count: subCount } = await db
           .from("newsletter_subscriptions")
           .select("*", { count: "exact", head: true })
           .eq("is_active", true)
           .eq("general", true);
-        count = c || 0;
+        const { count: leadCount } = await db
+          .from("newsletter_leads")
+          .select("*", { count: "exact", head: true })
+          .eq("is_active", true)
+          .not("confirmed_at", "is", null);
+        count = (subCount || 0) + (leadCount || 0);
         break;
       }
       case "list": {
