@@ -30,6 +30,7 @@ export default function NewsletterComposer() {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [testSending, setTestSending] = useState(false);
   const [draftsOpen, setDraftsOpen] = useState(false);
   const [drafts, setDrafts] = useState<DraftSummary[]>([]);
   const [sendProgress, setSendProgress] = useState<SendProgress | null>(null);
@@ -57,6 +58,26 @@ export default function NewsletterComposer() {
   const handleBlocksChange = useCallback((newBlocks: EmailBlock[]) => {
     setBlocks(newBlocks);
   }, []);
+
+  // Test send
+  const handleTestSend = async () => {
+    if (!canSend) return;
+    setTestSending(true);
+    try {
+      const res = await fetch("/api/admin/newsletter/send/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subject, content: blocks }),
+      });
+      if (!res.ok) throw new Error("TEST_SEND_FAILED");
+      const data = await res.json();
+      showToast(`Testmail verzonden naar ${data.email}`, "success");
+    } catch {
+      showToast("Testmail verzenden mislukt", "error");
+    } finally {
+      setTestSending(false);
+    }
+  };
 
   // Save draft
   const handleSaveDraft = async () => {
@@ -308,6 +329,22 @@ export default function NewsletterComposer() {
             Concept opslaan
           </button>
           <button
+            onClick={handleTestSend}
+            disabled={!canSend || testSending}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm rounded-lg border border-[#333] text-muted hover:text-white hover:border-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {testSending ? (
+              <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            )}
+            Testmail versturen
+          </button>
+          <button
             onClick={() => setConfirmOpen(true)}
             disabled={!canSend || sending}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm rounded-lg btn-gradient font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
@@ -386,16 +423,40 @@ export default function NewsletterComposer() {
                 <p className="text-muted text-sm py-4 text-center">Geen concepten gevonden</p>
               ) : (
                 drafts.map((d) => (
-                  <button
+                  <div
                     key={d.id}
-                    onClick={() => loadDraft(d.id)}
-                    className="w-full text-left p-3 rounded-lg border border-[#333] hover:border-primary/40 transition-colors bg-[#1a1a1a]"
+                    className="flex items-center gap-2 p-3 rounded-lg border border-[#333] hover:border-primary/40 transition-colors bg-[#1a1a1a]"
                   >
-                    <div className="text-white text-sm font-medium">{d.subject}</div>
-                    <div className="text-muted text-xs mt-1">
-                      {d.listType} &middot; {new Date(d.updatedAt).toLocaleDateString("nl-NL")}
-                    </div>
-                  </button>
+                    <button
+                      onClick={() => loadDraft(d.id)}
+                      className="flex-1 text-left min-w-0"
+                    >
+                      <div className="text-white text-sm font-medium truncate">{d.subject}</div>
+                      <div className="text-muted text-xs mt-1">
+                        {d.listType} &middot; {new Date(d.updatedAt).toLocaleDateString("nl-NL")}
+                      </div>
+                    </button>
+                    <button
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        try {
+                          const res = await fetch(`/api/admin/newsletter/draft?id=${d.id}`, { method: "DELETE" });
+                          if (!res.ok) throw new Error();
+                          setDrafts((prev) => prev.filter((x) => x.id !== d.id));
+                          if (draftId === d.id) setDraftId(null);
+                          showToast("Concept verwijderd", "success");
+                        } catch {
+                          showToast("Verwijderen mislukt", "error");
+                        }
+                      }}
+                      className="shrink-0 p-1.5 text-muted hover:text-red-400 transition-colors rounded-lg hover:bg-red-500/10"
+                      title="Verwijderen"
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                      </svg>
+                    </button>
+                  </div>
                 ))
               )}
             </div>
