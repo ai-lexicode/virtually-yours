@@ -7,9 +7,9 @@ type Subscriber = {
   email: string;
   firstName: string;
   lastName: string;
-  type: "user" | "lead";
+  source: "registered" | "import";
   isActive: boolean;
-  lists: string[];
+  listIds: string[];
 };
 
 export default function NewsletterSubscribers() {
@@ -127,9 +127,9 @@ export default function NewsletterSubscribers() {
                   <td className="px-4 py-3 text-muted text-sm">{sub.email}</td>
                   <td className="px-4 py-3 text-center">
                     <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full ${
-                      sub.type === "user" ? "bg-blue-500/20 text-blue-400" : "bg-amber-500/20 text-amber-400"
+                      sub.source === "registered" ? "bg-blue-500/20 text-blue-400" : "bg-amber-500/20 text-amber-400"
                     }`}>
-                      {sub.type === "user" ? "Gebruiker" : "Lead"}
+                      {sub.source === "registered" ? "Gebruiker" : "Lead"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-center">
@@ -141,7 +141,7 @@ export default function NewsletterSubscribers() {
                   </td>
                   <td className="px-4 py-3 hidden md:table-cell">
                     <div className="flex gap-1 flex-wrap">
-                      {sub.lists.length > 0 ? sub.lists.map((list, i) => (
+                      {sub.listIds.length > 0 ? sub.listIds.map((list, i) => (
                         <span key={i} className="inline-block text-xs px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
                           {list}
                         </span>
