@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Newsletter drip campaign sequences with welcome and re-engagement triggers (feat-017)
+- Admin drip UI: sequence builder with step management, active/inactive toggle, reordering (feat-017)
+- Cron endpoint `POST /api/cron/newsletter-drip` for automated drip email delivery (feat-017)
+- Database tables: `newsletter_drip_sequences`, `newsletter_drip_steps`, `newsletter_drip_sends` (feat-017)
 - Dynamic blog system replacing static /nieuws/ pages with DB-driven content (feat-016)
 - Admin blog management: create, edit, publish, archive posts with markdown editor (feat-016)
 - Admin blog category management with inline CRUD (feat-016)
